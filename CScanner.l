@@ -21,11 +21,11 @@ realexp		{real}{fltexp}?
 hexexp		(0[xX]){hexdig}*(\.{hexdig}*)?[pP][+-]?{digit}+
 fltconst	({intexp}|{realexp}|{hexexp}){fltsuf}?
 
-simseq		\\['\"\?\\abfnrtv]
-octesc		\\{octdig}{octdig}?{octdig}?
-hexesc		\\x{hexdig}+
+simescseq	\\['\"\?\\abfnrtv]
+octescseq	\\{octdig}{octdig}?{octdig}?
+hexescseq	\\x{hexdig}+
 unicharname	\\[uU]{hexdig}{hexdig}{hexdig}{hexdig}
-escseq		{simseq}|{octseq}|{hexseq}|{unicharname}
+escseq		{simescseq}|{octescseq}|{hexescseq}|{unicharname}
 charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"({escseq}|[^\\"])*\"
@@ -33,8 +33,8 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 //Comments
-"//".*		{ //no action, consume one line comment }
-"/*"		{ //We need a comment function to consume a multi line comment }
+"//".*		{ /* no action, consume one line comment */ }
+"/*"		{ /* We need a comment function to consume a multi line comment */ }
 
 //Keywords
 "sizeof"	{ return(SIZEOF); }
