@@ -1,13 +1,15 @@
 // Regex definitions
 letter		[a-zA-Z]
 digit		[0-9]
+hexdig		[0-9a-fA-F]
+octdig		[0-7]
 id		({letter}|_)(letter|digit)*
 
 lu		[lL][lL]?[uU]?
 ul		[uU][lL]?[lL]?
 intsuf		({lu}|{ul})
-hexint		(0[xX])[0-9a-fA-F]+
-octint		(0)[0-7]*
+hexint		(0[xX]){hexdig}+
+octint		(0){octdig}*
 decint		[1-9]{digit}*
 intconst	({decint}|{octint}|{hexint})({intsuf}?)
 
@@ -19,9 +21,10 @@ realexp		{real}{fltexp}?
 fltconst	({intexp}|{realexp}){fltsuf}?
 
 simseq		\\['\"\?\\abfnrtv]
-octesc		\\[0-7][0-7]?[0-7]?
-hexesc		\\x[0-9a-fA-F]+
-escseq		{simseq}|{octseq}|{hexseq}
+octesc		\\{octdig}{octdig}?{octdig}?
+hexesc		\\x{hexdig}+
+unicharname	\\[uU]{hexdig}{hexdig}{hexdig}{hexdig}
+escseq		{simseq}|{octseq}|{hexseq}|{unicharname}
 charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"(\\.|[^\\"])*\"
