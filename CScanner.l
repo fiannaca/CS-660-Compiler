@@ -3,32 +3,58 @@ letter		[a-zA-Z]
 digit		[0-9]
 id		({letter}|_)(letter|digit)*
 
+lu		[lL][lL]?[uU]?
+ul		[uU][lL]?[lL]?
+intsuf		({lu}|{ul})
+hexint		(0[xX])[0-9a-fA-F]+
+octint		(0)[0-7]*
+decint		[1-9]{digit}*
+intconst	({decint}|{octint}|{hexint})({intsuf}?)
+
+fltsuf		[fFlL]
+fltexp		[eE][+-]?{digit}+
+real		{digit}*\.{digit}+
+intexp		{digit}+{fltexp}
+realexp		{real}{fltexp}?
+fltconst	({intexp}|{realexp}){fltsuf}?
+
+charconst	L?'(\\.|[^'])'
+
+stringlit	L?\"(\\.|[^\\"])*\"
 %%
 
 // Token Regexes and Actions
 
 //identifier - First figure out what type of id this is...
-id		{ return(IDENTIFIER); }
+{id}		{ return(IDENTIFIER); }
 
 //character_constant
+{charconst}	{ return(CHARACTER_CONSTANT); }
+
     //possible prefix: L
     //' char '
 
 //enumeration_constant
 
 //integer_constant
+{intconst}	{ return(INTEGER_CONSTANT); }
+
     //leading 0x means a hexidecimal number
     //leading 0 means an octal number
     //leading non-zero means a decimal number
     //possible suffixes: u U l L ll LL (u's and l's can be combined)
 
 //floating_constant
+{fltconst}	{ return(FLOATING_CONSTANT); }
+
     //ends in a . (12.)
     //ends in a . and digit(s) (12.234)
     //ends in an exponent (digits eE +- digits)
     //possible suffixes: f F l L (no combinations)
 
 //string_literal
+{stringlit}	{ return(STRING_LITERAL); }
+
     //possible prefix: L
     //" chars "
     //need to consider escape sequences
