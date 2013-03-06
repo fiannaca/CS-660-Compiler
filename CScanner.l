@@ -18,7 +18,8 @@ fltexp		[eE][+-]?{digit}+
 real		{digit}*\.{digit}+
 intexp		{digit}+{fltexp}
 realexp		{real}{fltexp}?
-fltconst	({intexp}|{realexp}){fltsuf}?
+hexexp		(0[xX]){hexdig}*(\.{hexdig}*)?[pP][+-]?{digit}+
+fltconst	({intexp}|{realexp}|{hexexp}){fltsuf}?
 
 simseq		\\['\"\?\\abfnrtv]
 octesc		\\{octdig}{octdig}?{octdig}?
@@ -27,7 +28,7 @@ unicharname	\\[uU]{hexdig}{hexdig}{hexdig}{hexdig}
 escseq		{simseq}|{octseq}|{hexseq}|{unicharname}
 charconst	L?'({escseq}|[^'\\])+'
 
-stringlit	L?\"(\\.|[^\\"])*\"
+stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 // Token Regexes and Actions
