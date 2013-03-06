@@ -18,7 +18,11 @@ intexp		{digit}+{fltexp}
 realexp		{real}{fltexp}?
 fltconst	({intexp}|{realexp}){fltsuf}?
 
-charconst	L?'(\\.|[^'])'
+simseq		\\['\"\?\\abfnrtv]
+octesc		\\[0-7][0-7]?[0-7]?
+hexesc		\\x[0-9a-fA-F]+
+escseq		{simseq}|{octseq}|{hexseq}
+charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"(\\.|[^\\"])*\"
 %%
