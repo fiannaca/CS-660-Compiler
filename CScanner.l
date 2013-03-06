@@ -29,44 +29,14 @@ escseq		{simseq}|{octseq}|{hexseq}|{unicharname}
 charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"({escseq}|[^\\"])*\"
+
 %%
 
-// Token Regexes and Actions
+//Comments
+"//".*		{ //no action, consume one line comment }
+"/*"		{ //We need a comment function to consume a multi line comment }
 
-//identifier - First figure out what type of id this is...
-{id}		{ return(IDENTIFIER); }
-
-//character_constant
-{charconst}	{ return(CHARACTER_CONSTANT); }
-
-    //possible prefix: L
-    //' char '
-
-//enumeration_constant
-
-//integer_constant
-{intconst}	{ return(INTEGER_CONSTANT); }
-
-    //leading 0x means a hexidecimal number
-    //leading 0 means an octal number
-    //leading non-zero means a decimal number
-    //possible suffixes: u U l L ll LL (u's and l's can be combined)
-
-//floating_constant
-{fltconst}	{ return(FLOATING_CONSTANT); }
-
-    //ends in a . (12.)
-    //ends in a . and digit(s) (12.234)
-    //ends in an exponent (digits eE +- digits)
-    //possible suffixes: f F l L (no combinations)
-
-//string_literal
-{stringlit}	{ return(STRING_LITERAL); }
-
-    //possible prefix: L
-    //" chars "
-    //need to consider escape sequences
-
+//Keywords
 "sizeof"	{ return(SIZEOF); }
 "typedef"	{ return(TYPEDEF); }
 "extern"	{ return(EXTERN); }
@@ -88,7 +58,6 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 "struct"	{ return(STRUCT); }
 "union"		{ return(UNION); }
 "enum"		{ return(ENUM); }
-"..."		{ return(ELIPSIS); }
 
 "case"		{ return(CASE); }
 "default"	{ return(DEFAULT); }
@@ -103,6 +72,20 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 "break"		{ return(BREAK); }
 "return"	{ return(RETURN); }
 
+//identifier - First figure out what type of id this is...
+{id}		{ return(IDENTIFIER); }
+
+//Constants
+{charconst}	{ return(CHARACTER_CONSTANT); }
+
+//enumeration_constant
+
+{intconst}	{ return(INTEGER_CONSTANT); }
+{fltconst}	{ return(FLOATING_CONSTANT); }
+{stringlit}	{ return(STRING_LITERAL); }
+
+//Punctuators
+"..."		{ return(ELLIPSIS); }
 "->"		{ return(PTR_OP); }
 "++"		{ return(INC_OP); }
 "--"		{ return(DEC_OP); }
@@ -139,10 +122,10 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 "!"		{ return('!'); }
 "."		{ return('.'); }
 "?"		{ return('?'); }
-"{"		{ return('{'); }
-"}"		{ return('}'); }
-"["		{ return('['); }
-"]"		{ return(']'); }
+"{"|"<%"	{ return('{'); }
+"}"|"%>"	{ return('}'); }
+"["|"<:"	{ return('['); }
+"]"|":>"	{ return(']'); }
 "("		{ return('('); }
 ")"		{ return(')'); }
 "="		{ return('='); }
