@@ -11,8 +11,11 @@ lex.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
 #SymTable.o: SymTable.cc SymTable.h
 #	g++ -std=c++11 -c SymTable.cc
 
+#--scanner indicates that bison is being used in conjunction with flex
+#--error-verbose dumps parser state information when a syntactic error is encountered
+#-t prints out the tokens as they are encountered by the parser
 parse.cc: CParser.y
-	bisonc++ CParser.y --scanner=Scanner.h
+	bisonc++ CParser.y --scanner=Scanner.h --error-verbose -t
 
 lex.cc: CScanner.l
 	flexc++ CScanner.l
@@ -21,5 +24,5 @@ lex.cc: CScanner.l
 # flexc++ and bisonc++ everytime
 clean:
 	rm *.o
-	rm lex.cc
-	rm parse.cc
+#	rm lex.cc
+#	rm parse.cc

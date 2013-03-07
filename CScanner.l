@@ -1,4 +1,5 @@
 // Regex definitions
+ws		[ \t\v\f]+
 letter		[a-zA-Z]
 digit		[0-9]
 hexdig		[0-9a-fA-F]
@@ -35,6 +36,7 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 //Comments
 "//".*		{ /* no action, consume one line comment */ }
 "/*"		{ /* We need a comment function to consume a multi line comment */ }
+{ws}		{ /* no action, consume whitespace */ }
 
 //Keywords
 "sizeof"	{ return(ParserBase::SIZEOF); }
@@ -133,4 +135,4 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 ":"		{ return(':'); }
 ";"		{ return(';'); }
 
-.		{ printf("WTF? Learn to code!"); }
+.		{ printf("\nYikes! We just ran into an error...\n\n"); }
