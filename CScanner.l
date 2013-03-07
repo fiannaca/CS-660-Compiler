@@ -4,7 +4,7 @@ letter		[a-zA-Z]
 digit		[0-9]
 hexdig		[0-9a-fA-F]
 octdig		[0-7]
-id		({letter}|_)(letter|digit)*
+id		({letter}|_)({letter}|{digit})*
 
 lu		[lL][lL]?[uU]?
 ul		[uU][lL]?[lL]?
@@ -22,7 +22,7 @@ realexp		{real}{fltexp}?
 hexexp		(0[xX]){hexdig}*(\.{hexdig}*)?[pP][+-]?{digit}+
 fltconst	({intexp}|{realexp}|{hexexp}){fltsuf}?
 
-simescseq	\\['\"\?\\abfnrtv]
+simescseq	\\['\"\?\a\b\f\n\r\t\v]
 octescseq	\\{octdig}{octdig}?{octdig}?
 hexescseq	\\x{hexdig}+
 unicharname	\\[uU]{hexdig}{hexdig}{hexdig}{hexdig}
