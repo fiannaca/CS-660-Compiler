@@ -1,14 +1,15 @@
-all: Parser.o Scanner.o SymTable.o main.cc
-	g++ -o CFrontEnd main.cc Parser.o Scanner.o SymTable.o
+#Add SymTable.o as a dependency to all and to the g++ cmd for all
+all: parse.o lex.o main.cc
+	g++ -std=c++11 -o CFrontEnd main.cc parse.o lex.o
 
-Parser.o: parse.cc Parserbase.h Parser.h Parser.ih
-	g++ -c parse.cc
+parse.o: parse.cc Parserbase.h Parser.h Parser.ih
+	g++ -std=c++11 -c parse.cc
 
-Scanner.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
-	g++ -c lex.cc
+lex.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
+	g++ -std=c++11 -c lex.cc
 
-SymTable.o: SymTable.cc SymTable.h
-	g++ -c SymTable.cc
+#SymTable.o: SymTable.cc SymTable.h
+#	g++ -std=c++11 -c SymTable.cc
 
 parse.cc: CParser.y
 	bisonc++ CParser.y --scanner=Scanner.h
@@ -16,5 +17,9 @@ parse.cc: CParser.y
 lex.cc: CScanner.l
 	flexc++ CScanner.l
 
+#This will delete all object files and the files which are recreated by
+# flexc++ and bisonc++ everytime
 clean:
-	rm -rf *.o
+	rm *.o
+	rm lex.cc
+	rm parse.cc

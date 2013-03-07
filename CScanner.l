@@ -37,76 +37,76 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 "/*"		{ /* We need a comment function to consume a multi line comment */ }
 
 //Keywords
-"sizeof"	{ return(SIZEOF); }
-"typedef"	{ return(TYPEDEF); }
-"extern"	{ return(EXTERN); }
-"static"	{ return(STATIC); }
-"auto"		{ return(AUTO); }
-"register"	{ return(REGISTER); }
+"sizeof"	{ return(ParserBase::SIZEOF); }
+"typedef"	{ return(ParserBase::TYPEDEF); }
+"extern"	{ return(ParserBase::EXTERN); }
+"static"	{ return(ParserBase::STATIC); }
+"auto"		{ return(ParserBase::AUTO); }
+"register"	{ return(ParserBase::REGISTER); }
 
-"char"		{ return(CHAR); }
-"short"		{ return(SHORT); }
-"int"		{ return(INT); }
-"long"		{ return(LONG); }
-"signed"	{ return(SIGNED); }
-"unsigned"	{ return(UNSIGNED); }
-"float" 	{ return(FLOAT); }
-"double"	{ return(DOUBLE); }
-"const"		{ return(CONST); }
-"volatile"	{ return(VOLATILE); }
-"void"		{ return(VOID); }
-"struct"	{ return(STRUCT); }
-"union"		{ return(UNION); }
-"enum"		{ return(ENUM); }
+"char"		{ return(ParserBase::CHAR); }
+"short"		{ return(ParserBase::SHORT); }
+"int"		{ return(ParserBase::INT); }
+"long"		{ return(ParserBase::LONG); }
+"signed"	{ return(ParserBase::SIGNED); }
+"unsigned"	{ return(ParserBase::UNSIGNED); }
+"float" 	{ return(ParserBase::FLOAT); }
+"double"	{ return(ParserBase::DOUBLE); }
+"const"		{ return(ParserBase::CONST); }
+"volatile"	{ return(ParserBase::VOLATILE); }
+"void"		{ return(ParserBase::VOID); }
+"struct"	{ return(ParserBase::STRUCT); }
+"union"		{ return(ParserBase::UNION); }
+"enum"		{ return(ParserBase::ENUM); }
 
-"case"		{ return(CASE); }
-"default"	{ return(DEFAULT); }
-"if"		{ return(IF); }
-"else"		{ return(ELSE); }
-"switch"	{ return(SWITCH); }
-"while"		{ return(WHILE); }
-"do"		{ return(DO); }
-"for"		{ return(FOR); }
-"goto"		{ return(GOTO); }
-"continue"	{ return(CONTINUE); }
-"break"		{ return(BREAK); }
-"return"	{ return(RETURN); }
+"case"		{ return(ParserBase::CASE); }
+"default"	{ return(ParserBase::DEFAULT); }
+"if"		{ return(ParserBase::IF); }
+"else"		{ return(ParserBase::ELSE); }
+"switch"	{ return(ParserBase::SWITCH); }
+"while"		{ return(ParserBase::WHILE); }
+"do"		{ return(ParserBase::DO); }
+"for"		{ return(ParserBase::FOR); }
+"goto"		{ return(ParserBase::GOTO); }
+"continue"	{ return(ParserBase::CONTINUE); }
+"break"		{ return(ParserBase::BREAK); }
+"return"	{ return(ParserBase::RETURN); }
 
 //identifier - First figure out what type of id this is...
-{id}		{ return(IDENTIFIER); }
+{id}		{ return(ParserBase::IDENTIFIER); }
 
 //Constants
-{charconst}	{ return(CHARACTER_CONSTANT); }
+{charconst}	{ return(ParserBase::CHARACTER_CONSTANT); }
 
 //enumeration_constant
 
-{intconst}	{ return(INTEGER_CONSTANT); }
-{fltconst}	{ return(FLOATING_CONSTANT); }
-{stringlit}	{ return(STRING_LITERAL); }
+{intconst}	{ return(ParserBase::INTEGER_CONSTANT); }
+{fltconst}	{ return(ParserBase::FLOATING_CONSTANT); }
+{stringlit}	{ return(ParserBase::STRING_LITERAL); }
 
 //Punctuators
-"..."		{ return(ELLIPSIS); }
-"->"		{ return(PTR_OP); }
-"++"		{ return(INC_OP); }
-"--"		{ return(DEC_OP); }
-"<<"		{ return(LEFT_OP); }
-">>"		{ return(RIGHT_OP); }
-"<="		{ return(LE_OP); }
-">="		{ return(GE_OP); }
-"=="		{ return(EQ_OP); }
-"!="		{ return(NE_OP); }
-"&&"		{ return(AND_OP); }
-"||"		{ return(OR_OP); }
-"*="		{ return(MUL_ASSIGN); }
-"/="		{ return(DIV_ASSIGN); }
-"%="		{ return(MOD_ASSIGN); }
-"+="		{ return(ADD_ASSIGN); }
-"-="		{ return(SUB_ASSIGN); }
-"<<="		{ return(LEFT_ASSIGN); }
-">>="		{ return(RIGHT_ASSIGN); }
-"&="		{ return(AND_ASSIGN); }
-"^="		{ return(XOR_ASSIGN); }
-"|="		{ return(OR_ASSIGN); }
+"..."		{ return(ParserBase::ELIPSIS); }
+"->"		{ return(ParserBase::PTR_OP); }
+"++"		{ return(ParserBase::INC_OP); }
+"--"		{ return(ParserBase::DEC_OP); }
+"<<"		{ return(ParserBase::LEFT_OP); }
+">>"		{ return(ParserBase::RIGHT_OP); }
+"<="		{ return(ParserBase::LE_OP); }
+">="		{ return(ParserBase::GE_OP); }
+"=="		{ return(ParserBase::EQ_OP); }
+"!="		{ return(ParserBase::NE_OP); }
+"&&"		{ return(ParserBase::AND_OP); }
+"||"		{ return(ParserBase::OR_OP); }
+"*="		{ return(ParserBase::MUL_ASSIGN); }
+"/="		{ return(ParserBase::DIV_ASSIGN); }
+"%="		{ return(ParserBase::MOD_ASSIGN); }
+"+="		{ return(ParserBase::ADD_ASSIGN); }
+"-="		{ return(ParserBase::SUB_ASSIGN); }
+"<<="		{ return(ParserBase::LEFT_ASSIGN); }
+">>="		{ return(ParserBase::RIGHT_ASSIGN); }
+"&="		{ return(ParserBase::AND_ASSIGN); }
+"^="		{ return(ParserBase::XOR_ASSIGN); }
+"|="		{ return(ParserBase::OR_ASSIGN); }
 "*"		{ return('*'); }
 "|"		{ return('|'); }
 "^"		{ return('^'); }
