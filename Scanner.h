@@ -26,6 +26,7 @@ class Scanner: public ScannerBase
         void print();
         void preCode();     // re-implement this function for code that must 
                             // be exec'ed before the patternmatching starts
+	void comment();
 };
 
 // $insert scannerConstructors

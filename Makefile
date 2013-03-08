@@ -2,7 +2,7 @@
 all: parse.o lex.o main.cc
 	g++ -std=c++11 -o CFrontEnd main.cc parse.o lex.o
 
-parse.o: parse.cc Parserbase.h Parser.h Parser.ih
+parse.o: lex.cc parse.cc Parserbase.h Parser.h Parser.ih
 	g++ -std=c++11 -c parse.cc
 
 lex.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
@@ -23,6 +23,4 @@ lex.cc: CScanner.l
 #This will delete all object files and the files which are recreated by
 # flexc++ and bisonc++ everytime
 clean:
-	rm *.o
-#	rm lex.cc
-#	rm parse.cc
+	rm *.o parse.cc lex.cc *base.h

@@ -3,3 +3,8 @@
 // $insert class_h
 #include "Scanner.h"
 #include "Parserbase.h"
+
+void Scanner::comment()
+{
+    
+}
