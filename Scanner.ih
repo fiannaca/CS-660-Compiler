@@ -6,5 +6,21 @@
 
 void Scanner::comment()
 {
-    
+    size_t ch = get__();
+    while(ch != -1)
+    {
+        if(ch == '*')
+        {
+            ch = get__();
+            if(ch =='/')
+            {
+                printf("Comment removed... (multiline)");
+                return;
+            }
+        }
+
+        ch = get__();
+    }
+
+    printf("Error: the multiline comment was not closed...\n");
 }

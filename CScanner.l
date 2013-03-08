@@ -34,8 +34,8 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 //Comments
-"//".*		{ /* no action, consume one line comment */ }
-"/*"		{ /* We need a comment function to consume a multi line comment */ }
+"//".*		{ printf("Comment removed... (single line)"); /* no action, consume one line comment */ }
+"/*"		{ comment(); /* We need a comment function to consume a multi line comment */ }
 {ws}		{ /* no action, consume whitespace */ }
 
 //Keywords
