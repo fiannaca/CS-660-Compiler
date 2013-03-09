@@ -18,6 +18,12 @@ void Scanner::comment()
                 return;
             }
         }
+        else if(ch == '/')
+        {
+            ch = get__();
+            if(ch == '*')
+                comment();
+        }
 
         ch = get__();
     }
