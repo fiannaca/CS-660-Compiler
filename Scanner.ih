@@ -14,7 +14,7 @@ void Scanner::comment()
             ch = get__();
             if(ch =='/')
             {
-                printf("Comment removed... (multiline)");
+                printf("Comment removed... (multiline)\n");
                 return;
             }
         }

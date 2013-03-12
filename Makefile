@@ -14,8 +14,9 @@ lex.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
 #--scanner indicates that bison is being used in conjunction with flex
 #--error-verbose dumps parser state information when a syntactic error is encountered
 #-t prints out the tokens as they are encountered by the parser
+#--error-verbose -t
 parse.cc: CParser.y
-	bisonc++ CParser.y --scanner=Scanner.h --error-verbose -t
+	bisonc++ CParser.y --scanner=Scanner.h --error-verbose
 
 lex.cc: CScanner.l
 	flexc++ CScanner.l

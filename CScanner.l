@@ -1,5 +1,5 @@
 // Regex definitions
-ws		[ \t\v\f]+
+ws		[ \t\v\f\n]+
 letter		[a-zA-Z]
 digit		[0-9]
 hexdig		[0-9a-fA-F]
@@ -34,7 +34,7 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 //Comments
-"//".*		{ printf("Comment removed... (single line)"); /* no action, consume one line comment */ }
+"//".*		{ printf("Comment removed... (single line)\n"); /* no action, consume one line comment */ }
 "/*"		{ comment(); /* We need a comment function to consume a multi line comment */ }
 {ws}		{ /* no action, consume whitespace */ }
 
@@ -135,4 +135,4 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 ":"		{ return(':'); }
 ";"		{ return(';'); }
 
-.		{ printf("\nYikes! We just ran into an error...\n\n"); }
+.		{ printf("Yikes! We just ran into an error. I just ran accross some unknown input...\n"); }
