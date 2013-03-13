@@ -18,9 +18,12 @@ class Parser: public ParserBase
     Scanner d_scanner;
         
     public:
+        Parser(int verboseLevel = 0);
+
         int parse();
 
     private:
+        int verbosity;
         void error(char const *msg);    // called on (syntax) errors
         int lex();                      // returns the next token from the
                                         // lexical scanner. 

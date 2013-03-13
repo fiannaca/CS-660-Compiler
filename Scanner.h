@@ -5,7 +5,9 @@
 
 // $insert baseclass_h
 #include "Scannerbase.h"
-
+#include "Parserbase.h"
+#include <string>
+#include <iostream>
 
 // $insert classHead
 class Scanner: public ScannerBase
@@ -19,9 +21,22 @@ class Scanner: public ScannerBase
         // $insert lexFunctionDecl
         int lex();
 
+        size_t columnNr() const;
+        void setLoc(Parser::LTYPE__ *);
+        void setSval(Parser::STYPE__ *);
+        void setVerbosity(int verboseLevel);
+        void printInfo(int level, std::string msg);
+
+        char linebuf[500];
+
     private:
         int lex__();
         int executeAction__(size_t ruleNr);
+
+        int verbosity;
+        size_t columnNr__;
+        Parser::LTYPE__ * lloc;
+        Parser::STYPE__ * sval;
 
         void print();
         void preCode();     // re-implement this function for code that must 
@@ -33,12 +48,20 @@ class Scanner: public ScannerBase
 inline Scanner::Scanner(std::istream &in, std::ostream &out)
 :
     ScannerBase(in, out)
-{}
+{
+    verbosity = 0;
+    columnNr__ = 1;
+    setDebug(false);
+}
 
 inline Scanner::Scanner(std::string const &infile, std::string const &outfile)
 :
     ScannerBase(infile, outfile)
-{}
+{
+    verbosity = 0;
+    columnNr__ = 1;
+    setDebug(false);
+}
 
 // $insert inlineLexFunction
 inline int Scanner::lex()
@@ -48,14 +71,17 @@ inline int Scanner::lex()
 
 inline void Scanner::preCode() 
 {
-    // optionally replace by your own code
+    int len = length();
+
+    lloc->first_line = lloc->last_line = lineNr();
+    lloc->first_column = lloc->last_column = columnNr__ + len;
+    columnNr__ += len;
 }
 
 inline void Scanner::print() 
 {
     print__();
 }
-
 
 #endif // Scanner_H_INCLUDED_
 

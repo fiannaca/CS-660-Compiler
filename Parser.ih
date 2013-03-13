@@ -5,14 +5,29 @@
 // $insert class.h
 #include "Parser.h"
 
+Parser::Parser(int verboseLevel)
+{
+    verbosity = verboseLevel;
+    
+    //use setDebug here....
+
+    d_scanner.setVerbosity(verbosity);
+
+    d_scanner.setLoc(&d_loc__);
+    d_scanner.setSval(&d_val__);
+}
 
 inline void Parser::error(char const *msg)
 {
-    std::cerr << std::setfill('-') << std::setw(1);
-    std::cerr << "^" << std::endl;
+    std::cerr << std::endl;
     std::cerr << "Error at " 
-              << d_scanner.lineNr() << ":" << "0" 
-              << " : " << msg << '\n';
+              << d_loc__.first_line << ":" << d_loc__.first_column 
+              << " : " << msg << " (see location below)" 
+              << std::endl << std::endl;
+
+    std::cerr << std::setw(4) << d_loc__.first_line << " | " << d_scanner.linebuf << std::endl;
+    std::cerr << "     | " << std::setfill('-') << std::setw(d_loc__.first_column);
+    std::cerr << "^" << std::endl << std::endl;
 }
 
 // $insert lex

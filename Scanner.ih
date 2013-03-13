@@ -2,7 +2,6 @@
 
 // $insert class_h
 #include "Scanner.h"
-#include "Parserbase.h"
 
 void Scanner::comment()
 {
@@ -14,7 +13,8 @@ void Scanner::comment()
             ch = get__();
             if(ch =='/')
             {
-                printf("Comment removed... (multiline)\n");
+                printInfo(1, "Comment removed... (multiline)\n");
+                columnNr__ = 1;
                 return;
             }
         }
@@ -28,5 +28,33 @@ void Scanner::comment()
         ch = get__();
     }
 
-    printf("Error: the multiline comment was not closed...\n");
+    printInfo(0, "Error: the multiline comment was not closed...\n");
+}
+
+void Scanner::setLoc(Parser::LTYPE__ *ptr)
+{
+    lloc = ptr;
+}
+
+void Scanner::setSval(Parser::STYPE__ *ptr)
+{
+    sval = ptr;
+}
+
+void Scanner::setVerbosity(int verboseLevel)
+{
+    verbosity = verboseLevel;
+
+    //The debug switch will need to be flipped here for the scanner
+}
+
+void Scanner::printInfo(int level, std::string msg)
+{
+    if(level <= verbosity)
+        std::cout << msg;
+}
+
+size_t Scanner::columnNr() const
+{
+    return columnNr__;
 }

@@ -1,8 +1,5 @@
-%input-interface = "Input.h"
-%input-implementation = "Input.cc"
-
 // Regex definitions
-ws		[ \t\v\f\n]+
+ws		[ \t\v\f]+
 letter		[a-zA-Z]
 digit		[0-9]
 hexdig		[0-9a-fA-F]
@@ -37,9 +34,21 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 //Comments
-"//".*		{ printf("Comment removed... (single line)\n"); /* no action, consume one line comment */ }
-"/*"		{ comment(); /* We need a comment function to consume a multi line comment */ }
-{ws}		{ /* no action, consume whitespace */ }
+"//".*		{ 
+		    /* no real action - just remove the comment */
+		    printInfo(1, "Comment removed... (single line)\n"); 
+		}
+"/*"		{ 
+		    /* no real action - just remove the multiline comment */ 
+		    comment();
+		}
+{ws}		{ columnNr__ += length(); /* no other action, consume whitespace */ }
+\n.*		{
+		    size_t line_len = matched().copy(linebuf, 500, 1);
+		    linebuf[line_len] = '\0';
+		    accept(1);
+		    columnNr__ = 1; 
+		}
 
 //Keywords
 "sizeof"	{ return(ParserBase::SIZEOF); }
