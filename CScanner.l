@@ -1,3 +1,6 @@
+%input-interface = "Input.h"
+%input-implementation = "Input.cc"
+
 // Regex definitions
 ws		[ \t\v\f\n]+
 letter		[a-zA-Z]

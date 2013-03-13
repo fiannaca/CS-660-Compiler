@@ -1,12 +1,12 @@
 #Add SymTable.o as a dependency to all and to the g++ cmd for all
 all: parse.o lex.o main.cc
-	g++ -std=c++11 -o CFrontEnd main.cc parse.o lex.o
+	g++ --std=c++0x -o CFrontEnd main.cc parse.o lex.o
 
 parse.o: lex.cc parse.cc Parserbase.h Parser.h Parser.ih
-	g++ -std=c++11 -c parse.cc
+	g++ --std=c++0x -c parse.cc
 
 lex.o: Scannerbase.h Scanner.h Scanner.ih lex.cc
-	g++ -std=c++11 -c lex.cc
+	g++ --std=c++0x -c lex.cc
 
 #SymTable.o: SymTable.cc SymTable.h
 #	g++ -std=c++11 -c SymTable.cc

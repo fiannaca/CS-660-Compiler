@@ -3,6 +3,8 @@
 #ifndef Parser_h_included
 #define Parser_h_included
 
+#include <iomanip>
+
 // $insert baseclass
 #include "Parserbase.h"
 // $insert scanner.h
