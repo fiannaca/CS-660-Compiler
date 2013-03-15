@@ -30,7 +30,7 @@ int CCompiler::parse(const std::string& fname)
 void CCompiler::error(const yy::location& loc, const std::string& msg)
 {
     std::cerr << std::endl;
-    std::cerr << "Error at "
+    std::cerr << "Error in " << *loc.begin.filename << " at "
               << loc.begin.line << ":" << loc.begin.column
               << " : " << msg << " (see location below)"
               << std::endl << std::endl;
