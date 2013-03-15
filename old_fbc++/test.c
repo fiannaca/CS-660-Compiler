@@ -1,6 +1,8 @@
 int funcTest1(int paramA, short paramB, unsigned long paramC);
 void funcTest2(float paramA, ... );
 
+//
+
 int main(int argc, char **argv)
 {
     int test1a = 1;

@@ -9,6 +9,8 @@
 #include <string>
 #include <iostream>
 
+class Parser;
+
 // $insert classHead
 class Scanner: public ScannerBase
 {
@@ -22,9 +24,12 @@ class Scanner: public ScannerBase
         int lex();
 
         size_t columnNr() const;
+
         void setLoc(Parser::LTYPE__ *);
         void setSval(Parser::STYPE__ *);
         void setVerbosity(int verboseLevel);
+        void setParserRef(Parser* parserRef);
+
         void printInfo(int level, std::string msg);
 
         char linebuf[500];
@@ -33,10 +38,12 @@ class Scanner: public ScannerBase
         int lex__();
         int executeAction__(size_t ruleNr);
 
-        int verbosity;
         size_t columnNr__;
+
         Parser::LTYPE__ * lloc;
         Parser::STYPE__ * sval;
+        int verbosity;
+        Parser *parserPtr;
 
         void print();
         void preCode();     // re-implement this function for code that must 

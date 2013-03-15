@@ -22,7 +22,7 @@ class CCompiler
         int result;
 
         //Initializes/destructs the scanner input
-        void scan_begin();
+        void scan_begin(int debug_level);
         void scan_end();
         bool  trace_scanning;
 
@@ -37,6 +37,7 @@ class CCompiler
         bool trace_symtab;
 
         //Error reporting
+        char linebuf[500];
         void error(const yy::location& loc, const std::string& msg);
         void error(const std::string& msg);
 };

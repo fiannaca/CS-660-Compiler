@@ -16,7 +16,6 @@ class CCompiler;
     @$.begin.filename = @$.end.filename = &driver.in_fname;
 };
 
-%debug
 %error-verbose
 
 %union 
@@ -30,10 +29,10 @@ class CCompiler;
 }
 
 %token END 0 "EOF"
-%token <sval> IDENTIFIER
-%token <ival> INTEGER_CONSTANT 
+%token IDENTIFIER
+%token INTEGER_CONSTANT 
 %token FLOATING_CONSTANT CHARACTER_CONSTANT ENUMERATION_CONSTANT 
-%token <sval> STRING_LITERAL 
+%token STRING_LITERAL 
 %token SIZEOF
 %token PTR_OP 
 %token INC_OP DEC_OP 

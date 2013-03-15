@@ -16,6 +16,7 @@
 
 %}
 
+%option header-file="CScanner.h"
 %option noyywrap batch debug
 
 ws		[ \t\v\f]+
@@ -68,8 +69,14 @@ yylloc->step();
 		    //comment();
 		}
 {ws}		{   yylloc->step(); } 
-[\n]+		{
-		    yylloc->lines(yyleng);
+\n.*		{
+		    strncpy(driver.linebuf, yytext + 1, sizeof(driver.linebuf));
+                    yyless(1);
+
+		    //size_t line_len = matched().copy(linebuf, 500, 1);
+                    //linebuf[line_len] = '\0';
+
+		    yylloc->lines(1);
 		    yylloc->step(); 
 		}
 
@@ -173,8 +180,10 @@ typedef yy::CParser::token token;
 		    driver.error(*yylloc, "Invalid character!");
 		} 
 %%
-void CCompiler::scan_begin()
+void CCompiler::scan_begin(int debug_level)
 {
+    yyset_debug(debug_level);
+
     if(in_fname.empty() || in_fname == "-")
         yyin = stdin;
     else if(!(yyin = fopen(in_fname.c_str(), "r")))

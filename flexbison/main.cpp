@@ -8,7 +8,13 @@ void usage(char** argv)
 
 int main(int argc, char** argv)
 {
+    std::string fname;
+
+//    std::cout << "Starting up" << std::endl;
+
     CCompiler driver;
+
+//    std::cout << "Created driver..." << std::endl;
 
     for(int i = 1; i < argc; ++i)
     {
@@ -27,7 +33,7 @@ int main(int argc, char** argv)
             }
             else
             {
-                usage();
+                usage(argv);
                 exit(EXIT_FAILURE);
             }
         }
@@ -38,18 +44,18 @@ int main(int argc, char** argv)
             {
                 std::string fname(argv[i]);
 
-                driver.outfname = fname;
+                driver.out_fname = fname;
             }
             else
             {
-                driver.outfname = "output";
+                driver.out_fname = "output";
             }
         }
         else
         {
-            std::string fname(argv[i]);
+            fname = argv[i];
         }
     }
 
-    return 0;
+    return driver.parse(fname);
 }

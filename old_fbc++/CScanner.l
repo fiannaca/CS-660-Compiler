@@ -35,6 +35,7 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 
 //Comments
 "//".*		{ 
+		    parserPtr->signalScanErr("This is a scanner error");
 		    /* no real action - just remove the comment */
 		    printInfo(1, "Comment removed... (single line)\n"); 
 		}

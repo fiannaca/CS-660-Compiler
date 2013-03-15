@@ -22,6 +22,8 @@ class Parser: public ParserBase
 
         int parse();
 
+        void signalScanErr(char const *msg);
+
     private:
         int verbosity;
         void error(char const *msg);    // called on (syntax) errors

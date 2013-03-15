@@ -48,6 +48,11 @@ void Scanner::setVerbosity(int verboseLevel)
     //The debug switch will need to be flipped here for the scanner
 }
 
+void Scanner::setParserRef(Parser* parserRef)
+{
+    parserPtr = parserRef;
+}
+
 void Scanner::printInfo(int level, std::string msg)
 {
     if(level <= verbosity)

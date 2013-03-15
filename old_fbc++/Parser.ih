@@ -12,9 +12,15 @@ Parser::Parser(int verboseLevel)
     //use setDebug here....
 
     d_scanner.setVerbosity(verbosity);
-
+    d_scanner.setParserRef(this);
     d_scanner.setLoc(&d_loc__);
     d_scanner.setSval(&d_val__);
+}
+
+void Parser::signalScanErr(char const *msg)
+{
+    error(msg);
+    ABORT();
 }
 
 inline void Parser::error(char const *msg)
