@@ -27,9 +27,14 @@ int CCompiler::parse(const std::string& fname)
     return result;
 }
 
-void CCompiler::setInsertMode(bool insertMode)
+void CCompiler::set_insert_mode(bool iMode)
 {
-    temp_insert_mode = insertMode;
+    insert_mode = iMode;
+}
+
+bool CCompiler::get_insert_mode()
+{
+    return insert_mode;
 }
 
 void CCompiler::error(const yy::location& loc, const std::string& msg)
@@ -44,10 +49,12 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
     std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
     std::cerr << "^" << std::endl << std::endl;
 
-//    std::cerr << loc << ": " << msg << std::endl;
+    exit(EXIT_FAILURE);
 }
 
 void CCompiler::error(const std::string& msg)
 {
     std::cerr << msg << std::endl;
+
+    exit(EXIT_FAILURE);
 }

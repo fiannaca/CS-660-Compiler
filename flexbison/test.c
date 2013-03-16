@@ -8,7 +8,8 @@ int main(int argc, char **argv)
     int test1a = 1;
     int test2a = 0x2;
     int test3a = 0123;
-/* */
+/*
+ */
 
     int test1b = 1u;
     int test2b = 0x2u;
@@ -35,27 +36,44 @@ int main(int argc, char **argv)
     float test6c = 0x123ABC.567DEFp89l;
 
     char test7a = 'a';
-//    char test8a = '\abcd';
+    char test8a = '\abcd';
     char test9a = '\0123';
     char test10a = '\0';
 
     char test7b = L'a';
-//    char test8b = L'\abcd';
+    char test8b = L'\abcd';
     char test9b = L'\0123';
     char test10b = L'\0';
 
     char *test11 = "This is a string";
-//    char *test12 = "This is a \t string";
+    char *test12 = "This is a \t string";
     char *test13 = "This is a \" string";
 
     char *test11 = L"This is a string";
-//    char *test12 = L"This is a \t string";
+    char *test12 = L"This is a \t string";
     char *test13 = L"This is a \" string";
 
-//    /** This is a big multiline comment
-//      *
-//      */
+    /* This is a big multiline comment
+     *
+     */
+
     funcTest1(1, 2, 4);
+
+    for(test1a = 0; test1a < 10; ++test1a)
+    {
+        //In a new scope...
+        short a = 10;
+
+        funcTest1(test1a, a, 0);
+    }
+
+    if(test1a == 0)
+        test1a /= 2;
+
+    test1b = 5;
+
+    if(test1b == 14 % 9)
+        test1b = 7;
 
     int a;
 

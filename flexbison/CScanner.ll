@@ -39,7 +39,7 @@ realexp		{real}{fltexp}?
 hexexp		(0[xX]){hexdig}*(\.{hexdig}*)?[pP][+-]?{digit}+
 fltconst	({intexp}|{realexp}|{hexexp}){fltsuf}?
 
-simescseq	\\['\"\?\a\b\f\n\r\t\v]
+simescseq	\\['\"\?abfnrtv]
 octescseq	\\{octdig}{octdig}?{octdig}?
 hexescseq	\\x{hexdig}+
 unicharname	\\[uU]{hexdig}{hexdig}{hexdig}{hexdig}
@@ -48,7 +48,7 @@ charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"({escseq}|[^\\"])*\"
 
-%s COMMENT
+%x COMMENT
 
 %{
 #define YY_USER_ACTION yylloc->columns(yyleng);
@@ -60,6 +60,7 @@ yylloc->step();
 
 "!!S"		{
 		    //Dump the symbol table contents to the screen
+		    std::cout << "Printing the symbol table..." << std::endl;
 		}
 
 "//".*		{ 
@@ -68,18 +69,14 @@ yylloc->step();
 		}
 
 "/*"		{   BEGIN(COMMENT); }
-<COMMENT>"*/"	{ 
-		    yylloc->step(); 
-		    BEGIN(INITIAL); 
-		}
-<COMMENT>.*	;
-<COMMENT>\n	{   
-		    yylloc->lines(); 
-		}
-<COMMENT><<EOF>> {
-		    driver.error(*yylloc, "Unclosed comment"); 
-		    BEGIN(INITIAL);
-		}
+<COMMENT>[^*\n]*
+<COMMENT>"*"+[^*/\n]*
+<COMMENT>\n		{   yylloc->lines(); }
+<COMMENT>"*"+"/"	{   BEGIN(INITIAL); }
+<COMMENT><<EOF>> 	{
+			    driver.error(*yylloc, "Unclosed comment"); 
+			    BEGIN(INITIAL);
+			}
 
 {ws}		{   yylloc->step(); } 
 \n.*		{

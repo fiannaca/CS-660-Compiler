@@ -42,7 +42,6 @@ struct SymbolInfo
 		
 };
 
-vector<TypeInfo> typeTable;
 class SymTab
 {
      
@@ -55,6 +54,7 @@ class SymTab
 	     int search_symbol(SymbolInfo &symbolInfo,int &level);
    	     void dump_table();
          void dump_table(int level);  
+        vector<TypeInfo> typeTable;
 };
 
 #endif 

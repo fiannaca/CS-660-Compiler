@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 
+#include "SymTab.h"
 #include "CParser.hpp"
 
 #define YY_DECL                                     \
@@ -23,7 +24,7 @@ class CCompiler
 
         int result;
 
-        //Initializes/destructs the scanner input
+        //Initializes/destructs the scanner input -- implemented in CScanner.ll
         void scan_begin(int debug_level);
         void scan_end();
         bool  trace_scanning;
@@ -35,15 +36,18 @@ class CCompiler
         bool trace_parsing;
 
         //Handles the Symbol Table
-        std::map<std::string, int> symtab;
-        void setInsertMode(bool insertMode);
-        bool temp_insert_mode; //This will be replaced with a flag in the symbol table class
+        SymTab SymbolTable;
+        void set_insert_mode(bool iMode);
+        bool get_insert_mode();
         bool trace_symtab;
 
         //Error reporting
         char linebuf[500];
         void error(const yy::location& loc, const std::string& msg);
         void error(const std::string& msg);
+
+    private:
+        bool insert_mode;
 };
 
 #endif // ! CCompiler_H
