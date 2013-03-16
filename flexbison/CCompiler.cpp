@@ -27,6 +27,11 @@ int CCompiler::parse(const std::string& fname)
     return result;
 }
 
+void CCompiler::setInsertMode(bool insertMode)
+{
+    temp_insert_mode = insertMode;
+}
+
 void CCompiler::error(const yy::location& loc, const std::string& msg)
 {
     std::cerr << std::endl;

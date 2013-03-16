@@ -1,8 +1,10 @@
 #ifndef CCompiler_H
 #define CCompiler_H
 
+//The include below for map.h is simply a stand-in for the Symbol Table
 #include <string>
 #include <map>
+
 #include "CParser.hpp"
 
 #define YY_DECL                                     \
@@ -34,6 +36,8 @@ class CCompiler
 
         //Handles the Symbol Table
         std::map<std::string, int> symtab;
+        void setInsertMode(bool insertMode);
+        bool temp_insert_mode; //This will be replaced with a flag in the symbol table class
         bool trace_symtab;
 
         //Error reporting

@@ -1,5 +1,5 @@
 YACC_FLAGS= --skeleton=lalr1.cc --defines --debug
-FLEX_FLAGS=
+FLEX_FLAGS= --debug --warn --nodefault --noyywrap --batch --header-file=CScanner.h
 CXX_FLAGS=
 LIBS=
 
@@ -16,4 +16,4 @@ CScanner.cpp: CScanner.ll
 	flex -o CScanner.cpp $(FLEX_FLAGS) CScanner.ll
 
 clean:
-	rm CScanner.cpp CParser.cpp *.o *.hpp *.hh
+	rm CScanner.cpp CScanner.h CParser.cpp *.o *.hpp *.hh

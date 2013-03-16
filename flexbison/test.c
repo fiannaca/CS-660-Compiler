@@ -8,7 +8,7 @@ int main(int argc, char **argv)
     int test1a = 1;
     int test2a = 0x2;
     int test3a = 0123;
-// /* */
+/* */
 
     int test1b = 1u;
     int test2b = 0x2u;

@@ -16,9 +16,6 @@
 
 %}
 
-%option header-file="CScanner.h"
-%option noyywrap batch debug
-
 ws		[ \t\v\f]+
 letter		[a-zA-Z]
 digit		[0-9]
@@ -51,6 +48,8 @@ charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"({escseq}|[^\\"])*\"
 
+%s COMMENT
+
 %{
 #define YY_USER_ACTION yylloc->columns(yyleng);
 %}
@@ -59,24 +58,37 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 yylloc->step();
 %}
 
+"!!S"		{
+		    //Dump the symbol table contents to the screen
+		}
+
 "//".*		{ 
-		    //parserPtr->signalScanErr("This is a scanner error");
 		    /* no real action - just remove the comment */
 		    //printInfo(1, "Comment removed... (single line)\n"); 
 		}
-"/*"		{ 
-		    /* no real action - just remove the multiline comment */ 
-		    //comment();
+
+"/*"		{   BEGIN(COMMENT); }
+<COMMENT>"*/"	{ 
+		    yylloc->step(); 
+		    BEGIN(INITIAL); 
 		}
+<COMMENT>.*	;
+<COMMENT>\n	{   
+		    yylloc->lines(); 
+		}
+<COMMENT><<EOF>> {
+		    driver.error(*yylloc, "Unclosed comment"); 
+		    BEGIN(INITIAL);
+		}
+
 {ws}		{   yylloc->step(); } 
 \n.*		{
+		    //Save a buffer of each line -- for error reporting
 		    strncpy(driver.linebuf, yytext + 1, sizeof(driver.linebuf));
                     yyless(1);
 
-		    //size_t line_len = matched().copy(linebuf, 500, 1);
-                    //linebuf[line_len] = '\0';
-
-		    yylloc->lines(1);
+                    //Update the locations in yylloc
+		    yylloc->lines();
 		    yylloc->step(); 
 		}
 
@@ -191,9 +203,18 @@ void CCompiler::scan_begin(int debug_level)
         error("Cannot open" + in_fname + ": " + strerror(errno));
         exit(EXIT_FAILURE);
     }
+
+    if(out_fname.empty() || out_fname == "-")
+        yyout = stderr;
+    else if(!(yyout = fopen(out_fname.c_str(), "w")))
+    {
+        error("Cannot open" + out_fname + ": " + strerror(errno));
+        exit(EXIT_FAILURE);
+    }
 }
 
 void CCompiler::scan_end()
 {
     fclose(yyin);
+    fclose(yyout);
 }
