@@ -4,6 +4,7 @@
 //The include below for map.h is simply a stand-in for the Symbol Table
 #include <string>
 #include <map>
+#include <stdio.h>
 
 #include "SymTab.h"
 #include "CParser.hpp"
@@ -33,6 +34,7 @@ class CCompiler
         int parse(const std::string& fname);
         std::string in_fname;
         std::string out_fname;
+        void setOutfile(std::string fname);
         bool trace_parsing;
 
         //Handles the Symbol Table
@@ -48,6 +50,7 @@ class CCompiler
 
     private:
         bool insert_mode;
+        bool outfile_set;
 };
 
 #endif // ! CCompiler_H

@@ -79,9 +79,3 @@ void SymTab::dump_table(int level)
 {
     // Stub 	
 }
-int main()
-{
-	
-	cout<<" Testing the symbol table .. " ; 
-	return 0 ; 
-}

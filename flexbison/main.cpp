@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "CCompiler.h"
 
 void usage(char** argv)
@@ -9,12 +10,10 @@ void usage(char** argv)
 int main(int argc, char** argv)
 {
     std::string fname;
-
-//    std::cout << "Starting up" << std::endl;
+//    std::streambuf* orig = std::cerr.rdbuf();
+//    std::fstream out;
 
     CCompiler driver;
-
-//    std::cout << "Created driver..." << std::endl;
 
     for(int i = 1; i < argc; ++i)
     {
@@ -39,17 +38,21 @@ int main(int argc, char** argv)
         }
         else if(argv[i] == std::string("-o"))
         {
+
+/*            std::string ofname;
             ++i;
             if(i < argc)
             {
-                std::string fname(argv[i]);
-
-                driver.out_fname = fname;
+                ofname = argv[i];
             }
             else
             {
-                driver.out_fname = "output";
+                ofname = "output";
             }
+
+            out.open(fname.c_str(), ios_base::out);
+            orig = std::cerr.rdbuf(out.rdbuf());
+*/
         }
         else
         {
@@ -57,5 +60,11 @@ int main(int argc, char** argv)
         }
     }
 
-    return driver.parse(fname);
+    int result = driver.parse(fname);
+//    std::cerr.rdbuf(orig);
+
+//    if(out.is_open())
+//        out.close();
+
+    return result;
 }

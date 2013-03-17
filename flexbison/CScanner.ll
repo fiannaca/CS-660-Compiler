@@ -39,6 +39,8 @@ realexp		{real}{fltexp}?
 hexexp		(0[xX]){hexdig}*(\.{hexdig}*)?[pP][+-]?{digit}+
 fltconst	({intexp}|{realexp}|{hexexp}){fltsuf}?
 
+flthexerror	(0[xX]){hexdig}*(\.{hexdig}*)
+
 simescseq	\\['\"\?abfnrtv]
 octescseq	\\{octdig}{octdig}?{octdig}?
 hexescseq	\\x{hexdig}+
@@ -47,6 +49,10 @@ escseq		{simescseq}|{octescseq}|{hexescseq}|{unicharname}
 charconst	L?'({escseq}|[^'\\])+'
 
 stringlit	L?\"({escseq}|[^\\"])*\"
+
+ctxt		[^*\n]*
+cstr		"*"+[^*/\n]*
+cend		"*"+"/"
 
 %x COMMENT
 
@@ -59,8 +65,7 @@ yylloc->step();
 %}
 
 "!!S"		{
-		    //Dump the symbol table contents to the screen
-		    std::cout << "Printing the symbol table..." << std::endl;
+		    driver.SymbolTable.dump_table();
 		}
 
 "//".*		{ 
@@ -69,14 +74,15 @@ yylloc->step();
 		}
 
 "/*"		{   BEGIN(COMMENT); }
-<COMMENT>[^*\n]*
-<COMMENT>"*"+[^*/\n]*
-<COMMENT>\n		{   yylloc->lines(); }
-<COMMENT>"*"+"/"	{   BEGIN(INITIAL); }
-<COMMENT><<EOF>> 	{
-			    driver.error(*yylloc, "Unclosed comment"); 
-			    BEGIN(INITIAL);
-			}
+
+<COMMENT>{ctxt}
+<COMMENT>{cstr}	
+<COMMENT>\n	{   yylloc->lines(); }
+<COMMENT>{cend}	{   BEGIN(INITIAL); }
+<COMMENT><<EOF>> {
+		    driver.error(*yylloc, "Unclosed comment"); 
+		    BEGIN(INITIAL);
+		}
 
 {ws}		{   yylloc->step(); } 
 \n.*		{
@@ -135,7 +141,16 @@ typedef yy::CParser::token token;
 	/* enumeration consts should go here */
 
 {intconst}	{ return token::INTEGER_CONSTANT; } 
-{fltconst}	{ return token::FLOATING_CONSTANT; } 
+{fltconst}	{ return token::FLOATING_CONSTANT; }
+
+{flthexerror}	{ 
+		    std::string err("Hex floating point constants must have a binary exponent part, i.e. ");
+		    std::string txt(yytext);
+		    std::string exp(" should be ");
+		    exp += txt + "p0";
+		    driver.error(*yylloc, err + txt + exp); 
+		} 
+
 {stringlit}	{ return token::STRING_LITERAL; } 
 
 "..."		{ return token::ELIPSIS; } 
@@ -201,17 +216,10 @@ void CCompiler::scan_begin(int debug_level)
         exit(EXIT_FAILURE);
     }
 
-    if(out_fname.empty() || out_fname == "-")
-        yyout = stderr;
-    else if(!(yyout = fopen(out_fname.c_str(), "w")))
-    {
-        error("Cannot open" + out_fname + ": " + strerror(errno));
-        exit(EXIT_FAILURE);
-    }
+    yyout = stderr;
 }
 
 void CCompiler::scan_end()
 {
     fclose(yyin);
-    fclose(yyout);
 }

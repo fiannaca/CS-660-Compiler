@@ -6,12 +6,15 @@ CCompiler::CCompiler()
     : trace_scanning(false)
     , trace_parsing(false)
     , trace_symtab(false)
+    , outfile_set(false)
 {
 
 }
 
 CCompiler::~CCompiler()
 {
+    if(outfile_set)
+        fclose(stderr);
 }
 
 int CCompiler::parse(const std::string& fname)
@@ -25,6 +28,17 @@ int CCompiler::parse(const std::string& fname)
 
     scan_end();
     return result;
+}
+
+void CCompiler::setOutfile(std::string fname)
+{
+    out_fname = fname;
+
+    if(!freopen(fname.c_str(), "w", stderr))
+    {
+        outfile_set = true;
+    }
+
 }
 
 void CCompiler::set_insert_mode(bool iMode)
@@ -42,8 +56,8 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
     std::cerr << std::endl;
     std::cerr << "Error in " << *loc.begin.filename << " at "
               << loc.begin.line << ":" << loc.begin.column
-              << " : " << msg << " (see location below)"
-              << std::endl << std::endl;
+              << " : (see location below)" <<  std::endl
+	      << "   " << msg << std::endl << std::endl;
 
     std::cerr << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
     std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
