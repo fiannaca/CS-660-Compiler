@@ -40,6 +40,7 @@ class CCompiler
 
         //Handles the Symbol Table
         SymTab SymbolTable;
+        yy::CParser::token::yytokentype checkType(char* key);
         void set_insert_mode(bool iMode);
         bool get_insert_mode();
         bool trace_symtab;

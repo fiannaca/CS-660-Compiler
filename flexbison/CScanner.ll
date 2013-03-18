@@ -232,8 +232,7 @@ typedef yy::CParser::token token;
 		} 
 
 {id}		{ 
-		    driver.printTok("IDENTIFIER", yytext);
-		    return token::IDENTIFIER; 
+		    return driver.checkType(yytext); 
 		} 
 
 {charconst}	{ 

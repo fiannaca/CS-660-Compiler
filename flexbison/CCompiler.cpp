@@ -89,3 +89,12 @@ void CCompiler::printRed(std::string ptxt)
     rFile << ptxt << std::endl;
 }
 
+yy::CParser::token::yytokentype CCompiler::checkType(char* key)
+{
+    //For the time being this will return IDENTIFIER, but it should 
+    // check if the provided key is related to an identifier, an
+    // enum_constant, or a typedef_name
+    printTok("IDENTIFIER", key);
+
+    return yy::CParser::token::IDENTIFIER;
+}

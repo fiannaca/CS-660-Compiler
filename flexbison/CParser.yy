@@ -4,6 +4,7 @@
 
 %code requires {
 #include <string>
+#include "SymTab.h"
 class CCompiler;
 }
 
@@ -22,6 +23,7 @@ class CCompiler;
 {
     int          ival;
     std::string *sval;
+    SymbolInfo  *sym;
 };
 
 %code {
