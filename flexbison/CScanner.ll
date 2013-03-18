@@ -69,8 +69,7 @@ yylloc->step();
 		}
 
 "//".*		{ 
-		    /* no real action - just remove the comment */
-		    //printInfo(1, "Comment removed... (single line)\n"); 
+		    driver.printTok("COMMENT - not really a token");
 		}
 
 "/*"		{   BEGIN(COMMENT); }
@@ -78,7 +77,10 @@ yylloc->step();
 <COMMENT>{ctxt}
 <COMMENT>{cstr}	
 <COMMENT>\n	{   yylloc->lines(); }
-<COMMENT>{cend}	{   BEGIN(INITIAL); }
+<COMMENT>{cend}	{
+		    driver.printTok("COMMENT - not really a token");
+		    BEGIN(INITIAL); 
+		}
 <COMMENT><<EOF>> {
 		    driver.error(*yylloc, "Unclosed comment"); 
 		    BEGIN(INITIAL);
@@ -99,50 +101,156 @@ yylloc->step();
 typedef yy::CParser::token token;
 %}
 
-"sizeof"	{ return token::SIZEOF; } 
-"typedef"	{ return token::TYPEDEF; } 
-"extern"	{ return token::EXTERN; } 
-"static"	{ return token::STATIC; } 
-"auto"		{ return token::AUTO; } 
-"register"	{ return token::REGISTER; } 
+"sizeof"	{ 
+		    driver.printTok("SIZEOF");
+		    return token::SIZEOF; 
+		} 
+"typedef"	{ 
+		    driver.printTok("TYPEDEF");
+		    return token::TYPEDEF; 
+		} 
+"extern"	{ 
+		    driver.printTok("EXTERN");
+		    return token::EXTERN; 
+		} 
+"static"	{ 
+		    driver.printTok("STATIC");
+		    return token::STATIC; 
+		} 
+"auto"		{  
+		    driver.printTok("AUTO");
+		    return token::AUTO; 
+		} 
+"register"	{ 
+		    driver.printTok("REGISTER");
+		    return token::REGISTER;
+		} 
 
-"char"		{ return token::CHAR; } 
-"short"		{ return token::SHORT; } 
-"int"		{ return token::INT; } 
-"long"		{ return token::LONG; } 
-"signed"	{ return token::SIGNED; } 
-"unsigned"	{ return token::UNSIGNED; } 
-"float" 	{ return token::FLOAT; } 
-"double"	{ return token::DOUBLE; } 
-"const"		{ return token::CONST; } 
-"volatile"	{ return token::VOLATILE; } 
-"void"		{ return token::VOID; } 
-"struct"	{ return token::STRUCT; } 
-"union"		{ return token::UNION; } 
-"enum"		{ return token::ENUM; } 
+"char"		{ 
+		    driver.printTok("CHAR");
+		    return token::CHAR; 
+		} 
+"short"		{ 
+		    driver.printTok("SHORT");
+		    return token::SHORT; 
+		} 
+"int"		{ 
+		    driver.printTok("INT");
+		    return token::INT; 
+		} 
+"long"		{ 
+		    driver.printTok("LONG");
+		    return token::LONG; 
+		} 
+"signed"	{ 
+		    driver.printTok("SIGNED");
+		    return token::SIGNED; 
+		} 
+"unsigned"	{ 
+		    driver.printTok("UNSIGNED");
+		    return token::UNSIGNED; 
+		} 
+"float" 	{ 
+		    driver.printTok("FLOAT");
+		    return token::FLOAT; 
+		} 
+"double"	{ 
+		    driver.printTok("DOUBLE");
+		    return token::DOUBLE; 
+		} 
+"const"		{ 
+		    driver.printTok("CONST");
+		    return token::CONST; 
+		} 
+"volatile"	{ 
+		    driver.printTok("VOLATILE");
+		    return token::VOLATILE; 
+		} 
+"void"		{ 
+		    driver.printTok("VOID");
+		    return token::VOID; 
+		} 
+"struct"	{ 
+		    driver.printTok("STRUCT");
+		    return token::STRUCT; 
+		} 
+"union"		{ 
+		    driver.printTok("UNION");
+		    return token::UNION; 
+		} 
+"enum"		{ 
+		    driver.printTok("ENUM");
+		    return token::ENUM; 
+		}
+"case"		{ 
+		    driver.printTok("CASE");
+		    return token::CASE; 
+		}
+"default"	{ 
+		    driver.printTok("DEFAULT");
+		    return token::DEFAULT; 
+		} 
+"if"		{ 
+		    driver.printTok("IF");
+		    return token::IF; 
+		} 
+"else"		{ 
+		    driver.printTok("ELSE");
+		    return token::ELSE; 
+		} 
+"switch"	{ 
+		    driver.printTok("SWITCH");
+		    return token::SWITCH; 
+		} 
+"while"		{ 
+		    driver.printTok("WHILE");
+		    return token::WHILE; 
+		} 
+"do"		{ 
+		    driver.printTok("DO");
+		    return token::DO; 
+		} 
+"for"		{ 
+		    driver.printTok("FOR");
+		    return token::FOR; 
+		} 
+"goto"		{ 
+		    driver.printTok("GOTO");
+		    return token::GOTO; 
+		} 
+"continue"	{ 
+		    driver.printTok("CONTINUE");
+		    return token::CONTINUE; 
+		} 
+"break"		{ 
+		    driver.printTok("BREAK");
+		    return token::BREAK; 
+		} 
+"return"	{ 
+		    driver.printTok("RETURN");
+		    return token::RETURN; 
+		} 
 
-"case"		{ return token::CASE; } 
-"default"	{ return token::DEFAULT; } 
-"if"		{ return token::IF; } 
-"else"		{ return token::ELSE; } 
-"switch"	{ return token::SWITCH; } 
-"while"		{ return token::WHILE; } 
-"do"		{ return token::DO; } 
-"for"		{ return token::FOR; } 
-"goto"		{ return token::GOTO; } 
-"continue"	{ return token::CONTINUE; } 
-"break"		{ return token::BREAK; } 
-"return"	{ return token::RETURN; } 
+{id}		{ 
+		    driver.printTok("IDENTIFIER", yytext);
+		    return token::IDENTIFIER; 
+		} 
 
-{id}		{ return token::IDENTIFIER; } 
-
-{charconst}	{ return token::CHARACTER_CONSTANT; } 
+{charconst}	{ 
+		    driver.printTok("CHARACTER_CONSTANT", yytext);
+		    return token::CHARACTER_CONSTANT; 
+		} 
 
 	/* enumeration consts should go here */
 
-{intconst}	{ return token::INTEGER_CONSTANT; } 
-{fltconst}	{ return token::FLOATING_CONSTANT; }
-
+{intconst}	{ 
+		    driver.printTok("INTERGER_CONSTANT", yytext);
+		    return token::INTEGER_CONSTANT; 
+		} 
+{fltconst}	{ 
+		    driver.printTok("FLOATING_CONSTANT", yytext);
+		    return token::FLOATING_CONSTANT; 
+		}
 {flthexerror}	{ 
 		    std::string err("Hex floating point constants must have a binary exponent part, i.e. ");
 		    std::string txt(yytext);
@@ -150,55 +258,195 @@ typedef yy::CParser::token token;
 		    exp += txt + "p0";
 		    driver.error(*yylloc, err + txt + exp); 
 		} 
+{stringlit}	{ 
+		    driver.printTok("STRING_LITERAL", yytext);
+		    return token::STRING_LITERAL; 
+		} 
 
-{stringlit}	{ return token::STRING_LITERAL; } 
-
-"..."		{ return token::ELIPSIS; } 
-"->"		{ return token::PTR_OP; } 
-"++"		{ return token::INC_OP; } 
-"--"		{ return token::DEC_OP; } 
-"<<"		{ return token::LEFT_OP; } 
-">>"		{ return token::RIGHT_OP; } 
-"<="		{ return token::LE_OP; } 
-">="		{ return token::GE_OP; } 
-"=="		{ return token::EQ_OP; } 
-"!="		{ return token::NE_OP; } 
-"&&"		{ return token::AND_OP; } 
-"||"		{ return token::OR_OP; } 
-"*="		{ return token::MUL_ASSIGN; } 
-"/="		{ return token::DIV_ASSIGN; } 
-"%="		{ return token::MOD_ASSIGN; } 
-"+="		{ return token::ADD_ASSIGN; } 
-"-="		{ return token::SUB_ASSIGN; } 
-"<<="		{ return token::LEFT_ASSIGN; } 
-">>="		{ return token::RIGHT_ASSIGN; } 
-"&="		{ return token::AND_ASSIGN; } 
-"^="		{ return token::XOR_ASSIGN; } 
-"|="		{ return token::OR_ASSIGN; } 
-"*"		{ return token::STAR; } 
-"|"		{ return token::BIN_OR; } 
-"^"		{ return token::BIN_XOR; } 
-"&"		{ return token::BIN_AND; } 
-"<"		{ return token::LT_OP; } 
-">"		{ return token::GT_OP; } 
-"+"		{ return token::PLUS; } 
-"-"		{ return token::MINUS; }
-"/"		{ return token::DIV; } 
-"%"		{ return token::MOD; } 
-"~"		{ return token::TILDE; } 
-"!"		{ return token::BANG; } 
-"."		{ return token::DOT; } 
-"?"		{ return token::WHAT; } 
-"{"|"<%"	{ return token::LBRACE; } 
-"}"|"%>"	{ return token::RBRACE; } 
-"["|"<:"	{ return token::LBRAK; } 
-"]"|":>"	{ return token::RBRAK; } 
-"("		{ return token::LPAREN; } 
-")"		{ return token::RPAREN; } 
-"="		{ return token::EQ; } 
-","		{ return token::COMMA; } 
-":"		{ return token::COLON; } 
-";"		{ return token::SEMI; } 
+"..."		{ 
+		    driver.printTok("ELIPSIS");
+		    return token::ELIPSIS; 
+		} 
+"->"		{ 
+		    driver.printTok("PTR_OP");
+		    return token::PTR_OP; 
+		} 
+"++"		{ 
+		    driver.printTok("INC_OP");
+		    return token::INC_OP; 
+		} 
+"--"		{ 
+		    driver.printTok("DEC_OP");
+		    return token::DEC_OP; 
+		} 
+"<<"		{ 
+		    driver.printTok("LEFT_OP");
+		    return token::LEFT_OP; 
+		} 
+">>"		{ 
+		    driver.printTok("RIGHT_OP");
+		    return token::RIGHT_OP; 
+		} 
+"<="		{ 
+		    driver.printTok("LE_OP");
+		    return token::LE_OP; 
+		} 
+">="		{ 
+		    driver.printTok("GE_OP");
+		    return token::GE_OP; 
+		} 
+"=="		{ 
+		    driver.printTok("EQ_OP");
+		    return token::EQ_OP; 
+		} 
+"!="		{ 
+		    driver.printTok("NE_OP");
+		    return token::NE_OP; 
+		} 
+"&&"		{ 
+		    driver.printTok("AND_OP");
+		    return token::AND_OP; 
+		} 
+"||"		{ 
+		    driver.printTok("OR_OP");
+		    return token::OR_OP; 
+		} 
+"*="		{ 
+		    driver.printTok("MUL_ASSIGN");
+		    return token::MUL_ASSIGN; 
+		} 
+"/="		{ 
+		    driver.printTok("DIV_ASSIGN");
+		    return token::DIV_ASSIGN; 
+		} 
+"%="		{ 
+		    driver.printTok("MOD_ASSIGN");
+		    return token::MOD_ASSIGN; 
+		} 
+"+="		{ 
+		    driver.printTok("ADD_ASSIGN");
+		    return token::ADD_ASSIGN; 
+		} 
+"-="		{ 
+		    driver.printTok("SUB_ASSIGN");
+		    return token::SUB_ASSIGN; 
+		} 
+"<<="		{ 
+		    driver.printTok("LEFT_ASSIGN");
+		    return token::LEFT_ASSIGN; 
+		} 
+">>="		{ 
+		    driver.printTok("RIGHT_ASSIGN");
+		    return token::RIGHT_ASSIGN; 
+		} 
+"&="		{ 
+		    driver.printTok("AND_ASSIGN");
+		    return token::AND_ASSIGN; 
+		} 
+"^="		{ 
+		    driver.printTok("XOR_ASSIGN");
+		    return token::XOR_ASSIGN; 
+		} 
+"|="		{ 
+		    driver.printTok("OR_ASSIGN");
+		    return token::OR_ASSIGN; 
+		} 
+"*"		{ 
+		    driver.printTok("STAR");
+		    return token::STAR; 
+		} 
+"|"		{ 
+		    driver.printTok("BIN_OR");
+		    return token::BIN_OR; 
+		} 
+"^"		{ 
+		    driver.printTok("BIN_XOR");
+		    return token::BIN_XOR; 
+		} 
+"&"		{ 
+		    driver.printTok("BIN_AND");
+		    return token::BIN_AND; 
+		} 
+"<"		{ 
+		    driver.printTok("LT_OP");
+		    return token::LT_OP; 
+		} 
+">"		{ 
+		    driver.printTok("GT_OP");
+		    return token::GT_OP; 
+		} 
+"+"		{ 
+		    driver.printTok("PLUS");
+		    return token::PLUS; 
+		} 
+"-"		{ 
+		    driver.printTok("MINUS");
+		    return token::MINUS; 
+		}
+"/"		{ 
+		    driver.printTok("DIV");
+		    return token::DIV; 
+		} 
+"%"		{ 
+		    driver.printTok("MOD");
+		    return token::MOD; 
+		} 
+"~"		{ 
+		    driver.printTok("TILDE");
+		    return token::TILDE; 
+		} 
+"!"		{ 
+		    driver.printTok("BANG");
+		    return token::BANG; 
+		} 
+"."		{ 
+		    driver.printTok("DOT");
+		    return token::DOT; 
+		} 
+"?"		{ 
+		    driver.printTok("WHAT");
+		    return token::WHAT; 
+		} 
+"{"|"<%"	{ 
+		    driver.printTok("LBRACE");
+		    return token::LBRACE; 
+		} 
+"}"|"%>"	{ 
+		    driver.printTok("RBRACE");
+		    return token::RBRACE; 
+		} 
+"["|"<:"	{ 
+		    driver.printTok("LBRAK");
+		    return token::LBRAK; 
+		} 
+"]"|":>"	{ 
+		    driver.printTok("RBRAK");
+		    return token::RBRAK; 
+		} 
+"("		{ 
+		    driver.printTok("LPAREN");
+		    return token::LPAREN; 
+		} 
+")"		{ 
+		    driver.printTok("RPAREN");
+		    return token::RPAREN; 
+		} 
+"="		{ 
+		    driver.printTok("EQ");
+		    return token::EQ; 
+		} 
+","		{ 
+		    driver.printTok("COMMA");
+		    return token::COMMA; 
+		} 
+":"		{ 
+		    driver.printTok("COLON");
+		    return token::COLON; 
+		} 
+";"		{ 
+		    driver.printTok("SEMI");
+		    return token::SEMI; 
+		} 
 
 .		{ 
 		    driver.error(*yylloc, "Invalid character!");
@@ -208,15 +456,13 @@ void CCompiler::scan_begin(int debug_level)
 {
     yyset_debug(debug_level);
 
-    if(in_fname.empty() || in_fname == "-")
+    if(fname.empty() || fname == "-")
         yyin = stdin;
-    else if(!(yyin = fopen(in_fname.c_str(), "r")))
+    else if(!(yyin = fopen(fname.c_str(), "r")))
     {
-        error("Cannot open" + in_fname + ": " + strerror(errno));
+        error("Cannot open" + fname + ": " + strerror(errno));
         exit(EXIT_FAILURE);
     }
-
-    yyout = stderr;
 }
 
 void CCompiler::scan_end()

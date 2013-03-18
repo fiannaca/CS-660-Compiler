@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <stdio.h>
+#include <fstream>
 
 #include "SymTab.h"
 #include "CParser.hpp"
@@ -32,9 +33,9 @@ class CCompiler
 
         //Handles the parser. Return 0 on success
         int parse(const std::string& fname);
-        std::string in_fname;
-        std::string out_fname;
-        void setOutfile(std::string fname);
+        std::string fname;
+//        std::string out_fname;
+//        void setOutfile(std::string fname);
         bool trace_parsing;
 
         //Handles the Symbol Table
@@ -48,9 +49,17 @@ class CCompiler
         void error(const yy::location& loc, const std::string& msg);
         void error(const std::string& msg);
 
+        //Debug reporting
+        void printTok(std::string);
+        void printTok(std::string, char*);
+        void printRed(std::string);
+
     private:
         bool insert_mode;
         bool outfile_set;
+
+        fstream tFile;
+        fstream rFile;
 };
 
 #endif // ! CCompiler_H

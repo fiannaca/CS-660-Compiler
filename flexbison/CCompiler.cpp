@@ -8,18 +8,18 @@ CCompiler::CCompiler()
     , trace_symtab(false)
     , outfile_set(false)
 {
-
 }
 
 CCompiler::~CCompiler()
 {
-    if(outfile_set)
-        fclose(stderr);
 }
 
-int CCompiler::parse(const std::string& fname)
+int CCompiler::parse(const std::string& f)
 {
-    in_fname = fname;
+    fname = f;
+    tFile.open((fname + ".tok").c_str(), ios_base::out);
+    rFile.open((fname + ".red").c_str(), ios_base::out);
+
     scan_begin(trace_scanning);
 
     yy::CParser parser (*this);
@@ -30,6 +30,7 @@ int CCompiler::parse(const std::string& fname)
     return result;
 }
 
+/*
 void CCompiler::setOutfile(std::string fname)
 {
     out_fname = fname;
@@ -38,8 +39,8 @@ void CCompiler::setOutfile(std::string fname)
     {
         outfile_set = true;
     }
-
 }
+*/
 
 void CCompiler::set_insert_mode(bool iMode)
 {
@@ -72,3 +73,19 @@ void CCompiler::error(const std::string& msg)
 
     exit(EXIT_FAILURE);
 }
+
+void CCompiler::printTok(std::string ttxt)
+{
+    tFile << "<" << ttxt << ">" << std::endl;
+}
+
+void CCompiler::printTok(std::string ttxt, char* yytext)
+{
+    tFile << "<" << ttxt << "> - " << yytext << std::endl;
+}
+
+void CCompiler::printRed(std::string ptxt)
+{
+    rFile << ptxt << std::endl;
+}
+

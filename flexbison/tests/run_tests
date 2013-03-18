@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+FILES=$1*.c
+i=1
+
+for f in $FILES
+do
+    echo "$i.Compiling $f - "
+
+    ./ccomp -d lsp -o $f.out $f
+
+    echo "  Output written to $f.out"
+
+    ((i++))
+done

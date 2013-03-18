@@ -38,8 +38,8 @@ int main(int argc, char** argv)
         }
         else if(argv[i] == std::string("-o"))
         {
-
-/*            std::string ofname;
+/*
+            std::string ofname;
             ++i;
             if(i < argc)
             {
