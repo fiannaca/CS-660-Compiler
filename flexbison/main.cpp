@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include "CCompiler.h"
 
 void usage(char** argv)
@@ -44,7 +43,7 @@ int main(int argc, char** argv)
             }
             else
             {
-                ofname = "output";
+                ofname = "test.out";
             }
 
             driver.setOutfile(ofname);
@@ -55,11 +54,5 @@ int main(int argc, char** argv)
         }
     }
 
-    int result = driver.parse(fname);
-//    std::cerr.rdbuf(orig);
-
-//    if(out.is_open())
-//        out.close();
-
-    return result;
+    return driver.parse(fname);
 }
