@@ -653,17 +653,33 @@ compound_statement
 		{
 		    driver.printRed("compound_statement -> LBRACE RBRACE");
 		}
-	| LBRACE statement_list RBRACE
+	| LBRACE lookup_mode statement_list RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE statement_list RBRACE");
 		}
-	| LBRACE declaration_list RBRACE
+	| LBRACE insert_mode declaration_list lookup_mode RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list RBRACE");
 		}
-	| LBRACE declaration_list statement_list RBRACE
+	| LBRACE insert_mode declaration_list lookup_mode statement_list RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list statement_list RBRACE");
+		}
+	;
+
+insert_mode
+	: /* Empty - This is a dummy production used for setting insert mode */
+		{
+		    std::cout << "Starting insert mode: line - " << @$.begin.line << ", col - " << @$.begin.column << std::endl;
+		    driver.set_insert_mode(true);
+		}
+	;
+
+lookup_mode
+	: /* Empty - This is a dummy production used for setting lookup mode */
+		{
+		    std::cout << "Starting lookup mode: line - " << @$.begin.line << ", col - " << @$.begin.column << std::endl;
+		    driver.set_insert_mode(false);
 		}
 	;
 
