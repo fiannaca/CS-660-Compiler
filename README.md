@@ -1,6 +1,5 @@
 #CS 460/660 - Compilers
-##University of Nevada, Reno
-##Spring 2013
+##University of Nevada, Reno - Spring 2013
 
 __Authors: Alex Fiannaca & Matthew Sandeep__
 
