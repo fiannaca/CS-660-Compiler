@@ -233,7 +233,7 @@ typedef yy::CParser::token token;
 
 {id}		{ 
 		    yylval->sym = new SymbolInfo;
-		    return driver.checkType(yytext); 
+		    return driver.checkType(yytext, yylval->sym); 
 		} 
 
 {charconst}	{ 
@@ -465,9 +465,15 @@ void CCompiler::scan_begin(int debug_level)
         error("Cannot open" + fname + ": " + strerror(errno));
         exit(EXIT_FAILURE);
     }
+
+    std::stringstream ss;
+    ss << fname << ".ldb";
+
+    freopen(ss.str().c_str(), "w", stderr);
 }
 
 void CCompiler::scan_end()
 {
     fclose(yyin);
+    fclose(stderr);
 }

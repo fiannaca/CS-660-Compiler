@@ -6,6 +6,7 @@
 #include <map>
 #include <stdio.h>
 #include <fstream>
+#include <iostream>
 
 #include "SymTab.h"
 #include "CParser.hpp"
@@ -34,13 +35,12 @@ class CCompiler
         //Handles the parser. Return 0 on success
         int parse(const std::string& fname);
         std::string fname;
-//        std::string out_fname;
-//        void setOutfile(std::string fname);
+        void setOutfile(std::string fname);
         bool trace_parsing;
 
         //Handles the Symbol Table
         SymTab SymbolTable;
-        yy::CParser::token::yytokentype checkType(char* key);
+        yy::CParser::token::yytokentype checkType(char* key, SymbolInfo* sym);
         void globalScope();
         void enterScope();
         void leaveScope();
@@ -58,6 +58,7 @@ class CCompiler
         void printTok(std::string, char*);
         void printRed(std::string);
         void printDebug(std::string);
+        fstream ydbFile;
 
     private:
         bool insert_mode;
@@ -65,6 +66,7 @@ class CCompiler
 
         fstream tFile;
         fstream rFile;
+        fstream outfile;
 };
 
 #endif // ! CCompiler_H

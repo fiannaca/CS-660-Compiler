@@ -25,28 +25,24 @@ int CCompiler::parse(const std::string& f)
     fname = f;
     tFile.open((fname + ".tok").c_str(), ios_base::out);
     rFile.open((fname + ".red").c_str(), ios_base::out);
+    ydbFile.open((fname + ".ydb").c_str(), ios_base::out);
 
     scan_begin(trace_scanning);
 
     yy::CParser parser (*this);
     parser.set_debug_level(trace_parsing);
+    parser.set_debug_stream(ydbFile);
     int result = parser.parse();
 
     scan_end();
     return result;
 }
 
-/*
-void CCompiler::setOutfile(std::string fname)
+void CCompiler::setOutfile(std::string file)
 {
-    out_fname = fname;
-
-    if(!freopen(fname.c_str(), "w", stderr))
-    {
-        outfile_set = true;
-    }
+    outfile.open(file.c_str(), ios_base::out);
+    outfile_set = true;
 }
-*/
 
 
 
@@ -79,11 +75,12 @@ bool CCompiler::get_insert_mode()
     return insert_mode;
 }
 
-yy::CParser::token::yytokentype CCompiler::checkType(char* key)
+yy::CParser::token::yytokentype CCompiler::checkType(char* key, SymbolInfo* sym)
 {
     //For the time being this will return IDENTIFIER, but it should 
     // check if the provided key is related to an identifier, an
     // enum_constant, or a typedef_name
+    sym->symbol_name = "TempSymName";
     printTok("IDENTIFIER", key);
 
     return yy::CParser::token::IDENTIFIER;
@@ -97,22 +94,40 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key)
 
 void CCompiler::error(const yy::location& loc, const std::string& msg)
 {
-    std::cerr << std::endl;
-    std::cerr << "Error in " << *loc.begin.filename << " at "
-              << loc.begin.line << ":" << loc.begin.column
-              << " : (see location below)" <<  std::endl
-	      << "   " << msg << std::endl << std::endl;
+    if(outfile_set)
+    {
+        outfile << std::endl;
+        outfile << "Error in " << *loc.begin.filename << " at "
+                << loc.begin.line << ":" << loc.begin.column
+                << " : (see location below)" <<  std::endl
+	        << "   " << msg << std::endl << std::endl;
 
-    std::cerr << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
-    std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
-    std::cerr << "^" << std::endl << std::endl;
+        outfile << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
+        outfile << "     | " << std::setfill('-') << std::setw(loc.begin.column);
+        outfile << "^" << std::endl << std::endl;
+    }
+    else
+    {
+        std::cerr << std::endl;
+        std::cerr << "Error in " << *loc.begin.filename << " at "
+                  << loc.begin.line << ":" << loc.begin.column
+                  << " : (see location below)" <<  std::endl
+	          << "   " << msg << std::endl << std::endl;
+
+        std::cerr << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
+        std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
+        std::cerr << "^" << std::endl << std::endl;
+    }
 
     exit(EXIT_FAILURE);
 }
 
 void CCompiler::error(const std::string& msg)
 {
-    std::cerr << msg << std::endl;
+    if(outfile_set)
+        outfile << msg << std::endl;
+    else
+        std::cerr << msg << std::endl;
 
     exit(EXIT_FAILURE);
 }

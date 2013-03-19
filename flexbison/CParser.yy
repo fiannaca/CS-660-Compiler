@@ -29,9 +29,9 @@ class CCompiler;
     SymbolInfo  *sym;
 };
 
-%printer { std::cout << "Value: " << $$; } <ival> <dval>
-%printer { std::cout << "Value: " << *$$; } <sval>
-%printer { std::cout << "Name: " << $$->symbol_name; } <sym>
+%printer { driver.ydbFile << "Value: " << $$; } <ival> <dval>
+%printer { driver.ydbFile << "Value: " << *$$; } <sval>
+%printer { driver.ydbFile << "Name: " << $$->symbol_name; } <sym>
 
 %destructor { if(!$$) delete $$; } <sval> <sym>
 

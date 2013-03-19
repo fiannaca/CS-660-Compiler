@@ -10,8 +10,6 @@ void usage(char** argv)
 int main(int argc, char** argv)
 {
     std::string fname;
-//    std::streambuf* orig = std::cerr.rdbuf();
-//    std::fstream out;
 
     CCompiler driver;
 
@@ -38,7 +36,6 @@ int main(int argc, char** argv)
         }
         else if(argv[i] == std::string("-o"))
         {
-/*
             std::string ofname;
             ++i;
             if(i < argc)
@@ -50,9 +47,7 @@ int main(int argc, char** argv)
                 ofname = "output";
             }
 
-            out.open(fname.c_str(), ios_base::out);
-            orig = std::cerr.rdbuf(out.rdbuf());
-*/
+            driver.setOutfile(ofname);
         }
         else
         {

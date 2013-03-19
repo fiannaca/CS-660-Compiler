@@ -9,7 +9,15 @@ do
 
     ./ccomp -d lsp -o $f.out $f
 
-    echo "  Output written to $f.out"
+    mkdir $f_outputs
+    mv $f.* $f_outputs/
+
+    echo "  Tokens written to $f.tok"
+    echo "  Reductions written to $f.red"
+    echo "  Scanner debug output written to $f.ldb"
+    echo "  Parser debug output written to $f.ydb"
+    echo "  Compiler output written to $f.out"
+    echo ""
 
     ((i++))
 done
