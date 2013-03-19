@@ -24,19 +24,30 @@ class CCompiler;
 %union 
 {
     int          ival;
+    double	 dval;
     std::string *sval;
     SymbolInfo  *sym;
 };
+
+%printer { std::cout << "Value: " << $$; } <ival> <dval>
+%printer { std::cout << "Value: " << *$$; } <sval>
+%printer { std::cout << "Name: " << $$->symbol_name; } <sym>
+
+%destructor { if(!$$) delete $$; } <sval> <sym>
 
 %code {
 #include "CCompiler.h"
 }
 
 %token END 0 "EOF"
-%token IDENTIFIER
-%token INTEGER_CONSTANT 
-%token FLOATING_CONSTANT CHARACTER_CONSTANT ENUMERATION_CONSTANT 
-%token STRING_LITERAL 
+%token <sym>  IDENTIFIER
+%token <ival> INTEGER_CONSTANT 
+%token <dval> FLOATING_CONSTANT 
+%token <sval> CHARACTER_CONSTANT 
+%token <sym>  ENUMERATION_CONSTANT 
+%token <sval> STRING_LITERAL
+%token <sym>  TYPEDEF_NAME
+
 %token SIZEOF
 %token PTR_OP 
 %token INC_OP DEC_OP 
@@ -45,22 +56,13 @@ class CCompiler;
 %token AND_OP OR_OP 
 %token MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN SUB_ASSIGN 
 %token LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN XOR_ASSIGN OR_ASSIGN 
-%token TYPEDEF_NAME
-
 %token STAR BIN_OR BIN_XOR BIN_AND 
 %token LT_OP GT_OP PLUS MINUS DIV MOD TILDE BANG DOT WHAT
 %token LBRACE RBRACE LBRAK RBRAK LPAREN RPAREN EQ COMMA COLON SEMI
-
 %token TYPEDEF EXTERN STATIC AUTO REGISTER
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token STRUCT UNION ENUM ELIPSIS
-
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
-
-%printer    { yyoutput << *$$; } <sval>
-%destructor { delete $$; } <sval>
-
-%printer    { yyoutput << $$; } <ival>
 
 %%
 translation_unit

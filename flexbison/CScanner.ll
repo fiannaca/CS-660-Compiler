@@ -232,11 +232,13 @@ typedef yy::CParser::token token;
 		} 
 
 {id}		{ 
+		    yylval->sym = new SymbolInfo;
 		    return driver.checkType(yytext); 
 		} 
 
 {charconst}	{ 
 		    driver.printTok("CHARACTER_CONSTANT", yytext);
+		    yylval->sval = new std::string(yytext);
 		    return token::CHARACTER_CONSTANT; 
 		} 
 
@@ -259,6 +261,7 @@ typedef yy::CParser::token token;
 		} 
 {stringlit}	{ 
 		    driver.printTok("STRING_LITERAL", yytext);
+		    yylval->sval = new std::string(yytext);
 		    return token::STRING_LITERAL; 
 		} 
 
