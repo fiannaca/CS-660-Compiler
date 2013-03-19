@@ -4,7 +4,9 @@
 
 %code requires {
 #include <string>
+#include <sstream>
 #include "SymTab.h"
+
 class CCompiler;
 }
 
@@ -69,6 +71,50 @@ translation_unit
 	| translation_unit external_declaration
 		{
 		    driver.printRed("translation_unit -> translation_unit external_declaration");
+		}
+	;
+
+enter_scope
+	: /* Empty - This is a dummy production used for entering scopes */
+		{
+		    std::stringstream ss;
+		    ss << "Entering new scope: line - " << @$.begin.line << ", col - " << @$.begin.column;
+		    driver.printDebug(ss.str());
+
+		    driver.enterScope();
+		}
+	;
+
+leave_scope
+	: /* Empty - This is a dummy production used for leaving scopes */
+		{
+		    std::stringstream ss;
+		    ss << "Leaving scope: line - " << @$.begin.line << ", col - " << @$.begin.column;
+		    driver.printDebug(ss.str());
+
+		    driver.leaveScope();
+		}
+	;
+
+insert_mode
+	: /* Empty - This is a dummy production used for setting insert mode */
+		{
+		    std::stringstream ss;
+		    ss << "Starting insert mode: line - " << @$.begin.line << ", col - " << @$.begin.column;
+		    driver.printDebug(ss.str());
+
+		    driver.set_insert_mode(true);
+		}
+	;
+
+lookup_mode
+	: /* Empty - This is a dummy production used for setting lookup mode */
+		{
+		    std::stringstream ss;
+		    ss << "Starting lookup mode: line - " << @$.begin.line << ", col - " << @$.begin.column;
+		    driver.printDebug(ss.str());
+
+		    driver.set_insert_mode(false);
 		}
 	;
 
@@ -653,33 +699,17 @@ compound_statement
 		{
 		    driver.printRed("compound_statement -> LBRACE RBRACE");
 		}
-	| LBRACE lookup_mode statement_list RBRACE
+	| LBRACE enter_scope lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE statement_list RBRACE");
 		}
-	| LBRACE insert_mode declaration_list lookup_mode RBRACE
+	| LBRACE enter_scope insert_mode declaration_list lookup_mode leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list RBRACE");
 		}
-	| LBRACE insert_mode declaration_list lookup_mode statement_list RBRACE
+	| LBRACE enter_scope insert_mode declaration_list lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list statement_list RBRACE");
-		}
-	;
-
-insert_mode
-	: /* Empty - This is a dummy production used for setting insert mode */
-		{
-		    std::cout << "Starting insert mode: line - " << @$.begin.line << ", col - " << @$.begin.column << std::endl;
-		    driver.set_insert_mode(true);
-		}
-	;
-
-lookup_mode
-	: /* Empty - This is a dummy production used for setting lookup mode */
-		{
-		    std::cout << "Starting lookup mode: line - " << @$.begin.line << ", col - " << @$.begin.column << std::endl;
-		    driver.set_insert_mode(false);
 		}
 	;
 

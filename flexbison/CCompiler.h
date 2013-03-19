@@ -41,6 +41,9 @@ class CCompiler
         //Handles the Symbol Table
         SymTab SymbolTable;
         yy::CParser::token::yytokentype checkType(char* key);
+        void globalScope();
+        void enterScope();
+        void leaveScope();
         void set_insert_mode(bool iMode);
         bool get_insert_mode();
         bool trace_symtab;
@@ -54,6 +57,7 @@ class CCompiler
         void printTok(std::string);
         void printTok(std::string, char*);
         void printRed(std::string);
+        void printDebug(std::string);
 
     private:
         bool insert_mode;

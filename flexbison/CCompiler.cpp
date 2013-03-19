@@ -8,6 +8,12 @@ CCompiler::CCompiler()
     , trace_symtab(false)
     , outfile_set(false)
 {
+    printDebug("Initializing the global scope...");
+    globalScope();
+
+    //C starts in insert mode
+    
+    set_insert_mode(true);
 }
 
 CCompiler::~CCompiler()
@@ -42,6 +48,27 @@ void CCompiler::setOutfile(std::string fname)
 }
 */
 
+
+
+/*****************************************************************************/
+/* SYMBOL TABLE HANDLERS *****************************************************/
+/*****************************************************************************/
+
+void CCompiler::globalScope()
+{
+    //call the symtab function for initializing the global scope
+}
+
+void CCompiler::enterScope()
+{
+    //call the symtab function for entering a scope
+}
+
+void CCompiler::leaveScope()
+{
+    //Call the symtab function for leaving a scope
+}
+
 void CCompiler::set_insert_mode(bool iMode)
 {
     insert_mode = iMode;
@@ -51,6 +78,22 @@ bool CCompiler::get_insert_mode()
 {
     return insert_mode;
 }
+
+yy::CParser::token::yytokentype CCompiler::checkType(char* key)
+{
+    //For the time being this will return IDENTIFIER, but it should 
+    // check if the provided key is related to an identifier, an
+    // enum_constant, or a typedef_name
+    printTok("IDENTIFIER", key);
+
+    return yy::CParser::token::IDENTIFIER;
+}
+
+
+
+/*****************************************************************************/
+/* DEBUGGING AND ERROR OUTPUT ************************************************/
+/*****************************************************************************/
 
 void CCompiler::error(const yy::location& loc, const std::string& msg)
 {
@@ -89,12 +132,7 @@ void CCompiler::printRed(std::string ptxt)
     rFile << ptxt << std::endl;
 }
 
-yy::CParser::token::yytokentype CCompiler::checkType(char* key)
+void CCompiler::printDebug(std::string txt)
 {
-    //For the time being this will return IDENTIFIER, but it should 
-    // check if the provided key is related to an identifier, an
-    // enum_constant, or a typedef_name
-    printTok("IDENTIFIER", key);
-
-    return yy::CParser::token::IDENTIFIER;
+    std::cout << txt << std::endl;
 }
