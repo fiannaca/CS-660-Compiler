@@ -32,7 +32,7 @@ PODType::PODType(string n, int s)
 }
 
 /*****************************************************************************/
-/* Typedef Type Class - This type allows for an type (or an object of a      */
+/* Typedef Type Class - This type allows for a type (or an object of a       */
 /*                   class derived from Type) to be renamed. This points to  */
 /*                   the actual type                                         */
 /*****************************************************************************/
@@ -41,6 +41,40 @@ TypedefType::TypedefType(Type* actual, string tdname)
 {
     typedefName = tdname;
     actualType = actual;
+}
+
+/*****************************************************************************/
+/* Enum Type Class - This type allows for the creation of enumerations       */
+/*****************************************************************************/
+
+EnumType::EnumType(string n, int startVal = 0)
+{
+    currentVal = startVal
+}
+
+int EnumType::GetConstVal(string s)
+{
+    return enumConsts[s];
+}
+
+void EnumType::AddEnumConst(string s)
+{
+    enumConsts[s] = currentVal;
+    ++currentVal;
+}
+
+void EnumType::AddEnumConst(string s, int val)
+{
+    if(val >= currentVal)
+    {
+        enumConsts[s] = val;
+        currentVal = val + 1;
+    }
+    else
+    {
+        enumConsts[s] = currentVal;
+        currentVal++;
+    }
 }
 
 /*****************************************************************************/
@@ -78,17 +112,97 @@ StructType::StructType(string n)
 
 void StructType::AddMember(string s, Type* t)
 {
-    types[s] = t;
-    size += t->size; //Accumulate the size of the sum of the component types in the struct
+    //The name and type must be push (or popped) concurrently so that cooresponding
+    // names and types are at the same index in the name and type vectors
+    memberNames.push_back(s);
+    memberTypes.push_back(t);
+
+    //Accumulate the size of the sum of the component types in the struct
+    size += t->size; 
 }
 
 bool StructType::MemberExists(string s)
 {
-    auto it = types.find(s);
+    auto it = std::find(memberNames.begin(), memberNames.end(), s);
 
-    if(it != map::end)
+    if(it != memberNames.end())
         return true;
     else
         return false;
 }
 
+/*****************************************************************************/
+/* Union Type Class - This type allows for unions to be created containing   */
+/*                   members of any predeclared type                         */
+/*****************************************************************************/
+UnionType::UnionType(string n)
+{
+    name = n;
+    size = 0;
+}
+
+void UnionType::AddMember(string s, Type* t)
+{
+    //The name and type must be push (or popped) concurrently so that cooresponding
+    // names and types are at the same index in the name and type vectors
+    memberNames.push_back(s);
+    memberTypes.push_back(t);
+
+    //Accumulate the size of the sum of the component types in the struct
+    size += t->size; 
+}
+
+bool UnionType::MemberExists(string s)
+{
+    auto it = std::find(memberNames.begin(), memberNames.end(), s);
+
+    if(it != memberNames.end())
+        return true;
+    else
+        return false;
+}
+
+/*****************************************************************************/
+/* Function Type Class - This type allows for functions to be declared       */
+/*                   containing parameters of any predeclared type           */
+/*****************************************************************************/
+FunctionType::FunctionType(string n)
+{
+    name = n;
+}
+
+void FunctionType::AddParam(Type* t)
+{
+    params.push_back(t);
+}
+
+void FunctionType::SetReturnType(Type* t)
+{
+    returnType = t;
+}
+
+/*****************************************************************************/
+/* Pointer Type Class - Allows for pointers to be created towards other      */
+/*                      types.                                               */
+/*****************************************************************************/
+PointerType::PointerType(Type* base, bool baseIsPtr, string n)
+{
+    baseType = base;
+    name = n;
+
+    if(baseIsPtr)
+    {
+        ptrDepth = ((PointerType*)base)->ptrDepth + 1;
+    }
+    else
+    {
+        ptrDepth = 1;
+    }
+}
+
+PointerType::PointerType(Type* base, string n, int d)
+{
+    baseType = base;
+    ptrDepth = d;
+    name = n;
+}
