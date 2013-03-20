@@ -44,16 +44,16 @@ struct SymbolInfo
 
 class SymTab
 {
-     
-	 private:
-	     
-	     list< map<string,SymbolInfo> >  symTable;
-	 public:	
-	     void insert_symbol(SymbolInfo symbolInfo);
-	     void insert_symbol(SymbolInfo symbolInfo, int level);
-	     int search_symbol(SymbolInfo &symbolInfo,int &level);
-   	     void dump_table();
-         void dump_table(int level);  
+    private:
+	list< map<string,SymbolInfo> >  symTable;
+
+    public:
+	void insert_symbol(SymbolInfo symbolInfo);
+	void insert_symbol(SymbolInfo symbolInfo, int level);
+	int search_symbol(SymbolInfo &symbolInfo,int &level);
+        bool find_symbol(string key, SymbolInfo* symPtr, int &level){ return true; }
+   	void dump_table();
+        void dump_table(int level);  
         vector<TypeInfo> typeTable;
 };
 

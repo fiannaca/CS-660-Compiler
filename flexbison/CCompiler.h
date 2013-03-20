@@ -28,7 +28,7 @@ class CCompiler
         int result;
 
         //Initializes/destructs the scanner input -- implemented in CScanner.ll
-        void scan_begin(int debug_level);
+        void scan_begin(bool debug_scanning);
         void scan_end();
         bool  trace_scanning;
 
@@ -40,7 +40,7 @@ class CCompiler
 
         //Handles the Symbol Table
         SymTab SymbolTable;
-        yy::CParser::token::yytokentype checkType(char* key, SymbolInfo* sym);
+        yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
         void globalScope();
         void enterScope();
         void leaveScope();
@@ -52,15 +52,19 @@ class CCompiler
         char linebuf[500];
         void error(const yy::location& loc, const std::string& msg);
         void error(const std::string& msg);
+        void warning(const yy::location& loc, const std::string& msg);
+        void warning(const std::string& msg);
 
         //Debug reporting
         void printTok(std::string);
         void printTok(std::string, char*);
         void printRed(std::string);
+        void turnDebugOn(bool);
         void printDebug(std::string);
         fstream ydbFile;
 
     private:
+        bool debug_on;
         bool insert_mode;
         bool outfile_set;
 

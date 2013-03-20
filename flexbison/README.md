@@ -1,7 +1,8 @@
 #CS 460/660 - Compilers
 ##University of Nevada, Reno - Spring 2013
 
-__Authors: Alex Fiannaca & Matthew Sandeep__
+__Authors: Alex Fiannaca & Sandeep Matthew__
+
 __Date:    03/25/2013__
 
 ###Description:
@@ -12,7 +13,7 @@ compile the scanner and parser, you must use the most recent versions of Flex
 and Bison, the GNU scanner and parser generators.
 
 Links to dependencies:
-+ [Bison 2.7](ftp://ftp.gnu.org/gnu/bison/)
++ [Bison 2.7](http://ftp.gnu.org/gnu/bison/)
 + [Flex 2.5.37](http://flex.sourceforge.net/)
 
 For more information, contact [fiannac4@live.com](mailto:fiannac4@live.com)

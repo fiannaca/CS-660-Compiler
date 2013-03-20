@@ -1,6 +1,6 @@
 YACC_FLAGS= --skeleton=lalr1.cc --defines --debug
 FLEX_FLAGS= --debug --warn --nodefault --noyywrap --batch --header-file=CScanner.h
-CXX_FLAGS=
+CXX_FLAGS= -std=c++0x
 LIBS=
 
 all: CParser.o CScanner.o main.o CCompiler.o SymTab.o

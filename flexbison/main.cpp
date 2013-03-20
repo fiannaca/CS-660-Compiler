@@ -48,6 +48,11 @@ int main(int argc, char** argv)
 
             driver.setOutfile(ofname);
         }
+        else if(argv[i] == std::string("-v"))
+	{
+            std::cout << "turning on debug";
+	    driver.turnDebugOn(true);
+	}
         else
         {
             fname = argv[i];

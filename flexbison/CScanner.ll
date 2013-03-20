@@ -1,8 +1,9 @@
 %{
 //Includes
 #include <cstdlib>
-#include <climits>
+#include <limits>
 #include <string>
+#include <stdexcept>
 #include <cerrno>
 
 #include "CParser.hpp"
@@ -194,6 +195,7 @@ typedef yy::CParser::token token;
 		    driver.printTok("IF");
 		    return token::IF; 
 		} 
+
 "else"		{ 
 		    driver.printTok("ELSE");
 		    return token::ELSE; 
@@ -233,7 +235,22 @@ typedef yy::CParser::token token;
 
 {id}		{ 
 		    yylval->sym = new SymbolInfo;
-		    return driver.checkType(yytext, yylval->sym); 
+		    token::yytokentype tmp = driver.checkType(yytext, *yylloc, yylval->sym);
+
+		    switch(tmp)
+		    {
+		        case token::IDENTIFIER:
+		            driver.printTok("IDENTIFIER", yytext);
+		            return token::IDENTIFIER;
+
+		        case token::ENUMERATION_CONSTANT:
+		            driver.printTok("ENUMERATION_CONSTANT", yytext);
+		            return token::ENUMERATION_CONSTANT;
+
+		        case token::TYPEDEF_NAME:
+		            driver.printTok("TYPEDEF_NAME", yytext);
+		            return token::TYPEDEF_NAME;
+		    }
 		} 
 
 {charconst}	{ 
@@ -242,13 +259,42 @@ typedef yy::CParser::token token;
 		    return token::CHARACTER_CONSTANT; 
 		} 
 
-	/* enumeration consts should go here */
-
 {intconst}	{ 
+		    try
+		    {
+		        std::string tmp(yytext);
+		        yylval->ival = std::stoi(tmp);
+		    }
+		    catch(const std::out_of_range& oor)
+		    {
+		        //Throw an overflow warning and set the value to MAX_INT
+		        driver.warning(*yylloc, "Integer value overflow. Value set to MAX_INT.");
+		    }
+		    
+		    //For debugging purposes, make sure we have the correct value
+		    driver.printDebug("yylval->ival has the value: " + std::to_string(yylval->ival));
+
+		    //Print return the token
 		    driver.printTok("INTERGER_CONSTANT", yytext);
 		    return token::INTEGER_CONSTANT; 
 		} 
-{fltconst}	{ 
+{fltconst}	{
+		    try
+		    { 
+		        std::string tmp(yytext);
+		        yylval->dval = std::stod(tmp);
+		    }
+		    catch(const std::out_of_range& oor)
+		    {
+		        //Throw an overflow warning and set the value to MAX_FLOAT
+		        driver.warning(*yylloc, "Floating-point value overflow. Value set to MAX_FLOAT.");
+			yylval->dval = std::numeric_limits<double>::max();
+		    }
+
+		    //For debugging purposes, make sure we got the correct value
+		    driver.printDebug("yylval->dval has the value: " + std::to_string(yylval->dval));
+
+		    //Print and return the token
 		    driver.printTok("FLOATING_CONSTANT", yytext);
 		    return token::FLOATING_CONSTANT; 
 		}
@@ -260,8 +306,26 @@ typedef yy::CParser::token token;
 		    driver.error(*yylloc, err + txt + exp); 
 		} 
 {stringlit}	{ 
+		    //Get the actual string
+                    size_t index = 0;
+                    bool is_wide_char = false;
+
+		    if(yytext[index] == 'L')
+		    {
+                        is_wide_char = true;                    
+		        ++index;
+		    }
+		    
+		    ++index;
+
+		    std::string tmp(yytext);
+		    yylval->sval = new std::string(tmp.substr(index, tmp.length() - index - 1));
+
+		    //For debugging purposes, make sure we have the correct string
+		    driver.printDebug("yylval->sval has the string: " + *(yylval->sval));
+
+		    //Print and return the token
 		    driver.printTok("STRING_LITERAL", yytext);
-		    yylval->sval = new std::string(yytext);
 		    return token::STRING_LITERAL; 
 		} 
 
@@ -454,9 +518,9 @@ typedef yy::CParser::token token;
 		    driver.error(*yylloc, "Invalid character!");
 		} 
 %%
-void CCompiler::scan_begin(int debug_level)
+void CCompiler::scan_begin(bool trace_scanning)
 {
-    yyset_debug(debug_level);
+    yyset_debug(trace_scanning);
 
     if(fname.empty() || fname == "-")
         yyin = stdin;
@@ -466,10 +530,13 @@ void CCompiler::scan_begin(int debug_level)
         exit(EXIT_FAILURE);
     }
 
-    std::stringstream ss;
-    ss << fname << ".ldb";
+    if(trace_scanning)
+    {
+        std::stringstream ss;
+        ss << fname << ".ldb";
 
-    freopen(ss.str().c_str(), "w", stderr);
+        freopen(ss.str().c_str(), "w", stderr);
+    }
 }
 
 void CCompiler::scan_end()

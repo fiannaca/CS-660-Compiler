@@ -7,6 +7,7 @@ CCompiler::CCompiler()
     , trace_parsing(false)
     , trace_symtab(false)
     , outfile_set(false)
+    , debug_on(false)
 {
     printDebug("Initializing the global scope...");
     globalScope();
@@ -25,13 +26,18 @@ int CCompiler::parse(const std::string& f)
     fname = f;
     tFile.open((fname + ".tok").c_str(), ios_base::out);
     rFile.open((fname + ".red").c_str(), ios_base::out);
-    ydbFile.open((fname + ".ydb").c_str(), ios_base::out);
+
+    if(trace_parsing)
+        ydbFile.open((fname + ".ydb").c_str(), ios_base::out);
 
     scan_begin(trace_scanning);
 
     yy::CParser parser (*this);
     parser.set_debug_level(trace_parsing);
-    parser.set_debug_stream(ydbFile);
+
+    if(trace_parsing)
+        parser.set_debug_stream(ydbFile);
+
     int result = parser.parse();
 
     scan_end();
@@ -75,11 +81,34 @@ bool CCompiler::get_insert_mode()
     return insert_mode;
 }
 
-yy::CParser::token::yytokentype CCompiler::checkType(char* key, SymbolInfo* sym)
+yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::location& loc, SymbolInfo *sym)
 {
     //For the time being this will return IDENTIFIER, but it should 
     // check if the provided key is related to an identifier, an
     // enum_constant, or a typedef_name
+
+    int level;
+    if(!SymbolTable.find_symbol(std::string(key), sym, level))
+    {
+        //The symbol was not in the table
+        if(!insert_mode)
+        {
+            //If we are in insert mode, then insert it
+            sym->symbol_name = key;
+            SymbolTable.insert_symbol(*sym);
+        }
+        else
+        {
+            //Otherwise, declare the error
+            error(loc, "All variables must be declared at the top of a block!");
+        }
+    }
+
+    //The symbol was in the table
+
+    //Check if it is an enum, a typedef name, or just an identifier
+
+    //This is the temp return...
     sym->symbol_name = "TempSymName";
     printTok("IDENTIFIER", key);
 
@@ -102,7 +131,7 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
                 << " : (see location below)" <<  std::endl
 	        << "   " << msg << std::endl << std::endl;
 
-        outfile << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
+        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
         outfile << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         outfile << "^" << std::endl << std::endl;
     }
@@ -114,7 +143,7 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
                   << " : (see location below)" <<  std::endl
 	          << "   " << msg << std::endl << std::endl;
 
-        std::cerr << std::setw(4) << loc.begin.line << " | " << linebuf << std::endl;
+        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
         std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         std::cerr << "^" << std::endl << std::endl;
     }
@@ -132,6 +161,42 @@ void CCompiler::error(const std::string& msg)
     exit(EXIT_FAILURE);
 }
 
+void CCompiler::warning(const yy::location& loc, const std::string& msg)
+{
+    if(outfile_set)
+    {
+        outfile << std::endl;
+        outfile << "Warning in " << *loc.begin.filename << " at "
+                << loc.begin.line << ":" << loc.begin.column
+                << " : (see location below)" <<  std::endl
+	        << "   " << msg << std::endl << std::endl;
+
+        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        outfile << "     | " << std::setfill('-') << std::setw(loc.begin.column);
+        outfile << "^" << std::endl << std::endl;
+    }
+    else
+    {
+        std::cerr << std::endl;
+        std::cerr << "Warning in " << *loc.begin.filename << " at "
+                  << loc.begin.line << ":" << loc.begin.column
+                  << " : (see location below)" <<  std::endl
+	          << "   " << msg << std::endl << std::endl;
+
+        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
+        std::cerr << "^" << std::endl << std::endl;
+    }
+}
+
+void CCompiler::warning(const std::string& msg)
+{
+    if(outfile_set)
+        outfile << "Warning: " << msg << std::endl;
+    else
+        std::cerr << "Warning: " << msg << std::endl;
+}
+
 void CCompiler::printTok(std::string ttxt)
 {
     tFile << "<" << ttxt << ">" << std::endl;
@@ -147,7 +212,20 @@ void CCompiler::printRed(std::string ptxt)
     rFile << ptxt << std::endl;
 }
 
+void CCompiler::turnDebugOn(bool flag)
+{
+    debug_on = flag;
+}
+
 void CCompiler::printDebug(std::string txt)
 {
-    std::cout << txt << std::endl;
+    if(debug_on)
+    {
+        std::cout << "Debug is on";
+
+        if(outfile_set)
+            outfile << txt << std::endl;
+        else
+            std::cout << txt << std::endl;
+    }
 }
