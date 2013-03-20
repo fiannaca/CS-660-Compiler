@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cs660 by afiannac2</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Cs660</h1>
+        <p class="header">A C Compiler Front End</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/afiannac2/cs660/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/afiannac2/cs660/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/afiannac2/cs660">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/afiannac2">afiannac2</a></p>
+
+
+      </header>
+      <section>
+        <h1>CS 460/660 - Compilers</h1>
+
+<h2>University of Nevada, Reno - Spring 2013</h2>
+
+<p><strong>Authors: Alex Fiannaca (<a href="https://github.com/afiannac2" class="user-mention">@afiannac2</a>) &amp; Sandeep Matthew (<a href="https://github.com/ThomasMadappattu" class="user-mention">@ThomasMadappattu</a>)</strong></p>
+
+<h3>Description:</h3>
+
+<p>This is the front end of a simple C compiler being written for the CS660
+Compiler course at the University of Nevada, Reno (Spring 2013). In order to
+compile the scanner and parser, you must use the most recent versions of Flex
+and Bison, the GNU scanner and parser generators.</p>
+
+<p>Links to dependencies:</p>
+
+<ul>
+<li><a href="http://ftp.gnu.org/gnu/bison/">Bison 2.7</a></li>
+<li><a href="http://flex.sourceforge.net/">Flex 2.5.37</a></li>
+</ul><p>For more information, contact <a href="mailto:fiannac4@live.com">fiannac4@live.com</a></p>
+
+<h3>How To: Compile this project</h3>
+
+<p>Clone the repository using the following command:</p>
+
+<pre><code>git clone https://github.com/afiannac2/cs660.git
+</code></pre>
+
+<p>This repository is a private repository, meaning that you must be granted
+access rights before you can clone the repository, but since you are
+reading this, I am guessing you have been given rights.</p>
+
+<p>Execute the following commands to compile the project:</p>
+
+<pre><code>cd cs660/flexbison/
+make
+</code></pre>
+
+<p>This will run flex and bison and then compile all of the sources to produce
+the C Compiler front end executable <em><strong>ccomp</strong></em></p>
+
+<h3>How To: Run this project (direct use)</h3>
+
+<p>The C Compiler front end can either be invoked by using the following command</p>
+
+<pre><code>./ccomp
+</code></pre>
+
+<h3>How To: Run this project (using the test script)</h3>
+
+<p>A script has been written which allows you to automatically run any test <em>.c</em>
+files located in the <em>tests/</em> folder. The script can be invoked through the 
+makefile by running the command (after you have compiled the project)</p>
+
+<pre><code>make test
+</code></pre>
+
+<p>This will copy the compiler executable into the <em>tests/</em> folder and will
+run the compiler on every <em>.c</em> file in the <em>tests/</em> folder. This will invoke
+the compiler with the <em>-d</em> flag (with the l, s, and p parameters) and the <em>-o</em>
+flag (with an output filename of .out). In addition, it will group
+the results of each attempted compilation into a folder with the same name
+as the input C file. Some of the test files in the <em>tests/</em> folder are designed
+to fail (to test error output and whatnot) and some are designed to compile
+correctly (to test things like proper input into the symbol table). The <em>-v</em> 
+flag can also be provided to the <em>ccomp</em> executable in order to print general 
+debug info (this is for the developers).</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
