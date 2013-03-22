@@ -88,7 +88,9 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
     // enum_constant, or a typedef_name
 
     int level;
-    if(!SymbolTable.find_symbol(std::string(key), sym, level))
+    SymbolInfo symToFind;
+    symToFind.symbol_name = std::string(key);
+    if(!SymbolTable.find_symbol(symToFind, level))
     {
         //The symbol was not in the table
         if(!insert_mode)
