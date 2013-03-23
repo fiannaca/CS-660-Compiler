@@ -13,8 +13,9 @@ CCompiler::CCompiler()
     globalScope();
 
     //C starts in insert mode
-    
+    currentSymbol = new SymbolInfo(); 
     set_insert_mode(true);
+       
 }
 
 CCompiler::~CCompiler()
@@ -101,8 +102,8 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
         }
         else
         {
-            //Otherwise, declare the error
-            error(loc, "All variables must be declared at the top of a block!");
+            //Otherwise, declare the error -- Supress this for the time being 
+            //error(loc, "All variables must be declared at the top of a block!");
         }
     }
 
@@ -111,7 +112,7 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
     //Check if it is an enum, a typedef name, or just an identifier
 
     //This is the temp return...
-    sym->symbol_name = "TempSymName";
+    sym->symbol_name = string(key);
     printTok("IDENTIFIER", key);
 
     return yy::CParser::token::IDENTIFIER;

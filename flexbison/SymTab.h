@@ -11,38 +11,16 @@
 #define _SYMTAB_H_
 #include <string>
 #include "AvlTree.h" 
+#include "Type.h"
 #include <list>
 #include <vector>
 using namespace std;
 
-enum STORAGE_CLASS
-{
-   EXTERN ,
-   STATIC ,
-   REGISTER ,
-   AUTO	
-
-};
-
-enum  BASIC_TYPES
-{
-   INT,
-   CHAR ,
-   FLOAT,
-   DOUBLE,
-   STRUCT,
-   UNION	
-
-};
-
-struct TypeInfo
-{
-    list<int> typeList; 	
-};
-
 struct SymbolInfo
 {
     string symbol_name;
+    Type *symbolType; 
+    int type_qualifier; 
     string function_name; 
     bool struct_union_name;
     bool isStrunctOrUnionItem; 
@@ -57,7 +35,7 @@ struct SymbolInfo
     }
     int operator == ( SymbolInfo inf)
     {
-       return this->symbol_name < inf.symbol_name;
+       return ( this->symbol_name.compare(inf.symbol_name) == 0 ) ;
     }
     int operator > ( SymbolInfo inf)
     {
@@ -127,7 +105,7 @@ class SymTab
 	     {
 	          symTable[level].Dump();  
 	     }  
-             vector<TypeInfo> typeTable;
+             
 };
 
 #endif 

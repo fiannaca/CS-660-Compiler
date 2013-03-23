@@ -39,7 +39,10 @@ class CCompiler
         bool trace_parsing;
 
         //Handles the Symbol Table
+        SymbolInfo *currentSymbol;  
         SymTab SymbolTable;
+        int structMode ; 
+        int unionMode;  
         yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
         void globalScope();
         void enterScope();
@@ -66,8 +69,7 @@ class CCompiler
     private:
         bool debug_on;
         bool insert_mode;
-        bool outfile_set;
-
+        bool outfile_set;   
         fstream tFile;
         fstream rFile;
         fstream outfile;

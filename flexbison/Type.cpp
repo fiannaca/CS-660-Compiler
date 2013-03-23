@@ -47,9 +47,10 @@ TypedefType::TypedefType(Type* actual, string tdname)
 /* Enum Type Class - This type allows for the creation of enumerations       */
 /*****************************************************************************/
 
-EnumType::EnumType(string n, int startVal = 0)
+EnumType::EnumType(string n, int startVal=0)
+         :Type(n,INT_SIZE)
 {
-    currentVal = startVal
+    currentVal = startVal;
 }
 
 int EnumType::GetConstVal(string s)
@@ -82,7 +83,7 @@ void EnumType::AddEnumConst(string s, int val)
 /*                   to be created                                           */
 /*****************************************************************************/
 ArrayType::ArrayType(Type* baseType, int dims)
-    : Type(*baseType);
+    : Type(*baseType)
 {
     dimensions = dims;
 }
@@ -105,9 +106,9 @@ int ArrayType::GetCapacity(int dim)
 /*                   members of any predeclared type                         */
 /*****************************************************************************/
 StructType::StructType(string n)
+          :Type(n,0)
 {
-    name = n;
-    size = 0;
+    
 }
 
 void StructType::AddMember(string s, Type* t)
@@ -118,7 +119,7 @@ void StructType::AddMember(string s, Type* t)
     memberTypes.push_back(t);
 
     //Accumulate the size of the sum of the component types in the struct
-    size += t->size; 
+    size += t->GetSize(); 
 }
 
 bool StructType::MemberExists(string s)
@@ -136,9 +137,9 @@ bool StructType::MemberExists(string s)
 /*                   members of any predeclared type                         */
 /*****************************************************************************/
 UnionType::UnionType(string n)
+          : Type(n,0)
 {
-    name = n;
-    size = 0;
+    
 }
 
 void UnionType::AddMember(string s, Type* t)
@@ -149,7 +150,7 @@ void UnionType::AddMember(string s, Type* t)
     memberTypes.push_back(t);
 
     //Accumulate the size of the sum of the component types in the struct
-    size += t->size; 
+    size += t->GetSize(); 
 }
 
 bool UnionType::MemberExists(string s)
@@ -167,8 +168,9 @@ bool UnionType::MemberExists(string s)
 /*                   containing parameters of any predeclared type           */
 /*****************************************************************************/
 FunctionType::FunctionType(string n)
+             :Type(n,0)
 {
-    name = n;
+    
 }
 
 void FunctionType::AddParam(Type* t)
@@ -186,9 +188,10 @@ void FunctionType::SetReturnType(Type* t)
 /*                      types.                                               */
 /*****************************************************************************/
 PointerType::PointerType(Type* base, bool baseIsPtr, string n)
+            :Type(n,0)
 {
     baseType = base;
-    name = n;
+    
 
     if(baseIsPtr)
     {
@@ -198,11 +201,13 @@ PointerType::PointerType(Type* base, bool baseIsPtr, string n)
     {
         ptrDepth = 1;
     }
+
 }
 
 PointerType::PointerType(Type* base, string n, int d)
+            :Type(n,0)  
 {
     baseType = base;
     ptrDepth = d;
-    name = n;
+    
 }

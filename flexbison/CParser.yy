@@ -5,8 +5,9 @@
 %code requires {
 #include <string>
 #include <sstream>
+#include <iostream>
 #include "SymTab.h"
-
+ 
 class CCompiler;
 }
 
@@ -37,6 +38,8 @@ class CCompiler;
 
 %code {
 #include "CCompiler.h"
+ 
+
 }
 
 %token END 0 "EOF"
@@ -153,11 +156,25 @@ function_definition
 declaration
 	: declaration_specifiers SEMI
 		{
-		    driver.printRed("declaration -> declaration_specifiers SEMI");
+		    driver.printDebug("Declaration .... "); 
+                    driver.printRed("declaration -> declaration_specifiers SEMI");
+                                     
 		}
 	| declaration_specifiers init_declarator_list SEMI
 		{
 		    driver.printRed("declaration -> declaration_specifiers init_declarator_list SEMI");
+                    std::cout<<"\n       SYMBOL TABLE       \n"; 
+                    SymbolInfo *inf  = driver.currentSymbol;
+                    if ( inf->storage_class == TYPEDEF)
+                    {
+                       inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
+
+                    } 
+                    driver.SymbolTable.insert_symbol(*inf);
+                    driver.currentSymbol = new SymbolInfo();
+                    driver.SymbolTable.dump_table(0);   
+                    std::cout<<"\n ================================== \n";       
+                     
 		}
 	;
 
@@ -203,53 +220,74 @@ storage_class_specifier
 	: AUTO
 		{
 		    driver.printRed("storage_class_specifier -> AUTO");
+                    driver.currentSymbol->storage_class = AUTO;  
 		}
 	| REGISTER
 		{
 		    driver.printRed("storage_class_specifier -> REGISTER");
+                    driver.currentSymbol->storage_class = REGISTER;  
+ 
 		}
 	| STATIC
 		{
 		    driver.printRed("storage_class_specifier -> STATIC");
+                    driver.currentSymbol->storage_class = STATIC;  
+
 		}
 	| EXTERN
 		{
 		    driver.printRed("storage_class_specifier -> EXTERN");
+                    driver.currentSymbol->storage_class = EXTERN;  
+            
 		}
 	| TYPEDEF
 		{
 		    driver.printRed("storage_class_specifier -> TYPEDEF");
+                    driver.currentSymbol->storage_class = TYPEDEF;  
+ 
 		}
 	;
 
 type_specifier
 	: VOID
 		{
-		    driver.printRed("type_specifier -> VOID");
+		       
+                         driver.printRed("type_specifier -> VOID");
+                         driver.currentSymbol->symbolType = new PODType("VOID",INT_SIZE);
+
+ 
 		}
 	| CHAR
 		{
 		    driver.printRed("type_specifier -> CHAR");
+                    driver.currentSymbol->symbolType = new PODType("CHAR",CHAR_SIZE);
 		}
 	| SHORT
 		{
 		    driver.printRed("type_specifier -> SHORT");
+                    driver.currentSymbol->symbolType = new PODType( "SHORT", SHORT_SIZE);
 		}
 	| INT
 		{
 		    driver.printRed("type_specifier -> INT");
+                    driver.currentSymbol->symbolType = new PODType( "INT", INT_SIZE);
+
 		}
 	| LONG
 		{
 		    driver.printRed("type_specifier -> LONG");
+                    driver.currentSymbol->symbolType = new PODType("LONG" , LONG_SIZE);
 		}
 	| FLOAT 
 		{
 		    driver.printRed("type_specifier -> FLOAT");
+                    driver.currentSymbol->symbolType = new PODType ("FLOAT" , FLOAT_SIZE); 
 		}
 	| DOUBLE
 		{
 		    driver.printRed("type_specifier -> DOUBLE");
+                    driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
+
 		}
 	| SIGNED
 		{
@@ -277,10 +315,13 @@ type_qualifier
 	: CONST
 		{
 		    driver.printRed("type_qualifier -> CONST");
+                    driver.currentSymbol->type_qualifier = CONST;
 		}
 	| VOLATILE
 		{
 		    driver.printRed("type_qualifier -> VOLATILE");
+                    driver.currentSymbol->type_qualifier = VOLATILE;
+             
 		}
 	;
 
@@ -446,7 +487,8 @@ declarator
 direct_declarator
 	: identifier
 		{
-		    driver.printRed("direct_declarator -> identifier");
+		    
+                    driver.printRed("direct_declarator -> identifier");
 		}
 	| LPAREN declarator RPAREN
 		{
@@ -1195,7 +1237,9 @@ string
 identifier
 	: IDENTIFIER
 		{
-		    driver.printRed("identifier -> IDENTIFIER");
+		    //cout << *$1;
+                    driver.currentSymbol->symbol_name = $1->symbol_name;  
+                    driver.printRed("identifier -> IDENTIFIER");
 		}
 	;
 %%

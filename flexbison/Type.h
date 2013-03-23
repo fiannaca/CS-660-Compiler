@@ -1,10 +1,19 @@
 //Base class for types and then derived classes for types of types (arrays and what not)
+
+#ifndef _TYPE_H_
+#define _TYPE_H_
+
+#include "Platform.h"
+
 #include <string>
 #include <list>
+#include <map>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
+
+ 
 
 enum StorageSpecifiers {
 	AUTO,
@@ -34,13 +43,13 @@ class Type
     public:
         Type(string n, int s); //sets the name and size of the type
         Type(Type &t);
-        void GetName(string n) { return name; }
+        string GetName() { return name; }
         int GetSize() { return size; }
 
-    private:
+    protected:
         string name;
         int size; //Size of the type in bytes
-}
+};
 
 class PODType : public Type //int (long, short, (un)signed), float, double, long double, char ((un)signed)
 {
@@ -48,9 +57,9 @@ class PODType : public Type //int (long, short, (un)signed), float, double, long
         PODType(string n, int s);
         bool isSigned() { return is_signed; }
 
-    private:
+    protected:
         bool is_signed;
-}
+};
 
 class TypedefType : public Type //any typedef
 {
@@ -59,23 +68,23 @@ class TypedefType : public Type //any typedef
         Type* GetActual() { return actualType; }
         string GetTypedefName() { return typedefName; }
 
-    private:
+    protected:
         Type* actualType;
         string typedefName;
-}
+};
 
 class EnumType : public Type //provides the value for enum constants
 {
     public:
-        EnumType(string n, int startVal = 0);
+        EnumType(string n, int startVal);
         int GetConstVal(string s); //returns the int value of a enum_constant
         void AddEnumConst(string s);
         void AddEnumConst(string s, int val);
 
-    private:
+    protected:
         map<string, int> enumConsts; //The names of the enum_constants in the enum
         int currentVal;
-}
+};
 
 class ArrayType : public Type //any array (any # of dimensions)
 {
@@ -84,11 +93,11 @@ class ArrayType : public Type //any array (any # of dimensions)
         int SetCapacity(int cap); //These must be set in the order of the dimensions (they are pushed onto the vector)
         int GetCapacity(int dim);
 
-    private:
+    protected:
         Type* baseType;
         int dimensions;
         vector<int> capacities;
-}
+};
 
 class StructType : public Type //essential just a collection of types and names for each
 {
@@ -97,10 +106,10 @@ class StructType : public Type //essential just a collection of types and names 
         void AddMember(string s, Type* t);
         bool MemberExists(string s);
 
-    private:
+    protected:
         vector<string> memberNames;
         vector<Type*> memberTypes;
-}
+};
 
 class UnionType : public Type //currently the same as struct, may need more members later
 {
@@ -109,10 +118,10 @@ class UnionType : public Type //currently the same as struct, may need more memb
         void AddMember(string s, Type* t);
         bool MemberExists(string s);
 
-    private:
+    protected:
         vector<string> memberNames;
         vector<Type*> memberTypes;
-}
+};
 
 class FunctionType : public Type //function type - allows for type checking when calling functions
 {
@@ -123,10 +132,10 @@ class FunctionType : public Type //function type - allows for type checking when
         int GetParamCount() { return params.size(); }
         Type* GetReturnType() { return returnType; }
 
-    private:
+    protected:
         vector<Type*> params;
         Type* returnType;
-}
+};
 
 class PointerType : public Type //acts as a layer of indirection towards a predeclared type
 {
@@ -135,8 +144,10 @@ class PointerType : public Type //acts as a layer of indirection towards a prede
         PointerType(Type* base, bool baseIsPtr, string n);
         Type* GetBase() { return baseType; }
 
-    private:
+    protected:
         Type* baseType;
         int ptrDepth;
         
-}
+};
+
+#endif 

@@ -67,7 +67,7 @@ int main(int argc, char **argv)
     if(test1b == 14 % 9)
         test1b = 7;
 
-    int a;
+//    int a;
 
     return 0;
 }
