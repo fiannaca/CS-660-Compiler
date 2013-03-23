@@ -28,7 +28,18 @@ struct SymbolInfo
     int storage_class;
     int flags;
     friend ostream& operator << ( ostream &outStream , const SymbolInfo &inf);
-	 
+    SymbolInfo()
+    {
+       symbolType = NULL;
+       storage_class  = AUTO ;    
+    }  	 
+    SymbolInfo(SymbolInfo &sym)
+    {
+       this->symbol_name = sym.symbol_name;
+       this->symbolType = sym.symbolType; 
+       this->storage_class = sym.storage_class;
+       this->type_qualifier = sym.type_qualifier;  
+    }     
     int operator <( SymbolInfo inf)
     {
        return this->symbol_name < inf.symbol_name ;

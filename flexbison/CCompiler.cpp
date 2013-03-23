@@ -13,7 +13,8 @@ CCompiler::CCompiler()
     globalScope();
 
     //C starts in insert mode
-    currentSymbol = new SymbolInfo(); 
+    allocateSymbol(); 
+     
     set_insert_mode(true);
        
 }
@@ -51,6 +52,11 @@ void CCompiler::setOutfile(std::string file)
     outfile_set = true;
 }
 
+void CCompiler::allocateSymbol()
+{
+   this->currentSymbol = new SymbolInfo(); 
+  
+}
 
 
 /*****************************************************************************/

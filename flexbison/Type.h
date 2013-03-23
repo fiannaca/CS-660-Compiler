@@ -45,7 +45,7 @@ class Type
         Type(Type &t);
         string GetName() { return name; }
         int GetSize() { return size; }
-
+        void SetName(string n) { name  = n ; }   
     protected:
         string name;
         int size; //Size of the type in bytes
@@ -56,7 +56,7 @@ class PODType : public Type //int (long, short, (un)signed), float, double, long
     public:
         PODType(string n, int s);
         bool isSigned() { return is_signed; }
-
+        void SetSigned(bool isSigned) { is_signed = isSigned; } 
     protected:
         bool is_signed;
 };
@@ -89,10 +89,10 @@ class EnumType : public Type //provides the value for enum constants
 class ArrayType : public Type //any array (any # of dimensions)
 {
     public:
-        ArrayType(Type* baseType, int dims);
+        ArrayType(Type* baseType,string name , int dims);
         int SetCapacity(int cap); //These must be set in the order of the dimensions (they are pushed onto the vector)
         int GetCapacity(int dim);
-
+        Type *GetBase() { return baseType;}   
     protected:
         Type* baseType;
         int dimensions;
@@ -143,11 +143,12 @@ class PointerType : public Type //acts as a layer of indirection towards a prede
         PointerType(Type* base, string n, int d);
         PointerType(Type* base, bool baseIsPtr, string n);
         Type* GetBase() { return baseType; }
-
+        
     protected:
         Type* baseType;
         int ptrDepth;
         
 };
 
+Type *GetInnerType(Type* arrayOrPointer); 
 #endif 

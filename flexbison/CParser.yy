@@ -171,7 +171,7 @@ declaration
 
                     } 
                     driver.SymbolTable.insert_symbol(*inf);
-                    driver.currentSymbol = new SymbolInfo();
+                    driver.allocateSymbol();
                     driver.SymbolTable.dump_table(0);   
                     std::cout<<"\n ================================== \n";       
                      
@@ -252,51 +252,68 @@ type_specifier
 	: VOID
 		{
 		       
-                         driver.printRed("type_specifier -> VOID");
-                         driver.currentSymbol->symbolType = new PODType("VOID",INT_SIZE);
+                    driver.printRed("type_specifier -> VOID");
+                    if ( driver.currentSymbol->symbolType == NULL )
+                        driver.currentSymbol->symbolType = new PODType("VOID",INT_SIZE);
 
  
 		}
 	| CHAR
 		{
 		    driver.printRed("type_specifier -> CHAR");
-                    driver.currentSymbol->symbolType = new PODType("CHAR",CHAR_SIZE);
+                    if ( driver.currentSymbol->symbolType == NULL )
+                        driver.currentSymbol->symbolType = new PODType("CHAR",CHAR_SIZE);
 		}
 	| SHORT
 		{
 		    driver.printRed("type_specifier -> SHORT");
-                    driver.currentSymbol->symbolType = new PODType( "SHORT", SHORT_SIZE);
+                    if ( driver.currentSymbol->symbolType == NULL )
+                        driver.currentSymbol->symbolType = new PODType( "SHORT", SHORT_SIZE);
 		}
 	| INT
 		{
 		    driver.printRed("type_specifier -> INT");
-                    driver.currentSymbol->symbolType = new PODType( "INT", INT_SIZE);
+                    if ( driver.currentSymbol->symbolType == NULL )
+                        driver.currentSymbol->symbolType = new PODType( "INT", INT_SIZE);
 
 		}
 	| LONG
 		{
 		    driver.printRed("type_specifier -> LONG");
-                    driver.currentSymbol->symbolType = new PODType("LONG" , LONG_SIZE);
+                    if ( driver.currentSymbol->symbolType == NULL )
+                        driver.currentSymbol->symbolType = new PODType("LONG" , LONG_SIZE);
 		}
 	| FLOAT 
 		{
 		    driver.printRed("type_specifier -> FLOAT");
-                    driver.currentSymbol->symbolType = new PODType ("FLOAT" , FLOAT_SIZE); 
+                    if ( driver.currentSymbol->symbolType == NULL )
+                       driver.currentSymbol->symbolType = new PODType ("FLOAT" , FLOAT_SIZE); 
 		}
 	| DOUBLE
 		{
 		    driver.printRed("type_specifier -> DOUBLE");
-                    driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
+                    if ( driver.currentSymbol->symbolType == NULL )
+                      driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
 
 		}
 	| SIGNED
 		{
-		    driver.printRed("type_specifier -> SIGNED");
+		    PODType *newPod = new PODType("INT",INT_SIZE);
+                    newPod->SetSigned(true); 
+                    driver.printRed("type_specifier -> SIGNED"); 
+                    driver.currentSymbol->symbolType = newPod;
+                     
+
 		}
 	| UNSIGNED
 		{
-		    driver.printRed("type_specifier -> UNSIGNED");
-		}
+		    PODType *newPod = new PODType("INT",INT_SIZE);
+                    newPod->SetSigned(false); 
+                    driver.printRed("type_specifier -> UNSIGNED");
+                    driver.currentSymbol->symbolType = newPod; 
+
+
+	        }
 	| struct_or_union_specifier
 		{
 		    driver.printRed("type_specifier -> struct_or_union_specifier");
@@ -367,12 +384,28 @@ init_declarator_list
 		{
 		    driver.printRed("init_declarator_list -> init_declarator");
 		}
-	| init_declarator_list COMMA init_declarator
+	| init_declarator_list COMMA new_symbol_declaration init_declarator
 		{
 		    driver.printRed("init_declarator_list COMMA init_declarator");
 		}
 	;
-
+new_symbol_declaration
+        :
+        {
+           SymbolInfo *inf  = driver.currentSymbol;          
+           driver.SymbolTable.insert_symbol(*inf);
+           driver.allocateSymbol();
+           driver.currentSymbol = inf;   
+           if ( inf->symbolType->GetName() == "POINTER"|| inf->symbolType->GetName() == "ARRAY") 
+           {
+	       driver.currentSymbol->symbolType = GetInnerType(inf->symbolType);        
+                
+           }
+           
+             
+           
+        }   
+        ; 
 init_declarator
 	: declarator
 		{
@@ -497,10 +530,14 @@ direct_declarator
 	| direct_declarator LBRAK RBRAK
 		{
 		    driver.printRed("direct_declarator -> LBRAK RBRAK");
+                    driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", 0);
+
 		}
 	| direct_declarator LBRAK constant_expression RBRAK
 		{
 		    driver.printRed("direct_declarator -> direct_declarator LBRAK constant_expression RBRAK");
+                    driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", 0);
+ 
 		}
 	| direct_declarator LPAREN RPAREN
 		{
@@ -520,18 +557,26 @@ pointer
 	: STAR
 		{
 		    driver.printRed("pointer -> star");
+                    driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
 		}
 	| STAR type_qualifier_list
 		{
 		    driver.printRed("pointer -> STAR type_qualifier_list");
+                    driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+  
 		}
 	| STAR pointer
 		{
 		    driver.printRed("pointer -> STAR pointer");
+                    driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+
+                         
 		}
 	| STAR type_qualifier_list pointer
 		{
 		    driver.printRed("pointer -> STAR type_qualifier_list pointer");
+                    driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+ 
 		}
 	;
 

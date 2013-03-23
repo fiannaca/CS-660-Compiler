@@ -44,13 +44,14 @@ class CCompiler
         int structMode ; 
         int unionMode;  
         yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
+        void allocateSymbol(); 
         void globalScope();
         void enterScope();
         void leaveScope();
         void set_insert_mode(bool iMode);
         bool get_insert_mode();
         bool trace_symtab;
-
+         
         //Error reporting
         char linebuf[500];
         void error(const yy::location& loc, const std::string& msg);

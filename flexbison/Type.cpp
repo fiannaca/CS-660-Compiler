@@ -29,6 +29,7 @@ Type::Type(Type &t)
 PODType::PODType(string n, int s)
     : Type(n, s)
 {
+     is_signed = true; 
 }
 
 /*****************************************************************************/
@@ -82,10 +83,11 @@ void EnumType::AddEnumConst(string s, int val)
 /* Array Type Class - This type allows for arrays of any type and dimension  */
 /*                   to be created                                           */
 /*****************************************************************************/
-ArrayType::ArrayType(Type* baseType, int dims)
-    : Type(*baseType)
+ArrayType::ArrayType(Type* baseType,string name,int dims)
+    : Type(name,0)
 {
-    dimensions = dims;
+      this->baseType = baseType; 
+      dimensions = dims;
 }
 
 int ArrayType::SetCapacity(int cap)
@@ -210,4 +212,16 @@ PointerType::PointerType(Type* base, string n, int d)
     baseType = base;
     ptrDepth = d;
     
+}
+Type* GetInnerType(Type *arrayOrPointer)
+{
+    Type *innerType = arrayOrPointer;
+    while( innerType->GetName() == "POINTER" || innerType->GetName() == "ARRAY" )
+    {
+        if ( innerType->GetName() == "POINTER")
+            innerType = ((PointerType *)innerType)->GetBase();
+        else
+            innerType = ((ArrayType*)innerType)->GetBase();   
+    }   
+    return innerType;  
 }
