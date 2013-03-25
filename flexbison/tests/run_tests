@@ -9,9 +9,6 @@ do
 
     ./ccomp -d lsp -o $f.out $f
 
-    mkdir $f_outputs
-    mv $f.* $f_outputs/
-
     echo "  Tokens written to $f.tok"
     echo "  Reductions written to $f.red"
     echo "  Scanner debug output written to $f.ldb"

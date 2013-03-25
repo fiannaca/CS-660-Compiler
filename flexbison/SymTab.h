@@ -85,9 +85,7 @@ class SymTab
 		 
                  if ( currentLevel > 0 ) 
                  {  
-                   AVLTree<SymbolInfo> *node;
-		   *node = symTable[currentLevel];
-		   delete(node);
+                   
                    symTable.pop_back(); 
                  } 
 	     }
