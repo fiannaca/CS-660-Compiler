@@ -1,3 +1,8 @@
+/*
+ * This file serves as an entry point to the compiler. It simply creates a compiler object, parses the command-line
+ * arguments and starts the compiler.
+ */
+
 #include <iostream>
 #include "CCompiler.h"
 
