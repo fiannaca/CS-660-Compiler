@@ -1,3 +1,7 @@
+/*
+ * See the description in SymTab.h!
+ */
+
 #include "SymTab.h"
 ostream& operator << ( ostream &outStream, const SymbolInfo &inf)
 {
