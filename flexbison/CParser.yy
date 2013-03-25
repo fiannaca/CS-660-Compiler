@@ -163,18 +163,21 @@ declaration
 	| declaration_specifiers init_declarator_list SEMI
 		{
 		    driver.printRed("declaration -> declaration_specifiers init_declarator_list SEMI");
-                    std::cout<<"\n       SYMBOL TABLE       \n"; 
-                    SymbolInfo *inf  = driver.currentSymbol;
-                    if ( inf->storage_class == TYPEDEF)
+                    
+                    if ( driver.trace_symtab) 
                     {
-                       inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
+                      std::cout<<"\n       SYMBOL TABLE       \n"; 
+                      SymbolInfo *inf  = driver.currentSymbol;
+                       if ( inf->storage_class == TYPEDEF)
+                       {
+                         inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
 
-                    } 
-                    driver.SymbolTable.insert_symbol(*inf);
-                    driver.allocateSymbol();
-                    driver.SymbolTable.dump_table(0);   
-                    std::cout<<"\n ================================== \n";       
-                     
+                       } 
+                       driver.SymbolTable.insert_symbol(*inf);
+                       driver.allocateSymbol();
+                       driver.SymbolTable.dump_table();   
+                      std::cout<<"\n ================================== \n";       
+                    }
 		}
 	;
 
@@ -292,11 +295,11 @@ type_specifier
 	| DOUBLE
 		{
 		    driver.printRed("type_specifier -> DOUBLE");
-                    std::cout<<"Double ...";
+                    ////std::cout<<"Double ...";
                     if ( driver.currentSymbol->symbolType == NULL )
                       driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
-                    else 
-                      std::cout<<  driver.currentSymbol->symbolType->GetName();  
+                    ///else 
+                      //////std::cout<<  driver.currentSymbol->symbolType->GetName();  
 		}
 	| SIGNED
 		{
@@ -461,12 +464,12 @@ struct_union_decl_end
              {
                 if( structPos->symbolType == NULL )
                 {
-                      std::cout<<"\n Null type :(  \n"; 
+                      ////std::cout<<"\n Null type :(  \n"; 
                 }
                 else 
-                    std::cout<< "\n TYPE = "<<structPos->symbolType->GetName();
+                    ////std::cout<< "\n TYPE = "<<structPos->symbolType->GetName();
                 currentStructType  = new StructType("STRUCT");
-                currentStructType->AddMember(endItem->symbol_name,endItem->symbolType); 
+                ///currentStructType->AddMember(endItem->symbol_name,new PODType("INT",INT_SIZE)); 
                 structPos->symbolType = currentStructType; 
 
                  endItem++;  
@@ -520,8 +523,10 @@ set_member_type
 fix_struct_member_types
        :
            {
-                    std::cout<<" \n Current Type : " << driver.structMemberType->GetName();
-                    std::cout<<" \n Current Structure Variable Count : " << driver.structVarCount;
+                    ////std::cout<<" \n Current Type : " << driver.structMemberType->GetName();
+                    ////std::cout<<" \n Current Structure Variable Count : " << driver.structVarCount;
+                     
+                     
                     list<SymbolInfo>::iterator itemFixStart = driver.structUnionTypes.end()  ;
                     Type *innerType; 
                     for ( int count =0 ; count < driver.structVarCount ; count++)
@@ -549,7 +554,7 @@ fix_struct_member_types
                           ++itemFixStart; 
                     }
                     driver.structVarCount = 0 ; 
-                       
+                      
            }
                     
 
@@ -589,7 +594,7 @@ struct_declarator
 	: declarator 
 		{
 		    driver.printRed("struct_declarator -> declarator");
-                    std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
+                    //std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
                     SymbolInfo *inf = driver.currentSymbol;  
                     driver.structUnionTypes.push_back(*inf);    
                     driver.structVarCount++; 
@@ -601,7 +606,7 @@ struct_declarator
 	| declarator  COLON constant_expression
 		{
 		    driver.printRed("struct_declarator -> declarator COLON constant_expression");
-                    std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
+                    //std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
                     driver.structUnionTypes.push_back(*(driver.currentSymbol));
 		}
 	;

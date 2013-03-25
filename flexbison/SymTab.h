@@ -82,10 +82,14 @@ class SymTab
 	     void LeaveScope()
 	     {
 	         --currentLevel;
-		 AVLTree<SymbolInfo> *node;
-		 *node = symTable[currentLevel];
-		 delete(node);
-                 symTable.pop_back(); 
+		 
+                 if ( currentLevel > 0 ) 
+                 {  
+                   AVLTree<SymbolInfo> *node;
+		   *node = symTable[currentLevel];
+		   delete(node);
+                   symTable.pop_back(); 
+                 } 
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
@@ -114,7 +118,8 @@ class SymTab
 	     {
 	         for ( int level = 0 ; level <= currentLevel ; level++)
 		 {
-		     symTable[level].Dump(); 
+		          cout<< endl << " AT LEVEL    " <<level ;   
+                          symTable[level].Dump(); 
 		 }
 	     }
              void dump_table(int level)

@@ -72,11 +72,13 @@ void CCompiler::globalScope()
 void CCompiler::enterScope()
 {
     //call the symtab function for entering a scope
+    SymbolTable.EnterScope();
 }
 
 void CCompiler::leaveScope()
 {
     //Call the symtab function for leaving a scope
+    SymbolTable.LeaveScope(); 
 }
 
 void CCompiler::set_insert_mode(bool iMode)
