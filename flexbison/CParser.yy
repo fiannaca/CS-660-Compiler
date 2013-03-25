@@ -164,10 +164,7 @@ declaration
 		{
 		    driver.printRed("declaration -> declaration_specifiers init_declarator_list SEMI");
                     
-                    if ( driver.trace_symtab) 
-                    {
-                      std::cout<<"\n       SYMBOL TABLE       \n"; 
-                      SymbolInfo *inf  = driver.currentSymbol;
+		       SymbolInfo *inf  = driver.currentSymbol;
                        if ( inf->storage_class == TYPEDEF)
                        {
                          inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
@@ -175,9 +172,14 @@ declaration
                        } 
                        driver.SymbolTable.insert_symbol(*inf);
                        driver.allocateSymbol();
-                       driver.SymbolTable.dump_table();   
-                      std::cout<<"\n ================================== \n";       
-                    }
+
+                       if ( driver.trace_symtab) 
+                       {
+			   std::cout<<"\n       SYMBOL TABLE       \n"; 
+                           driver.SymbolTable.dump_table(); 
+                           std::cout<<"\n ================================== \n"; 
+                       }
+                    
 		}
 	;
 
