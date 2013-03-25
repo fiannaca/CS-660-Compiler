@@ -1,3 +1,7 @@
+/*
+ * This file simply lists the size in bytes of the base data types
+ */
+
 #ifndef _PLATFORM_H_
 #define _PLATFORM_H_
 
