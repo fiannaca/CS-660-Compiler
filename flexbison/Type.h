@@ -1,5 +1,9 @@
-//Base class for types and then derived classes for types of types (arrays and what not)
-
+/*
+ * This set of classes is used for storing descriptive type information for a given symbol. These classes store 
+ * auxillary info such as the size of a data type or the capacity of an array. All Type classes derive from the
+ * base Type class so that types can be associated with symbols using Type* vars.
+ */
+ 
 #ifndef _TYPE_H_
 #define _TYPE_H_
 
