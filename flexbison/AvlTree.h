@@ -187,7 +187,32 @@ class AVLTree
 		     
 	         }
 		 
+                 DataItem* Fetch( DataItem itemToFind)
+                 {
+                     DataItem *item = NULL;
+                     Node *rootNode = this->root ;
+		    
+		    while (  rootNode != NULL )
+		    {
+		       if ( itemToFind < rootNode->data  )
+		       {
+		          rootNode = rootNode->children[RIGHT];
+		       }
+                       else if ( itemToFind > rootNode->data)
+		       {
+		          rootNode = rootNode->children[LEFT];
+		       }
+		       else if ( itemToFind == rootNode->data)
+		       {
+		          item = &(rootNode->data);
+                          return item;
+		       }
+			     
+		    }
+		    return item;
+  
 
+                 }
 
 	         Node* Find( DataItem itemToFind)
 		 {

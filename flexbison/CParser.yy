@@ -220,7 +220,7 @@ storage_class_specifier
 	: AUTO
 		{
 		    driver.printRed("storage_class_specifier -> AUTO");
-                    driver.currentSymbol->storage_class = AUTO;  
+		    driver.currentSymbol->storage_class = AUTO;  
 		}
 	| REGISTER
 		{
@@ -292,9 +292,11 @@ type_specifier
 	| DOUBLE
 		{
 		    driver.printRed("type_specifier -> DOUBLE");
+                    std::cout<<"Double ...";
                     if ( driver.currentSymbol->symbolType == NULL )
                       driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
-
+                    else 
+                      std::cout<<  driver.currentSymbol->symbolType->GetName();  
 		}
 	| SIGNED
 		{
@@ -317,6 +319,7 @@ type_specifier
 	| struct_or_union_specifier
 		{
 		    driver.printRed("type_specifier -> struct_or_union_specifier");
+
 		}
 	| enum_specifier
 		{
@@ -343,9 +346,11 @@ type_qualifier
 	;
 
 struct_or_union_specifier
-	: struct_or_union identifier LBRACE struct_declaration_list RBRACE
+	: struct_or_union identifier new_struct_union_decl LBRACE struct_declaration_list RBRACE  struct_union_decl_end
+
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union identifier LBRACE struct_declaration_list RBRACE");
+                      
 		}
 	| struct_or_union LBRACE struct_declaration_list RBRACE
 		{
@@ -361,10 +366,13 @@ struct_or_union
 	: STRUCT
 		{
 		    driver.printRed("struct_or_union -> STRUCT");
+                    ++driver.structUnionMode; 
 		}
 	| UNION
 		{
 		    driver.printRed("struct_or_union -> UNION");
+                    driver.currentSymbol->symbolType = new StructType("UNION");
+                    ++driver.structUnionMode;     
 		}
 	;
 
@@ -380,11 +388,11 @@ struct_declaration_list
 	;
 
 init_declarator_list
-	: init_declarator
+	: init_declarator new_symbol_declaration
 		{
 		    driver.printRed("init_declarator_list -> init_declarator");
 		}
-	| init_declarator_list COMMA new_symbol_declaration init_declarator
+	| init_declarator_list COMMA  new_symbol_declaration init_declarator
 		{
 		    driver.printRed("init_declarator_list COMMA init_declarator");
 		}
@@ -393,7 +401,10 @@ new_symbol_declaration
         :
         {
            SymbolInfo *inf  = driver.currentSymbol;          
-           driver.SymbolTable.insert_symbol(*inf);
+           if (driver.structUnionMode )
+              driver.structUnionTypes.push_back(*inf);  
+           else     
+              driver.SymbolTable.insert_symbol(*inf);
            driver.allocateSymbol();
            driver.currentSymbol = inf;   
            if ( inf->symbolType->GetName() == "POINTER"|| inf->symbolType->GetName() == "ARRAY") 
@@ -405,7 +416,80 @@ new_symbol_declaration
              
            
         }   
-        ; 
+        ;
+new_enum_constant
+        :
+        {
+            driver.enumConsts.push_back(driver.currentSymbol->symbol_name); 
+                       
+        }   
+        ;
+reset_current_symbol
+        :
+        {
+ 
+            driver.allocateSymbol(); 
+
+        }
+        ;
+new_struct_union_decl
+        :
+        {
+             SymbolInfo *inf = driver.currentSymbol;
+             driver.structUnionTypes.push_back(*inf);
+             driver.allocateSymbol();     
+        }     
+        ;
+struct_union_decl_end
+        :
+        {
+             driver.structUnionTypes.pop_back();
+             list<SymbolInfo >::iterator endItem =  driver.structUnionTypes.end() , structPos; 
+             SymbolInfo currentStruct; 
+             StructType *currentStructType;
+             int count = 0 ; 
+             endItem++;          
+             while( endItem !=  driver.structUnionTypes.begin() && (endItem)->symbolType->GetName() != "STRUCT")
+             {
+                    --endItem;
+
+             } 
+             structPos  = endItem;  
+             endItem++;
+                           
+             while( endItem != driver.structUnionTypes.end())
+             {
+                if( structPos->symbolType == NULL )
+                {
+                      std::cout<<"\n Null type :(  \n"; 
+                }
+                else 
+                    std::cout<< "\n TYPE = "<<structPos->symbolType->GetName();
+                currentStructType  = new StructType("STRUCT");
+                currentStructType->AddMember(endItem->symbol_name,endItem->symbolType); 
+                structPos->symbolType = currentStructType; 
+
+                 endItem++;  
+                 count++;         
+             }           
+                         
+             while(count )
+             {
+                --count ; 
+                 driver.structUnionTypes.pop_back();   
+             }   
+             --driver.structUnionMode;
+              
+             if ( driver.structUnionMode == 0  )
+             {
+                  driver.SymbolTable.insert_symbol(*structPos);  
+                  driver.structUnionTypes.clear(); 
+             }   
+             
+        }
+        ;
+                   
+ 
 init_declarator
 	: declarator
 		{
@@ -418,11 +502,58 @@ init_declarator
 	;
 
 struct_declaration
-	: specifier_qualifier_list struct_declarator_list SEMI
+	: specifier_qualifier_list set_member_type  struct_declarator_list  fix_struct_member_types SEMI
 		{
 		    driver.printRed("struct_declaration -> specifier_qualifier_list struct_declarator_list SEMI");
+                    
 		}
 	;
+
+set_member_type
+       :
+              {
+                  driver.structMemberType = driver.currentSymbol->symbolType;
+
+              }
+       ;
+            
+fix_struct_member_types
+       :
+           {
+                    std::cout<<" \n Current Type : " << driver.structMemberType->GetName();
+                    std::cout<<" \n Current Structure Variable Count : " << driver.structVarCount;
+                    list<SymbolInfo>::iterator itemFixStart = driver.structUnionTypes.end()  ;
+                    Type *innerType; 
+                    for ( int count =0 ; count < driver.structVarCount ; count++)
+                       itemFixStart--; 
+                    while( itemFixStart != driver.structUnionTypes.end() )
+                    {
+                           if ( itemFixStart->symbolType == NULL )
+                           {
+                                  itemFixStart->symbolType = driver.structMemberType;
+                           }
+                           else 
+                           {
+                                  innerType = itemFixStart->symbolType;
+                                  while( innerType->GetName() == "POINTER" || innerType->GetName() == "ARRAY" )
+                                  {
+                                       if ( innerType->GetName() == "POINTER")
+                                               innerType = ((PointerType *)innerType)->GetBase();
+                                       else
+                                               innerType = ((ArrayType*)innerType)->GetBase();
+   
+                                  }
+                                  innerType = driver.structMemberType;
+                                  itemFixStart->symbolType = innerType; 
+                           }
+                          ++itemFixStart; 
+                    }
+                    driver.structVarCount = 0 ; 
+                       
+           }
+                    
+
+       ;
 
 specifier_qualifier_list
 	: type_specifier
@@ -444,45 +575,90 @@ specifier_qualifier_list
 	;
 
 struct_declarator_list
-	: struct_declarator
+	: struct_declarator reset_current_symbol
 		{
 		    driver.printRed("struct_declarator_list -> struct_declarator");
 		}
-	| struct_declarator_list COMMA struct_declarator
+	| struct_declarator_list   COMMA   struct_declarator
 		{
 		    driver.printRed("struct_declarator_list -> struct_declarator_list COMMA struct_declarator");
 		}
 	;
 
 struct_declarator
-	: declarator
+	: declarator 
 		{
 		    driver.printRed("struct_declarator -> declarator");
+                    std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
+                    SymbolInfo *inf = driver.currentSymbol;  
+                    driver.structUnionTypes.push_back(*inf);    
+                    driver.structVarCount++; 
 		}
 	| COLON constant_expression
 		{
 		    driver.printRed("struct_declarator -> COLON constant_expression");
 		}
-	| declarator COLON constant_expression
+	| declarator  COLON constant_expression
 		{
 		    driver.printRed("struct_declarator -> declarator COLON constant_expression");
+                    std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
+                    driver.structUnionTypes.push_back(*(driver.currentSymbol));
 		}
 	;
 
 enum_specifier
 	: ENUM LBRACE enumerator_list RBRACE
 		{
-		    driver.printRed("enum_specifier -> ENUM LBRACE enumerator_list RBRACE");
+		     list<string>::iterator enumItems = driver.enumConsts.begin();
+                     driver.printRed("enum_specifier -> ENUM LBRACE enumerator_list RBRACE");
+                     while( enumItems != driver.enumConsts.end())
+                     {
+                            SymbolInfo *inf = new SymbolInfo();
+                            inf->isEnumConst = true;
+                            inf->symbolType = new PODType("ENUMCONST",INT_SIZE);
+                            inf->symbol_name = *enumItems; 
+                            driver.SymbolTable.insert_symbol(*inf);  
+                            enumItems++;
+                     }   
+                     driver.enumConsts.clear();
+                     driver.allocateSymbol();       
 		}
-	| ENUM identifier LBRACE enumerator_list RBRACE
+	| ENUM identifier  new_enum_type LBRACE enumerator_list RBRACE
 		{
-		    driver.printRed("enum_specifier -> ENUM identifier LBRACE enumerator_list RBRACE");
+                    driver.printRed("enum_specifier -> ENUM identifier LBRACE enumerator_list RBRACE");
+                    list<string>::iterator enumItems = driver.enumConsts.begin();
+                     driver.printRed("enum_specifier -> ENUM LBRACE enumerator_list RBRACE");
+                     while( enumItems != driver.enumConsts.end())
+                     {
+                            SymbolInfo *inf = new SymbolInfo();
+                            inf->isEnumConst = true;
+                            inf->symbolType = new PODType("ENUMCONST",INT_SIZE);
+                            inf->symbol_name = *enumItems; 
+                            driver.SymbolTable.insert_symbol(*inf);  
+                            driver.enumType->AddEnumConst(*enumItems);
+                            enumItems++;
+                     }  
+                     driver.enumSym->symbolType =  driver.enumType;
+                     driver.SymbolTable.insert_symbol(*(driver.enumSym));
+                     driver.enumConsts.clear();
+                     driver.allocateSymbol();       
+
 		}
 	| ENUM identifier
 		{
 		    driver.printRed("enum_specifier -> ENUM identifier");
 		}
 	;
+
+new_enum_type:
+       {
+                    driver.enumSym = new SymbolInfo(); 
+                    driver.enumType = new EnumType("ENUM", 0); 
+                    driver.enumSym->symbol_name = driver.currentSymbol->symbol_name;
+                    driver.allocateSymbol();     
+        
+       }
+       ;
 
 enumerator_list
 	: enumerator
@@ -496,32 +672,34 @@ enumerator_list
 	;
 
 enumerator
-	: identifier
+	: identifier new_enum_constant
 		{
 		    driver.printRed("enumerator -> identifier");
 		}
-	| identifier EQ constant_expression
+	| identifier new_enum_constant EQ constant_expression
 		{
 		    driver.printRed("enumerator -> identifier EQ constant_expression");
 		}
 	;
 
 declarator
-	: direct_declarator
+	: direct_declarator 
 		{
 		    driver.printRed("declarator -> direct_declarator");
 		}
-	| pointer direct_declarator
+	| pointer direct_declarator 
 		{
 		    driver.printRed("declarator -> pointer direct_declarator");
 		}
 	;
 
 direct_declarator
-	: identifier
+	: identifier 
 		{
 		    
                     driver.printRed("direct_declarator -> identifier");
+                    
+                   
 		}
 	| LPAREN declarator RPAREN
 		{
@@ -735,7 +913,7 @@ statement
 		{
 		    driver.printRed("statement -> labeled_statement");
 		}
-	| compound_statement
+	| compound_statement 
 		{
 		    driver.printRed("statement -> compound_statement");
 		}
@@ -784,19 +962,19 @@ expression_statement
 	;
 
 compound_statement
-	: LBRACE RBRACE
+	: LBRACE reset_current_symbol RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE RBRACE");
 		}
-	| LBRACE enter_scope lookup_mode statement_list leave_scope RBRACE
+	| LBRACE reset_current_symbol enter_scope lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE statement_list RBRACE");
 		}
-	| LBRACE enter_scope insert_mode declaration_list lookup_mode leave_scope RBRACE
+	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list RBRACE");
 		}
-	| LBRACE enter_scope insert_mode declaration_list lookup_mode statement_list leave_scope RBRACE
+	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list statement_list RBRACE");
 		}

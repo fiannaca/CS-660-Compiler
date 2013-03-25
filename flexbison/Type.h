@@ -92,7 +92,8 @@ class ArrayType : public Type //any array (any # of dimensions)
         ArrayType(Type* baseType,string name , int dims);
         int SetCapacity(int cap); //These must be set in the order of the dimensions (they are pushed onto the vector)
         int GetCapacity(int dim);
-        Type *GetBase() { return baseType;}   
+        Type *GetBase() { return baseType;}  
+        void SetBase(Type *base) { this->baseType = base; }  
     protected:
         Type* baseType;
         int dimensions;
@@ -143,7 +144,7 @@ class PointerType : public Type //acts as a layer of indirection towards a prede
         PointerType(Type* base, string n, int d);
         PointerType(Type* base, bool baseIsPtr, string n);
         Type* GetBase() { return baseType; }
-        
+        void SetBaseType( Type *base) { this->baseType = base; }   
     protected:
         Type* baseType;
         int ptrDepth;

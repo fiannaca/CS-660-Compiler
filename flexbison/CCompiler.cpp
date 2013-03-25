@@ -11,10 +11,11 @@ CCompiler::CCompiler()
 {
     printDebug("Initializing the global scope...");
     globalScope();
-
+    structUnionMode = 0 ;
+    structVarCount = 0 ;  
     //C starts in insert mode
     allocateSymbol(); 
-     
+    anonymousEnum = false;      
     set_insert_mode(true);
        
 }
@@ -55,7 +56,7 @@ void CCompiler::setOutfile(std::string file)
 void CCompiler::allocateSymbol()
 {
    this->currentSymbol = new SymbolInfo(); 
-  
+   this->currentSymbol->symbolType = NULL;   
 }
 
 

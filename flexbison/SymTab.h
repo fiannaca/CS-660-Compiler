@@ -22,6 +22,7 @@ struct SymbolInfo
     Type *symbolType; 
     int type_qualifier; 
     string function_name; 
+    bool isEnumConst ;
     bool struct_union_name;
     bool isStrunctOrUnionItem; 
     int typeTableIndex;           
@@ -30,10 +31,12 @@ struct SymbolInfo
     friend ostream& operator << ( ostream &outStream , const SymbolInfo &inf);
     SymbolInfo()
     {
-       symbolType = NULL;
-       storage_class  = AUTO ;    
+       this->symbol_name = "";
+       this->symbolType = NULL;
+       this->storage_class  = AUTO ;
+       this->isEnumConst= false;      
     }  	 
-    SymbolInfo(SymbolInfo &sym)
+    SymbolInfo(const SymbolInfo &sym)
     {
        this->symbol_name = sym.symbol_name;
        this->symbolType = sym.symbolType; 
@@ -86,11 +89,13 @@ class SymTab
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
-	         symTable[currentLevel].Insert(symbolInfo);           
+	         if( symbolInfo.symbol_name != "")    
+                    symTable[currentLevel].Insert(symbolInfo);           
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo, int level)
 	     {
-	         symTable[level].Insert(symbolInfo);  
+	         if(symbolInfo.symbol_name != "")
+                   symTable[level].Insert(symbolInfo);  
 		     
 	     }
 	     bool find_symbol(SymbolInfo symbolInfo,int &level)

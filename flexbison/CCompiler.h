@@ -4,6 +4,7 @@
 //The include below for map.h is simply a stand-in for the Symbol Table
 #include <string>
 #include <map>
+#include <list>
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
@@ -40,9 +41,17 @@ class CCompiler
 
         //Handles the Symbol Table
         SymbolInfo *currentSymbol;  
+        Type *structMemberType;
         SymTab SymbolTable;
-        int structMode ; 
-        int unionMode;  
+        bool anonymousEnum; 
+        int structUnionMode;  
+        list<string> enumConsts;
+        list<SymbolInfo> structUnionTypes; 
+        EnumType *enumType;
+        SymbolInfo *enumSym; 
+        int structVarCount;  
+
+ 
         yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
         void allocateSymbol(); 
         void globalScope();
