@@ -1,6 +1,7 @@
 #ifndef _AVL_TREE_
 #define _AVL_TREE_
 #include <iostream>
+#include <iomanip>
 #include <cstdlib>
 #include <string>
 #include <fstream>
@@ -121,9 +122,8 @@ class AVLTree
    
                      if( node != NULL )
                      {                 
-                        cout<< " \t" << node->data; 
+                        cout << node->data; 
                         Dump(node->children[LEFT]);
-                        
                         Dump(node->children[RIGHT]);  
                      }
  

@@ -15,7 +15,10 @@
 #include "Type.h"
 #include <list>
 #include <vector>
+
 using namespace std;
+
+class CCompiler;
 
 struct SymbolInfo
 {
@@ -67,11 +70,13 @@ class SymTab
 {
      
 	 private:
+             CCompiler* driver;
 	     int currentLevel;   
 	     vector< AVLTree<SymbolInfo> >  symTable;
 	 public:
-             SymTab()
+             SymTab(CCompiler* ref)
 	     {
+                   driver = ref;
 	           currentLevel = 0 ;
                    // Ensure the nodes are allocated on the heap !
 		   AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>();
@@ -89,17 +94,17 @@ class SymTab
 	         --currentLevel;
 		 
                  if ( currentLevel > 0 ) 
-                 {  
-                   
+                 {
                    symTable.pop_back(); 
-                 } 
+                 }
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
 	          int level; 
                   if( find_symbol(symbolInfo,level)) 
                   {
-                         std::cout<<"\n Shadowing variable ... " << symbolInfo.symbol_name<<"\n";
+                         driver->warning("Shadowed variable");
+                         cout << "Shadowing variable ... " << symbolInfo.symbol_name << endl;
                   } 
 
                   if( symbolInfo.symbol_name != "")    
@@ -125,12 +130,35 @@ class SymTab
 	     }
    	     void dump_table()
 	     {
+                 int w = 15;
+
+                 cout << endl 
+                      << setw(50) << setfill('=') << "=" << endl
+                      << "SYMBOL TABLE CONTENTS:" << endl;
+
+                 cout << endl;
+
 	         for ( int level = 0 ; level <= currentLevel ; level++)
 		 {
-		          cout<< endl << " AT LEVEL    " <<level ;   
+		          cout << setw(4) << setfill(' ')
+                               << "L" << level << ": "
+                               << setiosflags(ios::left) 
+                               << setw(w) << setfill(' ') 
+                               << "Name" 
+                               << setw(w) << setfill(' ')
+                               << "Storage Class"
+                               << setw(w) << setfill(' ')
+                               << "Type" 
+                               << resetiosflags(ios::left) << endl;
+
                           symTable[level].Dump(); 
+
+                          cout << endl;
 		 }
+
+                 cout << setw(50) << setfill('=') << "=" << endl;
 	     }
+
              void dump_table(int level)
 	     {
 	          symTable[level].Dump();  

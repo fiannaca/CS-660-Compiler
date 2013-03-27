@@ -175,9 +175,9 @@ declaration
 
                        if ( driver.trace_symtab) 
                        {
-			   std::cout<<"\n       SYMBOL TABLE       \n"; 
-                           driver.SymbolTable.dump_table(); 
-                           std::cout<<"\n ================================== \n"; 
+                           std::cout << "Inserted symbol: " << inf->symbol_name
+                                     << ", Type: " << inf->symbolType->GetName()
+                                     << std::endl; 
                        }
                     
 		}
