@@ -18,8 +18,6 @@
 
 using namespace std;
 
-class CCompiler;
-
 struct SymbolInfo
 {
     string symbol_name;
@@ -70,13 +68,11 @@ class SymTab
 {
      
 	 private:
-             CCompiler* driver;
 	     int currentLevel;   
 	     vector< AVLTree<SymbolInfo> >  symTable;
 	 public:
-             SymTab(CCompiler* ref)
+             SymTab()
 	     {
-                   driver = ref;
 	           currentLevel = 0 ;
                    // Ensure the nodes are allocated on the heap !
 		   AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>();
@@ -103,7 +99,7 @@ class SymTab
 	          int level; 
                   if( find_symbol(symbolInfo,level)) 
                   {
-                         driver->warning("Shadowed variable");
+                         //driver->warning("Shadowed variable");
                          cout << "Shadowing variable ... " << symbolInfo.symbol_name << endl;
                   } 
 
