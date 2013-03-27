@@ -6,5 +6,3 @@ __Authors: Alex Fiannaca & Sandeep Mathew__
 __Date:    03/25/2013__
 
 __Submitted Materials: [website](http://afiannac2.github.com/cs660/)__
-
-branch test...
