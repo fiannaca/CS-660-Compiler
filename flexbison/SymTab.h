@@ -1,9 +1,10 @@
 /*
- *
- *
- *
- *
- *
+ * This is the symbol table class. It uses a stack of AVL Trees to organize the symbols. The AVL Tree is a data
+ * structure which is guaranteed to be a balanced binary tree. For more info on the AVL Tree, see the header
+ * AVLTree.h.
+ * 
+ * Note: the "stack" of AVL Trees, is in actuality an STL list of AVL Trees, since the same functionality as a stack
+ * is easier to implement with the STL list.
  */
 
 

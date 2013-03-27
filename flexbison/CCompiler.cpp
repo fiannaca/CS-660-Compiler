@@ -1,3 +1,7 @@
+/*
+ * See description in CCompiler.h!
+ */
+
 #include "CCompiler.h"
 #include "CParser.hpp"
 #include <iomanip>
