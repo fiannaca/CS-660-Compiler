@@ -34,9 +34,22 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 %%
 
 //Comments
-"//".*		{ printf("Comment removed... (single line)"); /* no action, consume one line comment */ }
-"/*"		{ comment(); /* We need a comment function to consume a multi line comment */ }
-{ws}		{ /* no action, consume whitespace */ }
+"//".*		{ 
+		    parserPtr->signalScanErr("This is a scanner error");
+		    /* no real action - just remove the comment */
+		    printInfo(1, "Comment removed... (single line)\n"); 
+		}
+"/*"		{ 
+		    /* no real action - just remove the multiline comment */ 
+		    comment();
+		}
+{ws}		{ columnNr__ += length(); /* no other action, consume whitespace */ }
+\n.*		{
+		    size_t line_len = matched().copy(linebuf, 500, 1);
+		    linebuf[line_len] = '\0';
+		    accept(1);
+		    columnNr__ = 1; 
+		}
 
 //Keywords
 "sizeof"	{ return(ParserBase::SIZEOF); }
@@ -135,4 +148,4 @@ stringlit	L?\"({escseq}|[^\\"])*\"
 ":"		{ return(':'); }
 ";"		{ return(';'); }
 
-.		{ printf("\nYikes! We just ran into an error...\n\n"); }
+.		{ printf("Yikes! We just ran into an error. I just ran accross some unknown input...\n"); }

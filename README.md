@@ -1,36 +1,10 @@
-CS 660 - Compiler Design
-University of Nevada, Reno
-Spring 2013 - Dr. Fred Harris
+#CS 460/660 - Compilers
+##University of Nevada, Reno - Spring 2013
 
-Authors: Alex Fiannaca, Matthew Sandeep
-Date:    03/06/2013
+__Authors: Alex Fiannaca & Sandeep Matthew__
 
-Description:
+__Submitted Materials: [website](http://afiannac2.github.com/cs660/)__
 
-  This is the beginning of a simple C compiler being written for the CS660 
-  Compiler course at the University of Nevada, Reno (Spring 2013). In order to
-  compile the scanner and parser, you must use Flexc++ and Bisonc++ rather than
-  the standard flex and bison.
-
-  For more information, contact fiannac4@live.com
-
-How To: Compile this project
-
-  Clone the repository using the following command:
-
-    git clone https://github.com/afiannac2/cs660.git
-
-  This repository is a private repository, meaning that you must be granted 
-  access rights before you can clone the repository, but since you are  
-  reading this, I am guessing you have been given rights.
-
-  Execute the following commands to compile the project:
-
-    cd cs660/
-    make
-
-  Yes, its that easy...
-
-How To: Run this project
-
-  This section is coming soon...
+This is the project repository for the C Compiler project for CS 660. The *flexbison/* folder contains the current project.
+The *old_fbc++/* folder contains the old version of the project which requires [Flexc++](http://flexcpp.sourceforge.net/)
+and [Bisonc++](http://bisoncpp.sourceforge.net/). Instructions for the current project are available in the *flexbison/* folder.

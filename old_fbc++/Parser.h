@@ -3,6 +3,8 @@
 #ifndef Parser_h_included
 #define Parser_h_included
 
+#include <iomanip>
+
 // $insert baseclass
 #include "Parserbase.h"
 // $insert scanner.h
@@ -16,9 +18,14 @@ class Parser: public ParserBase
     Scanner d_scanner;
         
     public:
+        Parser(int verboseLevel = 0);
+
         int parse();
 
+        void signalScanErr(char const *msg);
+
     private:
+        int verbosity;
         void error(char const *msg);    // called on (syntax) errors
         int lex();                      // returns the next token from the
                                         // lexical scanner. 
