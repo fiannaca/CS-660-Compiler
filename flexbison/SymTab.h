@@ -55,7 +55,11 @@ struct SymbolInfo
     {
        return this->symbol_name > inf.symbol_name;
     }
-    
+    string GetKey()
+    {
+       return this->symbol_name; 
+    }
+                      
 		
 };
 class SymTab
@@ -91,7 +95,13 @@ class SymTab
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
-	         if( symbolInfo.symbol_name != "")    
+	          int level; 
+                  if( find_symbol(symbolInfo,level)) 
+                  {
+                         std::cout<<"\n Shadowing variable ... " << symbolInfo.symbol_name<<"\n";
+                  } 
+
+                  if( symbolInfo.symbol_name != "")    
                     symTable[currentLevel].Insert(symbolInfo);           
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo, int level)

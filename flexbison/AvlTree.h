@@ -2,6 +2,8 @@
 #define _AVL_TREE_
 #include <iostream>
 #include <cstdlib>
+#include <string>
+#include <fstream>
 using namespace std;
 
 
@@ -236,13 +238,12 @@ class AVLTree
 		    }
 		    return rootNode;
 		 }
-	     bool Contains( DataItem itemToFind)
+  	         bool Contains( DataItem itemToFind)
 		 {
 		 	return ( Find(itemToFind) != NULL );
 		 }  	 
-		
-		 
-		 void Dump()
+                 	           
+                 void Dump()
 		 {
 		    Dump(this->root); 
 		 }
