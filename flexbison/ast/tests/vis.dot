@@ -1,0 +1,7 @@
+digraph ASTvis {
+    1 [label="UnaryOperator2"];
+    0 [label="UnaryOperator1"];
+    0 -> 1;
+    2 [label="UnaryOperator3"];
+    0 -> 2;
+}

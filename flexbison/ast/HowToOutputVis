@@ -1,0 +1,17 @@
+Add this to the constructor of each type of AST node:
+
+    this->setLabel("Label for ehatever type of node");
+
+Then add the correct one of these calls to the Visit member:
+
+    AST::vis.addNode(...);
+
+ie:
+
+    //This adds a child node, then a parent, and then connects them
+    //Notice: the uid property is automatically set for every node when it is created
+    //        and the label is set in the constructor for each node
+
+    AST::vis.addNode(child.getUID(), child.getLabel());
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), child.getUID());
