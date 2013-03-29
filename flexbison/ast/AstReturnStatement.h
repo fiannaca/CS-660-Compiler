@@ -5,16 +5,22 @@
 class AstReturn : public AstStatement
 {
    
-   AstExpression *returnExpression;
-public:
-   AstReturn(AstExpression *returnExpression)
-   {
-   	this->returnExpression = returnExpression; 
-   }   
-   
+    AstExpression *returnExpression;
 
+    public:
+    
+    AstReturn(AstExpression *returnExpression)
+    {
+        this->returnExpression = returnExpression; 
 
+        this->setLabel("ReturnStatement");
+    }
 
+    void Visit()
+    {
+        AST::vis.addNode(this->getUID(), this->getLabel());
+        AST::vis.addEdge(this->getUID(), returnExpression->getLabel());
+    }
 };
  
 

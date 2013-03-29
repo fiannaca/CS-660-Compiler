@@ -5,17 +5,21 @@
 using namespace std; 
 class AstLabel: AstStatement 
 {
-	string labelName;
-	AstStatement *statement;
-	public:
-		AstLabel(AstStatement *stmt)
-		{
-			this->statement = stmt ; 
-		}
-		void Visit() 
-		{
-			
-		}
-	
+    string labelName;
+    AstStatement *statement;
+
+    public:
+    AstLabel(AstStatement *stmt)
+    {
+        this->statement = stmt;
+
+        this->setLabel("LabelStatement"); 
+    }
+
+    void Visit() 
+    {
+        AST::vis.addNode(this->getUID(), this->getLabel());
+        AST::vis.addEdge(this->getUID(), statement->getUID());
+    }	
 };
 #endif 
