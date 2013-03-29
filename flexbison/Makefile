@@ -16,8 +16,11 @@ CScanner.cpp: CScanner.ll
 	flex -o CScanner.cpp $(FLEX_FLAGS) CScanner.ll
 
 clean:
-	rm CScanner.cpp CScanner.h CParser.cpp *.o *.hpp *.hh
+	rm CScanner.cpp CScanner.h CParser.cpp *.o *.hpp *.hh *~
 
 test:
 	cp ccomp tests/
 	./tests/run_tests tests/
+
+tclean:
+	rm tests/*.out tests/*db tests/*.tok tests/*.red

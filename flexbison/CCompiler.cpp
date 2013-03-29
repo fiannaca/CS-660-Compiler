@@ -12,6 +12,7 @@ CCompiler::CCompiler()
     , trace_symtab(false)
     , outfile_set(false)
     , debug_on(false)
+    , SymbolTable(this)
 {
     printDebug("Initializing the global scope...");
     globalScope();

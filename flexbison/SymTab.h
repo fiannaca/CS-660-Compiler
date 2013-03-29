@@ -64,13 +64,21 @@ struct SymbolInfo
                       
 		
 };
+
+class CCompiler;
+
 class SymTab
 {
      
 	 private:
 	     int currentLevel;   
 	     vector< AVLTree<SymbolInfo> >  symTable;
+             CCompiler* driver;
+             void error(string msg);
+             void warning(string msg);
+
 	 public:
+             SymTab(CCompiler* ref);
              SymTab()
 	     {
 	           currentLevel = 0 ;
@@ -100,7 +108,8 @@ class SymTab
                   if( find_symbol(symbolInfo,level)) 
                   {
                          //driver->warning("Shadowed variable");
-                         cout << "Shadowing variable ... " << symbolInfo.symbol_name << endl;
+                         //cout << "Shadowing variable ... " << symbolInfo.symbol_name << endl;
+                         this->warning("Shadowing variable: " + symbolInfo.symbol_name);
                   } 
 
                   if( symbolInfo.symbol_name != "")    
