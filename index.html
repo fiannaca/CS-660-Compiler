@@ -146,6 +146,13 @@ to fail (to test error output and whatnot) and some are designed to compile
 correctly (to test things like proper input into the symbol table). The <em>-v</em> 
 flag can also be provided to the <em>ccomp</em> executable in order to print general 
 debug info (this is for the developers).</p>
+
+<h3>How To: Generate the GraphVis Visualization of the AST</h3>
+
+<p>Running the compiler will generate a <em>.dot</em> output file which represents the AST in a GraphViz format. In order to generate a PNG image of the graph, run this command</p>
+
+<pre><code>    dot -Tpng vis.dot -o vis.png
+</code></pre>
       </section>
       <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
