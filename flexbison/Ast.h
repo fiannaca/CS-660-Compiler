@@ -288,4 +288,71 @@ class AstCastExpr : public AST
         //Traversal
         void Visit();
 };
+
+class AstMultExpr : public AST
+{
+    //Place the children nodes here
+    AstCastExpr *cast;
+    AstMultExpr *mult;
+
+    public:
+        enum Operator
+        {
+            NONE,
+            STAR,
+            DIV, 
+            MOD
+        } op;
+
+        //Constructor
+        AstMultExpr(AstCastExpr* c);
+        AstMultExpr(AstMultExpr* m, Operator o, AstCastExpr* c);
+
+        //Traversal
+        void Visit();
+};
+
+class AstAddExpr : public AST
+{
+    //Place the children nodes here
+    AstMultExpr *mult;
+    AstAddExpr *add;
+
+    public:
+        enum Operator
+        {
+            NONE,
+            PLUS,
+            MINUS
+        } op;
+
+        //Constructor
+        AstAddExpr(AstMultExpr* m);
+        AstAddExpr(AstAddExpr* a, Operator o, AstMultExpr* m);
+
+        //Traversal
+        void Visit();
+};
+
+class AstShiftExpr : public AST
+{
+    //Place the children nodes here
+    AstAddExpr *add;
+    AstShiftExpr *shift;
+
+    public:
+        enum Operator
+        {
+            NONE,
+            LEFT_OP,
+            RIGHT_OP
+        } op;
+
+        //Constructor
+        AstShiftExpr(AstAddExpr* a);
+        AstShiftExpr(AstShiftExpr* s, Operator o, AstAddExpr* a);
+
+        //Traversal
+        void Visit();
+};
 #endif 

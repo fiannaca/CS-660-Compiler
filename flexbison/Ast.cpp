@@ -760,3 +760,157 @@ void AstID::Visit()
 {
     AST::vis.addNode(this->getUID(), this->getLabel() + ": " + str);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstMultExpr  ////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstMultExpr::AstMultExpr(AstCastExpr* c)
+{
+    this->cast = c;
+    this->mult = NULL;
+    this->op = NONE;
+
+    this->setLabel("MultiplicativeExpression");
+}
+
+AstMultExpr::AstMultExpr(AstMultExpr* m, Operator o, AstCastExpr* c)
+{
+    this->cast = c;
+    this->mult = m;
+    this->op = o;
+
+    this->setLabel("MultiplicativeExpression");
+}
+
+//Traversal
+void AstMultExpr::Visit()
+{
+    //Visit children nodes
+    if(mult)
+        mult->Visit();
+
+    cast->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(mult)
+    {
+        stringstream ss;
+        int tmp = Visualizer::GetNextUID();
+        char c = (op == STAR) ? '*' : ((op == DIV) ? '/' : '%');
+        ss << c;
+
+        AST::vis.addNode(tmp, ss.str());
+
+        AST::vis.addEdge(this->getUID(), mult->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), cast->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAddExpr  /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstAddExpr::AstAddExpr(AstMultExpr* m)
+{
+    this->mult = m;
+    this->add = NULL;
+    this->op = NONE;
+
+    this->setLabel("AdditiveExpression");
+}
+
+AstAddExpr::AstAddExpr(AstAddExpr* a, Operator o, AstMultExpr* m)
+{
+    this->mult = m;
+    this->add = a;
+    this->op = o;
+
+    this->setLabel("AdditiveExpression");
+}
+
+//Traversal
+void AstAddExpr::Visit()
+{
+    //Visit children nodes
+    if(add)
+        add->Visit();
+
+    mult->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(add)
+    {
+        stringstream ss;
+        int tmp = Visualizer::GetNextUID();
+        char c = (op == PLUS) ? '+' : '-';
+        ss << c;
+        AST::vis.addNode(tmp, ss.str());
+
+        AST::vis.addEdge(this->getUID(), add->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), mult->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstShiftExpr  ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+//Constructor
+AstShiftExpr::AstShiftExpr(AstAddExpr* a)
+{
+    this->add = a;
+    this->shift = NULL;
+    this->op = NONE;
+
+    this->setLabel("ShiftExpression");
+}
+
+AstShiftExpr::AstShiftExpr(AstShiftExpr* s, Operator o, AstAddExpr* a)
+{
+    this->add = a;
+    this->shift = s;
+    this->op = o;
+
+    this->setLabel("ShiftExpression");
+}
+
+//Traversal
+void AstShiftExpr::Visit()
+{
+    //Visit children nodes
+    if(shift)
+        shift->Visit();
+
+    add->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(shift)
+    {
+        int tmp = Visualizer::GetNextUID();
+        string s = (op == LEFT_OP) ? "<<" : ">>";
+        AST::vis.addNode(tmp, s);
+
+        AST::vis.addEdge(this->getUID(), shift->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), add->getUID());
+
+    //Output 3AC
+}
+

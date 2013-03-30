@@ -70,6 +70,7 @@ class CCompiler;
 
 %type <ast> identifier string constant argument_expression_list primary_expression
 %type <ast> postfix_expression unary_operator unary_expression
+%type <ast> multiplicative_expression additive_expression shift_expression
 
 %type <ast> assignment_expression expression cast_expression type_name
 
@@ -1269,14 +1270,17 @@ shift_expression
 	: additive_expression
 		{
 		    driver.printRed("shift_expression -> additive_expression");
+                    $$ = (AST*) new AstShiftExpr((AstAddExpr*)$1);
 		}
 	| shift_expression LEFT_OP additive_expression
 		{
 		    driver.printRed("shift_expression -> shift_expression LEFT_OP additive_expression");
+                    $$ = (AST*) new AstShiftExpr((AstShiftExpr*)$1, AstShiftExpr::LEFT_OP, (AstAddExpr*)$3);
 		}
 	| shift_expression RIGHT_OP additive_expression
 		{
 		    driver.printRed("shift_expression -> shift_expression RIGHT_OP additive_expression");
+                    $$ = (AST*) new AstShiftExpr((AstShiftExpr*)$1, AstShiftExpr::RIGHT_OP, (AstAddExpr*)$3);
 		}
 	;
 
@@ -1284,14 +1288,17 @@ additive_expression
 	: multiplicative_expression
 		{
 		    driver.printRed("additive_expression -> multiplicative_expression");
+                    $$ = (AST*) new AstAddExpr((AstMultExpr*)$1);
 		}
 	| additive_expression PLUS multiplicative_expression
 		{
 		    driver.printRed("additive_expression -> additive_expression PLUS multiplicative_expression");
+                    $$ = (AST*) new AstAddExpr((AstAddExpr*)$1, AstAddExpr::PLUS, (AstMultExpr*)$3);
 		}
 	| additive_expression MINUS multiplicative_expression
 		{
 		    driver.printRed("additive_expression -> additive_expression MINUS multiplicative_expression");
+                    $$ = (AST*) new AstAddExpr((AstAddExpr*)$1, AstAddExpr::MINUS, (AstMultExpr*)$3);
 		}
 	;
 
@@ -1299,18 +1306,22 @@ multiplicative_expression
 	: cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> cast_expression");
+                    $$ = (AST*) new AstMultExpr((AstCastExpr*)$1);
 		}
 	| multiplicative_expression STAR cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression STAR cast_expression");
+                    $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::STAR, (AstCastExpr*)$3);
 		}
 	| multiplicative_expression DIV cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression DIV cast_expression");
+                    $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::DIV, (AstCastExpr*)$3);
 		}
 	| multiplicative_expression MOD cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression MOD cast_expression");
+                    $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::MOD, (AstCastExpr*)$3);
 		}
 	;
 
