@@ -15,19 +15,54 @@ class AstExpression : public AST
 	}
 };
 
+class AstNodeStub : public AST
+{
+    //Place the children nodes here
+
+    public:
+        //Constructor
+        AstNodeStub()
+        {
+            this->setLabel("");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            //Visit children nodes
+
+            //Output visualization
+            //AST::vis.addNode(this->getUID(), this->getLabel());
+            //AST::vis.addEdge(this->getUID(), child->getUID());
+
+            //Output 3AC
+        }
+};
+
 class AstAssignExpr : public AST
 {
-    //This is a stub for the AssignExpr class - TODO implement later
+    //TODO implement later
 
-    AstAssignExpr()
-    {
+    //Place the children nodes here
 
-    }
+    public:
+        //Constructor
+        AstAssignExpr()
+        {
+            this->setLabel("AssignmentExpression");
+        }
 
-    void Visit()
-    {
+        //Traversal
+        void Visit()
+        {
+            //Visit children nodes
 
-    }
+            //Output visualization
+            //AST::vis.addNode(this->getUID(), this->getLabel());
+            //AST::vis.addEdge(this->getUID(), child->getUID());
+
+            //Output 3AC
+        }
 };
 
 class AstPrimaryExpr : public AST
@@ -93,25 +128,43 @@ class AstPrimaryExpr : public AST
         }
 
         void Visit()
-        {
-            AST::vis.addNode(this->getUID(), this->getLabel());
-            
+        {            
             switch(type)
             {
                 case ID:
+                    id->Visit();
+
+                    AST::vis.addNode(this->getUID(), this->getLabel());
                     AST::vis.addEdge(this->getUID(), id->getUID());
+
+                    //Output 3AC
                     break;
 
                 case CONST:
+                    constant->Visit();
+
+                    AST::vis.addNode(this->getUID(), this->getLabel());
                     AST::vis.addEdge(this->getUID(), constant->getUID());
+
+                    //Output 3AC
                     break;
 
                 case STRING:
+                    str->Visit();
+
+                    AST::vis.addNode(this->getUID(), this->getLabel());
                     AST::vis.addEdge(this->getUID(), str->getUID());
+
+                    //Output 3AC
                     break;
 
                 case EXPR:
+                    expr->Visit();
+
+                    AST::vis.addNode(this->getUID(), this->getLabel());
                     AST::vis.addEdge(this->getUID(), expr->getUID());
+
+                    //Output 3AC
                     break;
             }
         }
@@ -144,6 +197,15 @@ class AstArgExprList : public AST
 
         void Visit()
         {
+            //Visit children nodes
+            if(!isLastItem)
+            {
+                list->Visit();
+            }
+
+            expr->Visit();
+
+            //Output visualization
             AST::vis.addNode(this->getUID(), this->getLabel());
             AST::vis.addEdge(this->getUID(), expr->getUID());
             
@@ -151,6 +213,8 @@ class AstArgExprList : public AST
             {
                 AST::vis.addEdge(this->getUID(), list->getUID());
             }
+
+            //Output 3AC
         }
 };
 
