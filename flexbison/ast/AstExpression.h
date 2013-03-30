@@ -2,8 +2,11 @@
 #define _AST_EXPRESSION_
 
 #include "Ast.h"
+//#include "AstBinaryExpressions.h"
 #include "AstConstants.h"
 #include "AstID.h"
+
+class AstCastExpr;
 
 class AstExpression : public AST
 {
@@ -50,32 +53,6 @@ class AstAssignExpr : public AST
         AstAssignExpr()
         {
             this->setLabel("AssignmentExpression");
-        }
-
-        //Traversal
-        void Visit()
-        {
-            //Visit children nodes
-
-            //Output visualization
-            //AST::vis.addNode(this->getUID(), this->getLabel());
-            //AST::vis.addEdge(this->getUID(), child->getUID());
-
-            //Output 3AC
-        }
-};
-
-class AstCastExpr : public AST
-{
-    //TODO implement later
-
-    //Place the children nodes here
-
-    public:
-        //Constructor
-        AstCastExpr()
-        {
-            this->setLabel("CastExpression");
         }
 
         //Traversal
@@ -665,6 +642,63 @@ class AstUnaryExpr : public AST
                     //Output 3AC
                     
                     break;
+            }
+        }
+};
+
+class AstCastExpr : public AST
+{
+    //Place the children nodes here
+    AstUnaryExpr *uniexpr;
+    AstCastExpr  *cast;
+    AstTypeName  *tname;
+
+    public:
+        //Constructor
+        AstCastExpr(AstUnaryExpr* u)
+        {
+            this->uniexpr = u;
+            this->cast = NULL;
+            this->tname = NULL;
+
+            this->setLabel("CastExpression");
+        }
+
+        AstCastExpr(AstTypeName* t, AstCastExpr* c)
+        {
+            this->uniexpr = NULL;
+            this->cast = c;
+            this->tname = t;
+
+            this->setLabel("CastExpression");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            if(uniexpr)
+            {
+                //Visit children nodes
+                uniexpr->Visit();
+
+                //Output visualization
+                AST::vis.addNode(this->getUID(), this->getLabel());
+                AST::vis.addEdge(this->getUID(), uniexpr->getUID());
+
+                //Output 3AC
+            }
+            else
+            {
+                //Visit children nodes
+                tname->Visit();
+                cast->Visit();
+
+                //Output visualization
+                AST::vis.addNode(this->getUID(), this->getLabel());
+                AST::vis.addEdge(this->getUID(), tname->getUID());
+                AST::vis.addEdge(this->getUID(), cast->getUID());
+
+                //Output 3AC
             }
         }
 };

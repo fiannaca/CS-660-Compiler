@@ -8,7 +8,7 @@
 #include <iostream>
 #include "SymTab.h"
 
-#include "ast/AstExpression.h"
+#include "Ast.h"
 
 class CCompiler;
 }
@@ -1318,10 +1318,12 @@ cast_expression
 	: unary_expression
 		{
 		    driver.printRed("cast_expression -> unary_expression");
+                    $$ = (AST*) new AstCastExpr((AstUnaryExpr*)$1);
 		}
 	| LPAREN type_name RPAREN cast_expression
 		{
 		    driver.printRed("cast_expression -> LPAREN type_name RPAREN cast_expression");
+                    $$ = (AST*) new AstCastExpr((AstTypeName*)$2, (AstCastExpr*)$4);
 		}
 	;
 
