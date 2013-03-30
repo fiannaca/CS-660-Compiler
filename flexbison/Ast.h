@@ -413,14 +413,71 @@ class AstAndExpr : public AST
         void Visit();
 };
 
+class AstXORExpr : public AST
+{
+    AstAndExpr *a;
+    AstXORExpr *x;
 
+    public:
+        AstXORExpr(AstAndExpr* a);
+        AstXORExpr(AstXORExpr* x, AstAndExpr* a);
+        void Visit();
+};
 
+class AstORExpr : public AST
+{
+    AstXORExpr *x;
+    AstORExpr *o;
 
+    public:
+        AstORExpr(AstXORExpr* x);
+        AstORExpr(AstORExpr* o, AstXORExpr* x);
+        void Visit();
+};
 
+class AstLogicAndExpr : public AST
+{
+    AstORExpr *o;
+    AstLogicAndExpr *a;
 
+    public:
+        AstLogicAndExpr(AstORExpr* o);
+        AstLogicAndExpr(AstLogicAndExpr* a, AstORExpr* o);
+        void Visit();
+};
 
+class AstLogicOrExpr : public AST
+{
+    AstLogicAndExpr *a;
+    AstLogicOrExpr *o;
 
+    public:
+        AstLogicOrExpr(AstLogicAndExpr* a);
+        AstLogicOrExpr(AstLogicOrExpr* o, AstLogicAndExpr* a);
+        void Visit();
+};
 
+class AstConditionalExpr : public AST
+{
+    AstLogicOrExpr* o;
+    AstExpression* e;
+    AstConditionalExpr* ce;
+
+    public:
+
+        AstConditionalExpr(AstLogicOrExpr* o);
+        AstConditionalExpr(AstLogicOrExpr* o, AstExpression* e, AstConditionalExpr* ce);
+        void Visit();
+};
+
+class AstConstantExpr : public AST
+{
+    AstConditionalExpr *expr;
+
+    public:
+        AstConstantExpr(AstConditionalExpr *e);
+        void Visit();
+};
 
 
 

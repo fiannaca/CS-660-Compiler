@@ -1056,19 +1056,253 @@ void AstAndExpr::Visit()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// BEGIN: AstAndExpr  /////////////////////////////////////////////////////////
+// BEGIN: AstXORExpr  /////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
+AstXORExpr::AstXORExpr(AstAndExpr* a)
+{
+    this->a = a;
+    this->x = NULL;
+
+    this->setLabel("ExclusiveOrExpression");
+}
+
+AstXORExpr::AstXORExpr(AstXORExpr* x, AstAndExpr* a)
+{
+    this->a = a;
+    this->x = x;
+
+    this->setLabel("ExclusiveOrExpression");
+}
+
+void AstXORExpr::Visit()
+{
+    //Visit children nodes
+    if(x)
+        x->Visit();
+
+    a->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(x)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "^");
+
+        AST::vis.addEdge(this->getUID(), x->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), a->getUID());
+
+    //Output 3AC
+}
 
 
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstORExpr   /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
+AstORExpr::AstORExpr(AstXORExpr* x)
+{
+    this->x = x;
+    this->o = NULL;
+    this->setLabel("InclusiveOrExpression");
+}
 
+AstORExpr::AstORExpr(AstORExpr* o, AstXORExpr* x)
+{
+    this->x = x;
+    this->o = o;
+    this->setLabel("InclusiveOrExpression");
+}
 
+void AstORExpr::Visit()
+{
+    //Visit children nodes
+    if(o)
+        o->Visit();
 
+    x->Visit();
 
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
 
+    if(o)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "|");
 
+        AST::vis.addEdge(this->getUID(), o->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
 
+    AST::vis.addEdge(this->getUID(), x->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstLogicAndExpr   ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstLogicAndExpr::AstLogicAndExpr(AstORExpr* o)
+{
+    this->o = o;
+    this->a = NULL;
+
+    this->setLabel("LogicalAndExpression");
+}
+
+AstLogicAndExpr::AstLogicAndExpr(AstLogicAndExpr* a, AstORExpr* o)
+{
+    this->o = o;
+    this->a = a;
+
+    this->setLabel("LogicalAndExpression");
+}
+
+void AstLogicAndExpr::Visit()
+{
+    //Visit children nodes
+    if(a)
+        a->Visit();
+
+    o->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(a)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "&&");
+
+        AST::vis.addEdge(this->getUID(), a->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), o->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstLogicOrExpr   ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstLogicOrExpr::AstLogicOrExpr(AstLogicAndExpr* a)
+{
+    this->a = a;
+    this->o = NULL;
+
+    this->setLabel("LogicalOrExpression");
+}
+
+AstLogicOrExpr::AstLogicOrExpr(AstLogicOrExpr* o, AstLogicAndExpr* a)
+{
+    this->a = a;
+    this->o = o;
+
+    this->setLabel("LogicalOrExpression");
+}
+
+void AstLogicOrExpr::Visit()
+{
+    //Visit children nodes
+    if(o)
+        o->Visit();
+
+    a->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(o)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "&&");
+
+        AST::vis.addEdge(this->getUID(), o->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), a->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstConditionalExpr   ////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstConditionalExpr::AstConditionalExpr(AstLogicOrExpr* o)
+{
+    this->o = o;
+    this->e = NULL;
+    this->ce = NULL;
+
+    this->setLabel("ConditionalExpression");
+}
+
+AstConditionalExpr::AstConditionalExpr(AstLogicOrExpr* o, AstExpression* e, AstConditionalExpr* ce)
+{
+    this->o = o;
+    this->e = e;
+    this->ce = ce;
+
+    this->setLabel("ConditionalExpression");
+}
+
+void AstConditionalExpr::Visit()
+{
+    o->Visit();
+
+    if(e)
+    {
+        e->Visit();
+        ce->Visit();
+    }
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), o->getUID());
+
+    if(e)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "?");
+        AST::vis.addEdge(this->getUID(), tmp);
+
+        AST::vis.addEdge(this->getUID(), e->getUID());
+
+        tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, ":");
+        AST::vis.addEdge(this->getUID(), tmp);
+
+        AST::vis.addEdge(this->getUID(), ce->getUID());
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstConstantExpr   ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstConstantExpr::AstConstantExpr(AstConditionalExpr *e)
+{
+    this->expr = e;
+
+    this->setLabel("ConstantExpression");
+}
+
+void AstConstantExpr::Visit()
+{
+    expr->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), expr->getUID());
+}
 
 
 

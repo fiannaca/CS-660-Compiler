@@ -72,6 +72,8 @@ class CCompiler;
 %type <ast> postfix_expression unary_operator unary_expression
 %type <ast> multiplicative_expression additive_expression shift_expression
 %type <ast> relational_expression equality_expression and_expression
+%type <ast> exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
+%type <ast> constant_expression conditional_expression
 
 %type <ast> assignment_expression expression cast_expression type_name
 
@@ -1160,10 +1162,12 @@ conditional_expression
 	: logical_or_expression
 		{
 		    driver.printRed("conditional_expression -> logical_or_expression");
+                    $$ = (AST*) new AstConditionalExpr((AstLogicOrExpr*)$1);
 		}
 	| logical_or_expression WHAT expression COLON conditional_expression
 		{
 		    driver.printRed("conditional_expresion -> logical_or_expression WHAT expression COLON conditional_expression");
+                    $$ = (AST*) new AstConditionalExpr((AstLogicOrExpr*)$1, (AstExpression*)$3, (AstConditionalExpr*)$5);
 		}
 	;
 
@@ -1171,6 +1175,7 @@ constant_expression
 	: conditional_expression
 		{
 		    driver.printRed("constant_expression -> conditional_expression");
+                    $$ = (AST*) new AstConstantExpr((AstConditionalExpr*)$1);
 		}
 	;
 
@@ -1178,10 +1183,12 @@ logical_or_expression
 	: logical_and_expression
 		{
 		    driver.printRed("logical_or_expression -> logical_and_expression");
+                    $$ = (AST*) new AstLogicOrExpr((AstLogicAndExpr*)$1);
 		}
 	| logical_or_expression OR_OP logical_and_expression	
 		{
 		    driver.printRed("logical_or_expression -> logical_or_epression OR_OP logical_and_expression");
+                    $$ = (AST*) new AstLogicOrExpr((AstLogicOrExpr*)$1, (AstLogicAndExpr*)$3);
 		}
 	;
 
@@ -1189,10 +1196,12 @@ logical_and_expression
 	: inclusive_or_expression
 		{
 		    driver.printRed("logical_and_expression -> inclusive_or_expression");
+                    $$ = (AST*) new AstLogicAndExpr((AstORExpr*)$1);
 		}
 	| logical_and_expression AND_OP inclusive_or_expression
 		{
 		    driver.printRed("logical_and_expression -> logical_and_expression AND_OP inclusive_or_expression");
+                    $$ = (AST*) new AstLogicAndExpr((AstLogicAndExpr*)$1, (AstORExpr*)$3);
 		}
 	;
 
@@ -1200,10 +1209,12 @@ inclusive_or_expression
 	: exclusive_or_expression
 		{
 		    driver.printRed("inclusive_or_expression -> exclusive_or_expression");
+                    $$ = (AST*) new AstORExpr((AstXORExpr*)$1);
 		}
 	| inclusive_or_expression BIN_OR exclusive_or_expression
 		{
 		    driver.printRed("inclusive_or_expression -> inclusive_or_expression BIN_OR exclusive_or_expression");
+                    $$ = (AST*) new AstORExpr((AstORExpr*)$1, (AstXORExpr*)$3);
 		}
 	;
 
@@ -1211,10 +1222,12 @@ exclusive_or_expression
 	: and_expression
 		{
 		    driver.printRed("exclusive_or_expression -> and_expression");
+                    $$ = (AST*) new AstXORExpr((AstAndExpr*)$1);
 		}
 	| exclusive_or_expression BIN_XOR and_expression
 		{
 		    driver.printRed("exclusive_or_expression -> exclusive_or_expression BIN_XOR and_expression");
+                    $$ = (AST*) new AstXORExpr((AstXORExpr*)$1, (AstAndExpr*)$3);
 		}
 	;
 
