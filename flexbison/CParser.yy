@@ -71,6 +71,7 @@ class CCompiler;
 %type <ast> identifier string constant argument_expression_list primary_expression
 %type <ast> postfix_expression unary_operator unary_expression
 %type <ast> multiplicative_expression additive_expression shift_expression
+%type <ast> relational_expression equality_expression and_expression
 
 %type <ast> assignment_expression expression cast_expression type_name
 
@@ -1221,10 +1222,12 @@ and_expression
 	: equality_expression
 		{
 		    driver.printRed("and_expression -> equality_expression");
+                    $$ = (AST*) new AstAndExpr((AstEqExpr*)$1);
 		}
 	| and_expression BIN_AND equality_expression
 		{
 		    driver.printRed("and_expression -> and_expression BIN_AND equality_expression");
+                    $$ = (AST*) new AstAndExpr((AstAndExpr*)$1, (AstEqExpr*)$3);
 		}
 	;
 
@@ -1232,14 +1235,17 @@ equality_expression
 	: relational_expression
 		{
 		    driver.printRed("equality_expression -> relational_expression");
+                    $$ = (AST*) new AstEqExpr((AstRelExpr*)$1);
 		}
 	| equality_expression EQ_OP relational_expression
 		{
 		    driver.printRed("equality_expression -> equality_expression EQ_OP relational_expression");
+                    $$ = (AST*) new AstEqExpr((AstEqExpr*)$1, AstEqExpr::EQ_OP, (AstRelExpr*)$3);
 		}
 	| equality_expression NE_OP relational_expression
 		{
 		    driver.printRed("equality_expression -> equality_expression NE_OP relational_expression");
+                    $$ = (AST*) new AstEqExpr((AstEqExpr*)$1, AstEqExpr::NE_OP, (AstRelExpr*)$3);
 		}
 	;
 
@@ -1247,22 +1253,27 @@ relational_expression
 	: shift_expression
 		{
 		    driver.printRed("relational_expression -> shift_expression");
+                    $$ = (AST*) new AstRelExpr((AstShiftExpr*)$1);
 		}
 	| relational_expression LT_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression LT_OP shift_expression");
+                    $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::LT_OP, (AstShiftExpr*)$3);
 		}
 	| relational_expression GT_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression GT_OP shift_expression");
+                    $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::GT_OP, (AstShiftExpr*)$3);
 		}
 	| relational_expression LE_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression LE_OP shift_expression");
+                    $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::LE_OP, (AstShiftExpr*)$3);
 		}
 	| relational_expression GE_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression GE_OP shift_expression");
+                    $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::GE_OP, (AstShiftExpr*)$3);
 		}
 	;
 

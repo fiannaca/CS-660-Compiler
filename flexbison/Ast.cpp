@@ -868,7 +868,6 @@ void AstAddExpr::Visit()
 // BEGIN: AstShiftExpr  ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-//Constructor
 AstShiftExpr::AstShiftExpr(AstAddExpr* a)
 {
     this->add = a;
@@ -887,7 +886,6 @@ AstShiftExpr::AstShiftExpr(AstShiftExpr* s, Operator o, AstAddExpr* a)
     this->setLabel("ShiftExpression");
 }
 
-//Traversal
 void AstShiftExpr::Visit()
 {
     //Visit children nodes
@@ -913,4 +911,174 @@ void AstShiftExpr::Visit()
 
     //Output 3AC
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstRelExpr  /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstRelExpr::AstRelExpr(AstShiftExpr* s)
+{
+    this->shift = s;
+    this->rel = NULL;
+    this->op = NONE;
+
+    this->setLabel("RelationalExpression");
+}
+
+AstRelExpr::AstRelExpr(AstRelExpr* r, Operator o, AstShiftExpr* s)
+{
+    this->shift = s;
+    this->rel = r;
+    this->op = o;
+
+    this->setLabel("RelationalExpression");
+}
+
+//Traversal
+void AstRelExpr::Visit()
+{
+    //Visit children nodes
+    if(rel)
+        rel->Visit();
+
+    shift->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(rel)
+    {
+        int tmp = Visualizer::GetNextUID();
+        string s = (op == LT_OP) ? "<" : ((op == GT_OP) ? ">" : ((op == LE_OP) ? "<=" : ">="));
+        AST::vis.addNode(tmp, s);
+
+        AST::vis.addEdge(this->getUID(), rel->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), shift->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstEqExpr  //////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstEqExpr::AstEqExpr(AstRelExpr* r)
+{
+    this->rel = r;
+    this->eq = NULL;
+    this->op = NONE;
+
+    this->setLabel("EqualityExpression");
+}
+
+AstEqExpr::AstEqExpr(AstEqExpr* e, Operator o, AstRelExpr* r)
+{
+    this->rel = r;
+    this->eq = e;
+    this->op = o;
+
+    this->setLabel("EqualityExpression");
+}
+
+//Traversal
+void AstEqExpr::Visit()
+{
+    //Visit children nodes
+    if(eq)
+        eq->Visit();
+
+    rel->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(rel)
+    {
+        int tmp = Visualizer::GetNextUID();
+        string s = (op == EQ_OP) ? "==" : "!=";
+        AST::vis.addNode(tmp, s);
+
+        AST::vis.addEdge(this->getUID(), eq->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), rel->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAndExpr  /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstAndExpr::AstAndExpr(AstEqExpr* e)
+{
+    this->eq = e;
+    this->a = NULL;
+
+    this->setLabel("EqualityExpression");
+}
+AstAndExpr::AstAndExpr(AstAndExpr* a, AstEqExpr* e)
+{
+    this->eq = e;
+    this->a = a;
+
+    this->setLabel("EqualityExpression");
+}
+
+void AstAndExpr::Visit()
+{
+    //Visit children nodes
+    if(a)
+        a->Visit();
+
+    eq->Visit();
+
+    //Output visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(a)
+    {
+        int tmp = Visualizer::GetNextUID();
+        AST::vis.addNode(tmp, "&");
+
+        AST::vis.addEdge(this->getUID(), a->getUID());
+        AST::vis.addEdge(this->getUID(), tmp);
+    }
+
+    AST::vis.addEdge(this->getUID(), eq->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAndExpr  /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
