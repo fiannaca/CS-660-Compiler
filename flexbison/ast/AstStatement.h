@@ -5,7 +5,7 @@ class AstStatement:public AST
 {
 	
 public:
-	void Vist()
+	void Visit()
 	{
 		
 	}

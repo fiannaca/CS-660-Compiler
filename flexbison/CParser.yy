@@ -28,6 +28,7 @@ class CCompiler;
     double	 dval;
     std::string *sval;
     SymbolInfo  *sym;
+    AST         *ast;
 };
 
 %printer { driver.ydbFile << "Value: " << $$; } <ival> <dval>
@@ -66,6 +67,8 @@ class CCompiler;
 %token CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE CONST VOLATILE VOID
 %token STRUCT UNION ENUM ELIPSIS
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+
+%type <ast> identifier string constant
 
 %%
 translation_unit
@@ -1442,18 +1445,24 @@ constant
 	: INTEGER_CONSTANT
 		{
 		    driver.printRed("constant -> INTEGER_CONSTANT");
+		    $$ = (AST*) new AstConstant($1);
 		}
 	| CHARACTER_CONSTANT
 		{
 		    driver.printRed("constant -> CHARACTER_CONSTANT");
+                    $$ = (AST*) new AstConstant(*$1);
 		}
 	| FLOATING_CONSTANT
 		{
 		    driver.printRed("constant -> FLOATING_CONSTANT");
+                    $$ = (AST*) new AstConstant($1);
 		}
 	| ENUMERATION_CONSTANT
 		{
 		    driver.printRed("constant -> ENUMERATION_CONSTANT");
+
+                    // TODO check how to get the value from an enum const (checkType needs to be fixed)
+                    // $$ = (AST*) new AstConstant($1->symbol_name /*value*/, /*enum const name*/);
 		}
 	;
 
@@ -1461,6 +1470,7 @@ string
 	: STRING_LITERAL
 		{
 		    driver.printRed("string -> STRING_LITERAL");
+                    $$ = (AST*) new AstString(*$1);
 		}
 	;
 
@@ -1470,6 +1480,7 @@ identifier
 		    //cout << *$1;
                     driver.currentSymbol->symbol_name = $1->symbol_name;  
                     driver.printRed("identifier -> IDENTIFIER");
+                    $$ = (AST*) new AstID($1->symbol_name);
 		}
 	;
 %%

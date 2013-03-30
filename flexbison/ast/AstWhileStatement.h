@@ -4,18 +4,23 @@
 #include "AstStatement.h"
 class AstDo : public AstStatement
 {
-	AstExpression *test;
-	AstStatement *statement; 
-public:
+    AstExpression *test;
+    AstStatement *statement; 
+
+    public:
+    
     AstDo( AstExpression *test, AstStatement *statement )
     {
-    	this->statement = statement;
-    	this->test = test; 
+        this->statement = statement;
+        this->test = test;
+
+        this->setLabel("WhileStatement");
     }
-	void Visit()
-	{
-		
-	}
+
+    void Visit()
+    {
+        AST::vis.addNode(this->getUID(), this->getLabel());
+    }
 };
 
 #endif 

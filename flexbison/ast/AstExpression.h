@@ -5,7 +5,7 @@ class AstExpression:public AST
 {
 	
 public:
-	void Vist()
+	void Visit()
 	{
 		
 	}
