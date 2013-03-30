@@ -65,6 +65,32 @@ class AstAssignExpr : public AST
         }
 };
 
+class AstCastExpr : public AST
+{
+    //TODO implement later
+
+    //Place the children nodes here
+
+    public:
+        //Constructor
+        AstCastExpr()
+        {
+            this->setLabel("CastExpression");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            //Visit children nodes
+
+            //Output visualization
+            //AST::vis.addNode(this->getUID(), this->getLabel());
+            //AST::vis.addEdge(this->getUID(), child->getUID());
+
+            //Output 3AC
+        }
+};
+
 class AstPrimaryExpr : public AST
 {
     enum ExprType
@@ -452,6 +478,189 @@ class AstPostfixExpr : public AST
                     //Output visualization
                     AST::vis.addNode(this->getUID(), this->getLabel());
                     AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+            }
+        }
+};
+
+
+class AstUnaryExpr : public AST
+{
+    //Place the children nodes here
+    AstPostfixExpr *expr;
+    bool isINC;
+    bool isDEC;
+    AstUnaryOp   *op;
+    AstCastExpr  *cast;
+    AstUnaryExpr *uniexpr;
+    AstTypeName  *tname;
+
+    public:
+        enum Type
+        {
+            POSTFIX,
+            INC,
+            DEC, 
+            CAST,
+            SIZEOF,
+            SIZEOF_TYPE
+        } t;
+
+        //Constructor
+        AstUnaryExpr(AstPostfixExpr *e)
+        {
+            this->expr = e;
+            this->isINC = false;
+            this->isDEC = false;
+            this->op = NULL;
+            this->cast = NULL;
+            this->uniexpr = NULL;
+            this->tname = NULL;
+            this->t = POSTFIX;
+
+            this->setLabel("UnaryExpression - Postfix");
+        }
+
+        AstUnaryExpr(AstUnaryExpr* e, bool inc)
+        {
+            this->expr = NULL;
+            this->isINC = inc;
+            this->isDEC = !inc;
+            this->op = NULL;
+            this->cast = NULL;
+            this->uniexpr = e;
+            this->tname = NULL;
+
+            if(inc)
+                this->t = INC;
+            else
+                this->t = DEC;
+
+            this->setLabel("UnaryExpression - Inc or Dec");
+        }
+
+        AstUnaryExpr(AstUnaryOp* o, AstCastExpr* c)
+        {
+            this->expr = NULL;
+            this->isINC = false;
+            this->isDEC = false;
+            this->op = o;
+            this->cast = c;
+            this->uniexpr = NULL;
+            this->tname = NULL;
+
+            this->t = CAST;
+
+            this->setLabel("UnaryExpression - Cast");
+        }
+
+        AstUnaryExpr(AstUnaryExpr* e)
+        {
+            this->expr = NULL;
+            this->isINC = false;
+            this->isDEC = false;
+            this->op = NULL;
+            this->cast = NULL;
+            this->uniexpr = e;
+            this->tname = NULL;
+
+            this->t = SIZEOF;
+
+            this->setLabel("UnaryExpression - Sizeof");
+        }
+
+        AstUnaryExpr(AstTypeName* t)
+        {
+            this->expr = NULL;
+            this->isINC = false;
+            this->isDEC = false;
+            this->op = NULL;
+            this->cast = NULL;
+            this->uniexpr = NULL;
+            this->tname = t;
+
+            this->t = SIZEOF_TYPE;
+
+            this->setLabel("UnaryExpression - Sizeof Type");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            switch(t)
+            {
+                case POSTFIX:
+                    //Visit children nodes
+                    expr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), expr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case INC:
+                    //Visit children nodes
+                    uniexpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), uniexpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case DEC:
+                    //Visit children nodes
+                    uniexpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), uniexpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case CAST:
+                    //Visit children nodes
+                    op->Visit();
+                    cast->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), op->getUID());
+                    AST::vis.addEdge(this->getUID(), cast->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case SIZEOF:
+                    //Visit children nodes
+                    uniexpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), uniexpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case SIZEOF_TYPE:
+                    //Visit children nodes
+                    tname->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), tname->getUID());
 
                     //Output 3AC
                     

@@ -4,6 +4,32 @@
 #include <sstream>
 #include "Ast.h"
 
+class AstTypeName : public AST
+{
+    //TODO implement later
+
+    //Place the children nodes here
+
+    public:
+        //Constructor
+        AstTypeName()
+        {
+            this->setLabel("TypeName");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            //Visit children nodes
+
+            //Output visualization
+            //AST::vis.addNode(this->getUID(), this->getLabel());
+            //AST::vis.addEdge(this->getUID(), child->getUID());
+
+            //Output 3AC
+        }
+};
+
 class AstString : public AST
 {
     string val;
@@ -111,4 +137,41 @@ class AstConstant : public AST
     }
 };
 
+class AstUnaryOp : public AST
+{
+    //Place the children nodes here
+    public:
+        enum Operator
+        {
+            BIN_AND,
+            STAR,
+            PLUS,
+            MINUS,
+            TILDE,
+            BANG
+        };
+
+    private:
+        Operator op;
+
+    public:
+        //Constructor
+        AstUnaryOp(Operator o)
+        {
+            this->op = o;
+
+            this->setLabel("UnaryOperator");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            //Visit children nodes
+
+            //Output visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+
+            //Output 3AC
+        }
+};
 #endif 

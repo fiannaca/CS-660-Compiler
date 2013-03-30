@@ -9,8 +9,6 @@
 #include "SymTab.h"
 
 #include "ast/AstExpression.h"
-#include "ast/AstID.h"
-#include "ast/AstConstants.h"
 
 class CCompiler;
 }
@@ -71,9 +69,9 @@ class CCompiler;
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
 %type <ast> identifier string constant argument_expression_list primary_expression
-%type <ast> postfix_expression
+%type <ast> postfix_expression unary_operator unary_expression
 
-%type <ast> assignment_expression expression
+%type <ast> assignment_expression expression cast_expression type_name
 
 %%
 translation_unit
@@ -1331,26 +1329,32 @@ unary_expression
 	: postfix_expression
 		{
 		    driver.printRed("unary_expression -> postfix_expression");
+                    $$ = (AST*) new AstUnaryExpr((AstPostfixExpr*)$1);
 		}
 	| INC_OP unary_expression
 		{
 		    driver.printRed("unary_expression -> INC_OP unary_expression");
+                    $$ = (AST*) new AstUnaryExpr((AstUnaryExpr*)$2, true);
 		}
 	| DEC_OP unary_expression
 		{
 		    driver.printRed("unary_expression -> DEC_OP unary_expression");
+                    $$ = (AST*) new AstUnaryExpr((AstUnaryExpr*)$2, false);
 		}
 	| unary_operator cast_expression
 		{
 		    driver.printRed("unary_expression -> unary_operator cast_expression");
+                    $$ = (AST*) new AstUnaryExpr((AstUnaryOp*)$1, (AstCastExpr*)$2);
 		}
 	| SIZEOF unary_expression
 		{
 		    driver.printRed("unary_expression -> SIZEOF unary_expression");
+                    $$ = (AST*) new AstUnaryExpr((AstUnaryExpr*)$2);
 		}
 	| SIZEOF LPAREN type_name RPAREN
 		{
 		    driver.printRed("unary_expression -> SIZEOF LPAREN type_name RPAREN");
+                    $$ = (AST*) new AstUnaryExpr((AstTypeName*)$3);
 		}
 	;
 
@@ -1358,26 +1362,32 @@ unary_operator
 	: BIN_AND
 		{
 		    driver.printRed("unary_operator -> BIN_AND");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::BIN_AND);
 		}
 	| STAR
 		{
 		    driver.printRed("unary_operator -> STAR");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::STAR);
 		}
 	| PLUS
 		{
 		    driver.printRed("unary_operator -> PLUS");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::PLUS);
 		}
 	| MINUS
 		{
 		    driver.printRed("unary_operator -> MINUS");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::MINUS);
 		}
 	| TILDE
 		{
 		    driver.printRed("unary_operator -> TILDE");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::TILDE);
 		}
 	| BANG
 		{
 		    driver.printRed("unary_operator -> BANG");
+                    $$ = (AST*) new AstUnaryOp(AstUnaryOp::BANG);
 		}
 	;
 
