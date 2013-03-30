@@ -10,7 +10,7 @@ class AstString : public AST
 
     public:
 
-    AstConstant(string str)
+    AstString(string str)
     {
         this->val = str;
 
@@ -26,7 +26,7 @@ class AstString : public AST
         AST::vis.addNode(tmp, "Value: " + val);
         AST::vis.addEdge(this->getUID(), tmp);
     }
-}
+};
 
 class AstConstant : public AST
 {
@@ -36,7 +36,7 @@ class AstConstant : public AST
         CHAR,
         FLOAT,
         ENUM,
-    }
+    };
 
     ConstType type;
 
@@ -62,7 +62,7 @@ class AstConstant : public AST
         this->setLabel("CharacterConstant");
     }
 
-    AstConstant(float val)
+    AstConstant(double val)
     {
         this->type = FLOAT;
         this->dval = val;

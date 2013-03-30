@@ -89,6 +89,6 @@ class Visualizer
         static int nextUID;
 };
 
-int Visualizer::nextUID = 0;
+//int Visualizer::nextUID = 0;
 
 #endif // ! _VISUALIZER_

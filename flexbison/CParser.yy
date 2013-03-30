@@ -7,7 +7,11 @@
 #include <sstream>
 #include <iostream>
 #include "SymTab.h"
- 
+
+#include "ast/AstExpression.h"
+#include "ast/AstID.h"
+#include "ast/AstConstants.h"
+
 class CCompiler;
 }
 
@@ -39,8 +43,6 @@ class CCompiler;
 
 %code {
 #include "CCompiler.h"
- 
-
 }
 
 %token END 0 "EOF"
@@ -68,7 +70,9 @@ class CCompiler;
 %token STRUCT UNION ENUM ELIPSIS
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
-%type <ast> identifier string constant
+%type <ast> identifier string constant argument_expression_list primary_expression
+
+%type <ast> assignment_expression expression
 
 %%
 translation_unit
@@ -1415,18 +1419,22 @@ primary_expression
 	: identifier
 		{
 		    driver.printRed("primary_expression -> identifier");
+                    $$ = (AST*) new AstPrimaryExpr((AstID*)$1);
 		}
 	| constant
 		{
 		    driver.printRed("primary_expression -> constant");
+                    $$ = (AST*) new AstPrimaryExpr((AstConstant*)$1);
 		}
 	| string
 		{
 		    driver.printRed("primary_expression -> string");
+                    $$ = (AST*) new AstPrimaryExpr((AstString*)$1);
 		}
 	| LPAREN expression RPAREN
 		{
 		    driver.printRed("primary_expression -> LPAREN expression RPAREN");
+                    $$ = (AST*) new AstPrimaryExpr((AstExpression*)$2);
 		}
 	;
 
@@ -1434,10 +1442,15 @@ argument_expression_list
 	: assignment_expression
 		{
 		    driver.printRed("argument_expression_list -> assignment_expression");
+
+                    //Notice the casts - this is required because otherwise every type of
+                    // AST derived class would have to be in the %union declaration
+                    $$ = (AST*) new AstArgExprList((AstAssignExpr*)$1);
 		}
 	| argument_expression_list COMMA assignment_expression
 		{
 		    driver.printRed("argument_expression_list -> argument_expression_list COMMA assignment_expression");
+                    $$ = (AST*) new AstArgExprList((AstArgExprList*)$1, (AstAssignExpr*)$3);
 		}
 	;
 

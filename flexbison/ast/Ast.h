@@ -31,6 +31,6 @@ class AST
         string label;
 };
 
-Visualizer AST::vis;
+//Visualizer AST::vis;
 
 #endif 

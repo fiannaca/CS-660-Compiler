@@ -11,6 +11,7 @@
 
 #include "SymTab.h"
 #include "CParser.hpp"
+#include "ast/Ast.h"
 
 #define YY_DECL                                     \
     yy::CParser::token_type                         \

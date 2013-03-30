@@ -6,6 +6,15 @@
 #include "CParser.hpp"
 #include <iomanip>
 
+//Static variables from AST and Visualizer are instanciated here so that they 
+// are only created once!
+Visualizer AST::vis;
+int Visualizer::nextUID = 0;
+
+//
+//Begin CCompiler implementation
+//
+
 CCompiler::CCompiler()
     : trace_scanning(false)
     , trace_parsing(false)
