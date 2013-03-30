@@ -71,6 +71,7 @@ class CCompiler;
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
 %type <ast> identifier string constant argument_expression_list primary_expression
+%type <ast> postfix_expression
 
 %type <ast> assignment_expression expression
 
@@ -1384,34 +1385,42 @@ postfix_expression
 	: primary_expression
 		{
 		    driver.printRed("postfix_expression -> primary_expression");
+                    $$ = (AST*) new AstPostfixExpr((AstPrimaryExpr*)$1);
 		}
 	| postfix_expression LBRAK expression RBRAK
 		{
 		    driver.printRed("postfix_expression -> postfix_expression LBRAK expression RBRAK");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, (AstExpression*)$3);
 		}
 	| postfix_expression LPAREN RPAREN
 		{
 		    driver.printRed("postfix_expression -> postfix_expression LPAREN RPAREN");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1);
 		}
 	| postfix_expression LPAREN argument_expression_list RPAREN
 		{
 		    driver.printRed("postfix_expression -> postfix_expression LPAREN argument_expression_list RPAREN");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, (AstArgExprList*)$3);
 		}
 	| postfix_expression DOT identifier
 		{
 		    driver.printRed("postfix_expression -> postfix_expression DOT identifier");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, AstPostfixExpr::DOT_OP, (AstID*)$3);
 		}
 	| postfix_expression PTR_OP identifier
 		{
 		    driver.printRed("postfix_expression -> postfix_expression PTR_OP identifier");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, AstPostfixExpr::PTR_OP, (AstID*)$3);
 		}
 	| postfix_expression INC_OP
 		{
 		    driver.printRed("postfix_expression -> INC_OP");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, AstPostfixExpr::INC_OP);
 		}
 	| postfix_expression DEC_OP
 		{
 		    driver.printRed("postfix_expression -> postfix_expression DEC_OP");
+                    $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, AstPostfixExpr::DEC_OP);
 		}
 	;
 

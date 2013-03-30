@@ -218,4 +218,245 @@ class AstArgExprList : public AST
         }
 };
 
+class AstPostfixExpr : public AST
+{
+    public:
+	enum Operator
+	{
+	    NONE,
+	    DOT_OP,
+	    PTR_OP,
+	    INC_OP,
+	    DEC_OP
+	};
+
+        enum Type
+        {
+            PRIMARY,
+            BRACKETS,
+            EMPTY_PARENS,
+            PARENS,
+            DOT,
+            PTR,
+            INC,
+            DEC
+        };
+  
+    private:
+
+    //Place the children nodes here
+    AstPrimaryExpr *priexpr;
+    AstPostfixExpr *ptfExpr;
+    AstExpression  *brakExpr;
+    AstArgExprList *argExprList;
+    AstID          *id;
+    Operator       op;
+
+    //Identifies which production we are in so that the proper 3AC can be written
+    Type t;
+
+    public:
+
+        //Constructor
+        AstPostfixExpr(AstPrimaryExpr* p)
+        {
+            this->priexpr = p;
+            this->ptfExpr = NULL;
+            this->brakExpr = NULL;
+            this->argExprList = NULL;
+            this->id = NULL;
+            this->op = NONE;
+            
+            this->t = PRIMARY;
+
+            this->setLabel("AstPostfixExpr - Primary");
+        }
+
+        AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
+        {
+            this->priexpr = NULL;
+            this->ptfExpr = p;
+            this->brakExpr = e;
+            this->argExprList = NULL;
+            this->id = NULL;
+            this->op = NONE;
+            
+            this->t = BRACKETS;
+
+            this->setLabel("AstPostfixExpr - Brackets");
+        }
+
+        AstPostfixExpr(AstPostfixExpr* p)
+        {
+            this->priexpr = NULL;
+            this->ptfExpr = p;
+            this->brakExpr = NULL;
+            this->argExprList = NULL;
+            this->id = NULL;
+            this->op = NONE;
+            
+            this->t = EMPTY_PARENS;
+
+            this->setLabel("AstPostfixExpr - Empty Parens");
+        }
+
+        AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a)
+        {
+            this->priexpr = NULL;
+            this->ptfExpr = p;
+            this->brakExpr = NULL;
+            this->argExprList = a;
+            this->id = NULL;
+            this->op = NONE;
+            
+            this->t = PARENS;
+
+            this->setLabel("AstPostfixExpr - Parens");
+        }
+
+        AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i)
+        {
+            this->priexpr = NULL;
+            this->ptfExpr = p;
+            this->brakExpr = NULL;
+            this->argExprList = NULL;
+            this->id = i;
+            this->op = o;
+            
+            if(o == DOT_OP)
+                this->t = DOT;
+            else
+                this->t = PTR;
+
+            this->setLabel("AstPostfixExpr - Dot or Ptr");
+        }
+
+        AstPostfixExpr(AstPostfixExpr *p, Operator o)
+        {
+            this->priexpr = NULL;
+            this->ptfExpr = p;
+            this->brakExpr = NULL;
+            this->argExprList = NULL;
+            this->id = NULL;
+            this->op = o;
+            
+            if(o == INC_OP)
+                this->t = INC;
+            else
+                this->t = DEC;
+
+            this->setLabel("AstPostfixExpr - Inc or Dec");
+        }
+
+        //Traversal
+        void Visit()
+        {
+            switch(t)
+            {
+                case PRIMARY:
+                    //Visit children nodes
+                    priexpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), priexpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case BRACKETS:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+                    brakExpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+                    AST::vis.addEdge(this->getUID(), brakExpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case EMPTY_PARENS:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case PARENS:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+                    argExprList->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+                    AST::vis.addEdge(this->getUID(), argExprList->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case DOT:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+                    id->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+                    AST::vis.addEdge(this->getUID(), id->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case PTR:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+                    id->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+                    AST::vis.addEdge(this->getUID(), id->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case INC:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+
+                case DEC:
+                    //Visit children nodes
+                    ptfExpr->Visit();
+
+                    //Output visualization
+                    AST::vis.addNode(this->getUID(), this->getLabel());
+                    AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+
+                    //Output 3AC
+                    
+                    break;
+            }
+        }
+};
 #endif 
