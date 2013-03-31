@@ -32,13 +32,6 @@ class AST
         string label;
 };
 
-class AstExpression : public AST
-{
-	
-    public:
-	void Visit();
-};
-
 class AstNodeStub : public AST
 {
     //Place the children nodes here
@@ -136,19 +129,7 @@ class AstID : public AST
     void Visit();
 };
 
-class AstAssignExpr : public AST
-{
-    //TODO implement later
-
-    //Place the children nodes here
-
-    public:
-        //Constructor
-        AstAssignExpr();
-
-        //Traversal
-        void Visit();
-};
+class AstExpression;
 
 class AstPrimaryExpr : public AST
 {
@@ -174,6 +155,8 @@ class AstPrimaryExpr : public AST
         AstPrimaryExpr(AstExpression* e);
         void Visit();
 };
+
+class AstAssignExpr;
 
 class AstArgExprList : public AST
 {
@@ -478,6 +461,66 @@ class AstConstantExpr : public AST
         AstConstantExpr(AstConditionalExpr *e);
         void Visit();
 };
+
+class AstAssignOp : public AST
+{
+    //Place the children nodes here
+    public:
+        enum Operator
+        {
+            EQ,
+            MUL_ASSIGN,
+            DIV_ASSIGN,
+            MOD_ASSIGN,
+            ADD_ASSIGN,
+            SUB_ASSIGN,
+            LEFT_ASSIGN,
+            RIGHT_ASSIGN,
+            AND_ASSIGN,
+            XOR_ASSIGN,
+            OR_ASSIGN
+        };
+
+    private:
+        Operator op;
+
+    public:
+        //Constructor
+        AstAssignOp(Operator o);
+
+        //Traversal
+        void Visit();
+};
+
+class AstAssignExpr : public AST
+{
+    AstConditionalExpr* cond;
+    AstUnaryExpr* uni;
+    AstAssignOp* op;
+    AstAssignExpr* expr;
+
+    public:
+        AstAssignExpr(AstConditionalExpr* c);
+        AstAssignExpr(AstUnaryExpr* u, AstAssignOp* a, AstAssignExpr* e);
+        void Visit();
+};
+
+class AstExpression : public AST
+{
+    AstAssignExpr* ass;
+    AstExpression* expr;
+
+    public:
+        AstExpression(AstAssignExpr* a);
+        AstExpression(AstExpression* e, AstAssignExpr* a);
+	void Visit();
+};
+
+
+
+
+
+
 
 
 

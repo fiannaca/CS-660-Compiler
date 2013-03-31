@@ -1,10 +1,5 @@
 #include "Ast.h"
 
-void AstExpression::Visit()
-{
-
-}
-
 /*
 class AstNodeStub : public AST
 {
@@ -1304,15 +1299,101 @@ void AstConstantExpr::Visit()
     AST::vis.addEdge(this->getUID(), expr->getUID());
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAssignOp   ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
+AstAssignOp::AstAssignOp(Operator o)
+{
+    this->op = o;
+}
 
+void AstAssignOp::Visit()
+{
+    AST::vis.addNode(this->getUID(), this->getLabel());
+}
 
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAssignOp   ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
+AstAssignExpr::AstAssignExpr(AstConditionalExpr* c)
+{
+    this->cond = c;
+    this->uni = NULL;
+    this->op = NULL;
+    this->expr = NULL;
 
+    this->setLabel("AssignmentExpression");
+}
 
+AstAssignExpr::AstAssignExpr(AstUnaryExpr* u, AstAssignOp* a, AstAssignExpr* e)
+{
+    this->cond = NULL;
+    this->uni = u;
+    this->op = a;
+    this->expr = e;
 
+    this->setLabel("AssignmentExpression");
+}
 
+void AstAssignExpr::Visit()
+{
+    if(cond)
+    {
+        cond->Visit();
 
+        AST::vis.addNode(this->getUID(), this->getLabel());
+        AST::vis.addEdge(this->getUID(), cond->getUID());
 
+        //Output 3AC
+    }
+    else
+    {
+        uni->Visit();
+        op->Visit();
+        expr->Visit();
 
+        AST::vis.addNode(this->getUID(), this->getLabel());
+        AST::vis.addEdge(this->getUID(), uni->getUID());
+        AST::vis.addEdge(this->getUID(), op->getUID());
+        AST::vis.addEdge(this->getUID(), expr->getUID());
 
+        //Output 3AC
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstAssignOp   ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstExpression::AstExpression(AstAssignExpr* a)
+{
+    this->ass = a;
+    this->expr = NULL;
+    this->setLabel("Expression");
+}
+
+AstExpression::AstExpression(AstExpression* e, AstAssignExpr* a)
+{
+    this->ass = a;
+    this->expr = e;
+    this->setLabel("Expression");
+}
+
+void AstExpression::Visit()
+{
+    if(expr)
+        expr->Visit();
+
+    ass->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    
+    if(expr)
+        AST::vis.addEdge(this->getUID(), expr->getUID());
+
+    AST::vis.addEdge(this->getUID(), ass->getUID());
+    
+    //Output 3AC
+}

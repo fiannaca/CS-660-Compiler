@@ -73,9 +73,9 @@ class CCompiler;
 %type <ast> multiplicative_expression additive_expression shift_expression
 %type <ast> relational_expression equality_expression and_expression
 %type <ast> exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
-%type <ast> constant_expression conditional_expression
+%type <ast> constant_expression conditional_expression assignment_operator assignment_expression
 
-%type <ast> assignment_expression expression cast_expression type_name
+%type <ast>  expression cast_expression type_name
 
 %%
 translation_unit
@@ -1093,10 +1093,12 @@ expression
 	: assignment_expression
 		{
 		    driver.printRed("expression -> assignment_expression");
+                    $$ = (AST*) new AstExpression((AstAssignExpr*)$1);
 		}
 	| expression COMMA assignment_expression
 		{
 		    driver.printRed("expression -> expression COMMA assignment_expression");
+                    $$ = (AST*) new AstExpression((AstExpression*)$1, (AstAssignExpr*)$3);
 		}
 	;
 
@@ -1104,10 +1106,12 @@ assignment_expression
 	: conditional_expression
 		{
 		    driver.printRed("assignment_expression -> conditional_expression");
+                    $$ = (AST*) new AstAssignExpr((AstConditionalExpr*)$1);
 		}
 	| unary_expression assignment_operator assignment_expression
 		{
 		    driver.printRed("assignment_expression -> unary_expression assignment_operator assignment_expression");
+                    $$ = (AST*) new AstAssignExpr((AstUnaryExpr*)$1, (AstAssignOp*)$2, (AstAssignExpr*)$3);
 		}
 	;
 
@@ -1115,46 +1119,57 @@ assignment_operator
 	: EQ
 		{
 		    driver.printRed("assignment_operator -> EQ");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::EQ);
 		}
 	| MUL_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> MUL_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::MUL_ASSIGN);
 		}
 	| DIV_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> DIV_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::DIV_ASSIGN);
 		}
 	| MOD_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> MOD_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::MOD_ASSIGN);
 		}
 	| ADD_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> ADD_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::ADD_ASSIGN);
 		}
 	| SUB_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> SUB_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::SUB_ASSIGN);
 		}
 	| LEFT_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> LEFT_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::LEFT_ASSIGN);
 		}
 	| RIGHT_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> RIGHT_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::RIGHT_ASSIGN);
 		}
 	| AND_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> AND_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::AND_ASSIGN);
 		}
 	| XOR_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> XOR_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::XOR_ASSIGN);
 		}
 	| OR_ASSIGN
 		{
 		    driver.printRed("assignment_operator -> OR_ASSIGN");
+                    $$ = (AST*) new AstAssignOp(AstAssignOp::OR_ASSIGN);
 		}
 	;
 
