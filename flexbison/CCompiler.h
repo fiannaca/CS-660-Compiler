@@ -51,7 +51,8 @@ class CCompiler
         EnumType *enumType;
         SymbolInfo *enumSym; 
         int structVarCount;  
-
+        string currentStorageType;
+        string currentTypeQual; 
  
         yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
         void allocateSymbol(); 

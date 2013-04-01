@@ -75,17 +75,24 @@ class CCompiler;
 %type <ast> exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
 %type <ast> constant_expression conditional_expression assignment_operator assignment_expression
 
-%type <ast>  expression cast_expression type_name
-
+%type <ast>  expression cast_expression type_name  
+%type <ast>  jump_statement iteration_statement statement selection_statement statement_list compound_statement declaration_list
+%type <ast>  expression_statement  labeled_statement  direct_abstract_declarator parameter_type_list abstract_declarator
+%type <ast>  pointer  type_specifier  type_qualifier struct_declaration_list storage_class_specifier 
+%type <ast>  translation_unit  external_declaration function_definition declaration  declarator declaration_specifiers
+%type <ast>  init_declarator_list  struct_or_union_specifier enum_specifier  type_qualifier_list
+%type <ast>  struct_declarator_list
 %%
 translation_unit
 	: external_declaration
 		{
 		    driver.printRed("translation_unit -> external_declaration");
+		    $$ = (AST *) new AstTrans( NULL , ( AstExternDec *) $1);
 		}
 	| translation_unit external_declaration
 		{
 		    driver.printRed("translation_unit -> translation_unit external_declaration");
+		     $$ = (AST *) new AstTrans( (AstTrans*) $1 , ( AstExternDec *) $2);
 		}
 	;
 
@@ -137,10 +144,12 @@ external_declaration
 	: function_definition
 		{
 		    driver.printRed("external_declaration -> function_declaration");
+		    $$ = (AST *)$1;
 		}
 	| declaration
 		{
 		    driver.printRed("external_declaration -> declaration");
+		    $$ = (AST *)$1;
 		}
 	;
 
@@ -148,18 +157,22 @@ function_definition
 	: declarator compound_statement
 		{
 		    driver.printRed("function_definition -> declarator compound_statement");
+		    $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $1 , ( AstCompound *) $2  , NULL , NULL ) ; 
 		}
 	| declarator declaration_list compound_statement
 		{
 		    driver.printRed("function_definition -> declarator declaration_list compound_statement");
+		     $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $1 , ( AstCompound *) $3  ,(AstDeclList *)$2 , NULL ) ; 
 		}
 	| declaration_specifiers declarator compound_statement
 		{
 		    driver.printRed("function_definition -> declaration_specifiers declarator coumpound_statement");
+		    $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $2 , ( AstCompound *) $3  ,NULL  , (AstDecSpeci*)$1 ) ;
 		}
 	| declaration_specifiers declarator declaration_list compound_statement
 		{
 		    driver.printRed("function_definition -> declaration_specifiers declarator declaration_list compound)_statement");
+		    $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $2 , ( AstCompound *) $4  ,(AstDeclList *)$3 , (AstDecSpeci*)$1 ) ;
 		}
 	;
 
@@ -168,6 +181,7 @@ declaration
 		{
 		    driver.printDebug("Declaration .... "); 
                     driver.printRed("declaration -> declaration_specifiers SEMI");
+            $$ = (AST *) new AstDecl ( (AstDecSpeci *)$1 , NULL);
                                      
 		}
 	| declaration_specifiers init_declarator_list SEMI
@@ -189,7 +203,7 @@ declaration
                                      << ", Type: " << inf->symbolType->GetName()
                                      << std::endl; 
                        }
-                    
+             $$ = (AST *) new AstDecl ( (AstDecSpeci *)$1 , (AstInitSpecList *)$2);       
 		}
 	;
 
@@ -197,10 +211,12 @@ declaration_list
 	: declaration
 		{
 		    driver.printRed("declaration_list -> declaration");
+		    $$ = (AST *) new AstDeclList(NULL ,(AstDecl *) $1) ;
 		}
 	| declaration_list declaration
 		{
 		    driver.printRed("declaration_list -> declaration_list declaration");
+		    $$ = (AST *) new AstDeclList((AstDeclList *)$1 ,(AstDecl *) $2) ;
 		}
 	;
 
@@ -208,26 +224,32 @@ declaration_specifiers
 	: storage_class_specifier
 		{
 		    driver.printRed("declaration_specifiers -> storage_class_specifier");
+		    $$ = (AST *) new AstDecSpeci(driver.currentStorageType,"",NULL,NULL); 
 		}
 	| storage_class_specifier declaration_specifiers
 		{
 		    driver.printRed("declaration_specifiers -> storage_class_specifier declaration_specifiers");
+		    $$ = (AST *) new AstDecSpeci(driver.currentStorageType,"",(AstDecSpeci *)$2,NULL);
 		}
 	| type_specifier
 		{
 		    driver.printRed("declaration_specifiers -> type_specifier");
+		    $$ = (AST *) new AstDecSpeci(driver.currentStorageType,"",NULL,(AstTypeSpeci*)$1);
 		}
 	| type_specifier declaration_specifiers
 		{
 		    driver.printRed("declaration_specifiers -> type_specifier declaration_specifiers");
+		    $$ = (AST *) new AstDecSpeci(driver.currentStorageType,"",(AstDecSpeci *)$2,(AstTypeSpeci*)$1);
 		}
 	| type_qualifier 
 		{
 		    driver.printRed("declaration_specifiers -> type_qualifier");
+		    $$ = (AST *) new AstDecSpeci("",driver.currentTypeQual ,NULL,NULL);
 		}
 	| type_qualifier declaration_specifiers
 		{
 		    driver.printRed("declaration_specifiers -> type_qualifier declaration_specifiers");
+		    $$ = (AST *) new AstDecSpeci("",driver.currentTypeQual ,(AstDecSpeci *)$2,NULL);
 		}
 	;
 
@@ -236,29 +258,34 @@ storage_class_specifier
 		{
 		    driver.printRed("storage_class_specifier -> AUTO");
 		    driver.currentSymbol->storage_class = AUTO;  
+		    driver.currentStorageType = "AUTO";
 		}
 	| REGISTER
 		{
 		    driver.printRed("storage_class_specifier -> REGISTER");
                     driver.currentSymbol->storage_class = REGISTER;  
+             driver.currentStorageType = "REGISTER";
  
 		}
 	| STATIC
 		{
 		    driver.printRed("storage_class_specifier -> STATIC");
                     driver.currentSymbol->storage_class = STATIC;  
+             driver.currentStorageType = "STATIC";
 
 		}
 	| EXTERN
 		{
 		    driver.printRed("storage_class_specifier -> EXTERN");
                     driver.currentSymbol->storage_class = EXTERN;  
+             driver.currentStorageType = "EXTERN";
             
 		}
 	| TYPEDEF
 		{
 		    driver.printRed("storage_class_specifier -> TYPEDEF");
-                    driver.currentSymbol->storage_class = TYPEDEF;  
+                    driver.currentSymbol->storage_class = TYPEDEF;
+             driver.currentStorageType = "TYPEDEF";    
  
 		}
 	;
@@ -270,6 +297,7 @@ type_specifier
                     driver.printRed("type_specifier -> VOID");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType("VOID",INT_SIZE);
+                    $$  =(AST *) new AstTypeSpeci( "VOID" , NULL , NULL  );
 
  
 		}
@@ -278,18 +306,21 @@ type_specifier
 		    driver.printRed("type_specifier -> CHAR");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType("CHAR",CHAR_SIZE);
+             $$  =(AST *) new AstTypeSpeci( "CHAR" , NULL, NULL  );
 		}
 	| SHORT
 		{
 		    driver.printRed("type_specifier -> SHORT");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType( "SHORT", SHORT_SIZE);
+            $$  =(AST *) new AstTypeSpeci( "SHORT" , NULL , NULL );
 		}
 	| INT
 		{
 		    driver.printRed("type_specifier -> INT");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType( "INT", INT_SIZE);
+            $$  =(AST *) new AstTypeSpeci( "INT" , NULL, NULL  );
 
 		}
 	| LONG
@@ -297,12 +328,15 @@ type_specifier
 		    driver.printRed("type_specifier -> LONG");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType("LONG" , LONG_SIZE);
+            $$  =(AST *) new AstTypeSpeci( "LONG" , NULL , NULL );
 		}
 	| FLOAT 
 		{
 		    driver.printRed("type_specifier -> FLOAT");
                     if ( driver.currentSymbol->symbolType == NULL )
                        driver.currentSymbol->symbolType = new PODType ("FLOAT" , FLOAT_SIZE); 
+            $$  =(AST *) new AstTypeSpeci( "FLOAT" , NULL , NULL );
+            
 		}
 	| DOUBLE
 		{
@@ -312,6 +346,7 @@ type_specifier
                       driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
                     ///else 
                       //////std::cout<<  driver.currentSymbol->symbolType->GetName();  
+              $$  =(AST *) new AstTypeSpeci( "DOUBLE" , NULL, NULL  );
 		}
 	| SIGNED
 		{
@@ -319,6 +354,7 @@ type_specifier
                     newPod->SetSigned(true); 
                     driver.printRed("type_specifier -> SIGNED"); 
                     driver.currentSymbol->symbolType = newPod;
+             $$  =(AST *) new AstTypeSpeci( "SIGNED" , NULL, NULL  );
                      
 
 		}
@@ -328,21 +364,23 @@ type_specifier
                     newPod->SetSigned(false); 
                     driver.printRed("type_specifier -> UNSIGNED");
                     driver.currentSymbol->symbolType = newPod; 
-
-
+            $$  =(AST *) new AstTypeSpeci( "UNSIGNED" , NULL , NULL );  
+               
 	        }
 	| struct_or_union_specifier
 		{
 		    driver.printRed("type_specifier -> struct_or_union_specifier");
-
+            $$  =(AST *) new AstTypeSpeci( "STRUCT" , (AstStructUniSpeci *)$1 , NULL );
 		}
 	| enum_specifier
 		{
 		    driver.printRed("type_specifier -> enum_specifier");
+		    $$  =(AST *) new AstTypeSpeci( "ENUM" , NULL , ( AstEnumSpeci *)$1 );
 		}
 	| TYPEDEF_NAME
 		{
 		    driver.printRed("type_specifier -> TYPEDEF_NAME");
+		    $$  =(AST *) new AstTypeSpeci( "TYPEDEF" , (AstStructUniSpeci *)$1 , NULL );
 		}
 	;
 
@@ -351,11 +389,13 @@ type_qualifier
 		{
 		    driver.printRed("type_qualifier -> CONST");
                     driver.currentSymbol->type_qualifier = CONST;
-		}
+            driver.currentTypeQual = "CONST";		
+        }
 	| VOLATILE
 		{
 		    driver.printRed("type_qualifier -> VOLATILE");
                     driver.currentSymbol->type_qualifier = VOLATILE;
+            driver.currentTypeQual = "VOLATILE";
              
 		}
 	;
@@ -365,15 +405,19 @@ struct_or_union_specifier
 
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union identifier LBRACE struct_declaration_list RBRACE");
+		    $$  = new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , (AstStructDeclList *)$5); 
                       
 		}
 	| struct_or_union LBRACE struct_declaration_list RBRACE
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union LBRACE struct_declaration_list RBRACE");
+		    $$  = new AstStructUniSpeci("STRUCT" , NULL , (AstStructDeclList *)$3); 
 		}
 	| struct_or_union identifier
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union identifier");
+		    $$  = new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , NULL); 
+		    
 		}
 	;
 
@@ -753,17 +797,21 @@ pointer
 		{
 		    driver.printRed("pointer -> star");
                     driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+            $$ = (AST *) new AstPointer(NULL,NULL);
 		}
 	| STAR type_qualifier_list
 		{
 		    driver.printRed("pointer -> STAR type_qualifier_list");
                     driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+            $$ = ( AST *) new AstPointer(NULL , (AstTypeQualList *)$2);
+ 
   
 		}
 	| STAR pointer
 		{
 		    driver.printRed("pointer -> STAR pointer");
                     driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
+            $$ = ( AST *) new AstPointer((AstPointer *)$2 , NULL);
 
                          
 		}
@@ -771,7 +819,8 @@ pointer
 		{
 		    driver.printRed("pointer -> STAR type_qualifier_list pointer");
                     driver.currentSymbol->symbolType  = new PointerType(driver.currentSymbol->symbolType,"POINTER", INT_SIZE);
- 
+            $$ = ( AST *) new AstPointer((AstPointer *)$3 , (AstTypeQualList *)$2);
+             
 		}
 	;
 
@@ -779,10 +828,12 @@ type_qualifier_list
 	: type_qualifier
 		{
 		    driver.printRed("type_qualifier_list -> type_qualifier");
+		    $$ = (AST *)new AstTypeQualList( driver.currentTypeQual, NULL);
 		}
 	| type_qualifier_list type_qualifier
 		{
 		    driver.printRed("type_qualifier_list -> type_qualifier_list type_qualifier");
+		    $$ = (AST *)new AstTypeQualList( driver.currentTypeQual,(AstTypeQualList *) $1);
 		}
 	;
 
@@ -875,14 +926,18 @@ abstract_declarator
 	: pointer
 		{
 		    driver.printRed("abstract_declarator -> pointer");
+		    $$ = (AST *) $1;
+		    
 		}
 	| direct_abstract_declarator
 		{
 		    driver.printRed("abstract_declarator -> direct_abstract_declarator");
+		    $$ = (AST *) $1;
 		}
 	| pointer direct_abstract_declarator
 		{
 		    driver.printRed("abstract_declarator -> pointer direct_abstract_declarator");
+		    $$ = (AST *) new AstAbstractDecl( (AstPointer *)$1 , (AstDirectAbsDecl *)$2);
 		}
 	;
 
@@ -890,38 +945,49 @@ direct_abstract_declarator
 	: LPAREN abstract_declarator RPAREN
 		{
 		    driver.printRed("direct_abstract_declarator -> LPAREN abstract_declarator RPAREN");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 1, (AstAbstractDecl *)$2 , NULL, NULL , NULL); 
 		}
 	| LBRAK RBRAK
 		{
 		    driver.printRed("direct_abstract_declarator -> LBRAK RBRAK");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 2, NULL , NULL, NULL , NULL);
 		}
 	| LBRAK constant_expression RBRAK
 		{
 		    driver.printRed("direct_abstract_declarator -> LBRAK constant_expression RBRAK");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 3, NULL , (AstExpression *)$2, NULL , NULL);
 		}
 	| direct_abstract_declarator LBRAK RBRAK
 		{
 		    driver.printRed("direct_abstract_declarator -> direct_abstract_declarator LBRAK RBRAK");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 4, NULL , NULL , (AstDirectAbsDecl*) $1 , NULL);
+		    
 		}
 	| direct_abstract_declarator LBRAK constant_expression RBRAK
 		{
 		    driver.printRed("direct_abstract_declarator -> direct_abstract_declarator LBRAK constant_expression RBRAK");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 5, NULL , (AstExpression *)$3 , NULL , NULL);
 		}
 	| LPAREN RPAREN
 		{
 		    driver.printRed("direct_abstract_declarator -> LPAREN RPAREN");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 6, NULL , NULL, NULL , NULL);
 		}
 	| LPAREN parameter_type_list RPAREN
 		{
 		    driver.printRed("direct_abstract_declarator -> LPAREN parameter_type_list RPAREN");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 7, NULL , NULL, NULL , (AstTypeParamList * )$2 );
 		}
 	| direct_abstract_declarator LPAREN RPAREN
 		{
 		    driver.printRed("direct_abstract_declarator -> direct_abstract_declarator LPAREN RPAREN");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 8, NULL , NULL , (AstDirectAbsDecl*) $1 , NULL);
+		    
 		}
 	| direct_abstract_declarator LPAREN parameter_type_list RPAREN
 		{
 		    driver.printRed("direct_abstract_declarator -> direct_abstract_declarator LPAREN parameter_type_list RPAREN");
+		    $$ = (AST *) new  AstDirectAbsDecl ( 9, NULL , NULL , (AstDirectAbsDecl*) $1 ,(AstTypeParamList * )$3 );
 		}
 	;
 
@@ -929,26 +995,32 @@ statement
 	: labeled_statement
 		{
 		    driver.printRed("statement -> labeled_statement");
+		    $$ = (AST *)$1;
 		}
 	| compound_statement 
 		{
 		    driver.printRed("statement -> compound_statement");
+		    $$ = (AST *)$1;
 		}
 	| expression_statement
 		{
 		    driver.printRed("statement -> expression_statement");
+		     $$ = (AST *)$1;
 		}
 	| selection_statement
 		{
 		    driver.printRed("statement -> selection_statement");
+		     $$ = (AST *)$1;
 		}
 	| iteration_statement
 		{
 		    driver.printRed("statement -> iteration_statement");
+		    $$ = (AST *)$1;
 		}
 	| jump_statement
 		{
 		    driver.printRed("statement -> jump_statement");
+		     $$ = (AST *)$1;
 		}
 	;
 
@@ -956,14 +1028,17 @@ labeled_statement
 	: identifier COLON statement
 		{
 		    driver.printRed("labeled_statement -> identifier COLON statement");
+		    $$ = (AST *) new AstLabel((AstID *)$1 , (AstStatement *)$3);
 		}
 	| CASE constant_expression COLON statement
 		{
 		    driver.printRed("labeled_statement -> CASE constant_expression COLON statement");
+		    $$ = (AST *) new AstCase ( (AstExpression *) $2 , (AstStatement *)$4);
 		}
 	| DEFAULT COLON statement
 		{
 		    driver.printRed("labeled_statement -> DEFAULT COLON statement");
+		    $$ = (AST *) new AstDefault ( (AstStatement *)$3);
 		}
 	;
 
@@ -971,10 +1046,13 @@ expression_statement
 	: SEMI
 		{
 		    driver.printRed("expression_statement -> SEMI");
+		    $$ = (AST *) new AstEmpty(); 
+		    
 		}
 	| expression SEMI
 		{
 		    driver.printRed("expression_statement -> expression SEMI");
+		    $$ = (AST *) ( ( AstExpression *) $1 ) ;
 		}
 	;
 
@@ -982,18 +1060,22 @@ compound_statement
 	: LBRACE reset_current_symbol RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE RBRACE");
+		    $$ = (AST *) new AstCompound(NULL,NULL);
 		}
 	| LBRACE reset_current_symbol enter_scope lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE statement_list RBRACE");
+		    $$ = (AST *) new AstCompound( NULL,(AstStatementList *)$5);
 		}
 	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list RBRACE");
+		    $$ = (AST *) new AstCompound( (AstDeclList *)$5 , NULL);
 		}
 	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list statement_list RBRACE");
+		    $$ = (AST *) new AstCompound ( (AstDeclList *)$5 , (AstStatementList *)$7);
 		}
 	;
 
@@ -1001,10 +1083,12 @@ statement_list
 	: statement
 		{
 		    driver.printRed("statement_list -> statement");
+		    $$ = (AST *)$1;
 		}
 	| statement_list statement
 		{
 		    driver.printRed("statement_list -> statement_list statement");
+		    $$ = (AST *) new AstStatementList((AstStatement *)$2 , ( AstStatementList *)$1);
 		}
 	;
 
@@ -1012,14 +1096,17 @@ selection_statement
 	: IF LPAREN expression RPAREN statement
 		{
 		    driver.printRed("selection_statement -> IF LPAREN expression RPAREN statement");
+		    $$ = (AST *) new AstIfStatement ( (AstExpression *) $3 , (AstStatement *) $5 , NULL) ; 
 		}
 	| IF LPAREN expression RPAREN statement ELSE statement
 		{
 		    driver.printRed("selection_statement -> IF LPAREN expression RPAREN statement ELSE statement");
+		    $$ = (AST *) new AstIfStatement ( (AstExpression *) $3 , (AstStatement *) $5 , (AstStatement *) $7  ) ;
 		}
 	| SWITCH LPAREN expression RPAREN statement
 		{
 		    driver.printRed("selection_statement -> SWITCH LPAREN expression RPAREN statement");
+		    $$ = (AST *) new AstSwitch ( (AstExpression *) $3 , (AstStatement *) $5 ) ;
 		}
 	;
 
@@ -1027,42 +1114,53 @@ iteration_statement
 	: WHILE LPAREN expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> WHILE LPAREN expression RPAREN statement");
+		    $$ = (AST *) new AstWhile( (AstExpression *) $3 , (AstStatement *) $5 ) ; 
 		}
 	| DO statement WHILE LPAREN expression RPAREN SEMI
 		{
 		    driver.printRed("iteration_statement -> DO statement WHILE LPAREN expression RPAREN SEMI");
+		    $$ = (AST *) new AstDoWhile( (AstExpression *) $5 , (AstStatement *) $5); 
 		}
 	| FOR LPAREN SEMI SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI SEMI RPAREN statement");
+		    $$ = (AST *) new AstFor(NULL,NULL,NULL, (AstStatement *) $6); 
 		}
 	| FOR LPAREN SEMI SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI SEMI expression RPAREN statement");
+		    $$ = (AST *) new AstFor(NULL,NULL,(AstExpression *) $5 , (AstStatement *) $7);
 		}
 	| FOR LPAREN SEMI expression SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI expression SEMI RPAREN statement");
+		    $$ = (AST *) new AstFor(NULL ,(AstExpression *)$4,NULL , (AstStatement *) $7 ) ;  
 		}
 	| FOR LPAREN SEMI expression SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI expression SEMI expression RPAREN statement");
+		    $$ = (AST *) new AstFor(NULL ,(AstExpression *)$4,(AstExpression *)$6 , (AstStatement *) $8 ) ;
 		}
 	| FOR LPAREN expression SEMI SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI SEMI RPAREN statement");
+		    $$ = (AST *) new AstFor((AstExpression *)$3 ,NULL,NULL , (AstStatement *) $7 ) ;
 		}
 	| FOR LPAREN expression SEMI SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI SEMI expression RPAREN statement");
+		    $$ = (AST *) new AstFor((AstExpression *)$3,NULL,(AstExpression *)$6 , (AstStatement *) $8 ) ;
 		}
 	| FOR LPAREN expression SEMI expression SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI expression SEMI RPAREN statement");
+		    $$ = (AST *) new AstFor((AstExpression *)$3,(AstExpression *)$5, NULL , (AstStatement *) $8 ) ;
+		    
 		}
 	| FOR LPAREN expression SEMI expression SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI expression SEMI expression RPAREN statement");
+		    $$ = (AST *) new AstFor((AstExpression *)$3,(AstExpression *)$5, (AstExpression *)$7 , (AstStatement *) $9 ) ;
 		}
 	;
 
@@ -1070,22 +1168,27 @@ jump_statement
 	: GOTO identifier SEMI
 		{
 		    driver.printRed("jump_statement -> GOTO identifier SEMI");
+		    $$ = (AST *) new AstGoto( (AstID *)$2);
 		}
 	| CONTINUE SEMI
 		{
 		    driver.printRed("jump_statement -> CONTINUE SEMI");
+		    $$ = (AST *) new AstContinue();
 		}
 	| BREAK SEMI
 		{
 		    driver.printRed("jump_statement -> BREAK SEMI");
+		    $$ = (AST *) new AstBreak(); 
 		}
 	| RETURN SEMI
 		{
 		    driver.printRed("jump_statement -> RETURN SEMI");
+		    $$ = (AST*)new AstReturn(NULL); 
 		}
 	| RETURN expression SEMI
 		{
 		    driver.printRed("jump_statement -> RETURN expression SEMI");
+		    $$ = (AST*)new AstReturn( ((AstExpression*)$2));
 		}
 	;
 
