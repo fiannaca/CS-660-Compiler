@@ -516,15 +516,247 @@ class AstExpression : public AST
 	void Visit();
 };
 
+class AstReturn : public AST
+{
+    AstExpression *expr;
+
+    public:    
+        AstReturn(AstExpression *r);
+        AstReturn();
+        void Visit();
+};
+
+class AstContinue : public AST 
+{
+    public:
+        AstContinue();
+        void Visit();	
+};
+
+class AstBreak : public AST 
+{	
+    public:
+        AstBreak();
+        void Visit();	
+};
+
+class AstGoto : public AST
+{
+    public:
+        AstGoto();
+        void Visit();	
+};
+
+class AstJump : public AST
+{
+    AstGoto* go;
+    AstID* id;
+    AstContinue* cont;
+    AstBreak* br;
+    AstReturn* ret;
+    AstExpression* expr;
+
+    public:
+        enum Type
+        {
+            GOTO,
+            CONTINUE,
+            BREAK,
+            EMPTY_RETURN,
+            RETURN
+        } t;
+
+        AstJump(AstGoto* g, AstID* i);
+        AstJump(AstContinue* c);
+        AstJump(AstBreak* b);
+        AstJump(AstReturn* r);
+        AstJump(AstReturn* r, AstExpression* e);
+        void Visit();
+};
+
+class AstStatement;
+
+class AstDoWhile : public AST
+{
+    AstExpression *test;
+    AstStatement *statement;
+
+    public:
+        AstDoWhile( AstStatement *s, AstExpression *t );
+        void Visit();
+};
+
+class AstWhile : public AST
+{
+    AstExpression *test;
+    AstStatement *statement; 
+
+    public:
+        AstWhile( AstExpression *test, AstStatement *statement );
+        void Visit();
+};
+
+class AstFor : public AST
+{
+    AstExpression *init;
+    AstExpression *test;
+    AstExpression *increment;
+    AstStatement *statement; 
+
+    public:
+        AstFor(AstExpression *init , AstExpression *test , AstExpression *increment , AstStatement *statement);
+        void Visit();
+};
+
+class AstIteration : public AST
+{
+    AstDoWhile* dwl;
+    AstWhile* wl;
+    AstFor* fr;
+
+    public:
+        enum Type
+        {
+            DOWHILE,
+            WHILE,
+            FOR
+        } t;
+
+        AstIteration(AstDoWhile* d);
+        AstIteration(AstWhile* w);
+        AstIteration(AstFor* f);
+        void Visit();
+};
+
+class AstSwitch : public AST
+{
+    AstExpression* expr; 
+    AstStatement* stmt;
+
+    public:
+        AstSwitch(AstExpression* e, AstStatement* s);
+        void Visit();
+};
+
+class AstIfElse : public AST 
+{
+    AstExpression *test ; 
+    AstStatement *statement;
+    AstStatement *elseStatement;
+    
+    public:
+        AstIfElse( AstExpression *test , AstStatement *statement , AstStatement *elseStatement );
+        void Visit();
+};
+
+class AstSelection : public AST
+{
+    AstSwitch* swtch;
+    AstIfElse* ifelse;
+
+    public:
+        enum Type
+        {
+            SWITCH,
+            IFELSE
+        } t;
+
+        AstSelection(AstSwitch* s);
+        AstSelection(AstIfElse* ie);
+        void Visit();
+};
+
+class AstStatementList : public AST
+{
+    AstStatement *stmt; 
+    AstStatementList *list;
+
+    public:
+        AstStatementList(AstStatement *s);
+        AstStatementList(AstStatementList* l, AstStatement *s);
+        void Visit();
+};
+
+class AstDeclarationList;
+
+class AstCompoundStmt : public AST
+{
+    AstStatementList* stmtList;
+    AstDeclarationList* declList;
+
+    public:
+        AstCompoundStmt(AstDeclarationList* d, AstStatementList* s);
+        void Visit();
+};
+
+class AstExprStmt : public AST
+{
+    AstExpression* expr;
+
+    public:
+        AstExprStmt(AstExpression* e);
+        void Visit();
+};
+
+class AstLabeledStmt : public AST
+{
+    AstID *id;
+    AstStatement *stmt;
+    AstConstantExpr *constExpr;
+
+    public:
+        enum Type
+        {
+            NO_CASE,
+            CASE,
+            DEFAULT
+        } t;
+
+        AstLabeledStmt(AstID* i, AstStatement* s);
+        AstLabeledStmt(AstConstantExpr* c, AstStatement* s);
+        AstLabeledStmt(AstStatement* s);
+        void Visit();
+};
+
+class AstStatement : public AST 
+{
+    AstLabeledStmt  *lbl;
+    AstCompoundStmt *cmp;
+    AstExprStmt     *expr;
+    AstSelection    *slct;
+    AstIteration    *iter;
+    AstJump         *jump;
+
+    public:
+        enum Type
+        {
+            LABELED,
+            COMPOUND,
+            EXPR,
+            SELECT,
+            ITER,
+            JUMP
+        } t;
+
+        AstStatement(AstLabeledStmt* l);
+        AstStatement(AstCompoundStmt* c);
+        AstStatement(AstExprStmt* e);
+        AstStatement(AstSelection* s);
+        AstStatement(AstIteration* i);
+        AstStatement(AstJump* j);
+
+        void Visit();
+};
 
 
 
 
-
-
-
-
-
+//TODO - Implement the classes below here later
+class AstDeclarationList : public AST 
+{
+    public:
+        void Visit(){}
+};
 
 
 

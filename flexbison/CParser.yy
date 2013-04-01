@@ -74,8 +74,10 @@ class CCompiler;
 %type <ast> relational_expression equality_expression and_expression
 %type <ast> exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
 %type <ast> constant_expression conditional_expression assignment_operator assignment_expression
+%type <ast> cast_expression expression jump_statement iteration_statement selection_statement
+%type <ast> statement_list compound_statement expression_statement labeled_statement
 
-%type <ast>  expression cast_expression type_name
+%type <ast> type_name statement declaration_list
 
 %%
 translation_unit
@@ -929,26 +931,32 @@ statement
 	: labeled_statement
 		{
 		    driver.printRed("statement -> labeled_statement");
+                    $$ = (AST*) new AstStatement((AstLabeledStmt*)$1);
 		}
 	| compound_statement 
 		{
 		    driver.printRed("statement -> compound_statement");
+                    $$ = (AST*) new AstStatement((AstCompoundStmt*)$1);
 		}
 	| expression_statement
 		{
 		    driver.printRed("statement -> expression_statement");
+                    $$ = (AST*) new AstStatement((AstExprStmt*)$1);
 		}
 	| selection_statement
 		{
 		    driver.printRed("statement -> selection_statement");
+                    $$ = (AST*) new AstStatement((AstSelection*)$1);
 		}
 	| iteration_statement
 		{
 		    driver.printRed("statement -> iteration_statement");
+                    $$ = (AST*) new AstStatement((AstIteration*)$1);
 		}
 	| jump_statement
 		{
 		    driver.printRed("statement -> jump_statement");
+                    $$ = (AST*) new AstStatement((AstJump*)$1);
 		}
 	;
 
@@ -956,14 +964,17 @@ labeled_statement
 	: identifier COLON statement
 		{
 		    driver.printRed("labeled_statement -> identifier COLON statement");
+                    $$ = (AST*) new AstLabeledStmt((AstID*)$1, (AstStatement*)$3);
 		}
 	| CASE constant_expression COLON statement
 		{
 		    driver.printRed("labeled_statement -> CASE constant_expression COLON statement");
+                    $$ = (AST*) new AstLabeledStmt((AstConstantExpr*)$2, (AstStatement*)$4);
 		}
 	| DEFAULT COLON statement
 		{
 		    driver.printRed("labeled_statement -> DEFAULT COLON statement");
+                    $$ = (AST*) new AstLabeledStmt((AstStatement*)$3);
 		}
 	;
 
@@ -971,10 +982,12 @@ expression_statement
 	: SEMI
 		{
 		    driver.printRed("expression_statement -> SEMI");
+                    $$ = (AST*) new AstExprStmt(NULL);
 		}
 	| expression SEMI
 		{
 		    driver.printRed("expression_statement -> expression SEMI");
+                    $$ = (AST*) new AstExprStmt((AstExpression*)$1);
 		}
 	;
 
@@ -982,18 +995,22 @@ compound_statement
 	: LBRACE reset_current_symbol RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE RBRACE");
+                    $$ = (AST*) new AstCompoundStmt(NULL, NULL);
 		}
 	| LBRACE reset_current_symbol enter_scope lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE statement_list RBRACE");
+                    $$ = (AST*) new AstCompoundStmt(NULL, (AstStatementList*)$5);
 		}
 	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list RBRACE");
+                    $$ = (AST*) new AstCompoundStmt((AstDeclarationList*)$5, NULL);
 		}
 	| LBRACE  reset_current_symbol enter_scope insert_mode declaration_list lookup_mode statement_list leave_scope RBRACE
 		{
 		    driver.printRed("compound_statement -> LBRACE declaration_list statement_list RBRACE");
+                    $$ = (AST*) new AstCompoundStmt((AstDeclarationList*)$5, (AstStatementList*)$7);
 		}
 	;
 
@@ -1001,10 +1018,12 @@ statement_list
 	: statement
 		{
 		    driver.printRed("statement_list -> statement");
+                    $$ = (AST*) new AstStatementList((AstStatement*)$1);
 		}
 	| statement_list statement
 		{
 		    driver.printRed("statement_list -> statement_list statement");
+                    $$ = (AST*) new AstStatementList((AstStatementList*)$1, (AstStatement*)$2);
 		}
 	;
 
@@ -1012,14 +1031,17 @@ selection_statement
 	: IF LPAREN expression RPAREN statement
 		{
 		    driver.printRed("selection_statement -> IF LPAREN expression RPAREN statement");
+                    $$ = (AST*) new AstSelection(new AstIfElse((AstExpression*)$3, (AstStatement*)$5, NULL));
 		}
 	| IF LPAREN expression RPAREN statement ELSE statement
 		{
 		    driver.printRed("selection_statement -> IF LPAREN expression RPAREN statement ELSE statement");
+                    $$ = (AST*) new AstSelection(new AstIfElse((AstExpression*)$3, (AstStatement*)$5, (AstStatement*)$7));
 		}
 	| SWITCH LPAREN expression RPAREN statement
 		{
 		    driver.printRed("selection_statement -> SWITCH LPAREN expression RPAREN statement");
+                    $$ = (AST*) new AstSelection(new AstSwitch((AstExpression*)$3, (AstStatement*)$5));
 		}
 	;
 
@@ -1027,42 +1049,52 @@ iteration_statement
 	: WHILE LPAREN expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> WHILE LPAREN expression RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstWhile((AstExpression*)$3, (AstStatement*)$5));
 		}
 	| DO statement WHILE LPAREN expression RPAREN SEMI
 		{
 		    driver.printRed("iteration_statement -> DO statement WHILE LPAREN expression RPAREN SEMI");
+                    $$ = (AST*) new AstIteration(new AstDoWhile((AstStatement*)$2, (AstExpression*)$5));
 		}
 	| FOR LPAREN SEMI SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI SEMI RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor(NULL, NULL, NULL, (AstStatement*)$6));
 		}
 	| FOR LPAREN SEMI SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI SEMI expression RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor(NULL, NULL, (AstExpression*)$5, (AstStatement*)$7));
 		}
 	| FOR LPAREN SEMI expression SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI expression SEMI RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor(NULL, (AstExpression*)$4, NULL, (AstStatement*)$7));
 		}
 	| FOR LPAREN SEMI expression SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN SEMI expression SEMI expression RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor(NULL, (AstExpression*)$4, (AstExpression*)$6, (AstStatement*)$8));
 		}
 	| FOR LPAREN expression SEMI SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI SEMI RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor((AstExpression*)$3, NULL, NULL, (AstStatement*)$7));
 		}
 	| FOR LPAREN expression SEMI SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI SEMI expression RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor((AstExpression*)$3, NULL, (AstExpression*)$6, (AstStatement*)$8));
 		}
 	| FOR LPAREN expression SEMI expression SEMI RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI expression SEMI RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor((AstExpression*)$3, (AstExpression*)$5, NULL, (AstStatement*)$8));
 		}
 	| FOR LPAREN expression SEMI expression SEMI expression RPAREN statement
 		{
 		    driver.printRed("iteration_statement -> FOR LPAREN expression SEMI expression SEMI expression RPAREN statement");
+                    $$ = (AST*) new AstIteration(new AstFor((AstExpression*)$3, (AstExpression*)$5, (AstExpression*)$7, (AstStatement*)$9));
 		}
 	;
 
@@ -1070,22 +1102,27 @@ jump_statement
 	: GOTO identifier SEMI
 		{
 		    driver.printRed("jump_statement -> GOTO identifier SEMI");
+                    $$ = (AST*) new AstJump(new AstGoto(), (AstID*)$2);
 		}
 	| CONTINUE SEMI
 		{
 		    driver.printRed("jump_statement -> CONTINUE SEMI");
+                    $$ = (AST*) new AstJump(new AstContinue());
 		}
 	| BREAK SEMI
 		{
 		    driver.printRed("jump_statement -> BREAK SEMI");
+                    $$ = (AST*) new AstJump(new AstBreak());
 		}
 	| RETURN SEMI
 		{
 		    driver.printRed("jump_statement -> RETURN SEMI");
+                    $$ = (AST*) new AstJump(new AstReturn());
 		}
 	| RETURN expression SEMI
 		{
 		    driver.printRed("jump_statement -> RETURN expression SEMI");
+                    $$ = (AST*) new AstJump(new AstReturn(), (AstExpression*)$2);
 		}
 	;
 
