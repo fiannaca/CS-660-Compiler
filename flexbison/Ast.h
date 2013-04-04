@@ -672,7 +672,11 @@ public:
 	} 
 	
 };
-
+class AstStructDecl : public AST
+{
+	
+	
+};
 class AstStatementList : public AstStatement 
 {
 	
@@ -979,7 +983,7 @@ class AstDirectDecl : public AST
 	 AstTypeParamList *pList;
 	 AstIDList *idList; 
 public:
-	AstDirectDecl(AstID *id ,  AstDirectDecl *ddecl , AstExpression *exp , AstDeclarator *decl , AstTypeParamList *plist ,AstIDList *idList  )
+	AstDirectDecl(AstID *id ,  AstDirectDecl *ddecl , AstExpression *exp , AstDeclarator *decl , AstTypeParamList *plist ,AstIDList *idList, int type  )
 	{
 		this->id = id ; 
 		this->ddecl = ddecl;
@@ -987,6 +991,7 @@ public:
 		this->exp = exp ;
 		this->pList= plist;
 		this->idList = idList; 
+		this->type = type ;
 		
 	}
 	void Visit()
@@ -1197,6 +1202,37 @@ public:
 		
 	}
 	
+};
+class AstInitDeclarator; 
+class AstInitDeclList: public AST 
+{
+	AstInitDeclarator *decl ;
+	AstInitDeclList *list;
+public:
+    AstInitDeclList( AstInitDeclarator *decl ,AstInitDeclList *list)
+    {
+		this->decl = decl;
+		this->list = list; 
+	}
+	void Visit()
+	{
+		
+	}
+};
+class AstInitDeclarator
+{
+	 AstDeclarator *decl;
+	 AstInitializer *init;
+public:
+     AstInitDeclarator( AstDeclarator *decl , AstInitializer *init )
+     {
+	     this->decl = decl;
+	     this->init = init;	 
+	 }
+     void Visit()
+     {
+		 
+	 }
 };
 class AstSpeciQualList: public AST
 {

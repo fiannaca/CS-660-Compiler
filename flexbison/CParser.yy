@@ -81,7 +81,7 @@ class CCompiler;
 %type <ast>  pointer  type_specifier  type_qualifier struct_declaration_list storage_class_specifier 
 %type <ast>  translation_unit  external_declaration function_definition declaration  declarator declaration_specifiers
 %type <ast>  init_declarator_list  struct_or_union_specifier enum_specifier  type_qualifier_list
-%type <ast>  struct_declarator_list
+%type <ast>  struct_declarator_list struct_declaration init_declarator initializer direct_declarator identifier_list
 %%
 translation_unit
 	: external_declaration
@@ -405,18 +405,18 @@ struct_or_union_specifier
 
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union identifier LBRACE struct_declaration_list RBRACE");
-		    $$  = new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , (AstStructDeclList *)$5); 
+		    $$  = (AST *)new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , (AstStructDeclList *)$5); 
                       
 		}
 	| struct_or_union LBRACE struct_declaration_list RBRACE
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union LBRACE struct_declaration_list RBRACE");
-		    $$  = new AstStructUniSpeci("STRUCT" , NULL , (AstStructDeclList *)$3); 
+		    $$  = (AST *)new AstStructUniSpeci("STRUCT" , NULL , (AstStructDeclList *)$3); 
 		}
 	| struct_or_union identifier
 		{
 		    driver.printRed("struct_or_union_specifier -> struct_or_union identifier");
-		    $$  = new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , NULL); 
+		    $$  = (AST *)new AstStructUniSpeci("STRUCT" , (AstID  *) $2 , NULL); 
 		    
 		}
 	;
@@ -439,10 +439,12 @@ struct_declaration_list
 	: struct_declaration
 		{
 		    driver.printRed("struct_declaration_list -> struct_declaration");
+		    $$ = (AST *)new AstStructDeclList( NULL , (AstStructDeclList *)$1);
 		}
 	| struct_declaration_list struct_declaration
 		{
 		    driver.printRed("struct_declaration_list -> struct_declaration_list struct_declaration");
+		    $$ = (AST *)new  AstStructDeclList(  (AstStructDecl *)  $2 , (AstStructDeclList *) $1   ); 
 		}
 	;
 
@@ -450,10 +452,12 @@ init_declarator_list
 	: init_declarator new_symbol_declaration
 		{
 		    driver.printRed("init_declarator_list -> init_declarator");
+		    $$ = (AST *)new AstInitDeclList((AstInitDeclarator *)$1 , NULL);
 		}
 	| init_declarator_list COMMA  new_symbol_declaration init_declarator
 		{
 		    driver.printRed("init_declarator_list COMMA init_declarator");
+		    $$ = (AST *)new AstInitDeclList((AstInitDeclarator *)$4 , ( AstInitDeclList *) $1);
 		}
 	;
 new_symbol_declaration
@@ -553,10 +557,13 @@ init_declarator
 	: declarator
 		{
 		    driver.printRed("init_declarator -> declarator");
+		    $$ = (AST *)new AstInitDeclarator( ( AstDeclarator *)$1 , NULL);
+		   
 		}
 	| declarator EQ initializer
 		{
 		    driver.printRed("init_declarator -> declarator EQ initializer");
+		    $$ = (AST *) new AstInitDeclarator( ( AstDeclarator *)$1 , (AstInitializer *)$3);
 		}
 	;
 
@@ -747,10 +754,12 @@ declarator
 	: direct_declarator 
 		{
 		    driver.printRed("declarator -> direct_declarator");
+		    $$ = (AST *) new AstDeclarator( NULL  , (AstDirectDecl *) $1);
 		}
 	| pointer direct_declarator 
 		{
 		    driver.printRed("declarator -> pointer direct_declarator");
+		    $$ = (AST *) new AstDeclarator( (AstPointer * )$1  , (AstDirectDecl *) $2);
 		}
 	;
 
@@ -759,36 +768,43 @@ direct_declarator
 		{
 		    
                     driver.printRed("direct_declarator -> identifier");
+                    $$ = (AST *) new AstDirectDecl( (AstID *) $1 , NULL , NULL , NULL , NULL , NULL ,1);
                     
                    
 		}
 	| LPAREN declarator RPAREN
 		{
 		    driver.printRed("direct_declarator -> LPAREN declarator RPAREN");
+		    $$ = (AST *) new AstDirectDecl( NULL , NULL , NULL , ( AstDeclarator *)$2 , NULL , NULL ,2 );
 		}
 	| direct_declarator LBRAK RBRAK
 		{
 		    driver.printRed("direct_declarator -> LBRAK RBRAK");
                     driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", 0);
+            $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , NULL , NULL , NULL , NULL,3 );
 
 		}
 	| direct_declarator LBRAK constant_expression RBRAK
 		{
 		    driver.printRed("direct_declarator -> direct_declarator LBRAK constant_expression RBRAK");
                     driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", 0);
+            $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , (AstExpression * )$3, NULL , NULL , NULL ,4);
  
 		}
 	| direct_declarator LPAREN RPAREN
 		{
 		    driver.printRed("direct_declarator -> direct_declarator LPAREN RPAREN");
+		    $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , NULL , NULL , NULL , NULL,5 );
 		}
 	| direct_declarator LPAREN parameter_type_list RPAREN
 		{
 		    driver.printRed("direct_declarator -> LPAREN parameter_type_list RPAREN");
+		    $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , NULL , NULL , (AstTypeParamList *)$3 , NULL,6 );
 		}
 	| direct_declarator LPAREN identifier_list RPAREN
 		{
 		    driver.printRed("direct_declarator -> LPAREN identifier_list RPAREN");
+		    $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , NULL , NULL , NULL, (AstIDList *)$3,7 );
 		}
 	;
 
@@ -878,10 +894,12 @@ identifier_list
 	: identifier
 		{
 		    driver.printRed("identifier_list -> identifier");
+		    $$ = (AST *) new  AstIDList ( (AstID *)$1 , NULL );
 		}
 	| identifier_list COMMA identifier
 		{
 		    driver.printRed("identifier_list -> identifier_list COMMA indentifier");
+		    $$ = (AST *) new  AstIDList ( (AstID *)$3 , ( AstIDList *) $1 );
 		}
 	;
 
