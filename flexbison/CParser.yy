@@ -82,6 +82,8 @@ class CCompiler;
 %type <ast>  translation_unit  external_declaration function_definition declaration  declarator declaration_specifiers
 %type <ast>  init_declarator_list  struct_or_union_specifier enum_specifier  type_qualifier_list
 %type <ast>  struct_declarator_list struct_declaration init_declarator initializer direct_declarator identifier_list
+%type <ast>  specifier_qualifier_list initializer_list  parameter_list parameter_declaration
+%type <ast>  enumerator enumerator_list  struct_declarator  
 %%
 translation_unit
 	: external_declaration
@@ -270,8 +272,8 @@ storage_class_specifier
 	| STATIC
 		{
 		    driver.printRed("storage_class_specifier -> STATIC");
-                    driver.currentSymbol->storage_class = STATIC;  
-             driver.currentStorageType = "STATIC";
+            driver.currentSymbol->storage_class = STATIC;  
+            driver.currentStorageType = "STATIC";
 
 		}
 	| EXTERN
@@ -284,8 +286,8 @@ storage_class_specifier
 	| TYPEDEF
 		{
 		    driver.printRed("storage_class_specifier -> TYPEDEF");
-                    driver.currentSymbol->storage_class = TYPEDEF;
-             driver.currentStorageType = "TYPEDEF";    
+            driver.currentSymbol->storage_class = TYPEDEF;
+            driver.currentStorageType = "TYPEDEF";    
  
 		}
 	;
@@ -571,6 +573,7 @@ struct_declaration
 	: specifier_qualifier_list set_member_type  struct_declarator_list  fix_struct_member_types SEMI
 		{
 		    driver.printRed("struct_declaration -> specifier_qualifier_list struct_declarator_list SEMI");
+		    $$ = (AST *) new AstStructDecl ( (AstSpeciQualList*)$1 , (AstStructDeclList *)$3 );
                     
 		}
 	;
@@ -627,28 +630,34 @@ specifier_qualifier_list
 	: type_specifier
 		{
 		    driver.printRed("specifier_qualifier_list -> type_specifier");
+		    $$ = (AST *)new AstSpeciQualList ( (AstTypeSpeci *)$1 , "" , NULL );
 		}
 	| type_specifier specifier_qualifier_list
 		{
 		    driver.printRed("specifier_qualifier_list -> type_specifier specifier_qualifier_list");
+		    $$ = (AST *)new AstSpeciQualList ( (AstTypeSpeci *)$1 , "" , (AstSpeciQualList*)$2 );
 		}
 	| type_qualifier
 		{
 		    driver.printRed("specifier_qualifier_list -> type_qualifier");
+		    $$ = (AST *)new AstSpeciQualList ( NULL , driver.currentTypeQual , NULL);
 		}
 	| type_qualifier specifier_qualifier_list
 		{
 		    driver.printRed("specifier_qualifier_list -> type_qualifier specifier_qualifier_list");
+		    $$ = (AST *)new AstSpeciQualList ( NULL , driver.currentTypeQual , (AstSpeciQualList*)$2 );
 		}
 	;
 
 struct_declarator_list
 	: struct_declarator reset_current_symbol
 		{
+		    $$ = (AST *)  new AstStructDeclatorList ( (AstStructDeclarator *)$1 , NULL );
 		    driver.printRed("struct_declarator_list -> struct_declarator");
 		}
 	| struct_declarator_list   COMMA   struct_declarator
 		{
+		    $$ = (AST *)  new AstStructDeclatorList ( (AstStructDeclarator *)$3 , ( AstStructDeclList *) $1 );
 		    driver.printRed("struct_declarator_list -> struct_declarator_list COMMA struct_declarator");
 		}
 	;
@@ -656,18 +665,22 @@ struct_declarator_list
 struct_declarator
 	: declarator 
 		{
+		    $$ = (AST *) new AstStructDeclarator( (AstDeclarator *)$1 , NULL);
 		    driver.printRed("struct_declarator -> declarator");
                     //std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
                     SymbolInfo *inf = driver.currentSymbol;  
                     driver.structUnionTypes.push_back(*inf);    
                     driver.structVarCount++; 
+                
 		}
 	| COLON constant_expression
 		{
+		    $$ = (AST *) new AstStructDeclarator( NULL , (AstExpression *)$2);
 		    driver.printRed("struct_declarator -> COLON constant_expression");
 		}
 	| declarator  COLON constant_expression
 		{
+		    $$ = (AST *) new AstStructDeclarator( (AstDeclarator *)$1 , (AstExpression *)$3);
 		    driver.printRed("struct_declarator -> declarator COLON constant_expression");
                     //std::cout<< " --->CURRENT SYM : " << driver.currentSymbol->symbol_name;
                     driver.structUnionTypes.push_back(*(driver.currentSymbol));
@@ -677,6 +690,7 @@ struct_declarator
 enum_specifier
 	: ENUM LBRACE enumerator_list RBRACE
 		{
+		     $$ = (AST *) new EnumSpecifier ( NULL , (AstEnumList *)$3);
 		     list<string>::iterator enumItems = driver.enumConsts.begin();
                      driver.printRed("enum_specifier -> ENUM LBRACE enumerator_list RBRACE");
                      while( enumItems != driver.enumConsts.end())
@@ -693,6 +707,7 @@ enum_specifier
 		}
 	| ENUM identifier  new_enum_type LBRACE enumerator_list RBRACE
 		{
+                    $$ = (AST *) new EnumSpecifier ( (AstID *)$2 , (AstEnumList *)$5);
                     driver.printRed("enum_specifier -> ENUM identifier LBRACE enumerator_list RBRACE");
                     list<string>::iterator enumItems = driver.enumConsts.begin();
                      driver.printRed("enum_specifier -> ENUM LBRACE enumerator_list RBRACE");
@@ -715,6 +730,7 @@ enum_specifier
 	| ENUM identifier
 		{
 		    driver.printRed("enum_specifier -> ENUM identifier");
+		    $$ = (AST *) new EnumSpecifier ( (AstID *)$2 , NULL);
 		}
 	;
 
@@ -732,10 +748,12 @@ enumerator_list
 	: enumerator
 		{
 		    driver.printRed("enumerator_list -> enumerator");
+		    $$ = (AST *) new AstEnumList ( (AstEnumerator *) $1 , NULL );
 		}
 	| enumerator_list COMMA enumerator
 		{
 		    driver.printRed("enumerator_list -> enumerator_list COMMA enumerator");
+		    $$ = (AST *) new AstEnumList ( (AstEnumerator *) $3 , (AstEnumList *)$1 );
 		}
 	;
 
@@ -743,10 +761,12 @@ enumerator
 	: identifier new_enum_constant
 		{
 		    driver.printRed("enumerator -> identifier");
+		    $$ = (AST *) new AstEnumerator ( (AstID *)$1 , NULL );
 		}
 	| identifier new_enum_constant EQ constant_expression
 		{
 		    driver.printRed("enumerator -> identifier EQ constant_expression");
+		    $$ = (AST *) new AstEnumerator ( (AstID *)$1 , (AstExpression *)$4 );
 		}
 	;
 
@@ -857,10 +877,12 @@ parameter_type_list
 	: parameter_list
 		{
 		    driver.printRed("parameter_type_list -> parameter_list");
+		    $$ = (AST *) new AstTypeParamList ( 1 , (AstParamList *)$1 ) ;
 		}
 	| parameter_list COMMA ELIPSIS
 		{
 		    driver.printRed("parameter_type_list -> parameter_list COMMA ELIPSIS");
+		    $$ = (AST *) new AstTypeParamList ( 2 , (AstParamList *)$1 ) ;
 		}
 	;
 
@@ -868,10 +890,12 @@ parameter_list
 	: parameter_declaration
 		{
 		    driver.printRed("parameter_list -> parameter_declaration");
+		    $$ = (AST *) new AstParamList ( (AstParamDec *)$1 , NULL );
 		}
 	| parameter_list COMMA parameter_declaration
 		{
 		    driver.printRed("parameter_list -> parameter_list COMMA parameter_declaration");
+		    $$ = (AST *) new AstParamList ( NULL , (AstParamList *)$3 );
 		}
 	;
 
@@ -879,14 +903,17 @@ parameter_declaration
 	: declaration_specifiers declarator
 		{
 		    driver.printRed("parameter_declaration -> declaration_specifiers declarator");
+		    $$ = (AST *) new AstParamDec((AstDecSpeci *)$1 , (AstDeclarator *)$2 , NULL );
 		}
 	| declaration_specifiers
 		{
 		    driver.printRed("parameter_declaration -> declaration_specifiers");
+		     $$ = (AST *) new AstParamDec((AstDecSpeci *)$1 , NULL , NULL );
 		}
 	| declaration_specifiers abstract_declarator
 		{
 		    driver.printRed("parameter_declaration -> declaration_specifiers abstract_declarator");
+		    $$ = (AST *) new AstParamDec((AstDecSpeci *)$1 , NULL , (AstAbstractDecl *) $2);
 		}
 	;
 
@@ -907,14 +934,17 @@ initializer
 	: assignment_expression
 		{
 		    driver.printRed("initializer -> assignment_expression");
+		    $$ = (AST *) new AstInitializer ( (AstAssignExpr *)$1 , NULL , 1); 
 		}
 	| LBRACE initializer_list RBRACE
 		{
 		    driver.printRed("initializer -> LBRACE initializer_list RBRACE");
+		    $$ = (AST *) new AstInitializer (NULL , (AstInitList *)$2 , 2);
 		}
 	| LBRACE initializer_list COMMA RBRACE
 		{
 		    driver.printRed("initializer -> LBRACE initializer_list COMMA RBRACE");
+		     $$ = (AST *) new AstInitializer (NULL , (AstInitList *)$2 , 3);
 		}
 	;
 
@@ -922,10 +952,12 @@ initializer_list
 	: initializer
 		{
 		    driver.printRed("initializer_list -> initializer");
+		    $$ = (AST *) new AstInitList((AstInitializer *)$1 , NULL );
 		}
 	| initializer_list COMMA initializer
 		{
 		    driver.printRed("initializer_list -> initializer_list COMMA initializer");
+		    $$ = (AST *) new AstInitList( (AstInitializer *)$3 , (AstInitList *)$1 );
 		}
 	;
 
@@ -933,10 +965,12 @@ type_name
 	: specifier_qualifier_list
 		{
 		    driver.printRed("type_name -> specifier_qualifier_list");
+		    $$ = (AST *) new AstTypeName((AstSpeciQualList *)$1 , NULL );
 		}
 	| specifier_qualifier_list abstract_declarator
 		{
 		    driver.printRed("type_name -> specifier_qualifier_list abstract_declarator");
+		    $$ = (AST *) new AstTypeName((AstSpeciQualList *)$1 , (AstAbstractDecl *)$2 );
 		}
 	;
 

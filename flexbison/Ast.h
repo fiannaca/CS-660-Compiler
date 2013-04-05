@@ -43,19 +43,27 @@ class AstNodeStub : public AST
         //Traversal
         void Visit();
 };
-
+class AstSpeciQualList;
+class AstAbstractDecl;
 class AstTypeName : public AST
 {
     //TODO implement later
 
     //Place the children nodes here
-
-    public:
+    AstSpeciQualList *list;
+    AstAbstractDecl *decl;
+public:
         //Constructor
         AstTypeName();
+        AstTypeName(AstSpeciQualList *list , AstAbstractDecl *decl )
+        {
+			this->list = list ;
+			this->decl = decl;
+		}
 
         //Traversal
         void Visit();
+       
 };
 
 class AstString : public AST
@@ -672,10 +680,39 @@ public:
 	} 
 	
 };
-class AstStructDecl : public AST
+
+class AstStructDeclarator;
+class AstStructDeclatorList : public AstStatement 
 {
+	AstStructDeclarator *sdecl; 
+	AstStructDeclList *stdlist;
+public:
+	AstStructDeclatorList( AstStructDeclarator *sdecl , AstStructDeclList *stdlist)
+	{
+		this->sdecl= sdecl ;
+		this->stdlist = stdlist; 
+	}
+	void Visit()
+	{
+		
+	} 
 	
+};
+class AstDeclarator;
+class AstStructDeclarator : public AST
+{
+	AstDeclarator *decl ;
+	AstExpression *exp ;
+public:
+    AstStructDeclarator ( AstDeclarator *decl , AstExpression *exp )
+    {
+		this->decl = decl;
+		this->exp = exp;
+	}
+	void Visit()
+	{
 	
+	}
 };
 class AstStatementList : public AstStatement 
 {
@@ -1234,10 +1271,102 @@ public:
 		 
 	 }
 };
-class AstSpeciQualList: public AST
+class AstInitializer : public AST 
 {
-	 
+	AstAssignExpr *expr ;
+	AstInitList *list;
+	int type; 
+public:
+    AstInitializer ( AstAssignExpr *expr , AstInitList *list ,int type)
+    {
+	   this->expr = expr ;
+	   this->list = list ; 
+	   this->type =   type ; 	
+	}
+	void Visit()
+	{
+		
+	}
 	
 };
+class AstEnumerator : public AST 
+{
+    AstID *id ;
+    AstExpression *exp;
+public:
+    AstEnumerator(AstID *id , AstExpression *exp )
+    {
+		this->id = id ;
+		this->exp = exp; 
+		
+	}
+	void Visit()
+	{
+		
+	}
+};
+class AstEnumList : public AST 
+{
+    AstEnumerator *en;
+    AstEnumList *list;
+public:
+    AstEnumList(  AstEnumerator *en ,AstEnumList *list )
+    {
+	    this->en = en ;
+	    this->list =list; 
+	}  	
+    void Visit()
+    {
+		
+	}
 
+};
+class EnumSpecifier : public AST 
+{
+	AstID *id ;
+	AstEnumList *list;
+public:
+    EnumSpecifier( AstID *id , AstEnumList *list )
+    {
+		this->id = id;
+		this->list = list;
+	}
+	void Visit()
+	{
+	}
+};
+
+class AstSpeciQualList: public AST
+{
+	 AstTypeSpeci *typespeci;
+	 string qual;
+	 AstSpeciQualList *list;
+public:
+     AstSpeciQualList( AstTypeSpeci *typespeci , string qual , AstSpeciQualList *list )
+     {
+	     this->typespeci = typespeci ;
+	     this->qual      = qual;
+	     this->list      = list; 
+	 } 
+	 void Visit()
+	 {
+	 
+	 }
+};
+class AstStructDecl : public AST 
+{
+	 AstSpeciQualList *list ;
+	 AstStructDeclList *declList; 
+public:
+     AstStructDecl ( AstSpeciQualList *list , AstStructDeclList *declList )
+     {
+	       this->list = list;
+	       this->declList = declList; 
+	 }
+	 void Visit()
+	 {
+	 
+	 }
+	
+};
 #endif 
