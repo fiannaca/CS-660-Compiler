@@ -1,17 +1,19 @@
 #ifndef CCompiler_H
 #define CCompiler_H
 
-//The include below for map.h is simply a stand-in for the Symbol Table
 #include <string>
 #include <map>
 #include <list>
+#include <vector>
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 
 #include "SymTab.h"
 #include "CParser.hpp"
 #include "Ast.h"
+#include "TAC_Generator.h"
 
 #define YY_DECL                                     \
     yy::CParser::token_type                         \
@@ -20,6 +22,18 @@
           CCompiler& driver)
 
 YY_DECL;
+
+struct InputLine 
+{
+    int line;
+    string text;
+
+    InputLine(int l, string s)
+    {
+        line = l;
+        text = s;
+    }
+};
 
 class CCompiler
 {
@@ -51,9 +65,8 @@ class CCompiler
         EnumType *enumType;
         SymbolInfo *enumSym; 
         int structVarCount;  
-
  
-        yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
+        yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo* sym);
         void allocateSymbol(); 
         void globalScope();
         void enterScope();
@@ -76,6 +89,11 @@ class CCompiler
         void turnDebugOn(bool);
         void printDebug(std::string);
         fstream ydbFile;
+
+        //Handles the AST and 3AC Code Generation
+        map<int, string> input_text;
+        void save_line(int i, string s);
+        static TAC_Generator tacGen;
 
     private:
         bool debug_on;

@@ -30,46 +30,54 @@ struct SymbolInfo
     int typeTableIndex;           
     int storage_class;
     int flags;
+    //int lineNum;
+    //int colNum;
+
     friend ostream& operator << ( ostream &outStream , const SymbolInfo &inf);
+
     SymbolInfo()
     {
        this->symbol_name = "";
        this->symbolType = NULL;
        this->storage_class  = AUTO ;
-       this->isEnumConst= false;      
-    }  	 
+       this->isEnumConst= false;
+       //this->lineNum = -1;
+    }
+
     SymbolInfo(const SymbolInfo &sym)
     {
        this->symbol_name = sym.symbol_name;
        this->symbolType = sym.symbolType; 
        this->storage_class = sym.storage_class;
-       this->type_qualifier = sym.type_qualifier;  
-    }     
+       this->type_qualifier = sym.type_qualifier;
+       //this->lineNum = sym.lineNum; 
+    }
+
     int operator <( SymbolInfo inf)
     {
        return this->symbol_name < inf.symbol_name ;
     }
+
     int operator == ( SymbolInfo inf)
     {
        return ( this->symbol_name.compare(inf.symbol_name) == 0 ) ;
     }
+
     int operator > ( SymbolInfo inf)
     {
        return this->symbol_name > inf.symbol_name;
     }
+
     string GetKey()
     {
        return this->symbol_name; 
     }
-                      
-		
 };
 
 class CCompiler;
 
 class SymTab
 {
-     
 	 private:
 	     int currentLevel;   
 	     vector< AVLTree<SymbolInfo> >  symTable;

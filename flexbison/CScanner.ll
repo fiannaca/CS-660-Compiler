@@ -5,6 +5,7 @@
 #include <string>
 #include <stdexcept>
 #include <cerrno>
+#include <iostream>
 
 #include "CParser.hpp"
 #include "CCompiler.h"
@@ -55,7 +56,7 @@ ctxt		[^*\n]*
 cstr		"*"+[^*/\n]*
 cend		"*"+"/"
 
-%x COMMENT
+%x COMMENT FIRSTLINE
 
 %{
 #define YY_USER_ACTION yylloc->columns(yyleng);
@@ -65,6 +66,14 @@ cend		"*"+"/"
 yylloc->step();
 %}
 
+<FIRSTLINE>.*   {   
+                    //Save a buffer of the first line -- for error reporting
+                    driver.save_line(yylloc->begin.line, string(yytext));
+                    yyless(0);
+
+                    //Now go back to normal scanning
+                    BEGIN(INITIAL);
+                }
 "!!S"		{
 		    driver.SymbolTable.dump_table();
 		}
@@ -90,7 +99,7 @@ yylloc->step();
 {ws}		{   yylloc->step(); } 
 \n.*		{
 		    //Save a buffer of each line -- for error reporting
-		    strncpy(driver.linebuf, yytext + 1, sizeof(driver.linebuf));
+                    driver.save_line(yylloc->begin.line + 1, string(yytext + 1));
                     yyless(1);
 
                     //Update the locations in yylloc
@@ -537,6 +546,8 @@ void CCompiler::scan_begin(bool trace_scanning)
 
         freopen(ss.str().c_str(), "w", stderr);
     }
+
+    BEGIN(FIRSTLINE);
 }
 
 void CCompiler::scan_end()

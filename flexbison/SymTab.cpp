@@ -40,6 +40,8 @@ ostream& operator << ( ostream &outStream, const SymbolInfo &inf)
                   << inf.storage_class
                   << setfill(' ') << setw(w)
                   << inf.symbolType->GetName() 
+                  //<< setfill(' ') << setw(w)
+                  //<< " on line " << inf.lineNum
                   << resetiosflags(ios::left) << endl;
         /*
     	outStream<< "\n ======================================= \n ";

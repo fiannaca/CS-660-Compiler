@@ -3,8 +3,8 @@ FLEX_FLAGS= --debug --warn --nodefault --noyywrap --batch --header-file=CScanner
 CXX_FLAGS= -std=c++0x -g
 LIBS=
 
-all: CParser.o CScanner.o main.o CCompiler.o SymTab.o Type.o Ast.o 
-	g++ -o ccomp CParser.o CScanner.o main.o CCompiler.o SymTab.o Type.o Ast.o  $(LIBS)
+all: CParser.o CScanner.o main.o CCompiler.o SymTab.o Type.o Ast.o TAC_Generator.o Visualizer.o
+	g++ -o ccomp CParser.o CScanner.o main.o CCompiler.o SymTab.o Type.o Ast.o TAC_Generator.o Visualizer.o $(LIBS)
 
 %.o: %.cpp
 	g++ $(CXX_FLAGS) -c -o $@ $<

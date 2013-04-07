@@ -182,6 +182,7 @@ declaration
                          inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
 
                        } 
+                       //inf->lineNum = yylloc.begin.line;
                        driver.SymbolTable.insert_symbol(*inf);
                        driver.allocateSymbol();
 

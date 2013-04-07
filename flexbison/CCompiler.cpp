@@ -4,12 +4,8 @@
 
 #include "CCompiler.h"
 #include "CParser.hpp"
-#include <iomanip>
 
-//Static variables from AST and Visualizer are instanciated here so that they 
-// are only created once!
-Visualizer AST::vis;
-int Visualizer::nextUID = 0;
+TAC_Generator CCompiler::tacGen;
 
 //
 //Begin CCompiler implementation
@@ -67,13 +63,6 @@ void CCompiler::setOutfile(std::string file)
     outfile_set = true;
 }
 
-void CCompiler::allocateSymbol()
-{
-   this->currentSymbol = new SymbolInfo(); 
-   this->currentSymbol->symbolType = NULL;   
-}
-
-
 /*****************************************************************************/
 /* SYMBOL TABLE HANDLERS *****************************************************/
 /*****************************************************************************/
@@ -105,7 +94,7 @@ bool CCompiler::get_insert_mode()
     return insert_mode;
 }
 
-yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::location& loc, SymbolInfo *sym)
+yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::location& loc, SymbolInfo* sym)
 {
     //For the time being this will return IDENTIFIER, but it should 
     // check if the provided key is related to an identifier, an
@@ -117,11 +106,12 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
     if(!SymbolTable.find_symbol(symToFind, level))
     {
         //The symbol was not in the table
-        if(!insert_mode)
+        if(insert_mode)
         {
             //If we are in insert mode, then insert it
-            sym->symbol_name = key;
-            SymbolTable.insert_symbol(*sym);
+            //sym->symbol_name = key;
+            //SymbolTable.insert_symbol(*sym);
+            cout << "Inside checkType insert" << endl;
         }
         else
         {
@@ -141,6 +131,11 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
     return yy::CParser::token::IDENTIFIER;
 }
 
+void CCompiler::allocateSymbol()
+{
+   this->currentSymbol = new SymbolInfo(); 
+   this->currentSymbol->symbolType = NULL;   
+}
 
 
 /*****************************************************************************/
@@ -157,7 +152,7 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
                 << " : (see location below)" <<  std::endl
 	        << "   " << msg << std::endl << std::endl;
 
-        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << input_text[loc.begin.line] << std::endl;
         outfile << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         outfile << "^" << std::endl << std::endl;
     }
@@ -169,7 +164,7 @@ void CCompiler::error(const yy::location& loc, const std::string& msg)
                   << " : (see location below)" <<  std::endl
 	          << "   " << msg << std::endl << std::endl;
 
-        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << input_text[loc.begin.line] << std::endl;
         std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         std::cerr << "^" << std::endl << std::endl;
     }
@@ -197,7 +192,7 @@ void CCompiler::warning(const yy::location& loc, const std::string& msg)
                 << " : (see location below)" <<  std::endl
 	        << "   " << msg << std::endl << std::endl;
 
-        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        outfile << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << input_text[loc.begin.line] << std::endl;
         outfile << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         outfile << "^" << std::endl << std::endl;
     }
@@ -209,7 +204,7 @@ void CCompiler::warning(const yy::location& loc, const std::string& msg)
                   << " : (see location below)" <<  std::endl
 	          << "   " << msg << std::endl << std::endl;
 
-        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << linebuf << std::endl;
+        std::cerr << std::setw(4) << std::setfill(' ') << loc.begin.line << " | " << input_text[loc.begin.line] << std::endl;
         std::cerr << "     | " << std::setfill('-') << std::setw(loc.begin.column);
         std::cerr << "^" << std::endl << std::endl;
     }
@@ -255,3 +250,38 @@ void CCompiler::printDebug(std::string txt)
             std::cout << txt << std::endl;
     }
 }
+
+void CCompiler::save_line(int i, string s)
+{
+    //Don't store blank lines. Only store the actual code
+    if(s.size() > 0)
+    {
+        //InputLine in(i, s);
+        input_text[i] = s;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

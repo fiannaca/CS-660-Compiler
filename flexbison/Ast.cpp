@@ -1,57 +1,6 @@
 #include "Ast.h"
 
-/*
-class AstNodeStub : public AST
-{
-    //Place the children nodes here
-
-    public:
-        //Constructor
-        AstNodeStub()
-        {
-            this->setLabel("");
-        }
-
-        //Traversal
-        void Visit()
-        {
-            //Visit children nodes
-
-            //Output visualization
-            //AST::vis.addNode(this->getUID(), this->getLabel());
-            //AST::vis.addEdge(this->getUID(), child->getUID());
-
-            //Output 3AC
-        }
-};
-
-
-class AstAssignExpr : public AST
-{
-    //TODO implement later
-
-    //Place the children nodes here
-
-    public:
-        //Constructor
-        AstAssignExpr()
-        {
-            this->setLabel("AssignmentExpression");
-        }
-
-        //Traversal
-        void Visit()
-        {
-            //Visit children nodes
-
-            //Output visualization
-            //AST::vis.addNode(this->getUID(), this->getLabel());
-            //AST::vis.addEdge(this->getUID(), child->getUID());
-
-            //Output 3AC
-        }
-};
-*/
+Visualizer AST::vis;
 
 ///////////////////////////////////////////////////////////////////////////////
 // BEGIN: AstPrimaryExpr  /////////////////////////////////////////////////////

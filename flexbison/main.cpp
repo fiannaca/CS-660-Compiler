@@ -64,5 +64,39 @@ int main(int argc, char** argv)
         }
     }
 
-    return driver.parse(fname);
+    int ret = driver.parse(fname);
+
+    for(auto it = driver.input_text.begin(); it != driver.input_text.end(); ++it)
+    {
+        std::cout << "Line #" << it->first << ": "
+                  << it->second << std::endl;
+    }
+
+    return ret;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
