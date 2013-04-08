@@ -1,5 +1,9 @@
 #include "TAC_Generator.h"
 
+int TAC_Generator::lCount = 0;
+int TAC_Generator::iCount = 0;
+int TAC_Generator::fCount = 0;
+
 TAC_Generator::TAC_Generator(const string &fileName)
     : width(12)
 {
@@ -343,6 +347,51 @@ void TAC_Generator::SetColumnWidth(int w)
 void TAC_Generator::SetFormatFlags(ios_base::fmtflags ff)
 {
     flags = ff;
+}
+
+string TAC_Generator::GetLabelName()
+{
+    stringstream ss;
+            
+    ss << "L";
+                    
+    ss.fill('0');
+                            
+    ss << setw(8) << lCount;
+                                    
+    lCount++;
+                                            
+    return ss.str();
+}
+
+string TAC_Generator::GetIVarName()
+{
+    stringstream ss;
+            
+    ss << "I";
+                    
+    ss.fill('0');
+                            
+    ss << setw(8) << lCount;
+                                    
+    iCount++;
+                                            
+    return ss.str();
+}
+
+string TAC_Generator::GetFVarName()
+{
+    stringstream ss;
+            
+    ss << "F";
+                    
+    ss.fill('0');
+                            
+    ss << setw(8) << lCount;
+                                    
+    fCount++;
+                                            
+    return ss.str();
 }
 
 
