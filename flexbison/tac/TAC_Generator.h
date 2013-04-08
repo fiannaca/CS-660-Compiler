@@ -78,11 +78,13 @@ class TAC_Generator
         void SetCommentStart(string commentStart);
         void SetCommentEnd(string commentEnd);
         void WriteComment(string comment);
+        void Blank();
 
         //These functions handle the pretty printing of the 3AC
         void SetFile(const string &filename);
         void SetColumnWidth(int w);
         void SetFormatFlags(ios_base::fmtflags ff);
+        void SetBlankBeforeComments(bool flag);
             	
         //These functions generate and track labels for labels, ints, and floats
         static string GetLabelName();
@@ -96,7 +98,8 @@ class TAC_Generator
         ofstream fout;
         string commentStart; 
         string commentEnd;
-
+        bool blankBeforeComment;
+        
         int width;
 
         ios_base::fmtflags flags;
