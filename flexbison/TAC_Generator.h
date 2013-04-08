@@ -83,6 +83,11 @@ class TAC_Generator
         void SetFile(const string &filename);
         void SetColumnWidth(int w);
         void SetFormatFlags(ios_base::fmtflags ff);
+            	
+        //These functions generate and track labels for labels, ints, and floats
+        static string GetLabelName();
+        static string GetIVarName();
+        static string GetFVarName();
 
     private:
         //Called by the toTAC overloads to output the formatted three address code to a file
@@ -95,6 +100,10 @@ class TAC_Generator
         int width;
 
         ios_base::fmtflags flags;
+            	
+        static int lCount;
+        static int iCount;
+        static int fCount;
 };
 
 #endif // ! TAC_GENERATOR_H_
