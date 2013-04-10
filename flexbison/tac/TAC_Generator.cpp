@@ -13,7 +13,7 @@ TAC_Generator::TAC_Generator(const string &fileName)
     commentEnd = "" ;
 
     fout.open(fileName.c_str());
-    fout.clear(); 
+    fout.clear();
 }
 
 TAC_Generator::TAC_Generator()
@@ -27,11 +27,17 @@ TAC_Generator::TAC_Generator()
 
 TAC_Generator::~TAC_Generator()
 {
+    for(auto it = buffer.begin(); it != buffer.end(); ++it)
+        fout << *it << endl;
+    
     fout.close();
 }
 
-void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3 )
+void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3, string c )
 {
+    if(c.size() > 0)
+        WriteComment(c);
+    
     stringstream ss;
 
     ss.setf(flags);
@@ -157,8 +163,11 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
     Emit(ss.str());
 }
 
-void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2 )
+void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
 {
+    if(c.size() > 0)
+        WriteComment(c);
+    
     stringstream ss;
 
     ss.setf(flags);
@@ -231,8 +240,11 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2 )
     Emit(ss.str());
 }
 
-void TAC_Generator::toTAC(OneOpInstructions t, void* op)
+void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
 {
+    if(c.size() > 0)
+        WriteComment(c);
+    
     stringstream ss;
 
     ss.setf(flags);
@@ -307,8 +319,11 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op)
     Emit(ss.str());
 }
 
-void TAC_Generator::toTAC(NoOpInstructions t)
+void TAC_Generator::toTAC(NoOpInstructions t, string c)
 {
+    if(c.size() > 0)
+        WriteComment(c);
+    
     stringstream ss;
 
     ss.setf(flags);
@@ -345,26 +360,31 @@ void TAC_Generator::SetCommentEnd(string commentEnd)
 void TAC_Generator::WriteComment(string comment)
 {
     if(blankBeforeComment)
-        fout << endl;
+        Blank();
         
     string commentString = commentStart + comment + commentEnd;
-    fout << commentString << endl ;
-    fout.flush(); 
+    
+    Emit(commentString);
 }
 
 void TAC_Generator::Blank()
 {
-    fout << endl;
+    buffer.push_back("");
+    //fout << endl;
 }
         
 void TAC_Generator::Emit(string codeToEmit)
 {
-    fout << codeToEmit << endl;
-    fout.flush();    
+    buffer.push_back(codeToEmit);
+    //fout << codeToEmit << endl;
+    //fout.flush();    
 }
 
 void TAC_Generator::SetFile(const string &filename)
 {
+    if(fout.is_open())
+        fout.close();
+        
     fout.open(filename.c_str());
     fout.clear(); 
 }

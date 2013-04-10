@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
     tac.SetColumnWidth(15);
     
     //0 OP Commands
-    tac.WriteComment("Test no op 3AC commands...");
+    //tac.WriteComment("Test no op 3AC commands...");
     
-    tac.toTAC(t::HALT);
+    tac.toTAC(t::HALT, "Test no op 3AC commands...");
     tac.toTAC(t::ENDPROC);
     tac.toTAC(t::RETURN);
     tac.Blank();
@@ -46,11 +46,11 @@ int main(int argc, char* argv[])
     tac.Blank();
     
     //2 OP Commands
-    tac.WriteComment("Test double op 3AC commands...");
+    //tac.WriteComment("Test double op 3AC commands...");
     
     string lbl1 = t::GetIVarName();
     string lbl2 = t::GetIVarName();
-    tac.toTAC(t::NEG, (void*) &lbl1, (void*) &lbl2);
+    tac.toTAC(t::NEG, (void*) &lbl1, (void*) &lbl2, "Test double op 3AC commands...");
     
     lbl1 = t::GetIVarName();
     lbl2 = t::GetIVarName();

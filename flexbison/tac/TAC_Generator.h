@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <list>
 
 using namespace std;
 
@@ -69,10 +70,10 @@ class TAC_Generator
         //The toTAC overloads take in a flag to indicate the type of three 
         // address code statement, and a series of parameters required by
         // the particular statement, and generate a formatted 3AC statement
-        void toTAC(ThreeOpInstructions t, void*, void*, void* );
-        void toTAC(TwoOpInstructions t, void*, void* );
-        void toTAC(OneOpInstructions t, void* );
-        void toTAC(NoOpInstructions t);
+        void toTAC(ThreeOpInstructions t, void*, void*, void*, string c = "" );
+        void toTAC(TwoOpInstructions t, void*, void*, string c = "" );
+        void toTAC(OneOpInstructions t, void*, string c = "" );
+        void toTAC(NoOpInstructions t, string c = "");
 
         //These functions handle output of comments into the 3AC file
         void SetCommentStart(string commentStart);
@@ -95,7 +96,9 @@ class TAC_Generator
         //Called by the toTAC overloads to output the formatted three address code to a file
         void Emit(string CodeToEmit);
 
+        list<string> buffer;
         ofstream fout;
+        
         string commentStart; 
         string commentEnd;
         bool blankBeforeComment;

@@ -4,3 +4,5 @@
 *.out
 *.tok
 *.red
+*.dot
+
