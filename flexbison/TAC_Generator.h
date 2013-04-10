@@ -96,7 +96,8 @@ class TAC_Generator
 
         /**
          * The paramaterized constructor.
-         * This constructor opens the 3AC file with the given filename
+         * This constructor opens the 3AC file with the given filename.
+         *
          * @param filename The name of the file in which to output 3AC
          */
         TAC_Generator(const string &filename);
@@ -105,6 +106,7 @@ class TAC_Generator
          * The default constructor.
          * This constructor does not open an output file. If this constructor is
          * used, then the function SetFile must be called.
+         *
          * @see SetFile()
          */
         TAC_Generator();
@@ -130,7 +132,9 @@ class TAC_Generator
          * @param op1 A pointer to the first operand (cast as a void*)
          * @param op2 A pointer to the second operand (cast as a void*)
          * @param op3 A pointer to the third operand (cast as a void*)
-         * @param c An optional comment to prepend to the 3AC statement (useful for outputting the original input code as comments to the 3AC file)
+         * @param c An optional comment to prepend to the 3AC statement (useful 
+         *        for outputting the original input code as comments to the 3AC 
+         *        file)
          */
         void toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3, string c = "" );
         
@@ -147,7 +151,9 @@ class TAC_Generator
          * @param t Flag indicating the type of 3AC statement to generate
          * @param op1 A pointer to the first operand (cast as a void*)
          * @param op2 A pointer to the second operand (cast as a void*)
-         * @param c An optional comment to prepend to the 3AC statement (useful for outputting the original input code as comments to the 3AC file)
+         * @param c An optional comment to prepend to the 3AC statement (useful 
+         *        for outputting the original input code as comments to the 3AC 
+         *        file)
          */
         void toTAC(TwoOpInstructions t, void* op1, void* op2, string c = "" );
         
@@ -163,7 +169,9 @@ class TAC_Generator
          *
          * @param t Flag indicating the type of 3AC statement to generate
          * @param op1 A pointer to the first operand (cast as a void*)
-         * @param c An optional comment to prepend to the 3AC statement (useful for outputting the original input code as comments to the 3AC file)
+         * @param c An optional comment to prepend to the 3AC statement (useful 
+         *        for outputting the original input code as comments to the 3AC 
+         *        file)
          */
         void toTAC(OneOpInstructions t, void* op1, string c = "" );
         
@@ -175,7 +183,9 @@ class TAC_Generator
          * statement.
          *
          * @param t Flag indicating the type of 3AC statement to generate
-         * @param c An optional comment to prepend to the 3AC statement (useful for outputting the original input code as comments to the 3AC file)
+         * @param c An optional comment to prepend to the 3AC statement (useful 
+         *        for outputting the original input code as comments to the 3AC 
+         *        file)
          */
         void toTAC(NoOpInstructions t, string c = "");
 
@@ -207,6 +217,7 @@ class TAC_Generator
 
         /**
          * Sets the name of the file in which the output 3AC should be saved
+         *
          * @param filename The name of the file in which to output 3AC
          */
         void SetFile(const string &filename);
@@ -221,12 +232,16 @@ class TAC_Generator
         /**
          * Sets the ios_base format flags used when generating formatted 3AC 
          * strings.
+         *
+         * @param ff Format flags (i.e. left, right, etc.)
          */
         void SetFormatFlags(ios_base::fmtflags ff);
 
         /**
          * Sets the blankBeforeComments flag. If true, a blank line will be 
          * output in the final 3AC before each comment.
+         * 
+         * @param flag True if there should be an empty line before each comment
          */
         void SetBlankBeforeComments(bool flag);
             	
@@ -258,20 +273,20 @@ class TAC_Generator
          */
         void Emit(string CodeToEmit);
 
-        list<string> buffer;
-        ofstream fout;
+        list<string> buffer; /**< A buffer for the generated 3AC */
+        ofstream fout; /**< Output stream */
         
-        string commentStart; 
-        string commentEnd;
-        bool blankBeforeComment;
+        string commentStart; /**< String to be placed at the beginning of every comment */
+        string commentEnd; /**< String to be placed at the end of every comment */
+        bool blankBeforeComment; /**< Flag for placing blank lines before comments */
         
-        int width;
+        int width; /**< Fixed column width of the output 3AC */
 
-        ios_base::fmtflags flags;
+        ios_base::fmtflags flags; /**< Format flags */
             	
-        static int lCount;
-        static int iCount;
-        static int fCount;
+        static int lCount; /**< Current label counter for generating unique labels */
+        static int iCount; /**< Current integer counter for generating unique integer labels */
+        static int fCount; /**< Current float counter for generating unique float labels */
 };
 
 #endif // ! TAC_GENERATOR_H_

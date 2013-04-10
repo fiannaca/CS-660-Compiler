@@ -940,7 +940,7 @@ void AstEqExpr::Visit()
     //Output visualization
     AST::vis.addNode(this->getUID(), this->getLabel());
 
-    if(rel)
+    if(eq)
     {
         int tmp = Visualizer::GetNextUID();
         string s = (op == EQ_OP) ? "==" : "!=";
@@ -1255,11 +1255,59 @@ void AstConstantExpr::Visit()
 AstAssignOp::AstAssignOp(Operator o)
 {
     this->op = o;
+    this->setLabel("AssignmentOperator");
 }
 
 void AstAssignOp::Visit()
 {
     AST::vis.addNode(this->getUID(), this->getLabel());
+    
+    switch(op)
+    {
+        case EQ:
+            AST::vis.addDummyNode(this->getUID(), "=");
+            break;
+            
+        case MUL_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "*=");
+            break;
+            
+        case DIV_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "/=");
+            break;
+            
+        case MOD_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "%=");
+            break;
+            
+        case ADD_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "+=");
+            break;
+            
+        case SUB_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "-=");
+            break;
+            
+        case LEFT_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "<<=");
+            break;
+            
+        case RIGHT_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), ">>=");
+            break;
+            
+        case AND_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "&=");
+            break;
+            
+        case XOR_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "^=");
+            break;
+            
+        case OR_ASSIGN:
+            AST::vis.addDummyNode(this->getUID(), "|=");
+            break;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

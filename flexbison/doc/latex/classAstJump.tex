@@ -1,0 +1,99 @@
+\hypertarget{classAstJump}{\section{Ast\-Jump Class Reference}
+\label{classAstJump}\index{Ast\-Jump@{Ast\-Jump}}
+}
+Inheritance diagram for Ast\-Jump\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstJump}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \\*
+{\bfseries G\-O\-T\-O}, 
+{\bfseries C\-O\-N\-T\-I\-N\-U\-E}, 
+{\bfseries B\-R\-E\-A\-K}, 
+{\bfseries E\-M\-P\-T\-Y\-\_\-\-R\-E\-T\-U\-R\-N}, 
+\\*
+{\bfseries R\-E\-T\-U\-R\-N}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstJump_a83a4aa905d84f3602374029976d99412}{{\bfseries Ast\-Jump} (\hyperlink{classAstGoto}{Ast\-Goto} $\ast$g, \hyperlink{classAstID}{Ast\-I\-D} $\ast$i)}\label{classAstJump_a83a4aa905d84f3602374029976d99412}
+
+\item 
+\hypertarget{classAstJump_a945a1bdc268bfa7f1fdd9f4d39bdef1a}{{\bfseries Ast\-Jump} (\hyperlink{classAstContinue}{Ast\-Continue} $\ast$c)}\label{classAstJump_a945a1bdc268bfa7f1fdd9f4d39bdef1a}
+
+\item 
+\hypertarget{classAstJump_a8b9e461b6a974f01889e89728afc7014}{{\bfseries Ast\-Jump} (\hyperlink{classAstBreak}{Ast\-Break} $\ast$b)}\label{classAstJump_a8b9e461b6a974f01889e89728afc7014}
+
+\item 
+\hypertarget{classAstJump_a083525b758ad6e931aee5ac850592730}{{\bfseries Ast\-Jump} (\hyperlink{classAstReturn}{Ast\-Return} $\ast$r)}\label{classAstJump_a083525b758ad6e931aee5ac850592730}
+
+\item 
+\hypertarget{classAstJump_ad80d35d23849aa369fef153fef4bb99e}{{\bfseries Ast\-Jump} (\hyperlink{classAstReturn}{Ast\-Return} $\ast$r, \hyperlink{classAstExpression}{Ast\-Expression} $\ast$e)}\label{classAstJump_ad80d35d23849aa369fef153fef4bb99e}
+
+\item 
+\hypertarget{classAstJump_aca65cbe034ffdb439f6e3c73e40550ae}{void {\bfseries Visit} ()}\label{classAstJump_aca65cbe034ffdb439f6e3c73e40550ae}
+
+\item 
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{void {\bfseries set\-Label} (string l)}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+\item 
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{int {\bfseries get\-U\-I\-D} ()}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+\item 
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{string {\bfseries get\-Label} ()}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstJump_aea1a550743aa9b9a0e73de3d5489cdfd}{enum Ast\-Jump\-::\-Type {\bfseries t}}\label{classAstJump_aea1a550743aa9b9a0e73de3d5489cdfd}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} {\bfseries vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int {\bfseries uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string {\bfseries label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstJump_a8abdf72a491679a37b85722e5232f3eb}{\hyperlink{classAstGoto}{Ast\-Goto} $\ast$ {\bfseries go}}\label{classAstJump_a8abdf72a491679a37b85722e5232f3eb}
+
+\item 
+\hypertarget{classAstJump_aeacd0443e8d2b30d95971ffd619e9771}{\hyperlink{classAstID}{Ast\-I\-D} $\ast$ {\bfseries id}}\label{classAstJump_aeacd0443e8d2b30d95971ffd619e9771}
+
+\item 
+\hypertarget{classAstJump_a63dd01803ffd6c0435b1d98874af61dd}{\hyperlink{classAstContinue}{Ast\-Continue} $\ast$ {\bfseries cont}}\label{classAstJump_a63dd01803ffd6c0435b1d98874af61dd}
+
+\item 
+\hypertarget{classAstJump_ae38078936f9880c3deef5bebdb1d509d}{\hyperlink{classAstBreak}{Ast\-Break} $\ast$ {\bfseries br}}\label{classAstJump_ae38078936f9880c3deef5bebdb1d509d}
+
+\item 
+\hypertarget{classAstJump_a458eaa8d819ef1f32f571ec2580b0ff6}{\hyperlink{classAstReturn}{Ast\-Return} $\ast$ {\bfseries ret}}\label{classAstJump_a458eaa8d819ef1f32f571ec2580b0ff6}
+
+\item 
+\hypertarget{classAstJump_ad7d1077d5ea38bff0b774d3cea6a10c1}{\hyperlink{classAstExpression}{Ast\-Expression} $\ast$ {\bfseries expr}}\label{classAstJump_ad7d1077d5ea38bff0b774d3cea6a10c1}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}

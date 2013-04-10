@@ -60,6 +60,14 @@ void Visualizer::addNode(int parentid, int childid, string parent_label)
     file << "    " << parentid << " -> " << childid << ";" << endl;
 }
 
+void Visualizer::addDummyNode(int parentid, string label)
+{
+    int tmp = Visualizer::GetNextUID();
+    
+    addNode(tmp, label);
+    addEdge(parentid, tmp);
+}
+
 void Visualizer::addEdge(int parent, int child)
 {
     file << "    " << parent << " -> " << child << ";" << endl;

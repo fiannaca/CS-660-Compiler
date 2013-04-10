@@ -1,0 +1,205 @@
+\hypertarget{classVisualizer}{\section{Visualizer Class Reference}
+\label{classVisualizer}\index{Visualizer@{Visualizer}}
+}
+
+
+A class for visualizing the generation of the \hyperlink{classAST}{A\-S\-T}.  
+
+
+
+
+{\ttfamily \#include $<$Visualizer.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVisualizer_a104487003c9fea602e26c072aae27efc}{Visualizer} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classVisualizer_a65d978447073196b110504d33bff34c5}{Visualizer} (string fname)
+\begin{DoxyCompactList}\small\item\em Parameterized constructor. \end{DoxyCompactList}\item 
+\hyperlink{classVisualizer_a013ec3101407fbe4805f289bc32d1265}{$\sim$\-Visualizer} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{classVisualizer_abf6c6d4ce88207fa564ad6238c263aca}{void \hyperlink{classVisualizer_abf6c6d4ce88207fa564ad6238c263aca}{begin} ()}\label{classVisualizer_abf6c6d4ce88207fa564ad6238c263aca}
+
+\begin{DoxyCompactList}\small\item\em Creates the opening part of the Graph\-Viz file. \end{DoxyCompactList}\item 
+\hypertarget{classVisualizer_a89da5b4fd09be3beac4c49067fa5cd73}{void \hyperlink{classVisualizer_a89da5b4fd09be3beac4c49067fa5cd73}{end} ()}\label{classVisualizer_a89da5b4fd09be3beac4c49067fa5cd73}
+
+\begin{DoxyCompactList}\small\item\em Creates the closing part of the Graph\-Viz file. \end{DoxyCompactList}\item 
+void \hyperlink{classVisualizer_a07370d04b5c04c37c001094d8dea1a19}{add\-Node} (int uid, string label)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph with a unique id and a label. \end{DoxyCompactList}\item 
+void \hyperlink{classVisualizer_a24387730bdf8579f07ef7760b5c4fe83}{add\-Node} (int parentid, int childid, string parent\-\_\-label)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph with a unique id and a label, then creates an edge from the new node to a child node. \end{DoxyCompactList}\item 
+void \hyperlink{classVisualizer_a135921c797363c4778a16ba0b0ee5e93}{add\-Dummy\-Node} (int parentid, string label)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph which is only for visualizing extra info rather than visualizing an actual node in the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\item 
+void \hyperlink{classVisualizer_a84454739e84577863200833d99de5976}{add\-Edge} (int parent, int child)
+\begin{DoxyCompactList}\small\item\em Adds an edge from a parent node to a child node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classVisualizer_a300cf71187da1d6d3feab998fb805991}{Get\-Next\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets a unique id to be used in adding nodes to the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classVisualizer_a19e773638cb9f4665a9bdb44348f584c}{fstream \hyperlink{classVisualizer_a19e773638cb9f4665a9bdb44348f584c}{file}}\label{classVisualizer_a19e773638cb9f4665a9bdb44348f584c}
+
+\begin{DoxyCompactList}\small\item\em The filename of the output Graph\-Viz file. \end{DoxyCompactList}\item 
+\hypertarget{classVisualizer_a931ff38910382c55271e07617aac0422}{string \hyperlink{classVisualizer_a931ff38910382c55271e07617aac0422}{gname}}\label{classVisualizer_a931ff38910382c55271e07617aac0422}
+
+\begin{DoxyCompactList}\small\item\em The name of the graph in the Graph\-Viz file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classVisualizer_adee8de8f3890a06ae60f88b85ac98bc1}{static int \hyperlink{classVisualizer_adee8de8f3890a06ae60f88b85ac98bc1}{next\-U\-I\-D} = 0}\label{classVisualizer_adee8de8f3890a06ae60f88b85ac98bc1}
+
+\begin{DoxyCompactList}\small\item\em The next unique id value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class for visualizing the generation of the \hyperlink{classAST}{A\-S\-T}. 
+
+The \hyperlink{classVisualizer}{Visualizer} class provides a method for generating a Graph\-Viz output file which can be converted to a graphic representing the \hyperlink{classAST}{A\-S\-T}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classVisualizer_a104487003c9fea602e26c072aae27efc}{\index{Visualizer@{Visualizer}!Visualizer@{Visualizer}}
+\index{Visualizer@{Visualizer}!Visualizer@{Visualizer}}
+\subsubsection[{Visualizer}]{\setlength{\rightskip}{0pt plus 5cm}Visualizer\-::\-Visualizer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a104487003c9fea602e26c072aae27efc}
+
+
+Default constructor. 
+
+This version of the constructor defaults the output filename to \char`\"{}vis.\-dot\char`\"{}. It attempts to open the file, and exits with E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E if the file cannot be opened. \hypertarget{classVisualizer_a65d978447073196b110504d33bff34c5}{\index{Visualizer@{Visualizer}!Visualizer@{Visualizer}}
+\index{Visualizer@{Visualizer}!Visualizer@{Visualizer}}
+\subsubsection[{Visualizer}]{\setlength{\rightskip}{0pt plus 5cm}Visualizer\-::\-Visualizer (
+\begin{DoxyParamCaption}
+\item[{string}]{fname}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a65d978447073196b110504d33bff34c5}
+
+
+Parameterized constructor. 
+
+This version of the constructor takes the output filename as a parameter. It attempts to open the file, and exits with E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E if the file cannot be opened.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The output Graph\-Vis file filename \\
+\hline
+\end{DoxyParams}
+\hypertarget{classVisualizer_a013ec3101407fbe4805f289bc32d1265}{\index{Visualizer@{Visualizer}!$\sim$\-Visualizer@{$\sim$\-Visualizer}}
+\index{$\sim$\-Visualizer@{$\sim$\-Visualizer}!Visualizer@{Visualizer}}
+\subsubsection[{$\sim$\-Visualizer}]{\setlength{\rightskip}{0pt plus 5cm}Visualizer\-::$\sim$\-Visualizer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a013ec3101407fbe4805f289bc32d1265}
+
+
+Destructor. 
+
+Completes the Graph\-Viz file and closes the filestream. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classVisualizer_a135921c797363c4778a16ba0b0ee5e93}{\index{Visualizer@{Visualizer}!add\-Dummy\-Node@{add\-Dummy\-Node}}
+\index{add\-Dummy\-Node@{add\-Dummy\-Node}!Visualizer@{Visualizer}}
+\subsubsection[{add\-Dummy\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void Visualizer\-::add\-Dummy\-Node (
+\begin{DoxyParamCaption}
+\item[{int}]{parentid, }
+\item[{string}]{label}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a135921c797363c4778a16ba0b0ee5e93}
+
+
+Adds a node to the graph which is only for visualizing extra info rather than visualizing an actual node in the \hyperlink{classAST}{A\-S\-T}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & The unique id of the parent node off of which the dummy node should be attached \\
+\hline
+{\em label} & The label to go inside the dummy node \\
+\hline
+\end{DoxyParams}
+\hypertarget{classVisualizer_a84454739e84577863200833d99de5976}{\index{Visualizer@{Visualizer}!add\-Edge@{add\-Edge}}
+\index{add\-Edge@{add\-Edge}!Visualizer@{Visualizer}}
+\subsubsection[{add\-Edge}]{\setlength{\rightskip}{0pt plus 5cm}void Visualizer\-::add\-Edge (
+\begin{DoxyParamCaption}
+\item[{int}]{parent, }
+\item[{int}]{child}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a84454739e84577863200833d99de5976}
+
+
+Adds an edge from a parent node to a child node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The unique id of the parent \\
+\hline
+{\em child} & The unique id of the child \\
+\hline
+\end{DoxyParams}
+\hypertarget{classVisualizer_a07370d04b5c04c37c001094d8dea1a19}{\index{Visualizer@{Visualizer}!add\-Node@{add\-Node}}
+\index{add\-Node@{add\-Node}!Visualizer@{Visualizer}}
+\subsubsection[{add\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void Visualizer\-::add\-Node (
+\begin{DoxyParamCaption}
+\item[{int}]{uid, }
+\item[{string}]{label}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a07370d04b5c04c37c001094d8dea1a19}
+
+
+Adds a node to the graph with a unique id and a label. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & A unique id \\
+\hline
+{\em label} & The label to go inside the node in the graph \\
+\hline
+\end{DoxyParams}
+\hypertarget{classVisualizer_a24387730bdf8579f07ef7760b5c4fe83}{\index{Visualizer@{Visualizer}!add\-Node@{add\-Node}}
+\index{add\-Node@{add\-Node}!Visualizer@{Visualizer}}
+\subsubsection[{add\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void Visualizer\-::add\-Node (
+\begin{DoxyParamCaption}
+\item[{int}]{parentid, }
+\item[{int}]{childid, }
+\item[{string}]{parent\-\_\-label}
+\end{DoxyParamCaption}
+)}}\label{classVisualizer_a24387730bdf8579f07ef7760b5c4fe83}
+
+
+Adds a node to the graph with a unique id and a label, then creates an edge from the new node to a child node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parentid} & A unique id for the new node \\
+\hline
+{\em childid} & The unique id of the child node to create an edge to \\
+\hline
+{\em parent\-\_\-label} & The label to go inside the node in the graph \\
+\hline
+\end{DoxyParams}
+\hypertarget{classVisualizer_a300cf71187da1d6d3feab998fb805991}{\index{Visualizer@{Visualizer}!Get\-Next\-U\-I\-D@{Get\-Next\-U\-I\-D}}
+\index{Get\-Next\-U\-I\-D@{Get\-Next\-U\-I\-D}!Visualizer@{Visualizer}}
+\subsubsection[{Get\-Next\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}static int Visualizer\-::\-Get\-Next\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classVisualizer_a300cf71187da1d6d3feab998fb805991}
+
+
+Gets a unique id to be used in adding nodes to the \hyperlink{classAST}{A\-S\-T}. 
+
+\begin{DoxyReturn}{Returns}
+A unique integer valued id 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Visualizer.\-h\item 
+Visualizer.\-cpp\end{DoxyCompactItemize}

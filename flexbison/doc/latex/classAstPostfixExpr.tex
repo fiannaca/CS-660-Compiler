@@ -1,0 +1,111 @@
+\hypertarget{classAstPostfixExpr}{\section{Ast\-Postfix\-Expr Class Reference}
+\label{classAstPostfixExpr}\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}}
+}
+Inheritance diagram for Ast\-Postfix\-Expr\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstPostfixExpr}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Operator} \{ \\*
+{\bfseries N\-O\-N\-E}, 
+{\bfseries D\-O\-T\-\_\-\-O\-P}, 
+{\bfseries P\-T\-R\-\_\-\-O\-P}, 
+{\bfseries I\-N\-C\-\_\-\-O\-P}, 
+\\*
+{\bfseries D\-E\-C\-\_\-\-O\-P}
+ \}
+\item 
+enum {\bfseries Type} \{ \\*
+{\bfseries P\-R\-I\-M\-A\-R\-Y}, 
+{\bfseries B\-R\-A\-C\-K\-E\-T\-S}, 
+{\bfseries E\-M\-P\-T\-Y\-\_\-\-P\-A\-R\-E\-N\-S}, 
+{\bfseries P\-A\-R\-E\-N\-S}, 
+\\*
+{\bfseries D\-O\-T}, 
+{\bfseries P\-T\-R}, 
+{\bfseries I\-N\-C}, 
+{\bfseries D\-E\-C}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPostfixExpr_a8299517f87239b0428545cdfc96f0bbc}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPrimaryExpr}{Ast\-Primary\-Expr} $\ast$p)}\label{classAstPostfixExpr_a8299517f87239b0428545cdfc96f0bbc}
+
+\item 
+\hypertarget{classAstPostfixExpr_a5dd762cbae8160f94a661ecdf3a90770}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, \hyperlink{classAstExpression}{Ast\-Expression} $\ast$e)}\label{classAstPostfixExpr_a5dd762cbae8160f94a661ecdf3a90770}
+
+\item 
+\hypertarget{classAstPostfixExpr_af17b325f38a7138728773d86a9342105}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p)}\label{classAstPostfixExpr_af17b325f38a7138728773d86a9342105}
+
+\item 
+\hypertarget{classAstPostfixExpr_a4a1ae7a03b7b29e6641f47479e58aa3b}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, \hyperlink{classAstArgExprList}{Ast\-Arg\-Expr\-List} $\ast$a)}\label{classAstPostfixExpr_a4a1ae7a03b7b29e6641f47479e58aa3b}
+
+\item 
+\hypertarget{classAstPostfixExpr_a094735e6e2f593a42cc2b9aabc44213b}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, Operator o, \hyperlink{classAstID}{Ast\-I\-D} $\ast$i)}\label{classAstPostfixExpr_a094735e6e2f593a42cc2b9aabc44213b}
+
+\item 
+\hypertarget{classAstPostfixExpr_a71f3baa5264259031d95741e65de1e07}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, Operator o)}\label{classAstPostfixExpr_a71f3baa5264259031d95741e65de1e07}
+
+\item 
+\hypertarget{classAstPostfixExpr_ae3e7fdbd4c2bf888ee62760e6f422cad}{void {\bfseries Visit} ()}\label{classAstPostfixExpr_ae3e7fdbd4c2bf888ee62760e6f422cad}
+
+\item 
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{void {\bfseries set\-Label} (string l)}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+\item 
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{int {\bfseries get\-U\-I\-D} ()}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+\item 
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{string {\bfseries get\-Label} ()}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} {\bfseries vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int {\bfseries uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string {\bfseries label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPostfixExpr_a48162e70f9ec77d6aab3f036108cb69c}{\hyperlink{classAstPrimaryExpr}{Ast\-Primary\-Expr} $\ast$ {\bfseries priexpr}}\label{classAstPostfixExpr_a48162e70f9ec77d6aab3f036108cb69c}
+
+\item 
+\hypertarget{classAstPostfixExpr_ab66f24ef993fdad57b201fdb13dc9dc7}{\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$ {\bfseries ptf\-Expr}}\label{classAstPostfixExpr_ab66f24ef993fdad57b201fdb13dc9dc7}
+
+\item 
+\hypertarget{classAstPostfixExpr_aad843b4fb1a8c89dfd252b9f91809d45}{\hyperlink{classAstExpression}{Ast\-Expression} $\ast$ {\bfseries brak\-Expr}}\label{classAstPostfixExpr_aad843b4fb1a8c89dfd252b9f91809d45}
+
+\item 
+\hypertarget{classAstPostfixExpr_a492571ab26e55c7820652a906751d1cb}{\hyperlink{classAstArgExprList}{Ast\-Arg\-Expr\-List} $\ast$ {\bfseries arg\-Expr\-List}}\label{classAstPostfixExpr_a492571ab26e55c7820652a906751d1cb}
+
+\item 
+\hypertarget{classAstPostfixExpr_a6351e5be3e4c99881240266a8dbe2838}{\hyperlink{classAstID}{Ast\-I\-D} $\ast$ {\bfseries id}}\label{classAstPostfixExpr_a6351e5be3e4c99881240266a8dbe2838}
+
+\item 
+\hypertarget{classAstPostfixExpr_a0fe57762bbd015e8926114828922b514}{Operator {\bfseries op}}\label{classAstPostfixExpr_a0fe57762bbd015e8926114828922b514}
+
+\item 
+\hypertarget{classAstPostfixExpr_ab5db75237e4c895431464db149bd287b}{\hyperlink{classType}{Type} {\bfseries t}}\label{classAstPostfixExpr_ab5db75237e4c895431464db149bd287b}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}
