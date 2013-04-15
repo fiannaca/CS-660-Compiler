@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -160,30 +160,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">class </span><a class="code" href="classCCompiler.html">CCompiler</a>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">class </span><a class="code" href="classCCompiler.html" title="A minimalist C programming language compiler class.">CCompiler</a>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="classSymTab.html">   79</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSymTab.html">SymTab</a></div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;     <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;         <span class="keywordtype">int</span> currentLevel;   </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;         vector&lt; AVLTree&lt;SymbolInfo&gt; &gt;  symTable;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;             <a class="code" href="classCCompiler.html">CCompiler</a>* driver;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;             <a class="code" href="classCCompiler.html" title="A minimalist C programming language compiler class.">CCompiler</a>* driver;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;             <span class="keywordtype">void</span> error(<span class="keywordtype">string</span> msg);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;             <span class="keywordtype">void</span> warning(<span class="keywordtype">string</span> msg);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;     <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;             <a class="code" href="classSymTab.html">SymTab</a>(<a class="code" href="classCCompiler.html">CCompiler</a>* ref);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;             <a class="code" href="classSymTab.html">SymTab</a>(<a class="code" href="classCCompiler.html" title="A minimalist C programming language compiler class.">CCompiler</a>* ref);</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;             <a class="code" href="classSymTab.html">SymTab</a>()</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;         {</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;               currentLevel = 0 ;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                   <span class="comment">// Ensure the nodes are allocated on the heap !</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;           <a class="code" href="classAVLTree.html">AVLTree&lt;SymbolInfo&gt;</a> *node = <span class="keyword">new</span> <a class="code" href="classAVLTree.html">AVLTree&lt;SymbolInfo&gt;</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;           <a class="code" href="classAVLTree.html" title="An implementation of a balanced binary tree called an AVL tree.">AVLTree&lt;SymbolInfo&gt;</a> *node = <span class="keyword">new</span> <a class="code" href="classAVLTree.html" title="An implementation of a balanced binary tree called an AVL tree.">AVLTree&lt;SymbolInfo&gt;</a>();</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;           symTable.push_back(*node);  </div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;         }    </div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;         <span class="keywordtype">void</span> EnterScope()</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;         {</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;             ++currentLevel;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;         <a class="code" href="classAVLTree.html">AVLTree&lt;SymbolInfo&gt;</a> *node = <span class="keyword">new</span> <a class="code" href="classAVLTree.html">AVLTree&lt;SymbolInfo&gt;</a>(); </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;         <a class="code" href="classAVLTree.html" title="An implementation of a balanced binary tree called an AVL tree.">AVLTree&lt;SymbolInfo&gt;</a> *node = <span class="keyword">new</span> <a class="code" href="classAVLTree.html" title="An implementation of a balanced binary tree called an AVL tree.">AVLTree&lt;SymbolInfo&gt;</a>(); </div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;         symTable.push_back(*node); </div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;         }   </div>
@@ -269,7 +269,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 10 2013 10:37:57 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 15 2013 12:50:17 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

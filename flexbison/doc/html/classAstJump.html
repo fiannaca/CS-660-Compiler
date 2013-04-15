@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,7 +101,7 @@ Inheritance diagram for AstJump:</div>
  <div class="center">
   <img src="classAstJump.png" usemap="#AstJump_map" alt=""/>
   <map id="AstJump_map" name="AstJump_map">
-<area href="classAST.html" alt="AST" shape="rect" coords="0,0,60,24"/>
+<area href="classAST.html" title="Abstract syntax tree node type." alt="AST" shape="rect" coords="0,0,60,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -135,17 +135,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad80d35d23849aa369fef153fef4bb99e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad80d35d23849aa369fef153fef4bb99e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>AstJump</b> (<a class="el" href="classAstReturn.html">AstReturn</a> *r, <a class="el" href="classAstExpression.html">AstExpression</a> *e)</td></tr>
 <tr class="separator:ad80d35d23849aa369fef153fef4bb99e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca65cbe034ffdb439f6e3c73e40550ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca65cbe034ffdb439f6e3c73e40550ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Visit</b> ()</td></tr>
+<tr class="memitem:aca65cbe034ffdb439f6e3c73e40550ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAstJump.html#aca65cbe034ffdb439f6e3c73e40550ae">Visit</a> ()</td></tr>
+<tr class="memdesc:aca65cbe034ffdb439f6e3c73e40550ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is responsible for tree traversals.  <a href="#aca65cbe034ffdb439f6e3c73e40550ae">More...</a><br/></td></tr>
 <tr class="separator:aca65cbe034ffdb439f6e3c73e40550ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71d680856e95ff89f55d5311a552eba6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71d680856e95ff89f55d5311a552eba6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setLabel</b> (string l)</td></tr>
+<tr class="memitem:a71d680856e95ff89f55d5311a552eba6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#a71d680856e95ff89f55d5311a552eba6">setLabel</a> (string l)</td></tr>
+<tr class="memdesc:a71d680856e95ff89f55d5311a552eba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the label for the node.  <a href="#a71d680856e95ff89f55d5311a552eba6">More...</a><br/></td></tr>
 <tr class="separator:a71d680856e95ff89f55d5311a552eba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a5b1d9f1c2de0d98deb356f724a42c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7a5b1d9f1c2de0d98deb356f724a42c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getUID</b> ()</td></tr>
+<tr class="memitem:ab7a5b1d9f1c2de0d98deb356f724a42c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#ab7a5b1d9f1c2de0d98deb356f724a42c">getUID</a> ()</td></tr>
+<tr class="memdesc:ab7a5b1d9f1c2de0d98deb356f724a42c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the node's unique ID.  <a href="#ab7a5b1d9f1c2de0d98deb356f724a42c">More...</a><br/></td></tr>
 <tr class="separator:ab7a5b1d9f1c2de0d98deb356f724a42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee029be902fffc927d16ccb03eb922ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> ()</td></tr>
+<tr class="memitem:aee029be902fffc927d16ccb03eb922ad"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#aee029be902fffc927d16ccb03eb922ad">getLabel</a> ()</td></tr>
+<tr class="memdesc:aee029be902fffc927d16ccb03eb922ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the node's label.  <a href="#aee029be902fffc927d16ccb03eb922ad">More...</a><br/></td></tr>
 <tr class="separator:aee029be902fffc927d16ccb03eb922ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -157,16 +157,19 @@ enum AstJump::Type&#160;</td><td class="memItemRight" valign="bottom"><b>t</b></
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
 <tr class="memitem:aca9e6637209b31e03a09c0d42f29bdfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca9e6637209b31e03a09c0d42f29bdfa"></a>
-static <a class="el" href="classVisualizer.html">Visualizer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>vis</b></td></tr>
+static <a class="el" href="classVisualizer.html">Visualizer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#aca9e6637209b31e03a09c0d42f29bdfa">vis</a></td></tr>
+<tr class="memdesc:aca9e6637209b31e03a09c0d42f29bdfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static visualizer instance for generating the visualization of the <a class="el" href="classAST.html" title="Abstract syntax tree node type.">AST</a>. <br/></td></tr>
 <tr class="separator:aca9e6637209b31e03a09c0d42f29bdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a847b778f1c3dd5a19de32de432ee6e15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a847b778f1c3dd5a19de32de432ee6e15"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>uid</b></td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#a847b778f1c3dd5a19de32de432ee6e15">uid</a></td></tr>
+<tr class="memdesc:a847b778f1c3dd5a19de32de432ee6e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">The unique id. <br/></td></tr>
 <tr class="separator:a847b778f1c3dd5a19de32de432ee6e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2e239ccc0688d2341724432ff5a1a31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2e239ccc0688d2341724432ff5a1a31"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td></tr>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAST.html#ab2e239ccc0688d2341724432ff5a1a31">label</a></td></tr>
+<tr class="memdesc:ab2e239ccc0688d2341724432ff5a1a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">The label to be printed in the visualization. <br/></td></tr>
 <tr class="separator:ab2e239ccc0688d2341724432ff5a1a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -190,6 +193,119 @@ Private Attributes</h2></td></tr>
 <a class="el" href="classAstExpression.html">AstExpression</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>expr</b></td></tr>
 <tr class="separator:ad7d1077d5ea38bff0b774d3cea6a10c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AST::getLabel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node's label. </p>
+<dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab7a5b1d9f1c2de0d98deb356f724a42c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AST::getUID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node's unique ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The unique id </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a71d680856e95ff89f55d5311a552eba6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AST::setLabel </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the label for the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>The label string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aca65cbe034ffdb439f6e3c73e40550ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AstJump::Visit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is responsible for tree traversals. </p>
+<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
+
+<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Ast_8h_source.html">Ast.h</a></li>
 <li>Ast.cpp</li>
@@ -197,7 +313,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 10 2013 10:38:00 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 15 2013 12:50:21 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

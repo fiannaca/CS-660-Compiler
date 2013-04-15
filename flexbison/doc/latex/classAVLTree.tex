@@ -1,53 +1,266 @@
 \hypertarget{classAVLTree}{\section{A\-V\-L\-Tree$<$ Data\-Item $>$ Class Template Reference}
 \label{classAVLTree}\index{A\-V\-L\-Tree$<$ Data\-Item $>$@{A\-V\-L\-Tree$<$ Data\-Item $>$}}
 }
+
+
+An implementation of a balanced binary tree called an A\-V\-L tree.  
+
+
+
+
+{\ttfamily \#include $<$Avl\-Tree.\-h$>$}
+
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 struct \hyperlink{structAVLTree_1_1Node}{Node}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A node which composes the Data\-Item template class with pointers to its children nodes in the A\-V\-L tree and the balance factor at the current node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}{void {\bfseries Insert} (Data\-Item item)}\label{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}
+\hyperlink{classAVLTree_a685459c83f9879c6c99687cd620033cc}{A\-V\-L\-Tree} ()
+\begin{DoxyCompactList}\small\item\em Default A\-V\-L tree constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}{Insert} (Data\-Item item)
+\begin{DoxyCompactList}\small\item\em Inserts a new node into the tree. \end{DoxyCompactList}\item 
+void \hyperlink{classAVLTree_a7d45f6097e6f9f696ed80b80c8a88722}{Insert} (Data\-Item item, \hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&node, int \&change)
+\begin{DoxyCompactList}\small\item\em Inserts a new node into the tree. \end{DoxyCompactList}\item 
+Data\-Item $\ast$ \hyperlink{classAVLTree_a8c1cdcd4e4be5f0feb9b2bad5ef08b08}{Fetch} (Data\-Item item\-To\-Find)
+\begin{DoxyCompactList}\small\item\em Searches the A\-V\-L tree for a given Data\-Item. \end{DoxyCompactList}\item 
+\hyperlink{structAVLTree_1_1Node}{Node} $\ast$ \hyperlink{classAVLTree_a88e4e21a384e6dc4d9be64bfd26e642e}{Find} (Data\-Item item\-To\-Find)
+\begin{DoxyCompactList}\small\item\em Searches the A\-V\-L tree for a given Data\-Item. \end{DoxyCompactList}\item 
+bool \hyperlink{classAVLTree_af87b660c0c905507b3210abeecff8f8f}{Contains} (Data\-Item item\-To\-Find)
+\begin{DoxyCompactList}\small\item\em Checks if the given data item is in the tree or not. \end{DoxyCompactList}\item 
+\hypertarget{classAVLTree_a04db67e206a1d00093ae74a6506dcf59}{void \hyperlink{classAVLTree_a04db67e206a1d00093ae74a6506dcf59}{Dump} ()}\label{classAVLTree_a04db67e206a1d00093ae74a6506dcf59}
 
-\item 
-\hypertarget{classAVLTree_a7d45f6097e6f9f696ed80b80c8a88722}{void {\bfseries Insert} (Data\-Item item, \hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&node, int \&change)}\label{classAVLTree_a7d45f6097e6f9f696ed80b80c8a88722}
-
-\item 
-\hypertarget{classAVLTree_a8c1cdcd4e4be5f0feb9b2bad5ef08b08}{Data\-Item $\ast$ {\bfseries Fetch} (Data\-Item item\-To\-Find)}\label{classAVLTree_a8c1cdcd4e4be5f0feb9b2bad5ef08b08}
-
-\item 
-\hypertarget{classAVLTree_a88e4e21a384e6dc4d9be64bfd26e642e}{\hyperlink{structAVLTree_1_1Node}{Node} $\ast$ {\bfseries Find} (Data\-Item item\-To\-Find)}\label{classAVLTree_a88e4e21a384e6dc4d9be64bfd26e642e}
-
-\item 
-\hypertarget{classAVLTree_af87b660c0c905507b3210abeecff8f8f}{bool {\bfseries Contains} (Data\-Item item\-To\-Find)}\label{classAVLTree_af87b660c0c905507b3210abeecff8f8f}
-
-\item 
-\hypertarget{classAVLTree_a04db67e206a1d00093ae74a6506dcf59}{void {\bfseries Dump} ()}\label{classAVLTree_a04db67e206a1d00093ae74a6506dcf59}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Outputs the A\-V\-L tree to stdout recursively using the insertion operator for the Data\-Item template type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}{int {\bfseries Single\-Rotate} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node, int direction)}\label{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}
-
-\item 
-\hypertarget{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}{int {\bfseries Double\-Rotate} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node, int direction)}\label{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}
-
-\item 
-\hypertarget{classAVLTree_aabcb2e90d12bcb172f728692bce7e7be}{int {\bfseries Balance} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node)}\label{classAVLTree_aabcb2e90d12bcb172f728692bce7e7be}
-
-\item 
-\hypertarget{classAVLTree_aeafa2839058227c9a076d56d7929ebf7}{void {\bfseries Dump} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$node)}\label{classAVLTree_aeafa2839058227c9a076d56d7929ebf7}
-
-\end{DoxyCompactItemize}
+int \hyperlink{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}{Single\-Rotate} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node, int direction)
+\begin{DoxyCompactList}\small\item\em Performs a single rotation in the indicated direction and about the specified node. \end{DoxyCompactList}\item 
+int \hyperlink{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}{Double\-Rotate} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node, int direction)
+\begin{DoxyCompactList}\small\item\em Performs a double rotation in the indicated direction and about the specified node. \end{DoxyCompactList}\item 
+int \hyperlink{classAVLTree_aabcb2e90d12bcb172f728692bce7e7be}{Balance} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$\&root\-Node)
+\begin{DoxyCompactList}\small\item\em Balances the tree beginning at the provided root node using single and double rotations. \end{DoxyCompactList}\item 
+void \hyperlink{classAVLTree_aeafa2839058227c9a076d56d7929ebf7}{Dump} (\hyperlink{structAVLTree_1_1Node}{Node} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Outputs the A\-V\-L tree to stdout using the $<$$<$ operator of the provided Data\-Item template type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAVLTree_a260b2a142458745acb90c685fc603c95}{\hyperlink{structAVLTree_1_1Node}{Node} $\ast$ {\bfseries root}}\label{classAVLTree_a260b2a142458745acb90c685fc603c95}
+\hypertarget{classAVLTree_a260b2a142458745acb90c685fc603c95}{\hyperlink{structAVLTree_1_1Node}{Node} $\ast$ \hyperlink{classAVLTree_a260b2a142458745acb90c685fc603c95}{root}}\label{classAVLTree_a260b2a142458745acb90c685fc603c95}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Root node of the A\-V\-L tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Data\-Item$>$class A\-V\-L\-Tree$<$ Data\-Item $>$}
+
+An implementation of a balanced binary tree called an A\-V\-L tree. 
+
+This implementation assumes that the Data\-Item template class implements the operators $<$ (less than), $>$ (greater than), == (equality), and $<$$<$ (insertion). 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classAVLTree_a685459c83f9879c6c99687cd620033cc}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!A\-V\-L\-Tree@{A\-V\-L\-Tree}}
+\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{A\-V\-L\-Tree}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::{\bf A\-V\-L\-Tree} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_a685459c83f9879c6c99687cd620033cc}
+
+
+Default A\-V\-L tree constructor. 
+
+Only sets the root of the tree to N\-U\-L\-L since there are no nodes in the initial tree. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classAVLTree_aabcb2e90d12bcb172f728692bce7e7be}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Balance@{Balance}}
+\index{Balance@{Balance}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Balance}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ int {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Balance (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$\&}]{root\-Node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classAVLTree_aabcb2e90d12bcb172f728692bce7e7be}
+
+
+Balances the tree beginning at the provided root node using single and double rotations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\-Node} & The root node of a tree to balance (not necessarily the root of the entire A\-V\-L tree) \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}{Single\-Rotate()} 
+
+\hyperlink{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}{Double\-Rotate()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The height change 
+\end{DoxyReturn}
+\hypertarget{classAVLTree_af87b660c0c905507b3210abeecff8f8f}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Contains@{Contains}}
+\index{Contains@{Contains}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Contains}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ bool {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Contains (
+\begin{DoxyParamCaption}
+\item[{Data\-Item}]{item\-To\-Find}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_af87b660c0c905507b3210abeecff8f8f}
+
+
+Checks if the given data item is in the tree or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\-To\-Find} & A data item to search for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+T\-R\-U\-E if the item is in the tree, F\-A\-L\-S\-E otherwise 
+\end{DoxyReturn}
+\hypertarget{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Double\-Rotate@{Double\-Rotate}}
+\index{Double\-Rotate@{Double\-Rotate}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Double\-Rotate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ int {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Double\-Rotate (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$\&}]{root\-Node, }
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classAVLTree_a7e2ed1a8d70f97fc9d4de6d9da4eb729}
+
+
+Performs a double rotation in the indicated direction and about the specified node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\-Node} & \hyperlink{structAVLTree_1_1Node}{Node} to rotate about \\
+\hline
+{\em direction} & the direction in which to rotate \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}{Single\-Rotate()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+The height change (always 1) 
+\end{DoxyReturn}
+\hypertarget{classAVLTree_aeafa2839058227c9a076d56d7929ebf7}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Dump@{Dump}}
+\index{Dump@{Dump}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Dump}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ void {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Dump (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$}]{node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classAVLTree_aeafa2839058227c9a076d56d7929ebf7}
+
+
+Outputs the A\-V\-L tree to stdout using the $<$$<$ operator of the provided Data\-Item template type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The current node to print and recursively print the children of \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAVLTree_a8c1cdcd4e4be5f0feb9b2bad5ef08b08}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Fetch@{Fetch}}
+\index{Fetch@{Fetch}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Fetch}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ Data\-Item$\ast$ {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Fetch (
+\begin{DoxyParamCaption}
+\item[{Data\-Item}]{item\-To\-Find}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_a8c1cdcd4e4be5f0feb9b2bad5ef08b08}
+
+
+Searches the A\-V\-L tree for a given Data\-Item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\-To\-Find} & The item to search for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\-U\-L\-L if the item wasn't found, or a pointer to the item data in the tree otherwise 
+\end{DoxyReturn}
+\hypertarget{classAVLTree_a88e4e21a384e6dc4d9be64bfd26e642e}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Find@{Find}}
+\index{Find@{Find}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Find}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ {\bf Node}$\ast$ {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Find (
+\begin{DoxyParamCaption}
+\item[{Data\-Item}]{item\-To\-Find}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_a88e4e21a384e6dc4d9be64bfd26e642e}
+
+
+Searches the A\-V\-L tree for a given Data\-Item. 
+
+Returns a pointer to the node containing the data rather than the a pointer to the actual data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\-To\-Find} & The item to search for\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+N\-U\-L\-L if the item wasn't found, or a pointer to the node which contains the given data item otherwise 
+\end{DoxyReturn}
+\hypertarget{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Insert@{Insert}}
+\index{Insert@{Insert}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ void {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Insert (
+\begin{DoxyParamCaption}
+\item[{Data\-Item}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}
+
+
+Inserts a new node into the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The new data to create a node for and to insert into the tree \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAVLTree_a7d45f6097e6f9f696ed80b80c8a88722}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Insert@{Insert}}
+\index{Insert@{Insert}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Insert}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ void {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Insert (
+\begin{DoxyParamCaption}
+\item[{Data\-Item}]{item, }
+\item[{{\bf Node} $\ast$\&}]{node, }
+\item[{int \&}]{change}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classAVLTree_a7d45f6097e6f9f696ed80b80c8a88722}
+
+
+Inserts a new node into the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & The new data to create a node for and to insert into the tree \\
+\hline
+{\em node} & The root of the tree to insert the node into \\
+\hline
+{\em change} & Boolean indicating if the tree has been changed or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classAVLTree_a19150bcba8501c6ae6fb2b519ad64b05}{Insert(\-Data\-Item)} 
+\end{DoxySeeAlso}
+\hypertarget{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}{\index{A\-V\-L\-Tree@{A\-V\-L\-Tree}!Single\-Rotate@{Single\-Rotate}}
+\index{Single\-Rotate@{Single\-Rotate}!AVLTree@{A\-V\-L\-Tree}}
+\subsubsection[{Single\-Rotate}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Data\-Item$>$ int {\bf A\-V\-L\-Tree}$<$ Data\-Item $>$\-::Single\-Rotate (
+\begin{DoxyParamCaption}
+\item[{{\bf Node} $\ast$\&}]{root\-Node, }
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{classAVLTree_ac7ebd1be164c8e1d0eab990e14285957}
+
+
+Performs a single rotation in the indicated direction and about the specified node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root\-Node} & \hyperlink{structAVLTree_1_1Node}{Node} to rotate about \\
+\hline
+{\em direction} & the direction in which to rotate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The height change (either 1 or 0) 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}

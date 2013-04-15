@@ -29,7 +29,6 @@ var searchData=
   ['astlogicandexpr',['AstLogicAndExpr',['../classAstLogicAndExpr.html',1,'']]],
   ['astlogicorexpr',['AstLogicOrExpr',['../classAstLogicOrExpr.html',1,'']]],
   ['astmultexpr',['AstMultExpr',['../classAstMultExpr.html',1,'']]],
-  ['astnodestub',['AstNodeStub',['../classAstNodeStub.html',1,'']]],
   ['astorexpr',['AstORExpr',['../classAstORExpr.html',1,'']]],
   ['astpostfixexpr',['AstPostfixExpr',['../classAstPostfixExpr.html',1,'']]],
   ['astprimaryexpr',['AstPrimaryExpr',['../classAstPrimaryExpr.html',1,'']]],

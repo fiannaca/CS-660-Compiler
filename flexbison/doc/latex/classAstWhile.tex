@@ -13,33 +13,29 @@ Inheritance diagram for Ast\-While\-:\begin{figure}[H]
 \hypertarget{classAstWhile_a4c0e68b002b9425fba3f3e7b21a31e64}{{\bfseries Ast\-While} (\hyperlink{classAstExpression}{Ast\-Expression} $\ast$test, \hyperlink{classAstStatement}{Ast\-Statement} $\ast$statement)}\label{classAstWhile_a4c0e68b002b9425fba3f3e7b21a31e64}
 
 \item 
-\hypertarget{classAstWhile_a9bf8eb5f0f63a4f0dc7b7201f292d4dd}{void {\bfseries Visit} ()}\label{classAstWhile_a9bf8eb5f0f63a4f0dc7b7201f292d4dd}
-
-\item 
-\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{void {\bfseries set\-Label} (string l)}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
-
-\item 
-\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{int {\bfseries get\-U\-I\-D} ()}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
-
-\item 
-\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{string {\bfseries get\-Label} ()}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
-
-\end{DoxyCompactItemize}
+void \hyperlink{classAstWhile_a9bf8eb5f0f63a4f0dc7b7201f292d4dd}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+void \hyperlink{classAST_a71d680856e95ff89f55d5311a552eba6}{set\-Label} (string l)
+\begin{DoxyCompactList}\small\item\em Sets the label for the node. \end{DoxyCompactList}\item 
+int \hyperlink{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{get\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's unique I\-D. \end{DoxyCompactList}\item 
+string \hyperlink{classAST_aee029be902fffc927d16ccb03eb922ad}{get\-Label} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's label. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} {\bfseries vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} \hyperlink{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Static visualizer instance for generating the visualization of the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int {\bfseries uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int \hyperlink{classAST_a847b778f1c3dd5a19de32de432ee6e15}{uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
 
-\item 
-\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string {\bfseries label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+\begin{DoxyCompactList}\small\item\em The unique id. \end{DoxyCompactList}\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string \hyperlink{classAST_ab2e239ccc0688d2341724432ff5a1a31}{label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The label to be printed in the visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -49,6 +45,68 @@ Inheritance diagram for Ast\-While\-:\begin{figure}[H]
 \hypertarget{classAstWhile_a940a7e4a6f92b835c0405612946e7bda}{\hyperlink{classAstStatement}{Ast\-Statement} $\ast$ {\bfseries statement}}\label{classAstWhile_a940a7e4a6f92b835c0405612946e7bda}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-While@{Ast\-While}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstWhile@{Ast\-While}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-While@{Ast\-While}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstWhile@{Ast\-While}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-While@{Ast\-While}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstWhile@{Ast\-While}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAstWhile_a9bf8eb5f0f63a4f0dc7b7201f292d4dd}{\index{Ast\-While@{Ast\-While}!Visit@{Visit}}
+\index{Visit@{Visit}!AstWhile@{Ast\-While}}
+\subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-While\-::\-Visit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAstWhile_a9bf8eb5f0f63a4f0dc7b7201f292d4dd}
+
+
+This function is responsible for tree traversals. 
+
+This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3\-A\-C that can be generated at the current node. 
+
+Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-T}.
+
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

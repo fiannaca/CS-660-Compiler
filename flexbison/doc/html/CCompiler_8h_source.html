@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -97,104 +97,119 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;SymTab.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;CParser.hpp&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CParser_8hpp.html" title="Define the yy::parser class.">CParser.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;Ast.h&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;TAC_Generator.h&quot;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define YY_DECL                                     \</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">    yy::CParser::token_type                         \</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">    yylex(yy::CParser::semantic_type* yylval,       \</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">          yy::CParser::location_type* yylloc,       \</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">          CCompiler&amp; driver)</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;YY_DECL;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="structInputLine.html">   26</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structInputLine.html">InputLine</a> </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> line;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">string</span> text;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="structInputLine.html">InputLine</a>(<span class="keywordtype">int</span> l, <span class="keywordtype">string</span> s)</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        line = l;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        text = s;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classCCompiler.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCCompiler.html">CCompiler</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="classCCompiler.html">CCompiler</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="classCCompiler.html">CCompiler</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span> result;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">//Initializes/destructs the scanner input -- implemented in CScanner.ll</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> scan_begin(<span class="keywordtype">bool</span> debug_scanning);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">void</span> scan_end();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">bool</span>  trace_scanning;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">//Handles the parser. Return 0 on success</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">int</span> parse(<span class="keyword">const</span> std::string&amp; fname);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        std::string fname;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span> setOutfile(std::string fname);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">bool</span> trace_parsing;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">//Handles the Symbol Table</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="structSymbolInfo.html">SymbolInfo</a> *currentSymbol;  </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classType.html">Type</a> *structMemberType;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="classSymTab.html">SymTab</a> SymbolTable;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">bool</span> anonymousEnum; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">int</span> structUnionMode;  </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        list&lt;string&gt; enumConsts;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        list&lt;SymbolInfo&gt; structUnionTypes; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="classEnumType.html">EnumType</a> *enumType;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="structSymbolInfo.html">SymbolInfo</a> *enumSym; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordtype">int</span> structVarCount;  </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        yy::CParser::token::yytokentype checkType(<span class="keywordtype">char</span>* key, <span class="keyword">const</span> yy::location&amp; loc, <a class="code" href="structSymbolInfo.html">SymbolInfo</a>* sym);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span> allocateSymbol(); </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">void</span> globalScope();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> enterScope();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordtype">void</span> leaveScope();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keywordtype">void</span> set_insert_mode(<span class="keywordtype">bool</span> iMode);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">bool</span> get_insert_mode();</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordtype">bool</span> trace_symtab;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;         </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">//Error reporting</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordtype">char</span> linebuf[500];</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span> error(<span class="keyword">const</span> yy::location&amp; loc, <span class="keyword">const</span> std::string&amp; msg);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordtype">void</span> error(<span class="keyword">const</span> std::string&amp; msg);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">void</span> warning(<span class="keyword">const</span> yy::location&amp; loc, <span class="keyword">const</span> std::string&amp; msg);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">void</span> warning(<span class="keyword">const</span> std::string&amp; msg);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">//Debug reporting</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span> printTok(std::string);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordtype">void</span> printTok(std::string, <span class="keywordtype">char</span>*);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordtype">void</span> printRed(std::string);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordtype">void</span> turnDebugOn(<span class="keywordtype">bool</span>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordtype">void</span> printDebug(std::string);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        fstream ydbFile;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">//Handles the AST and 3AC Code Generation</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        map&lt;int, string&gt; input_text;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">void</span> save_line(<span class="keywordtype">int</span> i, <span class="keywordtype">string</span> s);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">static</span> <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a> tacGen;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordtype">bool</span> debug_on;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">bool</span> insert_mode;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordtype">bool</span> outfile_set;   </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        fstream tFile;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        fstream rFile;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        fstream outfile;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif // ! CCompiler_H</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define YY_DECL                                     \</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">    yy::CParser::token_type                         \</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">    yylex(yy::CParser::semantic_type* yylval,       \</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">          yy::CParser::location_type* yylloc,       \</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">          CCompiler&amp; driver)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;YY_DECL;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="structInputLine.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structInputLine.html" title="A structure for buffering lines input code.">InputLine</a> </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="structInputLine.html#aef26343331dc90be48f6fdbf4ab85276">   32</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="structInputLine.html#aef26343331dc90be48f6fdbf4ab85276" title="The line number.">line</a>; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="structInputLine.html#aa448799cf6fd6735d55c2cadb394e16f">   33</a></span>&#160;    <span class="keywordtype">string</span> <a class="code" href="structInputLine.html#aa448799cf6fd6735d55c2cadb394e16f" title="The line of code.">text</a>; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="structInputLine.html#a6a57eafd6e53ea99651327e174c52077">   38</a></span>&#160;    <a class="code" href="structInputLine.html#a6a57eafd6e53ea99651327e174c52077" title="Defualt constructor.">InputLine</a>(<span class="keywordtype">int</span> l, <span class="keywordtype">string</span> s)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="structInputLine.html#aef26343331dc90be48f6fdbf4ab85276" title="The line number.">line</a> = l;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="structInputLine.html#aa448799cf6fd6735d55c2cadb394e16f" title="The line of code.">text</a> = s;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classCCompiler.html">   50</a></span>&#160;<span class="keyword">class </span><a class="code" href="classCCompiler.html" title="A minimalist C programming language compiler class.">CCompiler</a></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classCCompiler.html#aa2bf25daa08b040296dab6f21b5b514b" title="Default constructor.">CCompiler</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classCCompiler.html#a9143fdbd61eb03813adfddb51d3bbded" title="Destructor.">~CCompiler</a>();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classCCompiler.html#ac83135baa1380874cf2e30bc1d3d9294">   63</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classCCompiler.html#ac83135baa1380874cf2e30bc1d3d9294" title="A flag indicating the result of an attempted compilation.">result</a>; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a52d92c3695f753176bfb14cbf544f398" title="Initializes the scanning process.">scan_begin</a>(<span class="keywordtype">bool</span> debug_scanning);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a304e3789eb84bfa2a2e2ef21f84abf12" title="Closes the different output streams used in the scanner.">scan_end</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        </div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="classCCompiler.html#aa9769e9f7417698ce18ab9c668650ad0">   79</a></span>&#160;        <span class="keywordtype">bool</span>  <a class="code" href="classCCompiler.html#aa9769e9f7417698ce18ab9c668650ad0" title="Scanner trace state.">trace_scanning</a>; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">//Handles the parser. Return 0 on success</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="classCCompiler.html#a8698733d7659aa1bc138b033a9b4d7fe" title="Runs the parsing (and consequently the scanning) process.">parse</a>(<span class="keyword">const</span> std::string&amp; <a class="code" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72" title="Standard compiler output stream filename.">fname</a>);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">   92</a></span>&#160;        std::string <a class="code" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72" title="Standard compiler output stream filename.">fname</a>; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a66089b35f2d1676f4a6639080a4177c0" title="Sets the filename of the standard compiler output file stream and opens the stream.">setOutfile</a>(std::string <a class="code" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72" title="Standard compiler output stream filename.">fname</a>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="code" href="classCCompiler.html#a9959c74a24cffc0a33e981091b46ef01">  105</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a9959c74a24cffc0a33e981091b46ef01" title="Trace parsing flag.">trace_parsing</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="classCCompiler.html#a5ec2690957bb31fb7942789d55ac9e76">  110</a></span>&#160;        <a class="code" href="structSymbolInfo.html">SymbolInfo</a> *<a class="code" href="classCCompiler.html#a5ec2690957bb31fb7942789d55ac9e76" title="The current symbol table symbol.">currentSymbol</a>;  </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="classType.html">Type</a> *structMemberType;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="classSymTab.html">SymTab</a> SymbolTable;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">bool</span> anonymousEnum; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">int</span> structUnionMode;  </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        list&lt;string&gt; enumConsts;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        list&lt;SymbolInfo&gt; structUnionTypes; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <a class="code" href="classEnumType.html">EnumType</a> *enumType;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <a class="code" href="structSymbolInfo.html">SymbolInfo</a> *enumSym; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordtype">int</span> structVarCount;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        yy::CParser::token::yytokentype <a class="code" href="classCCompiler.html#ae37bb9232064de17552090db6a2df97d" title="Should check the type of the symbol with the input key and insert any symbol not currently in the sym...">checkType</a>(<span class="keywordtype">char</span>* key, <span class="keyword">const</span> <a class="code" href="classyy_1_1location.html" title="Abstract a location.">yy::location</a>&amp; loc, <a class="code" href="structSymbolInfo.html">SymbolInfo</a>* sym);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#adf3afdb8d707e764cabcafcb7ac3d66d" title="Allocates a new current symbol.">allocateSymbol</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        </div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a46e2be0b3d3bc44ecfe0b054e94676ba" title="Initializes the global scope for the input program.">globalScope</a>();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a907195dbe90c35f4aeec4be6616e3f34" title="Enters a new scope in the input program.">enterScope</a>();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a2bccef2eb5e1f9a822ebca90f744ac2f" title="Leaves a scope in the input program.">leaveScope</a>();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        </div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a0517c73a064cdbd86b9d538464bf72fc" title="Sets the insert mode flag to the provided value.">set_insert_mode</a>(<span class="keywordtype">bool</span> iMode);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a947d3b408eea7a9365b9d05f6f247142" title="Gets TRUE if the compiler is currently in insert mode and false otherwise.">get_insert_mode</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="code" href="classCCompiler.html#a3c5de89c525d74fa8cbc0ff024cd1ec3">  173</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a3c5de89c525d74fa8cbc0ff024cd1ec3" title="Flag indicating whether or not trace data should be output for the symbol table.">trace_symtab</a>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;         </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="comment">//TODO - remove? </span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="comment">//char linebuf[500];</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        </div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720" title="Prints an error to the standard compiler output stream with the coordinates of the code that caused t...">error</a>(<span class="keyword">const</span> <a class="code" href="classyy_1_1location.html" title="Abstract a location.">yy::location</a>&amp; loc, <span class="keyword">const</span> std::string&amp; msg);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720" title="Prints an error to the standard compiler output stream with the coordinates of the code that caused t...">error</a>(<span class="keyword">const</span> std::string&amp; msg);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        </div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2" title="Prints a warning to the standard compiler output stream with the coordinates of the code that caused ...">warning</a>(<span class="keyword">const</span> <a class="code" href="classyy_1_1location.html" title="Abstract a location.">yy::location</a>&amp; loc, <span class="keyword">const</span> std::string&amp; msg);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2" title="Prints a warning to the standard compiler output stream with the coordinates of the code that caused ...">warning</a>(<span class="keyword">const</span> std::string&amp; msg);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a9b22e2e590320adbb31fcd74981e1bf5" title="Prints the recognized token to the token file.">printTok</a>(std::string ttxt);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        </div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a9b22e2e590320adbb31fcd74981e1bf5" title="Prints the recognized token to the token file.">printTok</a>(std::string ttxt, <span class="keywordtype">char</span>* yytext);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        </div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a8067a904454b386b22f4a76c2fa153b7" title="Prints a reduction to the reduction file.">printRed</a>(std::string ptxt);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        </div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a8098c8e8071444110d5a517d7fa172a8" title="Sets the debug output flag to the value provided.">turnDebugOn</a>(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#ad05b354c2c416543d9238c9d8203a0f2" title="Prints a debug string to the standard compiler output stream if the debug output flag is set to true...">printDebug</a>(std::string txt);</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        </div>
+<div class="line"><a name="l00249"></a><span class="lineno"><a class="code" href="classCCompiler.html#aa185f3a3e7345798eecf9e4cbfb6be1a">  249</a></span>&#160;        fstream <a class="code" href="classCCompiler.html#aa185f3a3e7345798eecf9e4cbfb6be1a" title="Bison debug output file.">ydbFile</a>; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="code" href="classCCompiler.html#a8898bce76cc8cce6e1eb516f1b09328d">  251</a></span>&#160;        map&lt;int, string&gt; <a class="code" href="classCCompiler.html#a8898bce76cc8cce6e1eb516f1b09328d" title="Input code buffer.">input_text</a>; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classCCompiler.html#a29d69476eff6dba6b2697b065b7fbc6b" title="Stores a line of code in the input code buffer.">save_line</a>(<span class="keywordtype">int</span> i, <span class="keywordtype">string</span> s);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        </div>
+<div class="line"><a name="l00264"></a><span class="lineno"><a class="code" href="classCCompiler.html#ad8fe69bbb8afffda34ca69325af7ff0b">  264</a></span>&#160;        <span class="keyword">static</span> <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a> <a class="code" href="classCCompiler.html#ad8fe69bbb8afffda34ca69325af7ff0b" title="Three address code generator.">tacGen</a>;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="code" href="classCCompiler.html#a3d8342e750d676effe2ee92161129360">  267</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a3d8342e750d676effe2ee92161129360" title="Debug output flag.">debug_on</a>; </div>
+<div class="line"><a name="l00268"></a><span class="lineno"><a class="code" href="classCCompiler.html#a26d9cf998c4bb1fd8a1f115ee5a23123">  268</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a26d9cf998c4bb1fd8a1f115ee5a23123" title="Insert mode flag.">insert_mode</a>; </div>
+<div class="line"><a name="l00269"></a><span class="lineno"><a class="code" href="classCCompiler.html#a769915c7fae8eb76d704c0735c90dffa">  269</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classCCompiler.html#a769915c7fae8eb76d704c0735c90dffa" title="Output to file flag.">outfile_set</a>; </div>
+<div class="line"><a name="l00270"></a><span class="lineno"><a class="code" href="classCCompiler.html#a9b1dffb0bbfbe87f667dae2fbb4bf12b">  270</a></span>&#160;        fstream <a class="code" href="classCCompiler.html#a9b1dffb0bbfbe87f667dae2fbb4bf12b" title="Token output stream.">tFile</a>; </div>
+<div class="line"><a name="l00271"></a><span class="lineno"><a class="code" href="classCCompiler.html#a1d71bda765bab9dff0b56660237125ac">  271</a></span>&#160;        fstream <a class="code" href="classCCompiler.html#a1d71bda765bab9dff0b56660237125ac" title="Reduction output stream.">rFile</a>; </div>
+<div class="line"><a name="l00272"></a><span class="lineno"><a class="code" href="classCCompiler.html#ab2b012bff98533fc4eaeb36c36a3dea9">  272</a></span>&#160;        fstream <a class="code" href="classCCompiler.html#ab2b012bff98533fc4eaeb36c36a3dea9" title="Standard compiler output stream.">outfile</a>; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;};</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">#endif // ! CCompiler_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 10 2013 10:37:56 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Apr 15 2013 12:50:17 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

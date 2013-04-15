@@ -5,44 +5,66 @@
 #include <sstream>
 #include "Visualizer.h"
 
+/**
+ * Abstract syntax tree node type
+ */
 class AST
 {
     public:
+        /**
+         * AST default constructor. This default constructor ensures that every
+         * node has a label and a unique identifier (used for visualizing the 
+         * tree)
+         */
         AST()
         {
             uid = Visualizer::GetNextUID();
             label = "LabelNotSet";
         }
 
+        /**
+         * Sets the label for the node.
+         *
+         * @param l The label string
+         */
         void setLabel(string l)
         {
             label = l;
         }
 
+        /**
+         * Gets the node's unique ID.
+         *
+         * @return The unique id
+         */
         int getUID() { return uid; }
 
+        /**
+         * Gets the node's label.
+         *
+         * @return The label
+         */
         string getLabel() { return label; }
 
+        /**
+         * Static visualizer instance for generating the visualization of the 
+         * AST.
+         */
         static Visualizer vis;
 
-	virtual void Visit(){};
+        /**
+         * This function is responsible for tree traversals. This function will
+         * call the Visit functions of each of it's children nodes, call the 
+         * visualization code for itself, and output any 3AC that can be 
+         * generated at the current node.
+         */
+	    virtual void Visit(){};
 
     protected:
-        int uid;
-        string label;
+        int uid; /**< The unique id */
+        string label; /**< The label to be printed in the visualization */
 };
 
-class AstNodeStub : public AST
-{
-    //Place the children nodes here
-
-    public:
-        //Constructor
-        AstNodeStub();
-
-        //Traversal
-        void Visit();
-};
 class AstTypeName : public AST
 {
     //TODO implement later
@@ -758,8 +780,19 @@ class AstDeclarationList : public AST
         void Visit(){}
 };
 
+/*
+class AstNodeStub : public AST
+{
+    //Place the children nodes here
 
+    public:
+        //Constructor
+        AstNodeStub();
 
+        //Traversal
+        void Visit();
+};
+*/
 
 
 

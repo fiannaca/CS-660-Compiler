@@ -5,10 +5,11 @@ var searchData=
   ['addedge',['addEdge',['../classVisualizer.html#a84454739e84577863200833d99de5976',1,'Visualizer']]],
   ['addnode',['addNode',['../classVisualizer.html#a07370d04b5c04c37c001094d8dea1a19',1,'Visualizer::addNode(int uid, string label)'],['../classVisualizer.html#a24387730bdf8579f07ef7760b5c4fe83',1,'Visualizer::addNode(int parentid, int childid, string parent_label)']]],
   ['addr',['ADDR',['../classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34',1,'TAC_Generator']]],
+  ['allocatesymbol',['allocateSymbol',['../classCCompiler.html#adf3afdb8d707e764cabcafcb7ac3d66d',1,'CCompiler']]],
   ['args',['ARGS',['../classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910',1,'TAC_Generator']]],
   ['arraytype',['ArrayType',['../classArrayType.html',1,'']]],
   ['assign',['ASSIGN',['../classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653',1,'TAC_Generator']]],
-  ['ast',['AST',['../classAST.html',1,'']]],
+  ['ast',['AST',['../classAST.html',1,'AST'],['../classAST.html#afd378ca7cb3049d6293e8597d31d758d',1,'AST::AST()']]],
   ['astaddexpr',['AstAddExpr',['../classAstAddExpr.html',1,'']]],
   ['astandexpr',['AstAndExpr',['../classAstAndExpr.html',1,'']]],
   ['astargexprlist',['AstArgExprList',['../classAstArgExprList.html',1,'']]],
@@ -36,7 +37,6 @@ var searchData=
   ['astlogicandexpr',['AstLogicAndExpr',['../classAstLogicAndExpr.html',1,'']]],
   ['astlogicorexpr',['AstLogicOrExpr',['../classAstLogicOrExpr.html',1,'']]],
   ['astmultexpr',['AstMultExpr',['../classAstMultExpr.html',1,'']]],
-  ['astnodestub',['AstNodeStub',['../classAstNodeStub.html',1,'']]],
   ['astorexpr',['AstORExpr',['../classAstORExpr.html',1,'']]],
   ['astpostfixexpr',['AstPostfixExpr',['../classAstPostfixExpr.html',1,'']]],
   ['astprimaryexpr',['AstPrimaryExpr',['../classAstPrimaryExpr.html',1,'']]],
@@ -53,5 +53,5 @@ var searchData=
   ['astunaryop',['AstUnaryOp',['../classAstUnaryOp.html',1,'']]],
   ['astwhile',['AstWhile',['../classAstWhile.html',1,'']]],
   ['astxorexpr',['AstXORExpr',['../classAstXORExpr.html',1,'']]],
-  ['avltree',['AVLTree',['../classAVLTree.html',1,'']]]
+  ['avltree',['AVLTree',['../classAVLTree.html',1,'AVLTree&lt; DataItem &gt;'],['../classAVLTree.html#a685459c83f9879c6c99687cd620033cc',1,'AVLTree::AVLTree()']]]
 ];

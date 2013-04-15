@@ -1,90 +1,89 @@
 \hypertarget{classCCompiler}{\section{C\-Compiler Class Reference}
 \label{classCCompiler}\index{C\-Compiler@{C\-Compiler}}
 }
+
+
+A minimalist C programming language compiler class.  
+
+
+
+
+{\ttfamily \#include $<$C\-Compiler.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classCCompiler_a52d92c3695f753176bfb14cbf544f398}{void {\bfseries scan\-\_\-begin} (bool debug\-\_\-scanning)}\label{classCCompiler_a52d92c3695f753176bfb14cbf544f398}
+\hypertarget{classCCompiler_aa2bf25daa08b040296dab6f21b5b514b}{\hyperlink{classCCompiler_aa2bf25daa08b040296dab6f21b5b514b}{C\-Compiler} ()}\label{classCCompiler_aa2bf25daa08b040296dab6f21b5b514b}
 
-\item 
-\hypertarget{classCCompiler_a304e3789eb84bfa2a2e2ef21f84abf12}{void {\bfseries scan\-\_\-end} ()}\label{classCCompiler_a304e3789eb84bfa2a2e2ef21f84abf12}
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a9143fdbd61eb03813adfddb51d3bbded}{virtual \hyperlink{classCCompiler_a9143fdbd61eb03813adfddb51d3bbded}{$\sim$\-C\-Compiler} ()}\label{classCCompiler_a9143fdbd61eb03813adfddb51d3bbded}
 
-\item 
-\hypertarget{classCCompiler_a8698733d7659aa1bc138b033a9b4d7fe}{int {\bfseries parse} (const std\-::string \&fname)}\label{classCCompiler_a8698733d7659aa1bc138b033a9b4d7fe}
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a52d92c3695f753176bfb14cbf544f398}{scan\-\_\-begin} (bool debug\-\_\-scanning)
+\begin{DoxyCompactList}\small\item\em Initializes the scanning process. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a304e3789eb84bfa2a2e2ef21f84abf12}{void \hyperlink{classCCompiler_a304e3789eb84bfa2a2e2ef21f84abf12}{scan\-\_\-end} ()}\label{classCCompiler_a304e3789eb84bfa2a2e2ef21f84abf12}
 
-\item 
-\hypertarget{classCCompiler_a66089b35f2d1676f4a6639080a4177c0}{void {\bfseries set\-Outfile} (std\-::string fname)}\label{classCCompiler_a66089b35f2d1676f4a6639080a4177c0}
+\begin{DoxyCompactList}\small\item\em Closes the different output streams used in the scanner. \end{DoxyCompactList}\item 
+int \hyperlink{classCCompiler_a8698733d7659aa1bc138b033a9b4d7fe}{parse} (const std\-::string \&\hyperlink{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}{fname})
+\begin{DoxyCompactList}\small\item\em Runs the parsing (and consequently the scanning) process. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a66089b35f2d1676f4a6639080a4177c0}{set\-Outfile} (std\-::string \hyperlink{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}{fname})
+\begin{DoxyCompactList}\small\item\em Sets the filename of the standard compiler output file stream and opens the stream. \end{DoxyCompactList}\item 
+yy\-::\-C\-Parser\-::token\-::yytokentype \hyperlink{classCCompiler_ae37bb9232064de17552090db6a2df97d}{check\-Type} (char $\ast$key, const \hyperlink{classyy_1_1location}{yy\-::location} \&loc, \hyperlink{structSymbolInfo}{Symbol\-Info} $\ast$sym)
+\begin{DoxyCompactList}\small\item\em Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_adf3afdb8d707e764cabcafcb7ac3d66d}{void \hyperlink{classCCompiler_adf3afdb8d707e764cabcafcb7ac3d66d}{allocate\-Symbol} ()}\label{classCCompiler_adf3afdb8d707e764cabcafcb7ac3d66d}
 
-\item 
-\hypertarget{classCCompiler_ae37bb9232064de17552090db6a2df97d}{yy\-::\-C\-Parser\-::token\-::yytokentype {\bfseries check\-Type} (char $\ast$key, const yy\-::location \&loc, \hyperlink{structSymbolInfo}{Symbol\-Info} $\ast$sym)}\label{classCCompiler_ae37bb9232064de17552090db6a2df97d}
+\begin{DoxyCompactList}\small\item\em Allocates a new current symbol. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a46e2be0b3d3bc44ecfe0b054e94676ba}{void \hyperlink{classCCompiler_a46e2be0b3d3bc44ecfe0b054e94676ba}{global\-Scope} ()}\label{classCCompiler_a46e2be0b3d3bc44ecfe0b054e94676ba}
 
-\item 
-\hypertarget{classCCompiler_adf3afdb8d707e764cabcafcb7ac3d66d}{void {\bfseries allocate\-Symbol} ()}\label{classCCompiler_adf3afdb8d707e764cabcafcb7ac3d66d}
+\begin{DoxyCompactList}\small\item\em Initializes the global scope for the input program. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a907195dbe90c35f4aeec4be6616e3f34}{void \hyperlink{classCCompiler_a907195dbe90c35f4aeec4be6616e3f34}{enter\-Scope} ()}\label{classCCompiler_a907195dbe90c35f4aeec4be6616e3f34}
 
-\item 
-\hypertarget{classCCompiler_a46e2be0b3d3bc44ecfe0b054e94676ba}{void {\bfseries global\-Scope} ()}\label{classCCompiler_a46e2be0b3d3bc44ecfe0b054e94676ba}
+\begin{DoxyCompactList}\small\item\em Enters a new scope in the input program. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a2bccef2eb5e1f9a822ebca90f744ac2f}{void \hyperlink{classCCompiler_a2bccef2eb5e1f9a822ebca90f744ac2f}{leave\-Scope} ()}\label{classCCompiler_a2bccef2eb5e1f9a822ebca90f744ac2f}
 
-\item 
-\hypertarget{classCCompiler_a907195dbe90c35f4aeec4be6616e3f34}{void {\bfseries enter\-Scope} ()}\label{classCCompiler_a907195dbe90c35f4aeec4be6616e3f34}
-
-\item 
-\hypertarget{classCCompiler_a2bccef2eb5e1f9a822ebca90f744ac2f}{void {\bfseries leave\-Scope} ()}\label{classCCompiler_a2bccef2eb5e1f9a822ebca90f744ac2f}
-
-\item 
-\hypertarget{classCCompiler_a0517c73a064cdbd86b9d538464bf72fc}{void {\bfseries set\-\_\-insert\-\_\-mode} (bool i\-Mode)}\label{classCCompiler_a0517c73a064cdbd86b9d538464bf72fc}
-
-\item 
-\hypertarget{classCCompiler_a947d3b408eea7a9365b9d05f6f247142}{bool {\bfseries get\-\_\-insert\-\_\-mode} ()}\label{classCCompiler_a947d3b408eea7a9365b9d05f6f247142}
-
-\item 
-\hypertarget{classCCompiler_aeb15aaabe4c6eba50ae6448dc994d720}{void {\bfseries error} (const yy\-::location \&loc, const std\-::string \&msg)}\label{classCCompiler_aeb15aaabe4c6eba50ae6448dc994d720}
-
-\item 
-\hypertarget{classCCompiler_a42f25efb480223b1bf7a98606d57b8d4}{void {\bfseries error} (const std\-::string \&msg)}\label{classCCompiler_a42f25efb480223b1bf7a98606d57b8d4}
-
-\item 
-\hypertarget{classCCompiler_a078454badd5c6ecb66c9b177bf8e45e2}{void {\bfseries warning} (const yy\-::location \&loc, const std\-::string \&msg)}\label{classCCompiler_a078454badd5c6ecb66c9b177bf8e45e2}
-
-\item 
-\hypertarget{classCCompiler_a763a49b094c39f1105cb41be54b3cb13}{void {\bfseries warning} (const std\-::string \&msg)}\label{classCCompiler_a763a49b094c39f1105cb41be54b3cb13}
-
-\item 
-\hypertarget{classCCompiler_ab1586bbdd6ad1ca6dace49e78bdd77fe}{void {\bfseries print\-Tok} (std\-::string)}\label{classCCompiler_ab1586bbdd6ad1ca6dace49e78bdd77fe}
-
-\item 
-\hypertarget{classCCompiler_af7c375c2f9cdd73162714b95391185d9}{void {\bfseries print\-Tok} (std\-::string, char $\ast$)}\label{classCCompiler_af7c375c2f9cdd73162714b95391185d9}
-
-\item 
-\hypertarget{classCCompiler_a417594ba72bfe40add794c79c7c740c1}{void {\bfseries print\-Red} (std\-::string)}\label{classCCompiler_a417594ba72bfe40add794c79c7c740c1}
-
-\item 
-\hypertarget{classCCompiler_ab30f4e1937eaf5d6323a0504e756d963}{void {\bfseries turn\-Debug\-On} (bool)}\label{classCCompiler_ab30f4e1937eaf5d6323a0504e756d963}
-
-\item 
-\hypertarget{classCCompiler_a22ecc29706e555ac0f1e5c894cba905e}{void {\bfseries print\-Debug} (std\-::string)}\label{classCCompiler_a22ecc29706e555ac0f1e5c894cba905e}
-
-\item 
-\hypertarget{classCCompiler_a29d69476eff6dba6b2697b065b7fbc6b}{void {\bfseries save\-\_\-line} (int i, string s)}\label{classCCompiler_a29d69476eff6dba6b2697b065b7fbc6b}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Leaves a scope in the input program. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a0517c73a064cdbd86b9d538464bf72fc}{set\-\_\-insert\-\_\-mode} (bool i\-Mode)
+\begin{DoxyCompactList}\small\item\em Sets the insert mode flag to the provided value. \end{DoxyCompactList}\item 
+bool \hyperlink{classCCompiler_a947d3b408eea7a9365b9d05f6f247142}{get\-\_\-insert\-\_\-mode} ()
+\begin{DoxyCompactList}\small\item\em Gets T\-R\-U\-E if the compiler is currently in insert mode and false otherwise. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_aeb15aaabe4c6eba50ae6448dc994d720}{error} (const \hyperlink{classyy_1_1location}{yy\-::location} \&loc, const std\-::string \&msg)
+\begin{DoxyCompactList}\small\item\em Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E return value. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a42f25efb480223b1bf7a98606d57b8d4}{error} (const std\-::string \&msg)
+\begin{DoxyCompactList}\small\item\em Prints an error to the standard compiler output stream and terminates the program with with an E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E return value. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a078454badd5c6ecb66c9b177bf8e45e2}{warning} (const \hyperlink{classyy_1_1location}{yy\-::location} \&loc, const std\-::string \&msg)
+\begin{DoxyCompactList}\small\item\em Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a763a49b094c39f1105cb41be54b3cb13}{warning} (const std\-::string \&msg)
+\begin{DoxyCompactList}\small\item\em Prints a warning to the standard compiler output stream. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a9b22e2e590320adbb31fcd74981e1bf5}{print\-Tok} (std\-::string ttxt)
+\begin{DoxyCompactList}\small\item\em Prints the recognized token to the token file. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a14c4d23d93ef5efb73d7d6dba3e9689e}{print\-Tok} (std\-::string ttxt, char $\ast$yytext)
+\begin{DoxyCompactList}\small\item\em Prints the recognized token to the token file with the matched text. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a8067a904454b386b22f4a76c2fa153b7}{print\-Red} (std\-::string ptxt)
+\begin{DoxyCompactList}\small\item\em Prints a reduction to the reduction file. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a8098c8e8071444110d5a517d7fa172a8}{turn\-Debug\-On} (bool flag)
+\begin{DoxyCompactList}\small\item\em Sets the debug output flag to the value provided. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_ad05b354c2c416543d9238c9d8203a0f2}{print\-Debug} (std\-::string txt)
+\begin{DoxyCompactList}\small\item\em Prints a debug string to the standard compiler output stream if the debug output flag is set to true. \end{DoxyCompactList}\item 
+void \hyperlink{classCCompiler_a29d69476eff6dba6b2697b065b7fbc6b}{save\-\_\-line} (int i, string s)
+\begin{DoxyCompactList}\small\item\em Stores a line of code in the input code buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classCCompiler_ac83135baa1380874cf2e30bc1d3d9294}{int {\bfseries result}}\label{classCCompiler_ac83135baa1380874cf2e30bc1d3d9294}
+\hypertarget{classCCompiler_ac83135baa1380874cf2e30bc1d3d9294}{int \hyperlink{classCCompiler_ac83135baa1380874cf2e30bc1d3d9294}{result}}\label{classCCompiler_ac83135baa1380874cf2e30bc1d3d9294}
 
-\item 
-\hypertarget{classCCompiler_aa9769e9f7417698ce18ab9c668650ad0}{bool {\bfseries trace\-\_\-scanning}}\label{classCCompiler_aa9769e9f7417698ce18ab9c668650ad0}
+\begin{DoxyCompactList}\small\item\em A flag indicating the result of an attempted compilation. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_aa9769e9f7417698ce18ab9c668650ad0}{bool \hyperlink{classCCompiler_aa9769e9f7417698ce18ab9c668650ad0}{trace\-\_\-scanning}}\label{classCCompiler_aa9769e9f7417698ce18ab9c668650ad0}
 
-\item 
-\hypertarget{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}{std\-::string {\bfseries fname}}\label{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}
+\begin{DoxyCompactList}\small\item\em Scanner trace state. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}{std\-::string \hyperlink{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}{fname}}\label{classCCompiler_a60b1cadb0db77e19be3b13e80ceade72}
 
-\item 
-\hypertarget{classCCompiler_a9959c74a24cffc0a33e981091b46ef01}{bool {\bfseries trace\-\_\-parsing}}\label{classCCompiler_a9959c74a24cffc0a33e981091b46ef01}
+\begin{DoxyCompactList}\small\item\em Standard compiler output stream filename. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a9959c74a24cffc0a33e981091b46ef01}{bool \hyperlink{classCCompiler_a9959c74a24cffc0a33e981091b46ef01}{trace\-\_\-parsing}}\label{classCCompiler_a9959c74a24cffc0a33e981091b46ef01}
 
-\item 
-\hypertarget{classCCompiler_a5ec2690957bb31fb7942789d55ac9e76}{\hyperlink{structSymbolInfo}{Symbol\-Info} $\ast$ {\bfseries current\-Symbol}}\label{classCCompiler_a5ec2690957bb31fb7942789d55ac9e76}
+\begin{DoxyCompactList}\small\item\em Trace parsing flag. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a5ec2690957bb31fb7942789d55ac9e76}{\hyperlink{structSymbolInfo}{Symbol\-Info} $\ast$ \hyperlink{classCCompiler_a5ec2690957bb31fb7942789d55ac9e76}{current\-Symbol}}\label{classCCompiler_a5ec2690957bb31fb7942789d55ac9e76}
 
-\item 
+\begin{DoxyCompactList}\small\item\em The current symbol table symbol. \end{DoxyCompactList}\item 
 \hypertarget{classCCompiler_a81717a338fc2dec88849f062ced197bd}{\hyperlink{classType}{Type} $\ast$ {\bfseries struct\-Member\-Type}}\label{classCCompiler_a81717a338fc2dec88849f062ced197bd}
 
 \item 
@@ -112,48 +111,336 @@
 \hypertarget{classCCompiler_a786c697900f9a3e71f017c87274b3162}{int {\bfseries struct\-Var\-Count}}\label{classCCompiler_a786c697900f9a3e71f017c87274b3162}
 
 \item 
-\hypertarget{classCCompiler_a3c5de89c525d74fa8cbc0ff024cd1ec3}{bool {\bfseries trace\-\_\-symtab}}\label{classCCompiler_a3c5de89c525d74fa8cbc0ff024cd1ec3}
+\hypertarget{classCCompiler_a3c5de89c525d74fa8cbc0ff024cd1ec3}{bool \hyperlink{classCCompiler_a3c5de89c525d74fa8cbc0ff024cd1ec3}{trace\-\_\-symtab}}\label{classCCompiler_a3c5de89c525d74fa8cbc0ff024cd1ec3}
 
-\item 
-\hypertarget{classCCompiler_a883f08313cbea022b24f25d5ed710885}{char {\bfseries linebuf} \mbox{[}500\mbox{]}}\label{classCCompiler_a883f08313cbea022b24f25d5ed710885}
+\begin{DoxyCompactList}\small\item\em Flag indicating whether or not trace data should be output for the symbol table. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_aa185f3a3e7345798eecf9e4cbfb6be1a}{fstream \hyperlink{classCCompiler_aa185f3a3e7345798eecf9e4cbfb6be1a}{ydb\-File}}\label{classCCompiler_aa185f3a3e7345798eecf9e4cbfb6be1a}
 
-\item 
-\hypertarget{classCCompiler_aa185f3a3e7345798eecf9e4cbfb6be1a}{fstream {\bfseries ydb\-File}}\label{classCCompiler_aa185f3a3e7345798eecf9e4cbfb6be1a}
+\begin{DoxyCompactList}\small\item\em Bison debug output file. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a8898bce76cc8cce6e1eb516f1b09328d}{map$<$ int, string $>$ \hyperlink{classCCompiler_a8898bce76cc8cce6e1eb516f1b09328d}{input\-\_\-text}}\label{classCCompiler_a8898bce76cc8cce6e1eb516f1b09328d}
 
-\item 
-\hypertarget{classCCompiler_a8898bce76cc8cce6e1eb516f1b09328d}{map$<$ int, string $>$ {\bfseries input\-\_\-text}}\label{classCCompiler_a8898bce76cc8cce6e1eb516f1b09328d}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Input code buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classCCompiler_ad8fe69bbb8afffda34ca69325af7ff0b}{static \hyperlink{classTAC__Generator}{T\-A\-C\-\_\-\-Generator} {\bfseries tac\-Gen}}\label{classCCompiler_ad8fe69bbb8afffda34ca69325af7ff0b}
+\hypertarget{classCCompiler_ad8fe69bbb8afffda34ca69325af7ff0b}{static \hyperlink{classTAC__Generator}{T\-A\-C\-\_\-\-Generator} \hyperlink{classCCompiler_ad8fe69bbb8afffda34ca69325af7ff0b}{tac\-Gen}}\label{classCCompiler_ad8fe69bbb8afffda34ca69325af7ff0b}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Three address code generator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classCCompiler_a3d8342e750d676effe2ee92161129360}{bool {\bfseries debug\-\_\-on}}\label{classCCompiler_a3d8342e750d676effe2ee92161129360}
+\hypertarget{classCCompiler_a3d8342e750d676effe2ee92161129360}{bool \hyperlink{classCCompiler_a3d8342e750d676effe2ee92161129360}{debug\-\_\-on}}\label{classCCompiler_a3d8342e750d676effe2ee92161129360}
 
-\item 
-\hypertarget{classCCompiler_a26d9cf998c4bb1fd8a1f115ee5a23123}{bool {\bfseries insert\-\_\-mode}}\label{classCCompiler_a26d9cf998c4bb1fd8a1f115ee5a23123}
+\begin{DoxyCompactList}\small\item\em Debug output flag. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a26d9cf998c4bb1fd8a1f115ee5a23123}{bool \hyperlink{classCCompiler_a26d9cf998c4bb1fd8a1f115ee5a23123}{insert\-\_\-mode}}\label{classCCompiler_a26d9cf998c4bb1fd8a1f115ee5a23123}
 
-\item 
-\hypertarget{classCCompiler_a769915c7fae8eb76d704c0735c90dffa}{bool {\bfseries outfile\-\_\-set}}\label{classCCompiler_a769915c7fae8eb76d704c0735c90dffa}
+\begin{DoxyCompactList}\small\item\em Insert mode flag. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a769915c7fae8eb76d704c0735c90dffa}{bool \hyperlink{classCCompiler_a769915c7fae8eb76d704c0735c90dffa}{outfile\-\_\-set}}\label{classCCompiler_a769915c7fae8eb76d704c0735c90dffa}
 
-\item 
-\hypertarget{classCCompiler_a9b1dffb0bbfbe87f667dae2fbb4bf12b}{fstream {\bfseries t\-File}}\label{classCCompiler_a9b1dffb0bbfbe87f667dae2fbb4bf12b}
+\begin{DoxyCompactList}\small\item\em Output to file flag. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a9b1dffb0bbfbe87f667dae2fbb4bf12b}{fstream \hyperlink{classCCompiler_a9b1dffb0bbfbe87f667dae2fbb4bf12b}{t\-File}}\label{classCCompiler_a9b1dffb0bbfbe87f667dae2fbb4bf12b}
 
-\item 
-\hypertarget{classCCompiler_a1d71bda765bab9dff0b56660237125ac}{fstream {\bfseries r\-File}}\label{classCCompiler_a1d71bda765bab9dff0b56660237125ac}
+\begin{DoxyCompactList}\small\item\em Token output stream. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_a1d71bda765bab9dff0b56660237125ac}{fstream \hyperlink{classCCompiler_a1d71bda765bab9dff0b56660237125ac}{r\-File}}\label{classCCompiler_a1d71bda765bab9dff0b56660237125ac}
 
-\item 
-\hypertarget{classCCompiler_ab2b012bff98533fc4eaeb36c36a3dea9}{fstream {\bfseries outfile}}\label{classCCompiler_ab2b012bff98533fc4eaeb36c36a3dea9}
+\begin{DoxyCompactList}\small\item\em Reduction output stream. \end{DoxyCompactList}\item 
+\hypertarget{classCCompiler_ab2b012bff98533fc4eaeb36c36a3dea9}{fstream \hyperlink{classCCompiler_ab2b012bff98533fc4eaeb36c36a3dea9}{outfile}}\label{classCCompiler_ab2b012bff98533fc4eaeb36c36a3dea9}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Standard compiler output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A minimalist C programming language compiler class. 
+
+This class handles the entire operation of compiling C code, from lexing and parsing, to walking the \hyperlink{classAST}{A\-S\-T}, generating 3\-A\-C, and generating A\-S\-M. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classCCompiler_ae37bb9232064de17552090db6a2df97d}{\index{C\-Compiler@{C\-Compiler}!check\-Type@{check\-Type}}
+\index{check\-Type@{check\-Type}!CCompiler@{C\-Compiler}}
+\subsubsection[{check\-Type}]{\setlength{\rightskip}{0pt plus 5cm}yy\-::\-C\-Parser\-::token\-::yytokentype C\-Compiler\-::check\-Type (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{key, }
+\item[{const {\bf yy\-::location} \&}]{loc, }
+\item[{{\bf Symbol\-Info} $\ast$}]{sym}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_ae37bb9232064de17552090db6a2df97d}
+
+
+Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The string key for the token \\
+\hline
+{\em loc} & The location of the token \\
+\hline
+{\em sym} & a pointer to the symbol in the symbol table\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns either I\-D\-E\-N\-T\-I\-F\-I\-E\-R, E\-N\-U\-M\-\_\-\-C\-O\-N\-S\-T\-A\-N\-T, or T\-Y\-P\-E\-D\-E\-F\-\_\-\-N\-A\-M\-E 
+\end{DoxyReturn}
+\hypertarget{classCCompiler_aeb15aaabe4c6eba50ae6448dc994d720}{\index{C\-Compiler@{C\-Compiler}!error@{error}}
+\index{error@{error}!CCompiler@{C\-Compiler}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::error (
+\begin{DoxyParamCaption}
+\item[{const {\bf yy\-::location} \&}]{loc, }
+\item[{const std\-::string \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_aeb15aaabe4c6eba50ae6448dc994d720}
+
+
+Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E return value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loc} & The coordinates of the error \\
+\hline
+{\em msg} & The error message \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a42f25efb480223b1bf7a98606d57b8d4}{\index{C\-Compiler@{C\-Compiler}!error@{error}}
+\index{error@{error}!CCompiler@{C\-Compiler}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::error (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a42f25efb480223b1bf7a98606d57b8d4}
+
+
+Prints an error to the standard compiler output stream and terminates the program with with an E\-X\-I\-T\-\_\-\-F\-A\-I\-L\-U\-R\-E return value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The error message \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a947d3b408eea7a9365b9d05f6f247142}{\index{C\-Compiler@{C\-Compiler}!get\-\_\-insert\-\_\-mode@{get\-\_\-insert\-\_\-mode}}
+\index{get\-\_\-insert\-\_\-mode@{get\-\_\-insert\-\_\-mode}!CCompiler@{C\-Compiler}}
+\subsubsection[{get\-\_\-insert\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}bool C\-Compiler\-::get\-\_\-insert\-\_\-mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a947d3b408eea7a9365b9d05f6f247142}
+
+
+Gets T\-R\-U\-E if the compiler is currently in insert mode and false otherwise. 
+
+\begin{DoxyReturn}{Returns}
+The value of the insert mode flag; 
+\end{DoxyReturn}
+\hypertarget{classCCompiler_a8698733d7659aa1bc138b033a9b4d7fe}{\index{C\-Compiler@{C\-Compiler}!parse@{parse}}
+\index{parse@{parse}!CCompiler@{C\-Compiler}}
+\subsubsection[{parse}]{\setlength{\rightskip}{0pt plus 5cm}int C\-Compiler\-::parse (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{fname}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a8698733d7659aa1bc138b033a9b4d7fe}
+
+
+Runs the parsing (and consequently the scanning) process. 
+
+This is equivalent to a call to a Run() like function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The input code file filename\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result value of the parse process 
+\end{DoxyReturn}
+\hypertarget{classCCompiler_ad05b354c2c416543d9238c9d8203a0f2}{\index{C\-Compiler@{C\-Compiler}!print\-Debug@{print\-Debug}}
+\index{print\-Debug@{print\-Debug}!CCompiler@{C\-Compiler}}
+\subsubsection[{print\-Debug}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::print\-Debug (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{txt}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_ad05b354c2c416543d9238c9d8203a0f2}
+
+
+Prints a debug string to the standard compiler output stream if the debug output flag is set to true. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt} & The debug string to print \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a8067a904454b386b22f4a76c2fa153b7}{\index{C\-Compiler@{C\-Compiler}!print\-Red@{print\-Red}}
+\index{print\-Red@{print\-Red}!CCompiler@{C\-Compiler}}
+\subsubsection[{print\-Red}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::print\-Red (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{ptxt}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a8067a904454b386b22f4a76c2fa153b7}
+
+
+Prints a reduction to the reduction file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptxt} & Reduction string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a9b22e2e590320adbb31fcd74981e1bf5}{\index{C\-Compiler@{C\-Compiler}!print\-Tok@{print\-Tok}}
+\index{print\-Tok@{print\-Tok}!CCompiler@{C\-Compiler}}
+\subsubsection[{print\-Tok}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::print\-Tok (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{ttxt}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a9b22e2e590320adbb31fcd74981e1bf5}
+
+
+Prints the recognized token to the token file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ttxt} & The token \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a14c4d23d93ef5efb73d7d6dba3e9689e}{\index{C\-Compiler@{C\-Compiler}!print\-Tok@{print\-Tok}}
+\index{print\-Tok@{print\-Tok}!CCompiler@{C\-Compiler}}
+\subsubsection[{print\-Tok}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::print\-Tok (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{ttxt, }
+\item[{char $\ast$}]{yytext}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a14c4d23d93ef5efb73d7d6dba3e9689e}
+
+
+Prints the recognized token to the token file with the matched text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ttxt} & The token \\
+\hline
+{\em yytext} & The matched text \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a29d69476eff6dba6b2697b065b7fbc6b}{\index{C\-Compiler@{C\-Compiler}!save\-\_\-line@{save\-\_\-line}}
+\index{save\-\_\-line@{save\-\_\-line}!CCompiler@{C\-Compiler}}
+\subsubsection[{save\-\_\-line}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::save\-\_\-line (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{string}]{s}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a29d69476eff6dba6b2697b065b7fbc6b}
+
+
+Stores a line of code in the input code buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Line number \\
+\hline
+{\em s} & Line of input code \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a52d92c3695f753176bfb14cbf544f398}{\index{C\-Compiler@{C\-Compiler}!scan\-\_\-begin@{scan\-\_\-begin}}
+\index{scan\-\_\-begin@{scan\-\_\-begin}!CCompiler@{C\-Compiler}}
+\subsubsection[{scan\-\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::scan\-\_\-begin (
+\begin{DoxyParamCaption}
+\item[{bool}]{debug\-\_\-scanning}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a52d92c3695f753176bfb14cbf544f398}
+
+
+Initializes the scanning process. 
+
+This function sets up the scanner output streams, sets the scanner's debug level, and begins the F\-I\-R\-S\-T\-L\-I\-N\-E state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em debug\-\_\-scanning} & Indicates if the scanner should output debug info \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a0517c73a064cdbd86b9d538464bf72fc}{\index{C\-Compiler@{C\-Compiler}!set\-\_\-insert\-\_\-mode@{set\-\_\-insert\-\_\-mode}}
+\index{set\-\_\-insert\-\_\-mode@{set\-\_\-insert\-\_\-mode}!CCompiler@{C\-Compiler}}
+\subsubsection[{set\-\_\-insert\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::set\-\_\-insert\-\_\-mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{i\-Mode}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a0517c73a064cdbd86b9d538464bf72fc}
+
+
+Sets the insert mode flag to the provided value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i\-Mode} & Value to set the insert mode flag to \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a66089b35f2d1676f4a6639080a4177c0}{\index{C\-Compiler@{C\-Compiler}!set\-Outfile@{set\-Outfile}}
+\index{set\-Outfile@{set\-Outfile}!CCompiler@{C\-Compiler}}
+\subsubsection[{set\-Outfile}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::set\-Outfile (
+\begin{DoxyParamCaption}
+\item[{std\-::string}]{fname}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a66089b35f2d1676f4a6639080a4177c0}
+
+
+Sets the filename of the standard compiler output file stream and opens the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & The filename \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a8098c8e8071444110d5a517d7fa172a8}{\index{C\-Compiler@{C\-Compiler}!turn\-Debug\-On@{turn\-Debug\-On}}
+\index{turn\-Debug\-On@{turn\-Debug\-On}!CCompiler@{C\-Compiler}}
+\subsubsection[{turn\-Debug\-On}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::turn\-Debug\-On (
+\begin{DoxyParamCaption}
+\item[{bool}]{flag}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a8098c8e8071444110d5a517d7fa172a8}
+
+
+Sets the debug output flag to the value provided. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & Flag value \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a078454badd5c6ecb66c9b177bf8e45e2}{\index{C\-Compiler@{C\-Compiler}!warning@{warning}}
+\index{warning@{warning}!CCompiler@{C\-Compiler}}
+\subsubsection[{warning}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::warning (
+\begin{DoxyParamCaption}
+\item[{const {\bf yy\-::location} \&}]{loc, }
+\item[{const std\-::string \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a078454badd5c6ecb66c9b177bf8e45e2}
+
+
+Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em loc} & The coordinates of the warning \\
+\hline
+{\em msg} & The warning message \\
+\hline
+\end{DoxyParams}
+\hypertarget{classCCompiler_a763a49b094c39f1105cb41be54b3cb13}{\index{C\-Compiler@{C\-Compiler}!warning@{warning}}
+\index{warning@{warning}!CCompiler@{C\-Compiler}}
+\subsubsection[{warning}]{\setlength{\rightskip}{0pt plus 5cm}void C\-Compiler\-::warning (
+\begin{DoxyParamCaption}
+\item[{const std\-::string \&}]{msg}
+\end{DoxyParamCaption}
+)}}\label{classCCompiler_a763a49b094c39f1105cb41be54b3cb13}
+
+
+Prints a warning to the standard compiler output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The warning message to print \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
 C\-Compiler.\-h\item 
-C\-Compiler.\-cpp\end{DoxyCompactItemize}
+C\-Compiler.\-cpp\item 
+C\-Scanner.\-cpp\end{DoxyCompactItemize}
