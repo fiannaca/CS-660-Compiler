@@ -54,17 +54,23 @@ class AstTypeName : public AST
     AstAbstractDecl *decl;
 public:
         //Constructor
-        AstTypeName();
+        AstTypeName()
+        {
+			this->setLabel("TypeName");
+		}
         AstTypeName(AstSpeciQualList *list , AstAbstractDecl *decl )
         {
 			this->list = list ;
 			this->decl = decl;
+			this->setLabel("TypeName"); 
 		}
 
         //Traversal
         void Visit();
+      
        
 };
+
 
 class AstString : public AST
 {
@@ -524,124 +530,250 @@ class AstExpression : public AST
         AstExpression(AstExpression* e, AstAssignExpr* a);
 	void Visit();
 };
-class AstStatement:public AST 
+
+class AstReturn : public AST
 {
-	
-public:
-	void Visit()
-	{
-		
-	}
+    AstExpression *expr;
+
+    public:    
+        AstReturn(AstExpression *r);
+        AstReturn();
+        void Visit();
 };
 
-class AstGoto : public AstStatement
+class AstContinue : public AST 
 {
-     AstID* label; 	
-public:
-    AstGoto(AstID* label)
-    {
-	   this->label = label ;
-	}
-	void Visit()
-	{
-		
-	}
+    public:
+        AstContinue();
+        void Visit();	
 };
 
-class AstWhile : public AstStatement
+class AstBreak : public AST 
+{	
+    public:
+        AstBreak();
+        void Visit();	
+};
+
+class AstGoto : public AST
+{
+    public:
+        AstGoto();
+        void Visit();	
+};
+
+class AstJump : public AST
+{
+    AstGoto* go;
+    AstID* id;
+    AstContinue* cont;
+    AstBreak* br;
+    AstReturn* ret;
+    AstExpression* expr;
+
+    public:
+        enum Type
+        {
+            GOTO,
+            CONTINUE,
+            BREAK,
+            EMPTY_RETURN,
+            RETURN
+        } t;
+
+        AstJump(AstGoto* g, AstID* i);
+        AstJump(AstContinue* c);
+        AstJump(AstBreak* b);
+        AstJump(AstReturn* r);
+        AstJump(AstReturn* r, AstExpression* e);
+        void Visit();
+};
+
+class AstStatement;
+
+class AstDoWhile : public AST
+{
+    AstExpression *test;
+    AstStatement *statement;
+
+    public:
+        AstDoWhile( AstStatement *s, AstExpression *t );
+        void Visit();
+};
+
+class AstWhile : public AST
 {
     AstExpression *test;
     AstStatement *statement; 
 
     public:
+        AstWhile( AstExpression *test, AstStatement *statement );
+        void Visit();
+};
+
+class AstFor : public AST
+{
+    AstExpression *init;
+    AstExpression *test;
+    AstExpression *increment;
+    AstStatement *statement; 
+
+    public:
+        AstFor(AstExpression *init , AstExpression *test , AstExpression *increment , AstStatement *statement);
+        void Visit();
+};
+
+class AstIteration : public AST
+{
+    AstDoWhile* dwl;
+    AstWhile* wl;
+    AstFor* fr;
+
+    public:
+        enum Type
+        {
+            DOWHILE,
+            WHILE,
+            FOR
+        } t;
+
+        AstIteration(AstDoWhile* d);
+        AstIteration(AstWhile* w);
+        AstIteration(AstFor* f);
+        void Visit();
+};
+
+class AstSwitch : public AST
+{
+    AstExpression* expr; 
+    AstStatement* stmt;
+
+    public:
+        AstSwitch(AstExpression* e, AstStatement* s);
+        void Visit();
+};
+
+class AstIfElse : public AST 
+{
+    AstExpression *test ; 
+    AstStatement *statement;
+    AstStatement *elseStatement;
     
-    AstWhile( AstExpression *test, AstStatement *statement )
-    {
-        this->statement = statement;
-        this->test = test;
-
-        this->setLabel("WhileStatement");
-    }
-
-    void Visit()
-    {
-        AST::vis.addNode(this->getUID(), this->getLabel());
-    }
+    public:
+        AstIfElse( AstExpression *test , AstStatement *statement , AstStatement *elseStatement );
+        void Visit();
 };
-class AstEnumSpeci : public AST
+
+class AstSelection : public AST
 {
-	
-	public:
-	AstEnumSpeci()
-	{
-		
-	}
-	void Visit() 
-	{
-	
-		
-	}
-	
+    AstSwitch* swtch;
+    AstIfElse* ifelse;
+
+    public:
+        enum Type
+        {
+            SWITCH,
+            IFELSE
+        } t;
+
+        AstSelection(AstSwitch* s);
+        AstSelection(AstIfElse* ie);
+        void Visit();
 };
 
-class AstStructUniSpeci;
-class AstTypeSpeci: public AST 
+
+class AstDeclarationList;
+class AstStatementList;
+class AstCompoundStmt : public AST
 {
-	
-	string stypeName;
-	AstStructUniSpeci *stspeci ; 
-	AstEnumSpeci *espci;
-	
-	public:
-		AstTypeSpeci(string stypeName , AstStructUniSpeci *stspeci , AstEnumSpeci *espci)
-		{
-		    this->stspeci = stspeci;
-		    this->espci = espci; 
-		    this->stypeName = stypeName; 
-		    
-		}
-		void Visit() 
-		{
-			
-		}
-	
+    AstStatementList* stmtList;
+    AstDeclarationList* declList;
+
+    public:
+        AstCompoundStmt(AstDeclarationList* d, AstStatementList* s);
+        void Visit();
 };
 
-class AstTypeQualList : public AstStatement 
+class AstExprStmt : public AST
 {
-	string type_qual; 
-	AstTypeQualList *list;
-public:
-	AstTypeQualList( string type_qual , AstTypeQualList *list)
-	{
-		this->type_qual= type_qual ;
-		this->list = list; 
-	}
-	void Visit()
-	{
-		
-	} 
-	
+    AstExpression* expr;
+
+    public:
+        AstExprStmt(AstExpression* e);
+        void Visit();
 };
+
+class AstLabeledStmt : public AST
+{
+    AstID *id;
+    AstStatement *stmt;
+    AstConstantExpr *constExpr;
+
+    public:
+        enum Type
+        {
+            NO_CASE,
+            CASE,
+            DEFAULT
+        } t;
+
+        AstLabeledStmt(AstID* i, AstStatement* s);
+        AstLabeledStmt(AstConstantExpr* c, AstStatement* s);
+        AstLabeledStmt(AstStatement* s);
+        void Visit();
+};
+
+class AstStatement : public AST 
+{
+    AstLabeledStmt  *lbl;
+    AstCompoundStmt *cmp;
+    AstExprStmt     *expr;
+    AstSelection    *slct;
+    AstIteration    *iter;
+    AstJump         *jump;
+
+    public:
+        enum Type
+        {
+            LABELED,
+            COMPOUND,
+            EXPR,
+            SELECT,
+            ITER,
+            JUMP
+        } t;
+
+        AstStatement(AstLabeledStmt* l);
+        AstStatement(AstCompoundStmt* c);
+        AstStatement(AstExprStmt* e);
+        AstStatement(AstSelection* s);
+        AstStatement(AstIteration* i);
+        AstStatement(AstJump* j);
+
+        void Visit();
+};
+
+
+
+
+//TODO - Implement cthe classes below here later
+class AstDecl;
+class AstPointer;
+class AstIDList;
+class AstParamList;
+class AstInitializer;
+class AstInitList;
+class AstTypeQualList;
+class AstParamDec;
+class AstDecSpeci;
+class AstDeclarator;
+class AstAbstractDecl;
+
 class AstExternDec;
 class AstTrans;
 
-class AstTrans: public AST 
-{
-	AstTrans *trans;
-	AstExternDec *dec; 
-	public:
-		AstTrans( AstTrans *trans ,AstExternDec *dec)
-		{
-			this->trans = trans;
-			this->dec= dec; 
-		}
-		void Visit() 
-		{
-			
-		}
-	
-};
+
+
 class AstStructDeclList;
 class AstStructUniSpeci: public AST 
 {
@@ -664,25 +796,10 @@ class AstStructUniSpeci: public AST
 	
 };
 class AstStructDecl;
-class AstStructDeclList : public AstStatement 
-{
-	AstStructDecl *sdecl; 
-	AstStructDeclList *stdlist;
-public:
-	AstStructDeclList( AstStructDecl *sdecl , AstStructDeclList *stdlist)
-	{
-		this->sdecl= sdecl ;
-		this->stdlist = stdlist; 
-	}
-	void Visit()
-	{
-		
-	} 
-	
-};
+
 
 class AstStructDeclarator;
-class AstStructDeclatorList : public AstStatement 
+class AstStructDeclatorList : public AST
 {
 	AstStructDeclarator *sdecl; 
 	AstStructDeclList *stdlist;
@@ -714,47 +831,7 @@ public:
 	
 	}
 };
-class AstStatementList : public AstStatement 
-{
-	
-	AstStatement *stmt;
-	AstStatementList *list; 
-public:
-	AstStatementList( AstStatement *stmt , AstStatementList *list)
-	{
-		this->stmt = stmt;
-		this->list= list ;
-	}
-	void Visit()
-	{
-		
-	} 
-	
-};
 
-class AstReturn : public AstStatement
-{
-   
-    AstExpression *returnExpression;
-
-    public:
-    
-    AstReturn(AstExpression *returnExpression)
-    {
-        this->returnExpression = returnExpression; 
-
-        this->setLabel("ReturnStatement");
-    }
-
-    void Visit()
-    {
-		/*
-        AST::vis.addNode(this->getUID(), this->getLabel());
-        AST::vis.addEdge(this->getUID(), returnExpression->getLabel());
-        */ 
-    }
-};
- 
 
 class AstPointer : public AST
 {
@@ -774,9 +851,8 @@ public:
 	}
 	
 } ; 
-class AstParamDec;
-class AstParamList;
-class AstParamList : public AstStatement 
+
+class AstParamList : public AST
 {
 	
     AstParamDec *dec;
@@ -793,9 +869,6 @@ public:
 	} 
 	
 };
-class AstDecSpeci;
-class AstDeclarator;
-class AstAbstractDecl;
 class AstParamDec : public AST
 {
 	AstDecSpeci *speci;
@@ -814,27 +887,6 @@ public:
 	}
 	
 }; 
-
-class AstLabel: AstStatement 
-{
-    AstID* labelName;
-    AstStatement *statement;
-
-    public:
-    AstLabel ( AstID* labelName , AstStatement *stmt)
-    {
-        this->labelName = labelName;
-        this->statement = stmt;
-
-        this->setLabel("LabelStatement"); 
-    }
-
-    void Visit() 
-    {
-        AST::vis.addNode(this->getUID(), this->getLabel());
-        AST::vis.addEdge(this->getUID(), statement->getUID());
-    }	
-};
 class AstInitializer;
 class AstInitList;
 
@@ -900,115 +952,118 @@ class AstFuncDef: public AST
 	
 };
 
-class AstFor: public AstStatement
+class AstDeclarationList : public AST 
 {
-    AstExpression *init;
-    AstExpression *test;
-    AstExpression *increment;
-    AstStatement *statement; 
-
     public:
-
-    AstFor(AstExpression *init , AstExpression *test , AstExpression *increment , AstStatement *statement)
-    {
-        this->init =init ;
-        this->test =test;
-        this->increment = increment;
-        this->statement = statement; 
-
-        this->setLabel("ForStatement");
-    }
-
-    void Visit()
-    {
-        AST::vis.addNode(this->getUID(), this->getLabel());
-        AST::vis.addEdge(this->getUID(), init->getUID());
-        AST::vis.addEdge(this->getUID(), test->getUID());
-        AST::vis.addEdge(this->getUID(), increment->getUID());
-        AST::vis.addEdge(this->getUID(), statement->getUID());
-    }	
+        void Visit(){}
 };
 
-class AstIfStatement: public AstStatement 
-{
-	
-    AstExpression *test ; 
-    AstStatement *statement;
-    AstStatement *elseStatement;
-    
-    public: 	
-    
-    AstIfStatement( AstExpression *test , AstStatement *statement , AstStatement *elseStatement )
-    {
-        this->test = test;
-        this->statement = statement;
-        this->elseStatement = elseStatement;
-
-        this->setLabel("IfStatement");
-    }
-
-    void Vist()
-    {
-        AST::vis.addNode(this->getUID(), this->getLabel());
-        AST::vis.addEdge(this->getUID(), test->getUID());
-        AST::vis.addEdge(this->getUID(), statement->getUID());
-        AST::vis.addEdge(this->getUID(), elseStatement->getUID());
-    }
-};
-
-class AstSwitch : public  AstStatement
-{
-    AstExpression *expr;
-    AstStatement *smmt;
- public:
-    AstSwitch( AstExpression *expr , AstStatement *smmt )
-    {
-	    this->expr = expr ;
-	    this->smmt = smmt;
-	}	
-
-};
-class AstExternDec: public AST 
-{
-	AstFuncDef *def;
-	AstDecl *dec; 
-	public:
-		AstExternDec( AstFuncDef  *def ,AstDecl *dec)
-		{
-			this->def = def;
-			this->dec = dec ;
-		}
-		void Visit() 
-		{
-			
-		}
-	
-};
-class AstEmpty: AstStatement 
+class AstEnumSpeci : public AST
 {
 	
 	public:
-		void Visit() 
-		{
-			
-		}
-	
-};
-class AstDoWhile : public AstStatement
-{
-	AstExpression *test;
-	AstStatement *statement; 
-public:
-    AstDoWhile( AstExpression *test, AstStatement *statement )
-    {
-    	this->statement = statement;
-    	this->test = test; 
-    }
-	void Visit()
+	AstEnumSpeci()
 	{
 		
 	}
+	void Visit() 
+	{
+	
+		
+	}
+	
 };
+
+class AstStructUniSpeci;
+class AstTypeSpeci: public AST 
+{
+	
+	string stypeName;
+	AstStructUniSpeci *stspeci ; 
+	AstEnumSpeci *espci;
+	
+	public:
+		AstTypeSpeci(string stypeName , AstStructUniSpeci *stspeci , AstEnumSpeci *espci)
+		{
+		    this->stspeci = stspeci;
+		    this->espci = espci; 
+		    this->stypeName = stypeName; 
+		    
+		}
+		void Visit() 
+		{
+			
+		}
+	
+};
+
+class AstTypeQualList : public AST
+{
+	string type_qual; 
+	AstTypeQualList *list;
+public:
+	AstTypeQualList( string type_qual , AstTypeQualList *list)
+	{
+		this->type_qual= type_qual ;
+		this->list = list; 
+	}
+	void Visit()
+	{
+		
+	} 
+	
+};
+class AstExternDec;
+class AstTrans;
+
+class AstTrans: public AST 
+{
+	AstTrans *trans;
+	AstExternDec *dec; 
+	public:
+		AstTrans( AstTrans *trans ,AstExternDec *dec)
+		{
+			this->trans = trans;
+			this->dec= dec; 
+		}
+		void Visit() 
+		{
+			
+		}
+	
+};
+class AstStructDeclList;
+class AstStructDecl;
+class AstStructDeclList : public AST
+{
+	AstStructDecl *sdecl; 
+	AstStructDeclList *stdlist;
+public:
+	AstStructDeclList( AstStructDecl *sdecl , AstStructDeclList *stdlist)
+	{
+		this->sdecl= sdecl ;
+		this->stdlist = stdlist; 
+	}
+	void Visit()
+	{
+		
+	} 
+	
+};
+
+class AstDeclarator;
+
+class AstStatementList : public AST
+{
+    AstStatement *stmt; 
+    AstStatementList *list;
+
+    public:
+        AstStatementList(AstStatement *s);
+        AstStatementList(AstStatementList* l, AstStatement *s);
+        void Visit();
+};
+
 class AstTypeParamList;
 class AstDirectDecl : public AST
 {
@@ -1037,23 +1092,6 @@ public:
 	}
 	
 } ; 
-class AstDefault : public AstStatement
-{
-
-	
-	AstStatement *statement ; 
-public:
-	AstDefault(  AstStatement *stmt)
-	{
-	
-		this->statement = stmt;
-	}
-	void Visit()
-	{
-		
-	}
-	
-};
 class AstTypeSpeci;
 class AstDecSpeci: public AST 
 {
@@ -1094,6 +1132,8 @@ class AstDeclList: public AST
 		}
 	
 };
+
+
 class AstInitSpecList; 
 class AstDecl: public AST 
 {
@@ -1112,77 +1152,7 @@ class AstDecl: public AST
 		}
 	
 };
-class 	AstDeclarator : public AST 
-{
-	AstPointer *pointer;
-	AstDirectDecl *decl;
-public:
-    AstDeclarator(AstPointer *pointer , AstDirectDecl *decl )
-	{
-		this->pointer = pointer ;
-		this->decl = decl ; 
-		
-	}  
-	void Visit()
-	{
-		
-	}
-	
-	
-};
-class AstBreak:public AstStatement 
-{
-	
-	public:
-		void Visit() 
-		{
-			
-		}
-	
-};
-class AstContinue:public AstStatement 
-{
-	
-	public:
-		void Visit() 
-		{
-			
-		}
-	
-};
-class AstCompound : public AstStatement 
-{
-	AstDeclList *dlist;
-	AstStatementList *slist; 
-public:
-	AstCompound( AstDeclList *dlist , AstStatementList *slist)
-	{
-		this->dlist  = dlist;
-		this->slist = slist; 
-	}
-	void Visit()
-	{
-		
-	} 
-	
-};
 
-class AstCase : public AstStatement
-{
-	AstExpression *expression;
-	AstStatement *statement ; 
-public:
-	AstCase( AstExpression *exp , AstStatement *stmt)
-	{
-		this->expression = exp;
-		this->statement = stmt;
-	}
-	void Visit()
-	{
-		
-	}
-	
-};
 class AstDirectAbsDecl;
 class AstAbstractDecl : public AST
 {
@@ -1367,6 +1337,24 @@ public:
 	 {
 	 
 	 }
+	
+};
+class 	AstDeclarator : public AST 
+{
+	AstPointer *pointer;
+	AstDirectDecl *decl;
+public:
+    AstDeclarator(AstPointer *pointer , AstDirectDecl *decl )
+	{
+		this->pointer = pointer ;
+		this->decl = decl ; 
+		
+	}  
+	void Visit()
+	{
+		
+	}
+	
 	
 };
 #endif 

@@ -612,11 +612,12 @@ void AstCastExpr::Visit()
 
 //TODO complete later
 //Constructor
+/*
 AstTypeName::AstTypeName()
 {
     this->setLabel("TypeName");
 }
-
+*/
 //Traversal
 void AstTypeName::Visit()
 {
@@ -1314,7 +1315,7 @@ void AstAssignOp::Visit()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// BEGIN: AstAssignOp   ///////////////////////////////////////////////////////
+// BEGIN: AstAssignExpr   /////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 AstAssignExpr::AstAssignExpr(AstConditionalExpr* c)
@@ -1364,7 +1365,7 @@ void AstAssignExpr::Visit()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// BEGIN: AstAssignOp   ///////////////////////////////////////////////////////
+// BEGIN: AstExpression   /////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
 AstExpression::AstExpression(AstAssignExpr* a)
@@ -1397,3 +1398,794 @@ void AstExpression::Visit()
     
     //Output 3AC
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstReturn   /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+    
+AstReturn::AstReturn(AstExpression *r)
+{
+    this->expr = r; 
+
+    this->setLabel("ReturnStatement");
+}
+
+AstReturn::AstReturn()
+{
+    this->expr = NULL;
+
+    this->setLabel("ReturnStatement");
+}
+
+void AstReturn::Visit()
+{
+    if(expr)
+        expr->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(expr)
+        AST::vis.addEdge(this->getUID(), expr->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstContinue   ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstContinue::AstContinue()
+{
+    this->setLabel("continue");
+}
+
+void AstContinue::Visit()
+{
+    AST::vis.addNode(this->getUID(), this->getLabel());
+}	
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstBreak   //////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstBreak::AstBreak()
+{
+    this->setLabel("break");
+}
+
+void AstBreak::Visit()
+{
+    AST::vis.addNode(this->getUID(), this->getLabel());
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstGoto   ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstGoto::AstGoto()
+{
+    this->setLabel("goto");
+}
+
+void AstGoto::Visit()
+{
+    AST::vis.addNode(this->getUID(), this->getLabel());
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstJump   ///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstJump::AstJump(AstGoto* g, AstID* i)
+{
+    this->go = g;
+    this->id = i;
+    this->cont = NULL;
+    this->br = NULL;
+    this->ret = NULL;
+    this->expr = NULL;
+    this->t = GOTO;
+
+    this->setLabel("JumpStatement");
+}
+
+AstJump::AstJump(AstContinue* c)
+{
+    this->go = NULL;
+    this->id = NULL;
+    this->cont = c;
+    this->br = NULL;
+    this->ret = NULL;
+    this->expr = NULL;
+    this->t = CONTINUE;
+
+    this->setLabel("JumpStatement");
+}
+
+AstJump::AstJump(AstBreak* b)
+{
+    this->go = NULL;
+    this->id = NULL;
+    this->cont = NULL;
+    this->br = b;
+    this->ret = NULL;
+    this->expr = NULL;
+    this->t = BREAK;
+
+    this->setLabel("JumpStatement");
+}
+
+AstJump::AstJump(AstReturn* r)
+{
+    this->go = NULL;
+    this->id = NULL;
+    this->cont = NULL;
+    this->br = NULL;
+    this->ret = r;
+    this->expr = NULL;
+    this->t = EMPTY_RETURN;
+
+    this->setLabel("JumpStatement");
+}
+
+AstJump::AstJump(AstReturn* r, AstExpression* e)
+{
+    this->go = NULL;
+    this->id = NULL;
+    this->cont = NULL;
+    this->br = NULL;
+    this->ret = r;
+    this->expr = e;
+    this->t = RETURN;
+
+    this->setLabel("JumpStatement");
+}
+
+void AstJump::Visit()
+{
+    switch(t)
+    {
+        case GOTO:
+            //Visit Children
+            go->Visit();
+            id->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), go->getUID());
+            AST::vis.addEdge(this->getUID(), id->getUID());
+
+            //Output 3AC
+            break;
+
+        case CONTINUE:
+            //Visit Children
+            cont->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), cont->getUID());
+
+            //Output 3AC
+            break;
+
+        case BREAK:
+            //Visit Children
+            br->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), br->getUID());
+
+            //Output 3AC
+            break;
+
+        case EMPTY_RETURN:
+            //Visit Children
+            ret->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), ret->getUID());
+
+            //Output 3AC
+            break;
+
+        case RETURN:
+            //Visit Children
+            ret->Visit();
+            expr->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), ret->getUID());
+            AST::vis.addEdge(this->getUID(), expr->getUID());
+
+            //Output 3AC
+            break;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstDoWhile   ////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstDoWhile::AstDoWhile( AstStatement *s, AstExpression *t )
+{
+    this->statement = s;
+    this->test = t; 
+
+    this->setLabel("IterationStatement - DoWhile");
+}
+
+void AstDoWhile::Visit()
+{
+    //Visit Children
+    statement->Visit();
+    test->Visit();
+
+    //Visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), statement->getUID());
+    AST::vis.addEdge(this->getUID(), test->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstWhile   //////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstWhile::AstWhile( AstExpression *test, AstStatement *statement )
+{
+    this->statement = statement;
+    this->test = test;
+
+    this->setLabel("IterationStatement - While");
+}
+
+void AstWhile::Visit()
+{
+    //Visit Children
+    test->Visit();
+    statement->Visit();
+
+    //Visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), test->getUID());
+    AST::vis.addEdge(this->getUID(), statement->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstFor   ////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstFor::AstFor(AstExpression *init , AstExpression *test , AstExpression *increment , AstStatement *statement)
+{
+    this->init = init ;
+    this->test = test;
+    this->increment = increment;
+    this->statement = statement; 
+
+    this->setLabel("ForStatement");
+}
+
+void AstFor::Visit()
+{
+    //Visit the children
+    if(init)
+        init->Visit();
+
+    if(test)
+        test->Visit();
+
+    if(increment)
+        increment->Visit();
+
+    statement->Visit();
+
+    //Visualization
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(init)
+        AST::vis.addEdge(this->getUID(), init->getUID());
+
+    if(test)
+        AST::vis.addEdge(this->getUID(), test->getUID());
+
+    if(increment)
+        AST::vis.addEdge(this->getUID(), increment->getUID());
+
+    AST::vis.addEdge(this->getUID(), statement->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstIteration   //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstIteration::AstIteration(AstDoWhile* d)
+{
+    this->dwl = d;
+    this->wl = NULL;
+    this->fr = NULL;
+    this->t = DOWHILE;
+
+    this->setLabel("IterationStatement");
+}
+
+AstIteration::AstIteration(AstWhile* w)
+{
+    this->dwl = NULL;
+    this->wl = w;
+    this->fr = NULL;
+    this->t = WHILE;
+
+    this->setLabel("IterationStatement");
+}
+
+AstIteration::AstIteration(AstFor* f)
+{
+    this->dwl = NULL;
+    this->wl = NULL;
+    this->fr = f;
+    this->t = FOR;
+
+    this->setLabel("IterationStatement");
+}
+
+void AstIteration::Visit()
+{
+    switch(t)
+    {
+        case DOWHILE:
+            //Visit Children
+            dwl->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), dwl->getUID());
+
+            //Output 3AC
+            break;
+
+        case WHILE:
+            //Visit Children
+            wl->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), wl->getUID());
+
+            //Output 3AC
+            break;
+
+        case FOR:
+            //Visit Children
+            fr->Visit();
+
+            //Visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), fr->getUID());
+
+            //Output 3AC
+            break;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstSwitch   /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstSwitch::AstSwitch(AstExpression* e, AstStatement* s)
+{
+    this->expr = e;
+    this->stmt = s;
+    this->setLabel("Switch");
+}
+
+void AstSwitch::Visit()
+{
+    expr->Visit();
+    stmt->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstIfElse   /////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+ 
+AstIfElse::AstIfElse( AstExpression *test , AstStatement *statement , AstStatement *elseStatement )
+{
+    this->test = test;
+    this->statement = statement;
+    this->elseStatement = elseStatement;
+
+    this->setLabel("IfStatement");
+}
+
+void AstIfElse::Visit()
+{
+    test->Visit();
+    statement->Visit();
+
+    if(elseStatement)
+        elseStatement->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    AST::vis.addEdge(this->getUID(), test->getUID());
+    AST::vis.addEdge(this->getUID(), statement->getUID());
+
+    if(elseStatement)
+        AST::vis.addEdge(this->getUID(), elseStatement->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstSelection   //////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstSelection::AstSelection(AstSwitch* s)
+{
+    this->swtch = s;
+    this->ifelse = NULL;
+    this->t = SWITCH;
+
+    this->setLabel("SelectionStatement");
+}
+
+AstSelection::AstSelection(AstIfElse* ie)
+{
+    this->swtch = NULL;
+    this->ifelse = ie;
+    this->t = IFELSE;
+
+    this->setLabel("SelectionStatement");
+}
+
+void AstSelection::Visit()
+{
+    switch(t)
+    {
+        case SWITCH:
+            swtch->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), swtch->getUID());
+
+            //Output 3AC
+            break;
+
+        case IFELSE:
+            ifelse->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), ifelse->getUID());
+
+            //Output 3AC
+            break;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstStatementList   //////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstStatementList::AstStatementList(AstStatement *s)
+{
+    this->stmt = s;
+    this->list = NULL;
+
+    this->setLabel("StatementList");
+}
+
+AstStatementList::AstStatementList(AstStatementList* l, AstStatement *s)
+{
+    this->stmt = s;
+    this->list = l;
+
+    this->setLabel("StatementList");
+}
+
+void AstStatementList::Visit()
+{
+    if(list)
+        list->Visit();
+
+    stmt->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+    
+    if(list)
+        AST::vis.addEdge(this->getUID(), list->getUID());
+
+    AST::vis.addEdge(this->getUID(), stmt->getUID());
+    
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstCompoundStmt   ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstCompoundStmt::AstCompoundStmt(AstDeclarationList* d, AstStatementList* s)
+{
+    this->declList = d;
+    this->stmtList = s;
+    this->setLabel("CompoundStatement");
+}
+
+void AstCompoundStmt::Visit()
+{
+    if(declList)
+        declList->Visit();
+
+    if(stmtList)
+        stmtList->Visit();
+
+    AST::vis.addNode(this->getUID(), this->getLabel());
+
+    if(declList)
+        AST::vis.addEdge(this->getUID(), declList->getUID());
+
+    if(stmtList)
+        AST::vis.addEdge(this->getUID(), stmtList->getUID());
+
+    //Output 3AC
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstExprStmt   ///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstExprStmt::AstExprStmt(AstExpression* e)
+{
+    this->expr = e;
+
+    this->setLabel("ExpressionStatement");
+}
+
+void AstExprStmt::Visit()
+{
+    if(expr)
+    {
+        expr->Visit();
+ 
+        AST::vis.addNode(this->getUID(), this->getLabel());
+        AST::vis.addEdge(this->getUID(), expr->getUID());
+
+        //Output 3AC
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstLabeledStmt   ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstLabeledStmt::AstLabeledStmt(AstID* i, AstStatement* s)
+{
+    this->id = i;
+    this->stmt = s;
+    this->constExpr = NULL;
+    this->t = NO_CASE;
+
+    this->setLabel("LabeledStatement");
+}
+
+AstLabeledStmt::AstLabeledStmt(AstConstantExpr* c, AstStatement* s)
+{
+    this->id = NULL;
+    this->stmt = s;
+    this->constExpr = c;
+    this->t = CASE;
+
+    this->setLabel("LabeledStatement");
+}
+
+AstLabeledStmt::AstLabeledStmt(AstStatement* s)
+{
+    this->id = NULL;
+    this->stmt = s;
+    this->constExpr = NULL;
+    this->t = DEFAULT;
+
+    this->setLabel("LabeledStatement");
+}
+
+void AstLabeledStmt::Visit()
+{
+    switch(t)
+    {
+        case NO_CASE:
+            id->Visit();
+            stmt->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), id->getUID());
+            AST::vis.addEdge(this->getUID(), stmt->getUID());
+
+            //Output 3AC
+            break;
+
+        case CASE:
+            constExpr->Visit();
+            stmt->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), constExpr->getUID());
+            AST::vis.addEdge(this->getUID(), stmt->getUID());
+
+            //Output 3AC
+            break;
+
+        case DEFAULT:
+            stmt->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), stmt->getUID());
+
+            //Output 3AC
+            break;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// BEGIN: AstStatement   ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+AstStatement::AstStatement(AstLabeledStmt* l)
+{
+    this->lbl = l;
+    this->cmp = NULL;
+    this->expr = NULL;
+    this->slct = NULL;
+    this->iter = NULL;
+    this->jump = NULL;
+    this->t = LABELED;
+
+    this->setLabel("Statement");
+}
+
+AstStatement::AstStatement(AstCompoundStmt* c)
+{
+    this->lbl = NULL;
+    this->cmp = c;
+    this->expr = NULL;
+    this->slct = NULL;
+    this->iter = NULL;
+    this->jump = NULL;
+    this->t = COMPOUND;
+
+    this->setLabel("Statement");
+}
+
+AstStatement::AstStatement(AstExprStmt* e)
+{
+    this->lbl = NULL;
+    this->cmp = NULL;
+    this->expr = e;
+    this->slct = NULL;
+    this->iter = NULL;
+    this->jump = NULL;
+    this->t = EXPR;
+
+    this->setLabel("Statement");
+}
+
+AstStatement::AstStatement(AstSelection* s)
+{
+    this->lbl = NULL;
+    this->cmp = NULL;
+    this->expr = NULL;
+    this->slct = s;
+    this->iter = NULL;
+    this->jump = NULL;
+    this->t = SELECT;
+
+    this->setLabel("Statement");
+}
+
+AstStatement::AstStatement(AstIteration* i)
+{
+    this->lbl = NULL;
+    this->cmp = NULL;
+    this->expr = NULL;
+    this->slct = NULL;
+    this->iter = i;
+    this->jump = NULL;
+    this->t = ITER;
+
+    this->setLabel("Statement");
+}
+
+AstStatement::AstStatement(AstJump* j)
+{
+    this->lbl = NULL;
+    this->cmp = NULL;
+    this->expr = NULL;
+    this->slct = NULL;
+    this->iter = NULL;
+    this->jump = j;
+    this->t = EXPR;
+
+    this->setLabel("Statement");
+}
+
+void AstStatement::Visit()
+{
+    switch(t)
+    {
+        case LABELED:
+            lbl->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), lbl->getUID());
+
+            //Output 3AC
+            break;
+
+        case COMPOUND:
+            cmp->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), cmp->getUID());
+
+            //Output 3AC
+            break;
+
+        case EXPR:
+            expr->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), expr->getUID());
+
+            //Output 3AC
+            break;
+
+        case SELECT:
+            slct->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), slct->getUID());
+
+            //Output 3AC
+            break;
+
+        case ITER:
+            iter->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), iter->getUID());
+
+            //Output 3AC
+            break;
+
+        case JUMP:
+            jump->Visit();
+
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), jump->getUID());
+
+            //Output 3AC
+            break;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
