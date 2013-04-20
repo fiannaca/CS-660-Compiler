@@ -5,4 +5,5 @@
 *.tok
 *.red
 *.dot
-
+flexbison/doc/html/*
+flexbison/doc/latex/*
