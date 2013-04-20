@@ -15,6 +15,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstID* id)
     this->str = NULL;
     this->expr = NULL;
     this->type = ID;
+    this->etype = id->type;
 
     this->setLabel("PrimaryExpression");
 }
@@ -26,6 +27,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstConstant* c)
     this->str = NULL;
     this->expr = NULL;
     this->type = CONST;
+    this->etype = c->etype;
 
     this->setLabel("PrimaryExpression");
 }
@@ -37,6 +39,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstString* s)
     this->str = s;
     this->expr = NULL;
     this->type = STRING;
+    this->etype = s->type;
 
     this->setLabel("PrimaryExpression");
 }
@@ -48,6 +51,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstExpression* e)
     this->str = NULL;
     this->expr = e;
     this->type = STRING;
+    this->etype = e->type;
 
     this->setLabel("PrimaryExpression");
 }
@@ -152,6 +156,7 @@ AstPostfixExpr::AstPostfixExpr(AstPrimaryExpr* p)
     this->op = NONE;
     
     this->t = PRIMARY;
+    this->type = p->etype;
 
     this->setLabel("AstPostfixExpr - Primary");
 }
@@ -166,6 +171,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
     this->op = NONE;
     
     this->t = BRACKETS;
+    
+    this->type = ((ArrayType*)p->type)->GetBase();
 
     this->setLabel("AstPostfixExpr - Brackets");
 }
@@ -180,6 +187,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p)
     this->op = NONE;
     
     this->t = EMPTY_PARENS;
+    
+    this->type = p->type;
 
     this->setLabel("AstPostfixExpr - Empty Parens");
 }
@@ -194,6 +203,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a)
     this->op = NONE;
     
     this->t = PARENS;
+    
+    this->type = p->type;
 
     this->setLabel("AstPostfixExpr - Parens");
 }
@@ -212,6 +223,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i)
     else
         this->t = PTR;
 
+    this->type = i->type;
+        
     this->setLabel("AstPostfixExpr - Dot or Ptr");
 }
 
@@ -229,6 +242,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
     else
         this->t = DEC;
 
+    this->type = p->type;
+    
     this->setLabel("AstPostfixExpr - Inc or Dec");
 }
 
@@ -585,10 +600,11 @@ void AstTypeName::Visit()
 // BEGIN: AstString  //////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-AstString::AstString(string str)
+AstString::AstString(string str, Type* t)
 {
     this->val = str;
-
+    this->type = t;
+    
     this->setLabel("StringLiteral");
 }
 
@@ -610,7 +626,8 @@ AstConstant::AstConstant(int val)
 {
     this->type = INT;
     this->ival = val;
-
+    this->etype = new PODType("INT", INT_SIZE);
+    
     this->setLabel("IntegerConstant");
 }
 
@@ -618,6 +635,7 @@ AstConstant::AstConstant(string val)
 {
     this->type = CHAR;
     this->str = val;
+    this->etype = new PODType("CHAR", CHAR_SIZE);
 
     this->setLabel("CharacterConstant");
 }
@@ -626,15 +644,17 @@ AstConstant::AstConstant(double val)
 {
     this->type = FLOAT;
     this->dval = val;
+    this->etype = new PODType("DOUBLE", DOUBLE_SIZE);
 
     this->setLabel("FloatConstant");
 }
 
-AstConstant::AstConstant(int val, string name)
+AstConstant::AstConstant(int val, string name, Type* t)
 {
     this->type = ENUM;
     this->ival = val;
     this->str = name;
+    this->etype = t;
 
     this->setLabel("EnumerationConstant");
 }
@@ -696,10 +716,11 @@ void AstUnaryOp::Visit()
 // BEGIN: AstID  //////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-AstID::AstID(string s)
+AstID::AstID(string s, Type* t)
 {
     this->str = s;
-
+    this->type = t;
+    
     this->setLabel("Identifier");
 }
 

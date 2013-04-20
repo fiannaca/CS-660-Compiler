@@ -1611,6 +1611,8 @@ postfix_expression
 		}
 	| postfix_expression LPAREN argument_expression_list RPAREN
 		{
+		    // TODO function call?
+		    
 		    driver.printRed("postfix_expression -> postfix_expression LPAREN argument_expression_list RPAREN");
                     $$ = (AST*) new AstPostfixExpr((AstPostfixExpr*)$1, (AstArgExprList*)$3);
 		}
@@ -1694,9 +1696,11 @@ constant
 	| ENUMERATION_CONSTANT
 		{
 		    driver.printRed("constant -> ENUMERATION_CONSTANT");
-
-                    // TODO check how to get the value from an enum const (checkType needs to be fixed)
-                    // $$ = (AST*) new AstConstant($1->symbol_name /*value*/, /*enum const name*/);
+            $$ = (AST*) new AstConstant(
+                    ((EnumType*)$1->symbolType)->GetConstVal($1->symbol_name), 
+                    $1->symbol_name,
+                    $1->symbolType
+                 );
 		}
 	;
 
@@ -1704,17 +1708,17 @@ string
 	: STRING_LITERAL
 		{
 		    driver.printRed("string -> STRING_LITERAL");
-                    $$ = (AST*) new AstString(*$1);
+                    $$ = (AST*) new AstString(*$1, new Type("STRING_LITERAL", 0));
 		}
 	;
 
 identifier
 	: IDENTIFIER
 		{
-		    //cout << *$1;
+		    // TODO if this ID is a function, then we need to pass ((FunctionType*)$1->symbolType)->GetReturnType(), rather than $1->symbolType
                     driver.currentSymbol->symbol_name = $1->symbol_name;  
                     driver.printRed("identifier -> IDENTIFIER");
-                    $$ = (AST*) new AstID($1->symbol_name);
+                    $$ = (AST*) new AstID($1->symbol_name, $1->symbolType);
 		}
 	;
 %%

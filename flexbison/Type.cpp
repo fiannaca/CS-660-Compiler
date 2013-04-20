@@ -158,7 +158,13 @@ TypedefType::TypedefType(Type* actual, string tdname)
 
 bool TypedefType::CheckType(TypedefType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
 {
-
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
 }
         
 /*****************************************************************************/
@@ -198,7 +204,13 @@ void EnumType::AddEnumConst(string s, int val)
 
 bool EnumType::CheckType(EnumType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
 {
-
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
 }
 
 /*****************************************************************************/
@@ -227,7 +239,13 @@ int ArrayType::GetCapacity(int dim)
 
 bool ArrayType::CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
 {
-
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
 }
 
 /*****************************************************************************/
@@ -261,6 +279,17 @@ bool StructType::MemberExists(string s)
         return false;
 }
 
+bool StructType::CheckType(StructType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
+}
+        
 /*****************************************************************************/
 /* Union Type Class - This type allows for unions to be created containing   */
 /*                   members of any predeclared type                         */
@@ -292,6 +321,17 @@ bool UnionType::MemberExists(string s)
         return false;
 }
 
+bool UnionType::CheckType(UnionType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
+}
+
 /*****************************************************************************/
 /* Function Type Class - This type allows for functions to be declared       */
 /*                   containing parameters of any predeclared type           */
@@ -310,6 +350,17 @@ void FunctionType::AddParam(Type* t)
 void FunctionType::SetReturnType(Type* t)
 {
     returnType = t;
+}
+
+bool FunctionType::CheckType(FunctionType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
 }
 
 /*****************************************************************************/
@@ -340,6 +391,19 @@ PointerType::PointerType(Type* base, string n, int d)
     ptrDepth = d;
     
 }
+
+
+bool PointerType::CheckType(PointerType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
+}
+        
 Type* GetInnerType(Type *arrayOrPointer)
 {
     Type *innerType = arrayOrPointer;

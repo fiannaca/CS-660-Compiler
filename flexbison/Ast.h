@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include "Visualizer.h"
+#include "Type.h"
 
 class AST;
 extern void VisVist(int total , ... );
@@ -105,7 +106,9 @@ class AstString : public AST
 
     public:
 
-    AstString(string str);
+    AstString(string str, Type* t);
+    
+    Type* type;
 
     void Visit();
 };
@@ -121,7 +124,7 @@ class AstConstant : public AST
     };
 
     ConstType type;
-
+    
     int ival;
     string str;
     double dval; 
@@ -131,7 +134,9 @@ class AstConstant : public AST
     AstConstant(int val);
     AstConstant(string val);
     AstConstant(double val);
-    AstConstant(int val, string name);
+    AstConstant(int val, string name, Type* t);
+
+    Type* etype;
 
     void Visit();
 };
@@ -166,7 +171,9 @@ class AstID : public AST
     string str;
 
     public:
-    AstID(string s);
+    AstID(string s, Type* t);
+    
+    Type* type;
 
     void Visit();
 };
@@ -184,7 +191,7 @@ class AstPrimaryExpr : public AST
     };
 
     ExprType type;
-
+    
     AstID *id;
     AstConstant *constant;
     AstString *str;
@@ -195,6 +202,9 @@ class AstPrimaryExpr : public AST
         AstPrimaryExpr(AstConstant* c);
         AstPrimaryExpr(AstString* s);
         AstPrimaryExpr(AstExpression* e);
+
+        Type* etype;
+    
         void Visit();
 };
 
@@ -215,16 +225,16 @@ class AstArgExprList : public AST
 class AstPostfixExpr : public AST
 {
     public:
-	enum Operator
-	{
-	    NONE,
-	    DOT_OP,
-	    PTR_OP,
-	    INC_OP,
-	    DEC_OP
-	};
+	    enum Operator
+	    {
+	        NONE,
+	        DOT_OP,
+	        PTR_OP,
+	        INC_OP,
+	        DEC_OP
+	    };
 
-        enum Type
+        enum ExprType
         {
             PRIMARY,
             BRACKETS,
@@ -238,16 +248,16 @@ class AstPostfixExpr : public AST
   
     private:
 
-    //Place the children nodes here
-    AstPrimaryExpr *priexpr;
-    AstPostfixExpr *ptfExpr;
-    AstExpression  *brakExpr;
-    AstArgExprList *argExprList;
-    AstID          *id;
-    Operator       op;
+        //Place the children nodes here
+        AstPrimaryExpr *priexpr;
+        AstPostfixExpr *ptfExpr;
+        AstExpression  *brakExpr;
+        AstArgExprList *argExprList;
+        AstID          *id;
+        Operator       op;
 
-    //Identifies which production we are in so that the proper 3AC can be written
-    Type t;
+        //Identifies which production we are in so that the proper 3AC can be written
+        ExprType t;    
 
     public:
 
@@ -258,6 +268,8 @@ class AstPostfixExpr : public AST
         AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a);
         AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i);
         AstPostfixExpr(AstPostfixExpr *p, Operator o);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -555,7 +567,10 @@ class AstExpression : public AST
     public:
         AstExpression(AstAssignExpr* a);
         AstExpression(AstExpression* e, AstAssignExpr* a);
-	void Visit();
+
+        Type* type;
+    
+	    void Visit();
 };
 
 class AstReturn : public AST

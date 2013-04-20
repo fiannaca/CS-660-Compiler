@@ -111,7 +111,7 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
             //If we are in insert mode, then insert it
             //sym->symbol_name = key;
             //SymbolTable.insert_symbol(*sym);
-            cout << "Inside checkType insert" << endl;
+            //cout << "Inside checkType insert" << endl;
         }
         else
         {
