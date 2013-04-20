@@ -1054,6 +1054,7 @@ statement
 		{
 		    driver.printRed("statement -> expression_statement");
                     $$ = (AST*) new AstStatement((AstExprStmt*)$1);
+                    ((AstStatement*)$$)->Visit();
 		}
 	| selection_statement
 		{

@@ -1,0 +1,169 @@
+\hypertarget{classAstPostfixExpr}{\section{Ast\-Postfix\-Expr Class Reference}
+\label{classAstPostfixExpr}\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}}
+}
+Inheritance diagram for Ast\-Postfix\-Expr\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstPostfixExpr}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Operator} \{ \\*
+{\bfseries N\-O\-N\-E}, 
+{\bfseries D\-O\-T\-\_\-\-O\-P}, 
+{\bfseries P\-T\-R\-\_\-\-O\-P}, 
+{\bfseries I\-N\-C\-\_\-\-O\-P}, 
+\\*
+{\bfseries D\-E\-C\-\_\-\-O\-P}
+ \}
+\item 
+enum {\bfseries Type} \{ \\*
+{\bfseries P\-R\-I\-M\-A\-R\-Y}, 
+{\bfseries B\-R\-A\-C\-K\-E\-T\-S}, 
+{\bfseries E\-M\-P\-T\-Y\-\_\-\-P\-A\-R\-E\-N\-S}, 
+{\bfseries P\-A\-R\-E\-N\-S}, 
+\\*
+{\bfseries D\-O\-T}, 
+{\bfseries P\-T\-R}, 
+{\bfseries I\-N\-C}, 
+{\bfseries D\-E\-C}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPostfixExpr_a8299517f87239b0428545cdfc96f0bbc}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPrimaryExpr}{Ast\-Primary\-Expr} $\ast$p)}\label{classAstPostfixExpr_a8299517f87239b0428545cdfc96f0bbc}
+
+\item 
+\hypertarget{classAstPostfixExpr_a5dd762cbae8160f94a661ecdf3a90770}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, \hyperlink{classAstExpression}{Ast\-Expression} $\ast$e)}\label{classAstPostfixExpr_a5dd762cbae8160f94a661ecdf3a90770}
+
+\item 
+\hypertarget{classAstPostfixExpr_af17b325f38a7138728773d86a9342105}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p)}\label{classAstPostfixExpr_af17b325f38a7138728773d86a9342105}
+
+\item 
+\hypertarget{classAstPostfixExpr_a4a1ae7a03b7b29e6641f47479e58aa3b}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, \hyperlink{classAstArgExprList}{Ast\-Arg\-Expr\-List} $\ast$a)}\label{classAstPostfixExpr_a4a1ae7a03b7b29e6641f47479e58aa3b}
+
+\item 
+\hypertarget{classAstPostfixExpr_a094735e6e2f593a42cc2b9aabc44213b}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, Operator o, \hyperlink{classAstID}{Ast\-I\-D} $\ast$i)}\label{classAstPostfixExpr_a094735e6e2f593a42cc2b9aabc44213b}
+
+\item 
+\hypertarget{classAstPostfixExpr_a71f3baa5264259031d95741e65de1e07}{{\bfseries Ast\-Postfix\-Expr} (\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$p, Operator o)}\label{classAstPostfixExpr_a71f3baa5264259031d95741e65de1e07}
+
+\item 
+void \hyperlink{classAstPostfixExpr_ae3e7fdbd4c2bf888ee62760e6f422cad}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+void \hyperlink{classAST_a71d680856e95ff89f55d5311a552eba6}{set\-Label} (string l)
+\begin{DoxyCompactList}\small\item\em Sets the label for the node. \end{DoxyCompactList}\item 
+int \hyperlink{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{get\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's unique I\-D. \end{DoxyCompactList}\item 
+string \hyperlink{classAST_aee029be902fffc927d16ccb03eb922ad}{get\-Label} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's label. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} \hyperlink{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\begin{DoxyCompactList}\small\item\em Static visualizer instance for generating the visualization of the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int \hyperlink{classAST_a847b778f1c3dd5a19de32de432ee6e15}{uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\begin{DoxyCompactList}\small\item\em The unique id. \end{DoxyCompactList}\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string \hyperlink{classAST_ab2e239ccc0688d2341724432ff5a1a31}{label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\begin{DoxyCompactList}\small\item\em The label to be printed in the visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPostfixExpr_a48162e70f9ec77d6aab3f036108cb69c}{\hyperlink{classAstPrimaryExpr}{Ast\-Primary\-Expr} $\ast$ {\bfseries priexpr}}\label{classAstPostfixExpr_a48162e70f9ec77d6aab3f036108cb69c}
+
+\item 
+\hypertarget{classAstPostfixExpr_ab66f24ef993fdad57b201fdb13dc9dc7}{\hyperlink{classAstPostfixExpr}{Ast\-Postfix\-Expr} $\ast$ {\bfseries ptf\-Expr}}\label{classAstPostfixExpr_ab66f24ef993fdad57b201fdb13dc9dc7}
+
+\item 
+\hypertarget{classAstPostfixExpr_aad843b4fb1a8c89dfd252b9f91809d45}{\hyperlink{classAstExpression}{Ast\-Expression} $\ast$ {\bfseries brak\-Expr}}\label{classAstPostfixExpr_aad843b4fb1a8c89dfd252b9f91809d45}
+
+\item 
+\hypertarget{classAstPostfixExpr_a492571ab26e55c7820652a906751d1cb}{\hyperlink{classAstArgExprList}{Ast\-Arg\-Expr\-List} $\ast$ {\bfseries arg\-Expr\-List}}\label{classAstPostfixExpr_a492571ab26e55c7820652a906751d1cb}
+
+\item 
+\hypertarget{classAstPostfixExpr_a6351e5be3e4c99881240266a8dbe2838}{\hyperlink{classAstID}{Ast\-I\-D} $\ast$ {\bfseries id}}\label{classAstPostfixExpr_a6351e5be3e4c99881240266a8dbe2838}
+
+\item 
+\hypertarget{classAstPostfixExpr_a0fe57762bbd015e8926114828922b514}{Operator {\bfseries op}}\label{classAstPostfixExpr_a0fe57762bbd015e8926114828922b514}
+
+\item 
+\hypertarget{classAstPostfixExpr_ab5db75237e4c895431464db149bd287b}{\hyperlink{classType}{Type} {\bfseries t}}\label{classAstPostfixExpr_ab5db75237e4c895431464db149bd287b}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstPostfixExpr@{Ast\-Postfix\-Expr}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstPostfixExpr@{Ast\-Postfix\-Expr}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstPostfixExpr@{Ast\-Postfix\-Expr}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAstPostfixExpr_ae3e7fdbd4c2bf888ee62760e6f422cad}{\index{Ast\-Postfix\-Expr@{Ast\-Postfix\-Expr}!Visit@{Visit}}
+\index{Visit@{Visit}!AstPostfixExpr@{Ast\-Postfix\-Expr}}
+\subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-Postfix\-Expr\-::\-Visit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAstPostfixExpr_ae3e7fdbd4c2bf888ee62760e6f422cad}
+
+
+This function is responsible for tree traversals. 
+
+This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3\-A\-C that can be generated at the current node. 
+
+Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-T}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}

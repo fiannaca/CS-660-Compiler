@@ -1,0 +1,561 @@
+\hypertarget{classTAC__Generator}{\section{T\-A\-C\-\_\-\-Generator Class Reference}
+\label{classTAC__Generator}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}
+}
+
+
+A class for generating three address code.  
+
+
+
+
+{\ttfamily \#include $<$T\-A\-C\-\_\-\-Generator.\-h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4c}{Three\-Op\-Instructions} \{ \\*
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caebd55c328d6c94f6b1cdab5a40c0fada}{A\-D\-D}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2}{S\-U\-B}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad044e3bc39a0cda02874051a280ed4a7}{M\-U\-L\-T}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca92b17264302f045c424f12f48c08c935}{D\-I\-V}, 
+\\*
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab2643519b64d78e68bdbd5f052ed46e6}{E\-Q}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab77f9b411c364b8e764fb46023392319}{G\-T}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca22beb5be26c57f28bedf15c552f6d715}{L\-T}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caea08b33a5151121653c928796cf5044c}{G\-E}, 
+\\*
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cae644e70b5036e8e2d842ec4c70539412}{L\-E}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cacd54c7d37a6f009438f75882e32652e4}{N\-E}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca30a4fdd5b8030f217bcd16cc32765bcf}{B\-R\-E\-Q}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca3128cf700a547a1f7a64a169a185cbb0}{B\-R\-G\-T}, 
+\\*
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca8c1aa7cbae5e4919224525bf9971aead}{B\-R\-L\-T}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca4f4a21ae798e08f62766f18be6cb1a2e}{B\-R\-G\-E}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca2eaafd3f43c38d4aaf56f651ead9df28}{B\-R\-L\-E}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca935e57d81059cca78b9b988be74a5a04}{B\-R\-N\-E}, 
+\\*
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca9c42a15b4e0746ce8731fd7c2dfcc284}{P\-R\-O\-C\-E\-N\-T\-R\-Y}, 
+\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad12eea4d154eb370c0614d86db840303}{B\-O\-U\-N\-D}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of 3 operand instructions. \end{DoxyCompactList}\item 
+enum \hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129}{Two\-Op\-Instructions} \{ \\*
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a3accf08d872837d04e2a68fd92f48fae}{N\-E\-G}, 
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129aa58983d3f96e5f269e837a60a2d27550}{N\-O\-T}, 
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653}{A\-S\-S\-I\-G\-N}, 
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34}{A\-D\-D\-R}, 
+\\*
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a2ca6f0770dbf39f9be8f4967ce9feb3d}{G\-L\-O\-B\-A\-L}, 
+\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a6f41d96ce4497e2288e3648ccb54a075}{S\-T\-R\-I\-N\-G}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum of 2 operand instructions. \end{DoxyCompactList}\item 
+enum \hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123}{One\-Op\-Instructions} \{ \\*
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a8b4bb5779b8d5fc3c3b65a38989b5fb7}{L\-A\-B\-E\-L}, 
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123ad208b8e4a2f64aa203033f49bad6c133}{B\-R}, 
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910}{A\-R\-G\-S}, 
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aae8ac3510ee6787b97ee7253ca571558}{R\-E\-F\-O\-U\-T}, 
+\\*
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a9c87f2c9a418414b6a9f09eb0ebe5091}{V\-A\-L\-O\-U\-T}, 
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aa556d3b733a3f68eec27a0b0d0184023}{C\-A\-L\-L}, 
+\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a5813fd66b52a9e97a0fdf1681f3dd2f9}{C\-O\-M\-M\-E\-N\-T}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum of 1 operand instructions. \end{DoxyCompactList}\item 
+enum \hyperlink{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5}{No\-Op\-Instructions} \{ \hyperlink{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a03b7dc352e386f1ade69363f4f4aac69}{H\-A\-L\-T}, 
+\hyperlink{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1faa4114dd25f4a395ce10e7781849de}{E\-N\-D\-P\-R\-O\-C}, 
+\hyperlink{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1a9c621e0c05756889c609dc1ad2a07d}{R\-E\-T\-U\-R\-N}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum of instructions without operands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTAC__Generator_a0b99317caae367b6e6f2a2ca89be1da1}{T\-A\-C\-\_\-\-Generator} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em The paramaterized constructor. \end{DoxyCompactList}\item 
+\hyperlink{classTAC__Generator_aa4dfb06c9feb7fa4f95cdc382ab9809c}{T\-A\-C\-\_\-\-Generator} ()
+\begin{DoxyCompactList}\small\item\em The default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classTAC__Generator_a66d2bfd04edb3098bf3e9f7b24be579f}{$\sim$\-T\-A\-C\-\_\-\-Generator} ()
+\begin{DoxyCompactList}\small\item\em The destructor. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_aacf385dd067825fd35a315d04ea9c78f}{to\-T\-A\-C} (\hyperlink{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4c}{Three\-Op\-Instructions} t, void $\ast$op1, void $\ast$op2, void $\ast$op3, string c=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Generate a 3\-A\-C string. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a7e5f15afb7c6b13793db76d1091f113c}{to\-T\-A\-C} (\hyperlink{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129}{Two\-Op\-Instructions} t, void $\ast$op1, void $\ast$op2, string c=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Generate a 3\-A\-C string. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a78507356e58ed7ff406314e8ce566ad8}{to\-T\-A\-C} (\hyperlink{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123}{One\-Op\-Instructions} t, void $\ast$op1, string c=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Generate a 3\-A\-C string. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a0ee1e11b169a2ead7244c00869d66858}{to\-T\-A\-C} (\hyperlink{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5}{No\-Op\-Instructions} t, string c=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Generate a 3\-A\-C string. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a8570a01bd5bf10e849017d412440799a}{Set\-Comment\-Start} (string \hyperlink{classTAC__Generator_ac530666b410f226e764e9eb33b2a4666}{comment\-Start})
+\begin{DoxyCompactList}\small\item\em Sets the symbol which should appear at the end of all comments. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_ad96d5a262c29a34a34324ed6c7aeffe1}{Set\-Comment\-End} (string \hyperlink{classTAC__Generator_a9f011cfb810ea2cd01b31b9a48762123}{comment\-End})
+\begin{DoxyCompactList}\small\item\em Sets the symbol which should appear at the beginning of all comments. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a37a03e11321195b25600eb008b20b800}{Write\-Comment} (string comment)
+\begin{DoxyCompactList}\small\item\em Writes a comment string to the 3\-A\-C output. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a3351d9d0d43b7b33591ed556c0261b84}{void \hyperlink{classTAC__Generator_a3351d9d0d43b7b33591ed556c0261b84}{Blank} ()}\label{classTAC__Generator_a3351d9d0d43b7b33591ed556c0261b84}
+
+\begin{DoxyCompactList}\small\item\em Puts a blank line in the 3\-A\-C output. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a1c8e7f2ace8e7e96b4a2a1909ca054fe}{Set\-File} (const string \&filename)
+\begin{DoxyCompactList}\small\item\em Sets the name of the file in which the output 3\-A\-C should be saved. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a2268378a805c9722cf4693e97b67166e}{Set\-Column\-Width} (int w)
+\begin{DoxyCompactList}\small\item\em Sets the fixed column width for outputting 3\-A\-C statements. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_aacd4a0f0dd9c2cc79da4cf9d9d1e442e}{Set\-Format\-Flags} (ios\-\_\-base\-::fmtflags ff)
+\begin{DoxyCompactList}\small\item\em Sets the ios\-\_\-base format flags used when generating formatted 3\-A\-C strings. \end{DoxyCompactList}\item 
+void \hyperlink{classTAC__Generator_a6d909e88feeb387d89ee154aeb6466f2}{Set\-Blank\-Before\-Comments} (bool flag)
+\begin{DoxyCompactList}\small\item\em Sets the blank\-Before\-Comments flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTAC__Generator_a1c93570d57d8b7bf249fa81563f856a4}{static string \hyperlink{classTAC__Generator_a1c93570d57d8b7bf249fa81563f856a4}{Get\-Label\-Name} ()}\label{classTAC__Generator_a1c93570d57d8b7bf249fa81563f856a4}
+
+\begin{DoxyCompactList}\small\item\em Generates a unique label string. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_ae8cbc60e1fe0e103d9a80cea77a81ebc}{static string \hyperlink{classTAC__Generator_ae8cbc60e1fe0e103d9a80cea77a81ebc}{Get\-I\-Var\-Name} ()}\label{classTAC__Generator_ae8cbc60e1fe0e103d9a80cea77a81ebc}
+
+\begin{DoxyCompactList}\small\item\em Generates a unique string for integer temps. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a1b2b45bc25e804a732d46db8825e1304}{static string \hyperlink{classTAC__Generator_a1b2b45bc25e804a732d46db8825e1304}{Get\-F\-Var\-Name} ()}\label{classTAC__Generator_a1b2b45bc25e804a732d46db8825e1304}
+
+\begin{DoxyCompactList}\small\item\em Generates a unique string for floating-\/point temps. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classTAC__Generator_a8612e9fba451f0416e717dcf51a02977}{Emit} (string Code\-To\-Emit)
+\begin{DoxyCompactList}\small\item\em This function saves the string passed in to a S\-T\-L list for later output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTAC__Generator_a3609e88e889225e87f604b99b0f2ab7d}{list$<$ string $>$ \hyperlink{classTAC__Generator_a3609e88e889225e87f604b99b0f2ab7d}{buffer}}\label{classTAC__Generator_a3609e88e889225e87f604b99b0f2ab7d}
+
+\begin{DoxyCompactList}\small\item\em A buffer for the generated 3\-A\-C. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a28ca6d057dca0033a4ae6e67b903ea7c}{ofstream \hyperlink{classTAC__Generator_a28ca6d057dca0033a4ae6e67b903ea7c}{fout}}\label{classTAC__Generator_a28ca6d057dca0033a4ae6e67b903ea7c}
+
+\begin{DoxyCompactList}\small\item\em Output stream. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_ac530666b410f226e764e9eb33b2a4666}{string \hyperlink{classTAC__Generator_ac530666b410f226e764e9eb33b2a4666}{comment\-Start}}\label{classTAC__Generator_ac530666b410f226e764e9eb33b2a4666}
+
+\begin{DoxyCompactList}\small\item\em String to be placed at the beginning of every comment. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a9f011cfb810ea2cd01b31b9a48762123}{string \hyperlink{classTAC__Generator_a9f011cfb810ea2cd01b31b9a48762123}{comment\-End}}\label{classTAC__Generator_a9f011cfb810ea2cd01b31b9a48762123}
+
+\begin{DoxyCompactList}\small\item\em String to be placed at the end of every comment. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a56e2e1cedb94e46da20203a1baa8c623}{bool \hyperlink{classTAC__Generator_a56e2e1cedb94e46da20203a1baa8c623}{blank\-Before\-Comment}}\label{classTAC__Generator_a56e2e1cedb94e46da20203a1baa8c623}
+
+\begin{DoxyCompactList}\small\item\em Flag for placing blank lines before comments. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a1d4defba19014a3804e2f52b01b3a967}{int \hyperlink{classTAC__Generator_a1d4defba19014a3804e2f52b01b3a967}{width}}\label{classTAC__Generator_a1d4defba19014a3804e2f52b01b3a967}
+
+\begin{DoxyCompactList}\small\item\em Fixed column width of the output 3\-A\-C. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a27703e9823770349f1ba61d0aff651c1}{ios\-\_\-base\-::fmtflags \hyperlink{classTAC__Generator_a27703e9823770349f1ba61d0aff651c1}{flags}}\label{classTAC__Generator_a27703e9823770349f1ba61d0aff651c1}
+
+\begin{DoxyCompactList}\small\item\em Format flags. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTAC__Generator_ac4da267c055d5463a0a62da16ce6ba1e}{static int \hyperlink{classTAC__Generator_ac4da267c055d5463a0a62da16ce6ba1e}{l\-Count} = 0}\label{classTAC__Generator_ac4da267c055d5463a0a62da16ce6ba1e}
+
+\begin{DoxyCompactList}\small\item\em Current label counter for generating unique labels. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a87349893e585843296a08ad64d50c80c}{static int \hyperlink{classTAC__Generator_a87349893e585843296a08ad64d50c80c}{i\-Count} = 0}\label{classTAC__Generator_a87349893e585843296a08ad64d50c80c}
+
+\begin{DoxyCompactList}\small\item\em Current integer counter for generating unique integer labels. \end{DoxyCompactList}\item 
+\hypertarget{classTAC__Generator_a744cd7df227e0fa7b2409ceb83beac3a}{static int \hyperlink{classTAC__Generator_a744cd7df227e0fa7b2409ceb83beac3a}{f\-Count} = 0}\label{classTAC__Generator_a744cd7df227e0fa7b2409ceb83beac3a}
+
+\begin{DoxyCompactList}\small\item\em Current float counter for generating unique float labels. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class for generating three address code. 
+
+The \hyperlink{classTAC__Generator}{T\-A\-C\-\_\-\-Generator} class is responsible for generating well-\/formatted three address code (3\-A\-C or T\-A\-C). The generator stores all generated 3\-A\-C in a S\-T\-L list of strings during runtime, and outputs the 3\-A\-C to a file when the destructor is called. This allows for the 3\-A\-C to be manipulated prior to output (i.\-e. putting all function decls at the top of the 3\-A\-C). 
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!No\-Op\-Instructions@{No\-Op\-Instructions}}
+\index{No\-Op\-Instructions@{No\-Op\-Instructions}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{No\-Op\-Instructions}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf T\-A\-C\-\_\-\-Generator\-::\-No\-Op\-Instructions}}}\label{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5}
+
+
+Enum of instructions without operands. 
+
+These enum values serve as flags to the to\-T\-A\-C functions in order to indicate which 3\-A\-C statement should be generated, and what the types of the void $\ast$ parameters to the to\-T\-A\-C functions are. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{H\-A\-L\-T@{H\-A\-L\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!H\-A\-L\-T@{H\-A\-L\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a03b7dc352e386f1ade69363f4f4aac69}{H\-A\-L\-T}\label{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a03b7dc352e386f1ade69363f4f4aac69}
+}]Immediately halt execution. \index{E\-N\-D\-P\-R\-O\-C@{E\-N\-D\-P\-R\-O\-C}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!E\-N\-D\-P\-R\-O\-C@{E\-N\-D\-P\-R\-O\-C}}\item[{\em 
+\hypertarget{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1faa4114dd25f4a395ce10e7781849de}{E\-N\-D\-P\-R\-O\-C}\label{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1faa4114dd25f4a395ce10e7781849de}
+}]Mark the end of a procedure. \index{R\-E\-T\-U\-R\-N@{R\-E\-T\-U\-R\-N}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!R\-E\-T\-U\-R\-N@{R\-E\-T\-U\-R\-N}}\item[{\em 
+\hypertarget{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1a9c621e0c05756889c609dc1ad2a07d}{R\-E\-T\-U\-R\-N}\label{classTAC__Generator_a3942f3e280fb83e44ad85eb13d56dfb5a1a9c621e0c05756889c609dc1ad2a07d}
+}]Return control to the caller. \end{description}
+\end{Desc}
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!One\-Op\-Instructions@{One\-Op\-Instructions}}
+\index{One\-Op\-Instructions@{One\-Op\-Instructions}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{One\-Op\-Instructions}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf T\-A\-C\-\_\-\-Generator\-::\-One\-Op\-Instructions}}}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123}
+
+
+Enum of 1 operand instructions. 
+
+These enum values serve as flags to the to\-T\-A\-C functions in order to indicate which 3\-A\-C statement should be generated, and what the types of the void $\ast$ parameters to the to\-T\-A\-C functions are. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{L\-A\-B\-E\-L@{L\-A\-B\-E\-L}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!L\-A\-B\-E\-L@{L\-A\-B\-E\-L}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a8b4bb5779b8d5fc3c3b65a38989b5fb7}{L\-A\-B\-E\-L}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a8b4bb5779b8d5fc3c3b65a38989b5fb7}
+}]Generate a label. \index{B\-R@{B\-R}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R@{B\-R}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123ad208b8e4a2f64aa203033f49bad6c133}{B\-R}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123ad208b8e4a2f64aa203033f49bad6c133}
+}]Branch to a label. \index{A\-R\-G\-S@{A\-R\-G\-S}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!A\-R\-G\-S@{A\-R\-G\-S}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910}{A\-R\-G\-S}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910}
+}]Specify the number of arguments being sent to the next call. \index{R\-E\-F\-O\-U\-T@{R\-E\-F\-O\-U\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!R\-E\-F\-O\-U\-T@{R\-E\-F\-O\-U\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aae8ac3510ee6787b97ee7253ca571558}{R\-E\-F\-O\-U\-T}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aae8ac3510ee6787b97ee7253ca571558}
+}]Pass op1 by reference. \index{V\-A\-L\-O\-U\-T@{V\-A\-L\-O\-U\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!V\-A\-L\-O\-U\-T@{V\-A\-L\-O\-U\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a9c87f2c9a418414b6a9f09eb0ebe5091}{V\-A\-L\-O\-U\-T}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a9c87f2c9a418414b6a9f09eb0ebe5091}
+}]Pass op1 by value. \index{C\-A\-L\-L@{C\-A\-L\-L}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!C\-A\-L\-L@{C\-A\-L\-L}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aa556d3b733a3f68eec27a0b0d0184023}{C\-A\-L\-L}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123aa556d3b733a3f68eec27a0b0d0184023}
+}]Call the procedure named op1. \index{C\-O\-M\-M\-E\-N\-T@{C\-O\-M\-M\-E\-N\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!C\-O\-M\-M\-E\-N\-T@{C\-O\-M\-M\-E\-N\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a5813fd66b52a9e97a0fdf1681f3dd2f9}{C\-O\-M\-M\-E\-N\-T}\label{classTAC__Generator_ab58b7044cb5d16a454f4e01514175123a5813fd66b52a9e97a0fdf1681f3dd2f9}
+}]Output op1 as a comment. \end{description}
+\end{Desc}
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4c}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Three\-Op\-Instructions@{Three\-Op\-Instructions}}
+\index{Three\-Op\-Instructions@{Three\-Op\-Instructions}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Three\-Op\-Instructions}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf T\-A\-C\-\_\-\-Generator\-::\-Three\-Op\-Instructions}}}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4c}
+
+
+Enumeration of 3 operand instructions. 
+
+These enum values serve as flags to the to\-T\-A\-C functions in order to indicate which 3\-A\-C statement should be generated, and what the types of the void $\ast$ parameters to the to\-T\-A\-C functions are. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\-D\-D@{A\-D\-D}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!A\-D\-D@{A\-D\-D}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caebd55c328d6c94f6b1cdab5a40c0fada}{A\-D\-D}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caebd55c328d6c94f6b1cdab5a40c0fada}
+}]Add the value of two temps. \index{S\-U\-B@{S\-U\-B}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!S\-U\-B@{S\-U\-B}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2}{S\-U\-B}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2}
+}]Subtract the value of two temps. \index{M\-U\-L\-T@{M\-U\-L\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!M\-U\-L\-T@{M\-U\-L\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad044e3bc39a0cda02874051a280ed4a7}{M\-U\-L\-T}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad044e3bc39a0cda02874051a280ed4a7}
+}]Multiply the value of two temps. \index{D\-I\-V@{D\-I\-V}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!D\-I\-V@{D\-I\-V}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca92b17264302f045c424f12f48c08c935}{D\-I\-V}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca92b17264302f045c424f12f48c08c935}
+}]Divide the value of two temps. \index{E\-Q@{E\-Q}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!E\-Q@{E\-Q}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab2643519b64d78e68bdbd5f052ed46e6}{E\-Q}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab2643519b64d78e68bdbd5f052ed46e6}
+}]Set op3 to 1 is op1 == op2, or 0 otherwise. \index{G\-T@{G\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!G\-T@{G\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab77f9b411c364b8e764fb46023392319}{G\-T}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cab77f9b411c364b8e764fb46023392319}
+}]Set op3 to 1 is op1 $>$ op2, or 0 otherwise. \index{L\-T@{L\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!L\-T@{L\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca22beb5be26c57f28bedf15c552f6d715}{L\-T}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca22beb5be26c57f28bedf15c552f6d715}
+}]Set op3 to 1 is op1 $<$ op2, or 0 otherwise. \index{G\-E@{G\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!G\-E@{G\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caea08b33a5151121653c928796cf5044c}{G\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4caea08b33a5151121653c928796cf5044c}
+}]Set op3 to 1 is op1 $>$= op2, or 0 otherwise. \index{L\-E@{L\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!L\-E@{L\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cae644e70b5036e8e2d842ec4c70539412}{L\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cae644e70b5036e8e2d842ec4c70539412}
+}]Set op3 to 1 is op1 $<$= op2, or 0 otherwise. \index{N\-E@{N\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!N\-E@{N\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cacd54c7d37a6f009438f75882e32652e4}{N\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cacd54c7d37a6f009438f75882e32652e4}
+}]Set op3 to 1 is op1 != op2, or 0 otherwise. \index{B\-R\-E\-Q@{B\-R\-E\-Q}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-E\-Q@{B\-R\-E\-Q}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca30a4fdd5b8030f217bcd16cc32765bcf}{B\-R\-E\-Q}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca30a4fdd5b8030f217bcd16cc32765bcf}
+}]If(op1 == op2) goto op3. \index{B\-R\-G\-T@{B\-R\-G\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-G\-T@{B\-R\-G\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca3128cf700a547a1f7a64a169a185cbb0}{B\-R\-G\-T}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca3128cf700a547a1f7a64a169a185cbb0}
+}]If(op1 $>$ op2) goto op3. \index{B\-R\-L\-T@{B\-R\-L\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-L\-T@{B\-R\-L\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca8c1aa7cbae5e4919224525bf9971aead}{B\-R\-L\-T}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca8c1aa7cbae5e4919224525bf9971aead}
+}]If(op1 $<$ op2) goto op3. \index{B\-R\-G\-E@{B\-R\-G\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-G\-E@{B\-R\-G\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca4f4a21ae798e08f62766f18be6cb1a2e}{B\-R\-G\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca4f4a21ae798e08f62766f18be6cb1a2e}
+}]If(op1 $>$= op2) goto op3. \index{B\-R\-L\-E@{B\-R\-L\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-L\-E@{B\-R\-L\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca2eaafd3f43c38d4aaf56f651ead9df28}{B\-R\-L\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca2eaafd3f43c38d4aaf56f651ead9df28}
+}]If(op1 $<$= op2) goto op3. \index{B\-R\-N\-E@{B\-R\-N\-E}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-R\-N\-E@{B\-R\-N\-E}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca935e57d81059cca78b9b988be74a5a04}{B\-R\-N\-E}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca935e57d81059cca78b9b988be74a5a04}
+}]If(op1 != op2) goto op3. \index{P\-R\-O\-C\-E\-N\-T\-R\-Y@{P\-R\-O\-C\-E\-N\-T\-R\-Y}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!P\-R\-O\-C\-E\-N\-T\-R\-Y@{P\-R\-O\-C\-E\-N\-T\-R\-Y}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca9c42a15b4e0746ce8731fd7c2dfcc284}{P\-R\-O\-C\-E\-N\-T\-R\-Y}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4ca9c42a15b4e0746ce8731fd7c2dfcc284}
+}]Marks the beginning of a procedure. \index{B\-O\-U\-N\-D@{B\-O\-U\-N\-D}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!B\-O\-U\-N\-D@{B\-O\-U\-N\-D}}\item[{\em 
+\hypertarget{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad12eea4d154eb370c0614d86db840303}{B\-O\-U\-N\-D}\label{classTAC__Generator_ae032b80a215a10604c5273b65e7dab4cad12eea4d154eb370c0614d86db840303}
+}]Checks the bounds of an array access. \end{description}
+\end{Desc}
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Two\-Op\-Instructions@{Two\-Op\-Instructions}}
+\index{Two\-Op\-Instructions@{Two\-Op\-Instructions}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Two\-Op\-Instructions}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf T\-A\-C\-\_\-\-Generator\-::\-Two\-Op\-Instructions}}}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129}
+
+
+Enum of 2 operand instructions. 
+
+These enum values serve as flags to the to\-T\-A\-C functions in order to indicate which 3\-A\-C statement should be generated, and what the types of the void $\ast$ parameters to the to\-T\-A\-C functions are. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{N\-E\-G@{N\-E\-G}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!N\-E\-G@{N\-E\-G}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a3accf08d872837d04e2a68fd92f48fae}{N\-E\-G}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a3accf08d872837d04e2a68fd92f48fae}
+}]op2 = -\/(op1) \index{N\-O\-T@{N\-O\-T}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!N\-O\-T@{N\-O\-T}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129aa58983d3f96e5f269e837a60a2d27550}{N\-O\-T}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129aa58983d3f96e5f269e837a60a2d27550}
+}]Set op2 to 1 if op1 == 0, or 0 otherwise. \index{A\-S\-S\-I\-G\-N@{A\-S\-S\-I\-G\-N}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!A\-S\-S\-I\-G\-N@{A\-S\-S\-I\-G\-N}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653}{A\-S\-S\-I\-G\-N}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653}
+}]Assign the value of op1 to op2. \index{A\-D\-D\-R@{A\-D\-D\-R}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!A\-D\-D\-R@{A\-D\-D\-R}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34}{A\-D\-D\-R}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34}
+}]Assign the address of op1 to op2. \index{G\-L\-O\-B\-A\-L@{G\-L\-O\-B\-A\-L}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!G\-L\-O\-B\-A\-L@{G\-L\-O\-B\-A\-L}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a2ca6f0770dbf39f9be8f4967ce9feb3d}{G\-L\-O\-B\-A\-L}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a2ca6f0770dbf39f9be8f4967ce9feb3d}
+}]Declare op1 as a global of size op2. \index{S\-T\-R\-I\-N\-G@{S\-T\-R\-I\-N\-G}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!S\-T\-R\-I\-N\-G@{S\-T\-R\-I\-N\-G}}\item[{\em 
+\hypertarget{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a6f41d96ce4497e2288e3648ccb54a075}{S\-T\-R\-I\-N\-G}\label{classTAC__Generator_a4e5a63c4a55a85d34f6ffebe5bf48129a6f41d96ce4497e2288e3648ccb54a075}
+}]Associate string op1 with label op2. \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTAC__Generator_a0b99317caae367b6e6f2a2ca89be1da1}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}
+\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{T\-A\-C\-\_\-\-Generator}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-C\-\_\-\-Generator\-::\-T\-A\-C\-\_\-\-Generator (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a0b99317caae367b6e6f2a2ca89be1da1}
+
+
+The paramaterized constructor. 
+
+This constructor opens the 3\-A\-C file with the given filename.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file in which to output 3\-A\-C \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_aa4dfb06c9feb7fa4f95cdc382ab9809c}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}}
+\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{T\-A\-C\-\_\-\-Generator}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-C\-\_\-\-Generator\-::\-T\-A\-C\-\_\-\-Generator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_aa4dfb06c9feb7fa4f95cdc382ab9809c}
+
+
+The default constructor. 
+
+This constructor does not open an output file. If this constructor is used, then the function Set\-File must be called.
+
+\begin{DoxySeeAlso}{See Also}
+\hyperlink{classTAC__Generator_a1c8e7f2ace8e7e96b4a2a1909ca054fe}{Set\-File()} 
+\end{DoxySeeAlso}
+\hypertarget{classTAC__Generator_a66d2bfd04edb3098bf3e9f7b24be579f}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!$\sim$\-T\-A\-C\-\_\-\-Generator@{$\sim$\-T\-A\-C\-\_\-\-Generator}}
+\index{$\sim$\-T\-A\-C\-\_\-\-Generator@{$\sim$\-T\-A\-C\-\_\-\-Generator}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{$\sim$\-T\-A\-C\-\_\-\-Generator}]{\setlength{\rightskip}{0pt plus 5cm}T\-A\-C\-\_\-\-Generator\-::$\sim$\-T\-A\-C\-\_\-\-Generator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a66d2bfd04edb3098bf3e9f7b24be579f}
+
+
+The destructor. 
+
+This destructor is responsible for outputting the 3\-A\-C from the list of strings to the output file and then closing the output file. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classTAC__Generator_a8612e9fba451f0416e717dcf51a02977}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Emit@{Emit}}
+\index{Emit@{Emit}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Emit}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Emit (
+\begin{DoxyParamCaption}
+\item[{string}]{Code\-To\-Emit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{classTAC__Generator_a8612e9fba451f0416e717dcf51a02977}
+
+
+This function saves the string passed in to a S\-T\-L list for later output. 
+
+N\-O\-T\-E\-: The 3\-A\-C Generator \char`\"{}emits\char`\"{} code to a list first, and then after all code has been emitted, it is pushed to a file. This is done so as to allow for changes to be made to the 3\-A\-C before it is finalized (ie\-: moving all function decls to the top of the code) \hypertarget{classTAC__Generator_a6d909e88feeb387d89ee154aeb6466f2}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-Blank\-Before\-Comments@{Set\-Blank\-Before\-Comments}}
+\index{Set\-Blank\-Before\-Comments@{Set\-Blank\-Before\-Comments}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-Blank\-Before\-Comments}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-Blank\-Before\-Comments (
+\begin{DoxyParamCaption}
+\item[{bool}]{flag}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a6d909e88feeb387d89ee154aeb6466f2}
+
+
+Sets the blank\-Before\-Comments flag. 
+
+If true, a blank line will be output in the final 3\-A\-C before each comment.
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & True if there should be an empty line before each comment \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a2268378a805c9722cf4693e97b67166e}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-Column\-Width@{Set\-Column\-Width}}
+\index{Set\-Column\-Width@{Set\-Column\-Width}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-Column\-Width}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-Column\-Width (
+\begin{DoxyParamCaption}
+\item[{int}]{w}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a2268378a805c9722cf4693e97b67166e}
+
+
+Sets the fixed column width for outputting 3\-A\-C statements. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em w} & Integer indicating the width of the columns to print the 3\-A\-C in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_ad96d5a262c29a34a34324ed6c7aeffe1}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-Comment\-End@{Set\-Comment\-End}}
+\index{Set\-Comment\-End@{Set\-Comment\-End}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-Comment\-End}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-Comment\-End (
+\begin{DoxyParamCaption}
+\item[{string}]{comment\-End}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_ad96d5a262c29a34a34324ed6c7aeffe1}
+
+
+Sets the symbol which should appear at the beginning of all comments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment\-End} & String to be placed at the end of every comment \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a8570a01bd5bf10e849017d412440799a}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-Comment\-Start@{Set\-Comment\-Start}}
+\index{Set\-Comment\-Start@{Set\-Comment\-Start}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-Comment\-Start}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-Comment\-Start (
+\begin{DoxyParamCaption}
+\item[{string}]{comment\-Start}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a8570a01bd5bf10e849017d412440799a}
+
+
+Sets the symbol which should appear at the end of all comments. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment\-Start} & String to be place at the beginning of every comment \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a1c8e7f2ace8e7e96b4a2a1909ca054fe}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-File@{Set\-File}}
+\index{Set\-File@{Set\-File}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-File}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-File (
+\begin{DoxyParamCaption}
+\item[{const string \&}]{filename}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a1c8e7f2ace8e7e96b4a2a1909ca054fe}
+
+
+Sets the name of the file in which the output 3\-A\-C should be saved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the file in which to output 3\-A\-C \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_aacd4a0f0dd9c2cc79da4cf9d9d1e442e}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Set\-Format\-Flags@{Set\-Format\-Flags}}
+\index{Set\-Format\-Flags@{Set\-Format\-Flags}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Set\-Format\-Flags}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Set\-Format\-Flags (
+\begin{DoxyParamCaption}
+\item[{ios\-\_\-base\-::fmtflags}]{ff}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_aacd4a0f0dd9c2cc79da4cf9d9d1e442e}
+
+
+Sets the ios\-\_\-base format flags used when generating formatted 3\-A\-C strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ff} & Format flags (i.\-e. left, right, etc.) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_aacf385dd067825fd35a315d04ea9c78f}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!to\-T\-A\-C@{to\-T\-A\-C}}
+\index{to\-T\-A\-C@{to\-T\-A\-C}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{to\-T\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::to\-T\-A\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf Three\-Op\-Instructions}}]{t, }
+\item[{void $\ast$}]{op1, }
+\item[{void $\ast$}]{op2, }
+\item[{void $\ast$}]{op3, }
+\item[{string}]{c = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_aacf385dd067825fd35a315d04ea9c78f}
+
+
+Generate a 3\-A\-C string. 
+
+The to\-T\-A\-C overloads take in a flag to indicate the type of three address code statement and a series of parameters required by the particular statement, in order to generate a formatted 3\-A\-C statement. N\-O\-T\-E\-: this function determines the type of the operands based on the flag passed as the first parameter. If the incorrect flag is passed, then the program will cast the address to the wrong type, so be careful.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Flag indicating the type of 3\-A\-C statement to generate \\
+\hline
+{\em op1} & A pointer to the first operand (cast as a void$\ast$) \\
+\hline
+{\em op2} & A pointer to the second operand (cast as a void$\ast$) \\
+\hline
+{\em op3} & A pointer to the third operand (cast as a void$\ast$) \\
+\hline
+{\em c} & An optional comment to prepend to the 3\-A\-C statement (useful for outputting the original input code as comments to the 3\-A\-C file) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a7e5f15afb7c6b13793db76d1091f113c}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!to\-T\-A\-C@{to\-T\-A\-C}}
+\index{to\-T\-A\-C@{to\-T\-A\-C}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{to\-T\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::to\-T\-A\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf Two\-Op\-Instructions}}]{t, }
+\item[{void $\ast$}]{op1, }
+\item[{void $\ast$}]{op2, }
+\item[{string}]{c = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a7e5f15afb7c6b13793db76d1091f113c}
+
+
+Generate a 3\-A\-C string. 
+
+The to\-T\-A\-C overloads take in a flag to indicate the type of three address code statement and a series of parameters required by the particular statement, in order to generate a formatted 3\-A\-C statement. N\-O\-T\-E\-: this function determines the type of the operands based on the flag passed as the first parameter. If the incorrect flag is passed, then the program will cast the address to the wrong type, so be careful.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Flag indicating the type of 3\-A\-C statement to generate \\
+\hline
+{\em op1} & A pointer to the first operand (cast as a void$\ast$) \\
+\hline
+{\em op2} & A pointer to the second operand (cast as a void$\ast$) \\
+\hline
+{\em c} & An optional comment to prepend to the 3\-A\-C statement (useful for outputting the original input code as comments to the 3\-A\-C file) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a78507356e58ed7ff406314e8ce566ad8}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!to\-T\-A\-C@{to\-T\-A\-C}}
+\index{to\-T\-A\-C@{to\-T\-A\-C}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{to\-T\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::to\-T\-A\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf One\-Op\-Instructions}}]{t, }
+\item[{void $\ast$}]{op1, }
+\item[{string}]{c = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a78507356e58ed7ff406314e8ce566ad8}
+
+
+Generate a 3\-A\-C string. 
+
+The to\-T\-A\-C overloads take in a flag to indicate the type of three address code statement and a series of parameters required by the particular statement, in order to generate a formatted 3\-A\-C statement. N\-O\-T\-E\-: this function determines the type of the operand based on the flag passed as the first parameter. If the incorrect flag is passed, then the program will cast the address to the wrong type, so be careful.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Flag indicating the type of 3\-A\-C statement to generate \\
+\hline
+{\em op1} & A pointer to the first operand (cast as a void$\ast$) \\
+\hline
+{\em c} & An optional comment to prepend to the 3\-A\-C statement (useful for outputting the original input code as comments to the 3\-A\-C file) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a0ee1e11b169a2ead7244c00869d66858}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!to\-T\-A\-C@{to\-T\-A\-C}}
+\index{to\-T\-A\-C@{to\-T\-A\-C}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{to\-T\-A\-C}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::to\-T\-A\-C (
+\begin{DoxyParamCaption}
+\item[{{\bf No\-Op\-Instructions}}]{t, }
+\item[{string}]{c = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a0ee1e11b169a2ead7244c00869d66858}
+
+
+Generate a 3\-A\-C string. 
+
+The to\-T\-A\-C overloads take in a flag to indicate the type of three address code statement and a series of parameters required by the particular statement, in order to generate a formatted 3\-A\-C statement.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Flag indicating the type of 3\-A\-C statement to generate \\
+\hline
+{\em c} & An optional comment to prepend to the 3\-A\-C statement (useful for outputting the original input code as comments to the 3\-A\-C file) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTAC__Generator_a37a03e11321195b25600eb008b20b800}{\index{T\-A\-C\-\_\-\-Generator@{T\-A\-C\-\_\-\-Generator}!Write\-Comment@{Write\-Comment}}
+\index{Write\-Comment@{Write\-Comment}!TAC_Generator@{T\-A\-C\-\_\-\-Generator}}
+\subsubsection[{Write\-Comment}]{\setlength{\rightskip}{0pt plus 5cm}void T\-A\-C\-\_\-\-Generator\-::\-Write\-Comment (
+\begin{DoxyParamCaption}
+\item[{string}]{comment}
+\end{DoxyParamCaption}
+)}}\label{classTAC__Generator_a37a03e11321195b25600eb008b20b800}
+
+
+Writes a comment string to the 3\-A\-C output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em comment} & String to output as a comment \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+T\-A\-C\-\_\-\-Generator.\-h\item 
+T\-A\-C\-\_\-\-Generator.\-cpp\end{DoxyCompactItemize}

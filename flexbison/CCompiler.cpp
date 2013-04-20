@@ -242,8 +242,6 @@ void CCompiler::printDebug(std::string txt)
 {
     if(debug_on)
     {
-        std::cout << "Debug is on";
-
         if(outfile_set)
             outfile << txt << std::endl;
         else

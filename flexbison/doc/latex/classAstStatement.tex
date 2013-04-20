@@ -1,0 +1,161 @@
+\hypertarget{classAstStatement}{\section{Ast\-Statement Class Reference}
+\label{classAstStatement}\index{Ast\-Statement@{Ast\-Statement}}
+}
+Inheritance diagram for Ast\-Statement\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstStatement}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Type} \{ \\*
+{\bfseries L\-A\-B\-E\-L\-E\-D}, 
+{\bfseries C\-O\-M\-P\-O\-U\-N\-D}, 
+{\bfseries E\-X\-P\-R}, 
+{\bfseries S\-E\-L\-E\-C\-T}, 
+\\*
+{\bfseries I\-T\-E\-R}, 
+{\bfseries J\-U\-M\-P}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstStatement_a51c4738b3eb4d0ce7f7937580827df49}{{\bfseries Ast\-Statement} (\hyperlink{classAstLabeledStmt}{Ast\-Labeled\-Stmt} $\ast$l)}\label{classAstStatement_a51c4738b3eb4d0ce7f7937580827df49}
+
+\item 
+\hypertarget{classAstStatement_a06ab5906e58059421ffca709140ad1b0}{{\bfseries Ast\-Statement} (\hyperlink{classAstCompoundStmt}{Ast\-Compound\-Stmt} $\ast$c)}\label{classAstStatement_a06ab5906e58059421ffca709140ad1b0}
+
+\item 
+\hypertarget{classAstStatement_a8a44969c79b381d9cef932fc93d99339}{{\bfseries Ast\-Statement} (\hyperlink{classAstExprStmt}{Ast\-Expr\-Stmt} $\ast$e)}\label{classAstStatement_a8a44969c79b381d9cef932fc93d99339}
+
+\item 
+\hypertarget{classAstStatement_a8bc036f0b37cacbfa99159e4c57207ec}{{\bfseries Ast\-Statement} (\hyperlink{classAstSelection}{Ast\-Selection} $\ast$s)}\label{classAstStatement_a8bc036f0b37cacbfa99159e4c57207ec}
+
+\item 
+\hypertarget{classAstStatement_ae26acf207adc2d426e558e5889b43b54}{{\bfseries Ast\-Statement} (\hyperlink{classAstIteration}{Ast\-Iteration} $\ast$i)}\label{classAstStatement_ae26acf207adc2d426e558e5889b43b54}
+
+\item 
+\hypertarget{classAstStatement_a80c754bbc909f7e2e7938e90485d7065}{{\bfseries Ast\-Statement} (\hyperlink{classAstJump}{Ast\-Jump} $\ast$j)}\label{classAstStatement_a80c754bbc909f7e2e7938e90485d7065}
+
+\item 
+void \hyperlink{classAstStatement_a1f1570931e373fe2f1e18ce417236ee4}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+void \hyperlink{classAST_a71d680856e95ff89f55d5311a552eba6}{set\-Label} (string l)
+\begin{DoxyCompactList}\small\item\em Sets the label for the node. \end{DoxyCompactList}\item 
+int \hyperlink{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{get\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's unique I\-D. \end{DoxyCompactList}\item 
+string \hyperlink{classAST_aee029be902fffc927d16ccb03eb922ad}{get\-Label} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's label. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstStatement_a31c4d9fe3f321bdb8e14d20b22a91151}{enum Ast\-Statement\-::\-Type {\bfseries t}}\label{classAstStatement_a31c4d9fe3f321bdb8e14d20b22a91151}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} \hyperlink{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\begin{DoxyCompactList}\small\item\em Static visualizer instance for generating the visualization of the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int \hyperlink{classAST_a847b778f1c3dd5a19de32de432ee6e15}{uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\begin{DoxyCompactList}\small\item\em The unique id. \end{DoxyCompactList}\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string \hyperlink{classAST_ab2e239ccc0688d2341724432ff5a1a31}{label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\begin{DoxyCompactList}\small\item\em The label to be printed in the visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstStatement_ad6a4880790177b9c482e679ca57a4fbe}{\hyperlink{classAstLabeledStmt}{Ast\-Labeled\-Stmt} $\ast$ {\bfseries lbl}}\label{classAstStatement_ad6a4880790177b9c482e679ca57a4fbe}
+
+\item 
+\hypertarget{classAstStatement_a7cb384c83f44a76c7839e70e2d5ff8d1}{\hyperlink{classAstCompoundStmt}{Ast\-Compound\-Stmt} $\ast$ {\bfseries cmp}}\label{classAstStatement_a7cb384c83f44a76c7839e70e2d5ff8d1}
+
+\item 
+\hypertarget{classAstStatement_ad25436faed941dc5cf1d278e1244ff7e}{\hyperlink{classAstExprStmt}{Ast\-Expr\-Stmt} $\ast$ {\bfseries expr}}\label{classAstStatement_ad25436faed941dc5cf1d278e1244ff7e}
+
+\item 
+\hypertarget{classAstStatement_ac9d31035cc8dbbdce5fedac012c7cc39}{\hyperlink{classAstSelection}{Ast\-Selection} $\ast$ {\bfseries slct}}\label{classAstStatement_ac9d31035cc8dbbdce5fedac012c7cc39}
+
+\item 
+\hypertarget{classAstStatement_ab14e3739f049760d6c094dd15526f65f}{\hyperlink{classAstIteration}{Ast\-Iteration} $\ast$ {\bfseries iter}}\label{classAstStatement_ab14e3739f049760d6c094dd15526f65f}
+
+\item 
+\hypertarget{classAstStatement_abc6af3b0d2a6618803c3ccdbebcc42a8}{\hyperlink{classAstJump}{Ast\-Jump} $\ast$ {\bfseries jump}}\label{classAstStatement_abc6af3b0d2a6618803c3ccdbebcc42a8}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Statement@{Ast\-Statement}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstStatement@{Ast\-Statement}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Statement@{Ast\-Statement}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstStatement@{Ast\-Statement}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Statement@{Ast\-Statement}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstStatement@{Ast\-Statement}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAstStatement_a1f1570931e373fe2f1e18ce417236ee4}{\index{Ast\-Statement@{Ast\-Statement}!Visit@{Visit}}
+\index{Visit@{Visit}!AstStatement@{Ast\-Statement}}
+\subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-Statement\-::\-Visit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAstStatement_a1f1570931e373fe2f1e18ce417236ee4}
+
+
+This function is responsible for tree traversals. 
+
+This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3\-A\-C that can be generated at the current node. 
+
+Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-T}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}

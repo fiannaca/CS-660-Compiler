@@ -1,0 +1,142 @@
+\hypertarget{classAstPrimaryExpr}{\section{Ast\-Primary\-Expr Class Reference}
+\label{classAstPrimaryExpr}\index{Ast\-Primary\-Expr@{Ast\-Primary\-Expr}}
+}
+Inheritance diagram for Ast\-Primary\-Expr\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstPrimaryExpr}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPrimaryExpr_a92ac6a98d42e522c7476768c959e2044}{{\bfseries Ast\-Primary\-Expr} (\hyperlink{classAstID}{Ast\-I\-D} $\ast$id)}\label{classAstPrimaryExpr_a92ac6a98d42e522c7476768c959e2044}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a03809c945a11ab5345f50956cff84f82}{{\bfseries Ast\-Primary\-Expr} (\hyperlink{classAstConstant}{Ast\-Constant} $\ast$c)}\label{classAstPrimaryExpr_a03809c945a11ab5345f50956cff84f82}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a784c92261d262fe4952963af0dd891e7}{{\bfseries Ast\-Primary\-Expr} (\hyperlink{classAstString}{Ast\-String} $\ast$s)}\label{classAstPrimaryExpr_a784c92261d262fe4952963af0dd891e7}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a75b1363ac6a376ea3de63e03700072d8}{{\bfseries Ast\-Primary\-Expr} (\hyperlink{classAstExpression}{Ast\-Expression} $\ast$e)}\label{classAstPrimaryExpr_a75b1363ac6a376ea3de63e03700072d8}
+
+\item 
+void \hyperlink{classAstPrimaryExpr_adfc316933183cada2963b7b855ddb824}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+void \hyperlink{classAST_a71d680856e95ff89f55d5311a552eba6}{set\-Label} (string l)
+\begin{DoxyCompactList}\small\item\em Sets the label for the node. \end{DoxyCompactList}\item 
+int \hyperlink{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{get\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's unique I\-D. \end{DoxyCompactList}\item 
+string \hyperlink{classAST_aee029be902fffc927d16ccb03eb922ad}{get\-Label} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's label. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} \hyperlink{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\begin{DoxyCompactList}\small\item\em Static visualizer instance for generating the visualization of the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int \hyperlink{classAST_a847b778f1c3dd5a19de32de432ee6e15}{uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\begin{DoxyCompactList}\small\item\em The unique id. \end{DoxyCompactList}\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string \hyperlink{classAST_ab2e239ccc0688d2341724432ff5a1a31}{label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\begin{DoxyCompactList}\small\item\em The label to be printed in the visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Expr\-Type} \{ {\bfseries I\-D}, 
+{\bfseries C\-O\-N\-S\-T}, 
+{\bfseries S\-T\-R\-I\-N\-G}, 
+{\bfseries E\-X\-P\-R}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstPrimaryExpr_a591ec0d1a62cf2017702676cc3e71f72}{Expr\-Type {\bfseries type}}\label{classAstPrimaryExpr_a591ec0d1a62cf2017702676cc3e71f72}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a3a235575b8df529c8ec9e6bb154835c8}{\hyperlink{classAstID}{Ast\-I\-D} $\ast$ {\bfseries id}}\label{classAstPrimaryExpr_a3a235575b8df529c8ec9e6bb154835c8}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a1ccd7a8ee0a9180bf664b8b240645fff}{\hyperlink{classAstConstant}{Ast\-Constant} $\ast$ {\bfseries constant}}\label{classAstPrimaryExpr_a1ccd7a8ee0a9180bf664b8b240645fff}
+
+\item 
+\hypertarget{classAstPrimaryExpr_a945c94ecfbfd75803e8ae2181b0bedd7}{\hyperlink{classAstString}{Ast\-String} $\ast$ {\bfseries str}}\label{classAstPrimaryExpr_a945c94ecfbfd75803e8ae2181b0bedd7}
+
+\item 
+\hypertarget{classAstPrimaryExpr_ab846f737bc41dc09a00c820d4aa0dc27}{\hyperlink{classAstExpression}{Ast\-Expression} $\ast$ {\bfseries expr}}\label{classAstPrimaryExpr_ab846f737bc41dc09a00c820d4aa0dc27}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Primary\-Expr@{Ast\-Primary\-Expr}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstPrimaryExpr@{Ast\-Primary\-Expr}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Primary\-Expr@{Ast\-Primary\-Expr}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstPrimaryExpr@{Ast\-Primary\-Expr}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Primary\-Expr@{Ast\-Primary\-Expr}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstPrimaryExpr@{Ast\-Primary\-Expr}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAstPrimaryExpr_adfc316933183cada2963b7b855ddb824}{\index{Ast\-Primary\-Expr@{Ast\-Primary\-Expr}!Visit@{Visit}}
+\index{Visit@{Visit}!AstPrimaryExpr@{Ast\-Primary\-Expr}}
+\subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-Primary\-Expr\-::\-Visit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAstPrimaryExpr_adfc316933183cada2963b7b855ddb824}
+
+
+This function is responsible for tree traversals. 
+
+This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3\-A\-C that can be generated at the current node. 
+
+Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-T}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}

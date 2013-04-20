@@ -1,0 +1,125 @@
+\hypertarget{classAstUnaryOp}{\section{Ast\-Unary\-Op Class Reference}
+\label{classAstUnaryOp}\index{Ast\-Unary\-Op@{Ast\-Unary\-Op}}
+}
+Inheritance diagram for Ast\-Unary\-Op\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classAstUnaryOp}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Operator} \{ \\*
+{\bfseries B\-I\-N\-\_\-\-A\-N\-D}, 
+{\bfseries S\-T\-A\-R}, 
+{\bfseries P\-L\-U\-S}, 
+{\bfseries M\-I\-N\-U\-S}, 
+\\*
+{\bfseries T\-I\-L\-D\-E}, 
+{\bfseries B\-A\-N\-G}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstUnaryOp_aa363b2df2fbb4653a683899e59df2080}{{\bfseries Ast\-Unary\-Op} (Operator o)}\label{classAstUnaryOp_aa363b2df2fbb4653a683899e59df2080}
+
+\item 
+void \hyperlink{classAstUnaryOp_a23e13d42f33d5882d58ca48e8053f1a0}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+void \hyperlink{classAST_a71d680856e95ff89f55d5311a552eba6}{set\-Label} (string l)
+\begin{DoxyCompactList}\small\item\em Sets the label for the node. \end{DoxyCompactList}\item 
+int \hyperlink{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{get\-U\-I\-D} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's unique I\-D. \end{DoxyCompactList}\item 
+string \hyperlink{classAST_aee029be902fffc927d16ccb03eb922ad}{get\-Label} ()
+\begin{DoxyCompactList}\small\item\em Gets the node's label. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{static \hyperlink{classVisualizer}{Visualizer} \hyperlink{classAST_aca9e6637209b31e03a09c0d42f29bdfa}{vis}}\label{classAST_aca9e6637209b31e03a09c0d42f29bdfa}
+
+\begin{DoxyCompactList}\small\item\em Static visualizer instance for generating the visualization of the \hyperlink{classAST}{A\-S\-T}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAST_a847b778f1c3dd5a19de32de432ee6e15}{int \hyperlink{classAST_a847b778f1c3dd5a19de32de432ee6e15}{uid}}\label{classAST_a847b778f1c3dd5a19de32de432ee6e15}
+
+\begin{DoxyCompactList}\small\item\em The unique id. \end{DoxyCompactList}\item 
+\hypertarget{classAST_ab2e239ccc0688d2341724432ff5a1a31}{string \hyperlink{classAST_ab2e239ccc0688d2341724432ff5a1a31}{label}}\label{classAST_ab2e239ccc0688d2341724432ff5a1a31}
+
+\begin{DoxyCompactList}\small\item\em The label to be printed in the visualization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classAstUnaryOp_af64ad21f350c4f1a4cfc24c6bc5e992a}{Operator {\bfseries op}}\label{classAstUnaryOp_af64ad21f350c4f1a4cfc24c6bc5e992a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Unary\-Op@{Ast\-Unary\-Op}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstUnaryOp@{Ast\-Unary\-Op}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Unary\-Op@{Ast\-Unary\-Op}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstUnaryOp@{Ast\-Unary\-Op}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Unary\-Op@{Ast\-Unary\-Op}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstUnaryOp@{Ast\-Unary\-Op}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+\hypertarget{classAstUnaryOp_a23e13d42f33d5882d58ca48e8053f1a0}{\index{Ast\-Unary\-Op@{Ast\-Unary\-Op}!Visit@{Visit}}
+\index{Visit@{Visit}!AstUnaryOp@{Ast\-Unary\-Op}}
+\subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-Unary\-Op\-::\-Visit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classAstUnaryOp_a23e13d42f33d5882d58ca48e8053f1a0}
+
+
+This function is responsible for tree traversals. 
+
+This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3\-A\-C that can be generated at the current node. 
+
+Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-T}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Ast.\-h\item 
+Ast.\-cpp\end{DoxyCompactItemize}
