@@ -15,6 +15,7 @@
 #include "Type.h"
 #include <list>
 #include <vector>
+#include <map> 
 
 using namespace std;
 
@@ -23,7 +24,8 @@ struct SymbolInfo
     string symbol_name;
     Type *symbolType; 
     int type_qualifier; 
-    string function_name; 
+    string function_name;
+    int offset;  
     bool isEnumConst ;
     bool struct_union_name;
     bool isStrunctOrUnionItem; 
@@ -41,6 +43,7 @@ struct SymbolInfo
        this->symbolType = NULL;
        this->storage_class  = AUTO ;
        this->isEnumConst= false;
+       this->offset = 0 ;       
        //this->lineNum = -1;
     }
 
@@ -81,6 +84,7 @@ class SymTab
 	 private:
 	     int currentLevel;   
 	     vector< AVLTree<SymbolInfo> >  symTable;
+             map<int,int> offsetMap; 
              CCompiler* driver;
              void error(string msg);
              void warning(string msg);
@@ -90,6 +94,7 @@ class SymTab
              SymTab()
 	     {
 	           currentLevel = 0 ;
+                   offsetMap[currentLevel] = 0 ;     
                    // Ensure the nodes are allocated on the heap !
 		   AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>();
 		   symTable.push_back(*node);  
@@ -97,7 +102,8 @@ class SymTab
 	     void EnterScope()
 	     {
 	         ++currentLevel;
-		 AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>(); 
+		  offsetMap[currentLevel] = 0 ; 
+                  AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>(); 
 		 symTable.push_back(*node); 
 
 	     }   
@@ -126,8 +132,16 @@ class SymTab
 	     void insert_symbol(SymbolInfo symbolInfo, int level)
 	     {
 	         if(symbolInfo.symbol_name != "")
-                   symTable[level].Insert(symbolInfo);  
-		     
+                  { 
+                    
+                     if ( symbolInfo.symbolType != NULL ) 
+                     {
+                          offsetMap[currentLevel] +=  symbolInfo.symbolType->GetSize();
+                          symbolInfo.offset = offsetMap[currentLevel]; 
+
+                     }  
+                     symTable[level].Insert(symbolInfo);   
+		  }  
 	     }
 	     bool find_symbol(SymbolInfo symbolInfo,int &level)
 	     {
@@ -141,6 +155,15 @@ class SymTab
 			 }    
 	         return false; 
 	     }
+
+             SymbolInfo* fetch_symbol(SymbolInfo symbolInfo,int level)
+	     {
+	             return symTable[level].Fetch(symbolInfo);
+			 	
+	     }
+
+
+
    	     void dump_table()
 	     {
                  int w = 15;
