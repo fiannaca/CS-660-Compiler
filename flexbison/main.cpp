@@ -64,5 +64,7 @@ int main(int argc, char** argv)
         }
     }
 
-    return driver.parse(fname);
+    int retValue =  driver.parse(fname);
+    driver.source_ast->Visit();
+    return retValue; 
 }

@@ -5,6 +5,14 @@
 #include <sstream>
 #include "Visualizer.h"
 
+class AST;
+extern void VisVist(int total , ... );
+extern void VisVistFmt(char *fmt , ...);
+extern void VisAddIntNode ( AST *parentAst , int number );
+extern void VisAddStringNode(  AST *parentASt , string &node); 
+
+ 
+
 class AST
 {
     public:
@@ -771,7 +779,7 @@ class AstAbstractDecl;
 
 class AstExternDec;
 class AstTrans;
-
+class EnumSpecifier;
 
 
 class AstStructDeclList;
@@ -785,13 +793,15 @@ class AstStructUniSpeci: public AST
 		AstStructUniSpeci(string structOrUnion ,  AstID  *sName  , AstStructDeclList *sdlist)
 		{
 		    this->structOrUnion = structOrUnion ; 
-			this->structName = sName;
+	            this->structName = sName;
 		    this->sdlist = sdlist; 
-		    
+		    this->setLabel("AstStructUniSpeci");
+
 		}
 		void Visit() 
 		{
-			
+			VisVist(2,structName,sdlist);
+                         
 		}
 	
 };
@@ -808,10 +818,12 @@ public:
 	{
 		this->sdecl= sdecl ;
 		this->stdlist = stdlist; 
-	}
+	        this->setLabel("AstDeclaratorList");
+}
 	void Visit()
 	{
-		
+		VisVist(2 ,this ,  stdlist , sdecl );
+
 	} 
 	
 };
@@ -825,10 +837,12 @@ public:
     {
 		this->decl = decl;
 		this->exp = exp;
-	}
+	        this->setLabel("AstStructDeclarator");
+}
 	void Visit()
 	{
-	
+	    VisVist(2 ,this,  exp , decl );
+
 	}
 };
 
@@ -843,11 +857,13 @@ public:
 	{
 		this->pointer = pointer;
 		this->list= list ; 
-		
+		this->setLabel("AstPointer");
+
 	}
 	void Visit()
 	{
-		
+		VisVist(2 ,this , pointer , list );
+
 	}
 	
 } ; 
@@ -861,11 +877,14 @@ public:
 	AstParamList( AstParamDec *dec , AstParamList *plist)
 	{
 		this->dec = dec; 
-		this->plist = plist ; 
+		this->plist = plist ;
+                this->setLabel("AstParamList");
+  
 	}
 	void Visit()
 	{
-		
+		VisVist(2 , this , dec , plist );
+
 	} 
 	
 };
@@ -879,11 +898,14 @@ public:
     {
     	this->speci = speci;
     	this->declarator = declarator; 
-    	this->adecl = adecl; 
+    	this->adecl = adecl;
+        this->setLabel("AstParamDec");
+  
     }
 	void Visit()
 	{
-		
+	   VisVist(3 , this , speci , declarator , adecl );
+	
 	}
 	
 }; 
@@ -901,10 +923,13 @@ public:
 	{
 		this->intializer = intializer ; 
 		this->list =  list ; 
+                this->setLabel("AstInitList");
+
 	}
 	void Visit()
 	{
-		
+		VisVist(2 ,this, intializer , list );
+
 	} 
 	
 };
@@ -918,11 +943,14 @@ public:
 	AstIDList( AstID *id , AstIDList *idlist)
 	{
 		this->id = id; 
-		this->idlist = idlist ; 
+		this->idlist = idlist ;
+                this->setLabel("AstIDList");
+  
 	}
 	void Visit()
 	{
-		
+		VisVist(2 ,this, id , idlist );
+
 	} 
 	
 };
@@ -943,11 +971,14 @@ class AstFuncDef: public AST
 			this->decl = decl ;
 			this->comp = comp;
 			this->dlist = dlist;
-			this->speci = speci; 
+			this->speci = speci;
+                        this->setLabel("AstFuncDef");
+  
 		}
 		void Visit() 
 		{
-			
+			VisVist(4 , this,decl ,comp , dlist,speci);
+
 		}
 	
 };
@@ -958,12 +989,14 @@ class AstDeclarationList : public AST
         void Visit(){}
 };
 
+/*
 class AstEnumSpeci : public AST
 {
 	
 	public:
 	AstEnumSpeci()
 	{
+              this->setLabel("EnumSpeci");
 		
 	}
 	void Visit() 
@@ -973,26 +1006,28 @@ class AstEnumSpeci : public AST
 	}
 	
 };
-
+*/
 class AstStructUniSpeci;
 class AstTypeSpeci: public AST 
 {
 	
 	string stypeName;
 	AstStructUniSpeci *stspeci ; 
-	AstEnumSpeci *espci;
+	EnumSpecifier *espci;
 	
 	public:
-		AstTypeSpeci(string stypeName , AstStructUniSpeci *stspeci , AstEnumSpeci *espci)
+		AstTypeSpeci(string stypeName , AstStructUniSpeci *stspeci , EnumSpecifier *espci)
 		{
 		    this->stspeci = stspeci;
 		    this->espci = espci; 
 		    this->stypeName = stypeName; 
-		    
+		    this->setLabel("AstTypeSpeci");
+
 		}
 		void Visit() 
 		{
-			
+			VisVist(2,this,stspeci,espci);
+                        VisAddStringNode(this , stypeName);
 		}
 	
 };
@@ -1005,11 +1040,14 @@ public:
 	AstTypeQualList( string type_qual , AstTypeQualList *list)
 	{
 		this->type_qual= type_qual ;
-		this->list = list; 
+		this->list = list;
+                this->setLabel("AstTypeQualList");
+ 
 	}
 	void Visit()
 	{
-		
+	      VisVist(1,this,list);
+              VisAddStringNode(this,type_qual);	
 	} 
 	
 };
@@ -1024,11 +1062,14 @@ class AstTrans: public AST
 		AstTrans( AstTrans *trans ,AstExternDec *dec)
 		{
 			this->trans = trans;
-			this->dec= dec; 
+			this->dec= dec;
+                        this->setLabel("AstTrans");
+  
 		}
 		void Visit() 
 		{
-			
+			VisVist(2 ,this, trans , dec );
+
 		}
 	
 };
@@ -1042,11 +1083,14 @@ public:
 	AstStructDeclList( AstStructDecl *sdecl , AstStructDeclList *stdlist)
 	{
 		this->sdecl= sdecl ;
-		this->stdlist = stdlist; 
+		this->stdlist = stdlist;
+                this->setLabel("AstStructDeclList");
+ 
 	}
 	void Visit()
 	{
-		
+		VisVist(2 ,this, stdlist , sdecl );
+
 	} 
 	
 };
@@ -1084,11 +1128,14 @@ public:
 		this->pList= plist;
 		this->idList = idList; 
 		this->type = type ;
+                this->setLabel("AstDirectDecl");
+
 		
 	}
 	void Visit()
 	{
-		
+	   VisVist(6,this,id,ddecl,decl,exp,pList,idList);	
+           VisAddIntNode(this,type); 
 	}
 	
 } ; 
@@ -1106,11 +1153,15 @@ class AstDecSpeci: public AST
 			this->storage_class =  str_class;
 			this->type_qual = typeq; 
 			this->speci  = speci ; 
-			this->typeSpeci = typeSpeci; 
+			this->typeSpeci = typeSpeci;
+                        this->setLabel("AstDecSpeci");
+  
 		}
 		void Visit() 
 		{
-			
+		   VisVist(2,this , speci,typeSpeci);	
+                   VisAddStringNode(this,storage_class);
+                   VisAddStringNode(this,type_qual);
 		}
 	
 };
@@ -1123,11 +1174,14 @@ class AstDeclList: public AST
 		AstDeclList( AstDeclList *list , AstDecl *decl)
 		{
 			this->list  = list ; 
-			this->decl = decl; 
+			this->decl = decl;
+                        this->setLabel("AstDeclList");
+
 		}
 		void Visit() 
 		{
-			
+			VisVist(2 ,this , list , decl );
+
 			   
 		}
 	
@@ -1144,11 +1198,14 @@ class AstDecl: public AST
 		AstDecl( AstDecSpeci *speci , AstInitSpecList *list)
 		{
 			this->list  = list ; 
-			this->speci = speci; 
+			this->speci = speci;
+                        this->setLabel("AstDecl");
+   
 		}
 		void Visit() 
 		{
-			
+		    VisVist(2 ,this , speci , list);
+	
 		}
 	
 };
@@ -1164,14 +1221,17 @@ public:
 	{
 		this->pointer = pointer;
 		this->dec = dec; 
+                this->setLabel("AstAbstractDecl");
+
 	} 
 	void Visit()
 	{
-		
+		VisVist(2 , pointer , dec );
+
 	}
 	
 };
-class AstTypeParamList
+class AstTypeParamList : public AST 
 {
 	 int type ; 
 	 AstParamList *list;
@@ -1180,10 +1240,12 @@ public:
      {
 	    this->type =type;
 	    this->list = list;
-	 } 
+	    this->setLabel("AstTypeParamlList");
+ } 
 	 void Visit()
 	 {
-	 
+               VisVist(1,this,list);	 
+               VisAddIntNode(this,type);
 	 }
 	
 };
@@ -1202,11 +1264,14 @@ public:
 		this->exp = exp ;
 		this->dabsdecl = dabsdecl;
 		this->pList = pList ;
-	
+	        this->setLabel("AstDirectAbsDecl");
+
 	}
 	void Visit()
 	{
-		
+	 // VisVist(2 , pointer , decl );
+            VisVist(4,this,decl,exp,dabsdecl,pList); 
+            VisAddIntNode(this, type);   
 	}
 	
 };
@@ -1220,13 +1285,16 @@ public:
     {
 		this->decl = decl;
 		this->list = list; 
+                this->setLabel("AstInitDeclList");
+
 	}
 	void Visit()
 	{
-		
+		VisVist(2 , this , list , decl );
+
 	}
 };
-class AstInitDeclarator
+class AstInitDeclarator : public AST
 {
 	 AstDeclarator *decl;
 	 AstInitializer *init;
@@ -1234,11 +1302,14 @@ public:
      AstInitDeclarator( AstDeclarator *decl , AstInitializer *init )
      {
 	     this->decl = decl;
-	     this->init = init;	 
+	     this->init = init;	
+             this->setLabel("AstInitDeclarator");
+ 
 	 }
      void Visit()
      {
-		 
+		 VisVist(2 ,this, init , decl );
+
 	 }
 };
 class AstInitializer : public AST 
@@ -1251,11 +1322,14 @@ public:
     {
 	   this->expr = expr ;
 	   this->list = list ; 
-	   this->type =   type ; 	
+	   this->type =   type ; 
+           this->setLabel("AstInitializer");
+	
 	}
 	void Visit()
 	{
-		
+		VisVist(2, this , expr,list);
+                VisAddIntNode(this,type);    
 	}
 	
 };
@@ -1268,11 +1342,13 @@ public:
     {
 		this->id = id ;
 		this->exp = exp; 
-		
+		this->setLabel("AstEnumerator");
+
 	}
 	void Visit()
 	{
-		
+		VisVist(2 ,this, id , exp );
+
 	}
 };
 class AstEnumList : public AST 
@@ -1283,11 +1359,14 @@ public:
     AstEnumList(  AstEnumerator *en ,AstEnumList *list )
     {
 	    this->en = en ;
-	    this->list =list; 
+	    this->list =list;
+            this->setLabel("AstEnumList");
+  
 	}  	
     void Visit()
     {
-		
+	VisVist(2 ,this , en , list );
+	
 	}
 
 };
@@ -1300,9 +1379,13 @@ public:
     {
 		this->id = id;
 		this->list = list;
+                this->setLabel("EnumSpecifier");
+ 
 	}
 	void Visit()
 	{
+                VisVist(2 ,this,  id , list );
+
 	}
 };
 
@@ -1317,10 +1400,15 @@ public:
 	     this->typespeci = typespeci ;
 	     this->qual      = qual;
 	     this->list      = list; 
+             this->setLabel("AstSpeciQualList");
+
+
 	 } 
 	 void Visit()
 	 {
-	 
+	        // VisVist(2 , pointer , decl );
+               VisVist(2, this , typespeci,list);   
+               VisAddStringNode(this,qual);  
 	 }
 };
 class AstStructDecl : public AST 
@@ -1331,11 +1419,14 @@ public:
      AstStructDecl ( AstSpeciQualList *list , AstStructDeclList *declList )
      {
 	       this->list = list;
-	       this->declList = declList; 
+	       this->declList = declList;
+               this->setLabel("AstStructDecl");
+ 
 	 }
 	 void Visit()
 	 {
-	 
+	     VisVist(2 ,this,  list , declList );
+
 	 }
 	
 };
@@ -1348,11 +1439,13 @@ public:
 	{
 		this->pointer = pointer ;
 		this->decl = decl ; 
-		
+	        this->setLabel("AstDeclarator");
+	
 	}  
 	void Visit()
 	{
-		
+		VisVist(2 ,this,  pointer , decl );
+
 	}
 	
 	

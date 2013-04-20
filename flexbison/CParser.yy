@@ -9,7 +9,6 @@
 #include "SymTab.h"
 
 #include "Ast.h"
-
 class CCompiler;
 }
 
@@ -90,10 +89,14 @@ translation_unit
 	: external_declaration
 		{
 		    driver.printRed("translation_unit -> external_declaration");
+                    $$ = (AST *) new AstTrans( NULL , ( AstExternDec *) $1);
+                    driver.source_ast = $$;   
 		}
 	| translation_unit external_declaration
 		{
 		    driver.printRed("translation_unit -> translation_unit external_declaration");
+                    $$ = (AST *) new AstTrans( (AstTrans*) $1 , ( AstExternDec *) $2);
+                    driver.source_ast = $$;  
 		}
 	;
 
@@ -887,7 +890,7 @@ parameter_list
 	| parameter_list COMMA parameter_declaration
 		{
 		    driver.printRed("parameter_list -> parameter_list COMMA parameter_declaration");
-		    $$ = (AST *) new AstParamList ( NULL , (AstParamList *)$3 );
+		    $$ = (AST *) new AstParamList ( (AstParamDec *)$3 , (AstParamList *)$3 );
 		}
 	;
 

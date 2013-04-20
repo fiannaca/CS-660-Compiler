@@ -53,7 +53,7 @@ class CCompiler
         int structVarCount;  
         string currentStorageType;
         string currentTypeQual; 
- 
+        AST * source_ast; 
         yy::CParser::token::yytokentype checkType(char* key, const yy::location& loc, SymbolInfo *sym);
         void allocateSymbol(); 
         void globalScope();

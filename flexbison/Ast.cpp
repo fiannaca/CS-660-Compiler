@@ -1,4 +1,6 @@
 #include "Ast.h"
+#include <stdarg.h>
+
 
 /*
 class AstNodeStub : public AST
@@ -986,8 +988,8 @@ void AstEqExpr::Visit()
     //Visit children nodes
     if(eq)
         eq->Visit();
-
-    rel->Visit();
+    if(rel)   
+      rel->Visit();
 
     //Output visualization
     AST::vis.addNode(this->getUID(), this->getLabel());
@@ -997,8 +999,8 @@ void AstEqExpr::Visit()
         int tmp = Visualizer::GetNextUID();
         string s = (op == EQ_OP) ? "==" : "!=";
         AST::vis.addNode(tmp, s);
-
-        AST::vis.addEdge(this->getUID(), eq->getUID());
+        if (eq)
+           AST::vis.addEdge(this->getUID(), eq->getUID());
         AST::vis.addEdge(this->getUID(), tmp);
     }
 
@@ -2177,7 +2179,101 @@ void AstStatement::Visit()
             break;
     }
 }
+void VisVist(int total , ... )
+{
+   va_list  args_list;
+   AST *currentAst; 
+   AST *parentAst;  
+   int count = 0;
+   va_start(args_list,total);
+   parentAst = va_arg(args_list,AST*); 
+   AST::vis.addNode(parentAst->getUID(),parentAst->getLabel());
 
+   for( count = 0 ; count < total ; count++)
+   {
+      currentAst = va_arg(args_list,AST*);
+      if ( currentAst != NULL )
+      {
+          currentAst->Visit();  
+          AST::vis.addEdge(parentAst->getUID(), currentAst->getUID());
+
+      } 
+   }
+   va_end(args_list);
+
+} 
+void VisAddIntNode ( AST *parentAst , int number )
+{
+
+    
+    int tempUID =  Visualizer::GetNextUID();
+    AST::vis.addNode(tempUID,std::to_string(number)); 
+    AST::vis.addEdge(parentAst->getUID(), tempUID);
+
+}
+
+void VisAddStringNode(  AST *parentAst , string &node)
+{
+
+    int tempUID =  Visualizer::GetNextUID();
+    AST::vis.addNode(tempUID,node); 
+    AST::vis.addEdge(parentAst->getUID(),tempUID);
+
+
+}
+
+void VisVistFmt(char *fmt , ... )
+{
+   
+
+   va_list  args_list;
+   AST *currentAst; 
+   AST *parentAst;  
+   int count = 0;
+   char *fmt_ptr = fmt; 
+   int number;
+   int tempUID;
+   char *c_string; 
+   std::string curString;
+   va_start(args_list,fmt);
+   parentAst = va_arg(args_list,AST*); 
+   AST::vis.addNode(parentAst->getUID(),parentAst->getLabel());
+   while( fmt_ptr !=NULL)
+   {
+       switch(*fmt_ptr)
+       {
+             case 'i':
+                     
+                     number = va_arg(args_list,int);
+                     tempUID =  Visualizer::GetNextUID();
+                     AST::vis.addNode(tempUID,std::to_string(number)); 
+                     AST::vis.addEdge(parentAst->getUID(), tempUID);
+             
+                     break;
+            case 'a':            
+                     currentAst = va_arg(args_list,AST*);
+                     if ( currentAst != NULL )
+                     {
+                        currentAst->Visit();  
+                        AST::vis.addEdge(parentAst->getUID(), currentAst->getUID());
+                     }
+                     break; 
+            case 's':
+                    c_string = va_arg(args_list,char *);
+                    tempUID =  Visualizer::GetNextUID();
+                    AST::vis.addNode(tempUID,c_string); 
+                    AST::vis.addEdge(parentAst->getUID(),tempUID);
+
+                    break;    
+
+       } 
+
+       fmt_ptr++;
+      
+   }
+   va_end(args_list);
+
+} 
 
 
 
