@@ -193,6 +193,7 @@ declaration
 		    driver.printRed("declaration -> declaration_specifiers init_declarator_list SEMI");
                     
 		       SymbolInfo *inf  = driver.currentSymbol;
+                       /*
                        if ( inf->storage_class == TYPEDEF)
                        {
                          inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
@@ -204,10 +205,11 @@ declaration
 
                        if ( driver.trace_symtab) 
                        {
-                           std::cout << "Inserted symbol: " << inf->symbol_name
-                                     << ", Type: " << inf->symbolType->GetName()
+                           std::cout << "Inserted symbol:  < declaration_specifiers init_declarator_list SEMI > " << inf->symbol_name
+                                     << ", Type: " <<  (( inf->symbolType != NULL ) ? inf->symbolType->GetName() : "not  known" )
                                      << std::endl; 
                        }
+                        */   
              $$ = (AST *) new AstDecl ( (AstDecSpeci *)$1 , (AstInitSpecList *)$2);       
 		}
 	;
@@ -288,8 +290,8 @@ storage_class_specifier
 	| TYPEDEF
 		{
 		    driver.printRed("storage_class_specifier -> TYPEDEF");
-            driver.currentSymbol->storage_class = TYPEDEF;
-            driver.currentStorageType = "TYPEDEF";    
+                    driver.currentSymbol->storage_class = TYPEDEF;
+                    driver.currentStorageType = "TYPEDEF";    
  
 		}
 	;
@@ -332,14 +334,14 @@ type_specifier
 		    driver.printRed("type_specifier -> LONG");
                     if ( driver.currentSymbol->symbolType == NULL )
                         driver.currentSymbol->symbolType = new PODType("LONG" , LONG_SIZE);
-            $$  =(AST *) new AstTypeSpeci( "LONG" , NULL , NULL );
+                   $$  =(AST *) new AstTypeSpeci( "LONG" , NULL , NULL );
 		}
 	| FLOAT 
 		{
 		    driver.printRed("type_specifier -> FLOAT");
                     if ( driver.currentSymbol->symbolType == NULL )
                        driver.currentSymbol->symbolType = new PODType ("FLOAT" , FLOAT_SIZE); 
-            $$  =(AST *) new AstTypeSpeci( "FLOAT" , NULL , NULL );
+                   $$  =(AST *) new AstTypeSpeci( "FLOAT" , NULL , NULL );
             
 		}
 	| DOUBLE
@@ -350,7 +352,7 @@ type_specifier
                       driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
                     ///else 
                       //////std::cout<<  driver.currentSymbol->symbolType->GetName();  
-              $$  =(AST *) new AstTypeSpeci( "DOUBLE" , NULL, NULL  );
+                    $$  =(AST *) new AstTypeSpeci( "DOUBLE" , NULL, NULL  );
 		}
 	| SIGNED
 		{
@@ -358,7 +360,7 @@ type_specifier
                     newPod->SetSigned(true); 
                     driver.printRed("type_specifier -> SIGNED"); 
                     driver.currentSymbol->symbolType = newPod;
-             $$  =(AST *) new AstTypeSpeci( "SIGNED" , NULL, NULL  );
+                    $$  =(AST *) new AstTypeSpeci( "SIGNED" , NULL, NULL  );
                      
 
 		}
@@ -467,16 +469,31 @@ new_symbol_declaration
            SymbolInfo *inf  = driver.currentSymbol;          
            if (driver.structUnionMode )
               driver.structUnionTypes.push_back(*inf);  
-           else     
+           else    
+             { 
+              if ( inf->storage_class == TYPEDEF)
+              {
+                   inf->symbolType = new TypedefType(inf->symbolType,inf->symbol_name);  
+
+              } 
+
               driver.SymbolTable.insert_symbol(*inf);
+              if ( driver.trace_symtab) 
+                       {
+                           std::cout << "Inserted symbol: < new_symbol_declaration > " << inf->symbol_name
+                                     << ", Type: " << (( inf->symbolType != NULL ) ? inf->symbolType->GetName() : "not  known " )
+
+                                     << std::endl; 
+                       }
+             }   
            driver.allocateSymbol();
-           driver.currentSymbol = inf;   
+           driver.currentSymbol->symbolType = inf->symbolType;    
            if ( inf->symbolType->GetName() == "POINTER"|| inf->symbolType->GetName() == "ARRAY") 
            {
-	       driver.currentSymbol->symbolType = GetInnerType(inf->symbolType);        
+                    driver.currentSymbol->symbolType = GetInnerType(inf->symbolType);        
                 
            }
-           
+              
              
            
         }   
@@ -547,6 +564,12 @@ struct_union_decl_end
              if ( driver.structUnionMode == 0  )
              {
                   driver.SymbolTable.insert_symbol(*structPos);  
+                  if ( driver.trace_symtab) 
+                       {
+                           std::cout << "Inserted symbol: < struct_union_decl_end > " << structPos->symbol_name
+                                     << ", Type: " << (( structPos->symbolType != NULL ) ? structPos->symbolType->GetName() : "not  known " )
+                                     << std::endl; 
+                       }
                   driver.structUnionTypes.clear(); 
              }   
              
@@ -696,8 +719,14 @@ enum_specifier
                             inf->isEnumConst = true;
                             inf->symbolType = new PODType("ENUMCONST",INT_SIZE);
                             inf->symbol_name = *enumItems; 
-                            driver.SymbolTable.insert_symbol(*inf);  
-                            enumItems++;
+                            driver.SymbolTable.insert_symbol(*inf); 
+                            if ( driver.trace_symtab) 
+                            {
+                                   std::cout << "Inserted symbol:  <enum_specifier >  " << inf->symbol_name
+                                     << ", Type: " << (( inf->symbolType != NULL ) ? inf->symbolType->GetName() : "not  known " )
+                                     << std::endl; 
+                            } 
+                                 enumItems++;
                      }   
                      driver.enumConsts.clear();
                      driver.allocateSymbol();       
@@ -715,6 +744,12 @@ enum_specifier
                             inf->symbolType = new PODType("ENUMCONST",INT_SIZE);
                             inf->symbol_name = *enumItems; 
                             driver.SymbolTable.insert_symbol(*inf);  
+                            if ( driver.trace_symtab) 
+                            {
+                               std::cout << "Inserted symbol:  < ENUM identifier  new_enum_type LBRACE enumerator_list RBRACE>" << inf->symbol_name
+                                     << ", Type: " << (( inf->symbolType != NULL ) ? inf->symbolType->GetName() : "not  known " )
+                                     << std::endl; 
+                            }
                             driver.enumType->AddEnumConst(*enumItems);
                             enumItems++;
                      }  

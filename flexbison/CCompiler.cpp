@@ -102,9 +102,52 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
 
     int level;
     SymbolInfo symToFind;
+    SymbolInfo *inf; 
     symToFind.symbol_name = std::string(key);
-    if(!SymbolTable.find_symbol(symToFind, level))
+    if(SymbolTable.find_symbol(symToFind, level))
     {
+        
+        inf = SymbolTable.fetch_symbol(symToFind,level);
+        if ( inf == NULL )
+        {
+            sym->symbol_name = string(key);
+            printTok("IDENTIFIER", key);
+            return yy::CParser::token::IDENTIFIER;
+
+
+        }
+        else 
+        {
+              if ( inf->storage_class == TYPEDEF  )
+              {
+                   sym->symbol_name = string(key);
+                   printTok("IDENTIFIER", key);
+                   return yy::CParser::token::TYPEDEF_NAME;
+
+              }
+              else if ( inf->symbolType->GetName() == "ENUMCONST" ) 
+              {
+                   sym->symbol_name = string(key);
+                   printTok("IDENTIFIER", key);
+                   return yy::CParser::token::ENUMERATION_CONSTANT;
+
+
+              }
+              else
+              {
+                    sym->symbol_name = string(key);
+                    printTok("IDENTIFIER", key);
+                    return yy::CParser::token::IDENTIFIER;
+ 
+              }
+
+        }  
+           
+
+
+
+
+
         //The symbol was not in the table
         if(insert_mode)
         {
@@ -117,18 +160,22 @@ yy::CParser::token::yytokentype CCompiler::checkType(char* key, const yy::locati
         {
             //Otherwise, declare the error -- Supress this for the time being 
             //error(loc, "All variables must be declared at the top of a block!");
+           
         }
+        
+            
     }
+    else 
+    {   
+        //The symbol was in the table
 
-    //The symbol was in the table
+        //Check if it is an enum, a typedef name, or just an identifier
 
-    //Check if it is an enum, a typedef name, or just an identifier
-
-    //This is the temp return...
-    sym->symbol_name = string(key);
-    printTok("IDENTIFIER", key);
-
-    return yy::CParser::token::IDENTIFIER;
+        //This is the temp return...
+        sym->symbol_name = string(key);
+        printTok("IDENTIFIER", key);
+        return yy::CParser::token::IDENTIFIER;
+    }
 }
 
 void CCompiler::allocateSymbol()
