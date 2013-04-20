@@ -21,6 +21,17 @@ Type::Type(Type &t)
     size = t.size;
 }
 
+bool Type::CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    t = NONE;
+    isConvertable = false;
+    
+    if(name == rhs->name && size == rhs->size)
+        return true;
+        
+    return false;
+}
+
 /*****************************************************************************/
 /* Plain Old Data Type Class - These are the data types that come by default */
 /*                   with the C programming language. These include:         */
@@ -36,6 +47,103 @@ PODType::PODType(string n, int s)
      is_signed = true; 
 }
 
+bool PODType::CheckType(PODType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+    //Default the ref return values
+    t = NONE;
+    isConvertable = false;
+    
+    //Check if the types are the same or if conversion is possible
+    if(name == rhs->name && size == rhs->size)
+    {
+        return true;
+    }
+    else
+    {                
+        if(name == "INT")
+        {
+            if(rhs->name == "FLOAT")
+            {
+                t = INT2FLT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "DOUBLE")
+            {
+                t = INT2DBL;
+                isConvertable = true;
+            }
+        }
+        else if(name == "SHORT")
+        {
+            if(rhs->name == "FLOAT")
+            {
+                t = SHT2FLT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "DOUBLE")
+            {
+                t = SHT2DBL;
+                isConvertable = true;
+            }
+        }
+        else if(name == "LONG")
+        {
+            if(rhs->name == "FLOAT")
+            {
+                t = LNG2FLT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "DOUBLE")
+            {
+                t = LNG2DBL;
+                isConvertable = true;
+            }
+        }
+        else if(name == "FLOAT")
+        {
+            if(rhs->name == "INT")
+            {
+                t = FLT2INT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "SHORT")
+            {
+                t = FLT2SHT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "LONG")
+            {
+                t = FLT2LNG;
+                isConvertable = true;
+            }
+        }
+        else if(name == "DOUBLE")
+        {
+            if(rhs->name == "INT")
+            {
+                t = DBL2INT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "SHORT")
+            {
+                t = DBL2SHT;
+                isConvertable = true;
+            }
+            else if(rhs->name == "LONG")
+            {
+                t = DBL2LNG;
+                isConvertable = true;
+            }
+        }
+        else if(name == "CHAR")
+        {
+            t = CHARFLAG;
+        }
+        
+        return false;
+    }
+}
+
 /*****************************************************************************/
 /* Typedef Type Class - This type allows for a type (or an object of a       */
 /*                   class derived from Type) to be renamed. This points to  */
@@ -48,6 +156,11 @@ TypedefType::TypedefType(Type* actual, string tdname)
     actualType = actual;
 }
 
+bool TypedefType::CheckType(TypedefType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+
+}
+        
 /*****************************************************************************/
 /* Enum Type Class - This type allows for the creation of enumerations       */
 /*****************************************************************************/
@@ -83,6 +196,11 @@ void EnumType::AddEnumConst(string s, int val)
     }
 }
 
+bool EnumType::CheckType(EnumType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+
+}
+
 /*****************************************************************************/
 /* Array Type Class - This type allows for arrays of any type and dimension  */
 /*                   to be created                                           */
@@ -105,6 +223,11 @@ int ArrayType::GetCapacity(int dim)
         return capacities[dim];
     else
         return -1;
+}
+
+bool ArrayType::CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
+{
+
 }
 
 /*****************************************************************************/

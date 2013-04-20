@@ -937,8 +937,8 @@ void AstEqExpr::Visit()
     //Visit children nodes
     if(eq)
         eq->Visit();
-    if(rel)   
-      rel->Visit();
+          
+    rel->Visit();
 
     //Output visualization
     AST::vis.addNode(this->getUID(), this->getLabel());
@@ -2112,7 +2112,7 @@ AstStatement::AstStatement(AstJump* j)
     this->slct = NULL;
     this->iter = NULL;
     this->jump = j;
-    this->t = EXPR;
+    this->t = JUMP;
 
     this->setLabel("Statement");
 }

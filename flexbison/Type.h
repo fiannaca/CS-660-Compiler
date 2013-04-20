@@ -17,7 +17,22 @@
 
 using namespace std;
 
- 
+enum CONVERSIONTYPE {
+    NONE,
+    CHARFLAG,
+    INT2FLT,
+    INT2DBL,
+    SHT2FLT,
+    SHT2DBL,
+    LNG2FLT,
+    LNG2DBL,
+    FLT2INT,
+    FLT2SHT,
+    FLT2LNG,
+    DBL2INT,
+    DBL2SHT,
+    DBL2LNG
+};
 
 enum StorageSpecifiers {
 	AUTO,
@@ -49,7 +64,9 @@ class Type
         Type(Type &t);
         string GetName() { return name; }
         int GetSize() { return size; }
-        void SetName(string n) { name  = n ; }   
+        void SetName(string n) { name  = n ; }
+        bool CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t);
+        
     protected:
         string name;
         int size; //Size of the type in bytes
@@ -61,6 +78,8 @@ class PODType : public Type //int (long, short, (un)signed), float, double, long
         PODType(string n, int s);
         bool isSigned() { return is_signed; }
         void SetSigned(bool isSigned) { is_signed = isSigned; } 
+        bool CheckType(PODType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
+        
     protected:
         bool is_signed;
 };
@@ -71,6 +90,7 @@ class TypedefType : public Type //any typedef
         TypedefType(Type* actual, string tdname); //Pointer to the actual type
         Type* GetActual() { return actualType; }
         string GetTypedefName() { return typedefName; }
+        bool CheckType(TypedefType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
 
     protected:
         Type* actualType;
@@ -84,6 +104,7 @@ class EnumType : public Type //provides the value for enum constants
         int GetConstVal(string s); //returns the int value of a enum_constant
         void AddEnumConst(string s);
         void AddEnumConst(string s, int val);
+        bool CheckType(EnumType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
 
     protected:
         map<string, int> enumConsts; //The names of the enum_constants in the enum
@@ -97,7 +118,9 @@ class ArrayType : public Type //any array (any # of dimensions)
         int SetCapacity(int cap); //These must be set in the order of the dimensions (they are pushed onto the vector)
         int GetCapacity(int dim);
         Type *GetBase() { return baseType;}  
-        void SetBase(Type *base) { this->baseType = base; }  
+        void SetBase(Type *base) { this->baseType = base; } 
+        bool CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
+         
     protected:
         Type* baseType;
         int dimensions;
@@ -110,6 +133,7 @@ class StructType : public Type //essential just a collection of types and names 
         StructType(string n);
         void AddMember(string s, Type* t);
         bool MemberExists(string s);
+        bool CheckType(StructType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
 
     protected:
         vector<string> memberNames;
@@ -122,6 +146,7 @@ class UnionType : public Type //currently the same as struct, may need more memb
         UnionType(string n);
         void AddMember(string s, Type* t);
         bool MemberExists(string s);
+        bool CheckType(UnionType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
 
     protected:
         vector<string> memberNames;
@@ -136,6 +161,7 @@ class FunctionType : public Type //function type - allows for type checking when
         void SetReturnType(Type* t);
         int GetParamCount() { return params.size(); }
         Type* GetReturnType() { return returnType; }
+        bool CheckType(FunctionType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
 
     protected:
         vector<Type*> params;
@@ -148,7 +174,9 @@ class PointerType : public Type //acts as a layer of indirection towards a prede
         PointerType(Type* base, string n, int d);
         PointerType(Type* base, bool baseIsPtr, string n);
         Type* GetBase() { return baseType; }
-        void SetBaseType( Type *base) { this->baseType = base; }   
+        void SetBaseType( Type *base) { this->baseType = base; }  
+        bool CheckType(PointerType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
+         
     protected:
         Type* baseType;
         int ptrDepth;
