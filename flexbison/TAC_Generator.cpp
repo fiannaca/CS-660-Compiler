@@ -11,6 +11,8 @@ TAC_Generator::TAC_Generator(const string &fileName)
     //Default to MIPS comment style
     commentStart = "#";
     commentEnd = "" ;
+    
+    CurrentLabel = "";
 
     fout.open(fileName.c_str());
     fout.clear();
@@ -23,6 +25,11 @@ TAC_Generator::TAC_Generator()
     //Default to MIPS comment style
     commentStart = "#";
     commentEnd = "" ;
+    
+    CurrentLabel = "";
+
+    fout.open("TAC.out");
+    fout.clear();
 }
 
 TAC_Generator::~TAC_Generator()
@@ -353,7 +360,7 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
 
         case STRING:
             {
-                //TODO - associate string op1 with label op2
+                //TODO - associate string op2 with label op1
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
 
@@ -362,7 +369,30 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
                    << setw(width) << *ptr2;    
             }
             break;
-
+            
+        case IMMEDIATE_I:
+            {
+                //Load the value into the register
+                string* ptr1 = (string*)op1;
+                int val = (long)op2;
+                
+                ss << setw(width) << "IMMEDIATE_I"
+                   << setw(width) << *ptr1
+                   << setw(width) << val;
+            }
+            break;
+            
+        case IMMEDIATE_F:
+            {
+                //Load the value into the register
+                string* ptr1 = (string*)op1;
+                double val = *(double*)op2;
+                
+                ss << setw(width) << "IMMEDIATE_F"
+                   << setw(width) << *ptr1
+                   << setw(width) << val;
+            }
+            break;
     }
 
     Emit(ss.str());

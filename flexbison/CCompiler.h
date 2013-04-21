@@ -13,7 +13,6 @@
 #include "SymTab.h"
 #include "CParser.hpp"
 #include "Ast.h"
-#include "TAC_Generator.h"
 
 //! Macro defining the scanner's lex function
 #define YY_DECL                                     \
@@ -260,11 +259,6 @@ class CCompiler
          * @param s Line of input code
          */
         void save_line(int i, string s);
-        
-        /**
-         * Three address code generator.
-         */
-        static TAC_Generator tacGen;
 
     private:
         bool debug_on; /**< Debug output flag */

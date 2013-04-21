@@ -60,7 +60,9 @@ class TAC_Generator
             ASSIGN, /**< Assign the value of op1 to op2 */
             ADDR, /**< Assign the address of op1 to op2 */
             GLOBAL, /**< Declare op1 as a global of size op2 */
-            STRING /**< Associate string op1 with label op2 */
+            STRING, /**< Associate string op1 with label op2 */
+            IMMEDIATE_I, /**< Load an integer into a register */
+            IMMEDIATE_F /**< Load a float into a register */
         };
 
         /**
@@ -289,6 +291,8 @@ class TAC_Generator
         static int lCount; /**< Current label counter for generating unique labels */
         static int iCount; /**< Current integer counter for generating unique integer labels */
         static int fCount; /**< Current float counter for generating unique float labels */
+        
+        string CurrentLabel;
 };
 
 #endif // ! TAC_GENERATOR_H_

@@ -2,6 +2,7 @@
 #include <stdarg.h>
 
 
+TAC_Generator AST::tacGen("TAC.out");
 Visualizer AST::vis;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -624,6 +625,11 @@ void AstString::Visit()
     int tmp = Visualizer::GetNextUID();
     AST::vis.addNode(tmp, "Value: " + val);
     AST::vis.addEdge(this->getUID(), tmp);
+    
+    string lbl = tacGen.GetLabelName();
+    
+    //TODO this may not be the right way to handle a string
+    tacGen.toTAC(TAC_Generator::STRING, (void*)&lbl, (void*)&val);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -652,7 +658,7 @@ AstConstant::AstConstant(double val)
 {
     this->type = FLOAT;
     this->dval = val;
-    this->etype = new PODType("DOUBLE", DOUBLE_SIZE);
+    this->etype = new PODType("FLOAT", FLOAT_SIZE);
 
     this->setLabel("FloatConstant");
 }
@@ -678,19 +684,35 @@ void AstConstant::Visit()
     switch(this->type)
     {
         case INT:
-            ss << "Value: " << ival;
+            {
+                ss << "Value: " << ival;
+                string lbl = tacGen.GetIVarName();
+                tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void*)&lbl, (void*)ival);
+            }
             break;
     
         case CHAR:
-            ss << "Value: " << str;
+            {
+                ss << "Value: " << str;
+                
+                // TODO we still need to deal with characters
+            }
             break;
 
         case FLOAT:
-            ss << "Value: " << dval;
+            {
+                ss << "Value: " << dval;
+                string lbl = tacGen.GetFVarName();
+                tacGen.toTAC(TAC_Generator::IMMEDIATE_F, (void*)&lbl, (void*)&dval);
+            }
             break;
 
         case ENUM:
-            ss << "Name: " << str << ", Value: " << ival;
+            {
+                ss << "Name: " << str << ", Value: " << ival;
+                string lbl = tacGen.GetIVarName();
+                tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void*)&lbl, (void*)ival);
+            }
             break;
     }
 

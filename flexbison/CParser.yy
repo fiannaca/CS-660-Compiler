@@ -1793,23 +1793,23 @@ identifier
 	: IDENTIFIER
 		{
 		    // TODO if this ID is a function, then we need to pass ((FunctionType*)$1->symbolType)->GetReturnType(), rather than $1->symbolType
-                    driver.currentSymbol->symbol_name = $1->symbol_name;  
-                    driver.printRed("identifier -> IDENTIFIER");
-                    
-                    //This is a hack to get the correct type information
-                    int level;
-                    SymbolInfo s;
-                    s.symbol_name = $1->symbol_name;
-                    
-                    if(driver.SymbolTable.find_symbol(s, level))
-                    {
-                        $$ = (AST*) new AstID($1->symbol_name, 
-		                        driver.SymbolTable.fetch_symbol(s, level)->symbolType);
-                    }
-                    else
-                    {
-                        $$ = (AST*) new AstID($1->symbol_name, NULL);
-                    }
+            driver.currentSymbol->symbol_name = $1->symbol_name;  
+            driver.printRed("identifier -> IDENTIFIER");
+            
+            //This is a hack to get the correct type information
+            int level;
+            SymbolInfo s;
+            s.symbol_name = $1->symbol_name;
+            
+            if(driver.SymbolTable.find_symbol(s, level))
+            {
+                $$ = (AST*) new AstID($1->symbol_name, 
+                        driver.SymbolTable.fetch_symbol(s, level)->symbolType);
+            }
+            else
+            {
+                $$ = (AST*) new AstID($1->symbol_name, NULL);
+            }
 		}
 	;
 %%

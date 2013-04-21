@@ -5,7 +5,6 @@
 #include "CCompiler.h"
 #include "CParser.hpp"
 
-TAC_Generator CCompiler::tacGen;
 
 //
 //Begin CCompiler implementation

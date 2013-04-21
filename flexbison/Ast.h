@@ -5,6 +5,7 @@
 #include <sstream>
 #include "Visualizer.h"
 #include "Type.h"
+#include "TAC_Generator.h"
 
 class AST;
 extern void VisVist(int total , ... );
@@ -30,6 +31,7 @@ class AST
             convType = NONE;
             operandToCast = 1;
             isConv = true;
+            returnLabel = "";
         }
 
         /**
@@ -70,11 +72,18 @@ class AST
          */
 	    virtual void Visit(){};
 	    
+        /**
+         * Three address code generator.
+         */
+        static TAC_Generator tacGen;
+        
         bool needsCast; /**< This indicates if cast 3AC needs to be output, and is only relevant for expressions */
         bool isConv; /**< Indicates is a conversion is possible */
         CONVERSIONTYPE convType; /**< If needsCast is true, then this indicates what the cast should be */
         int operandToCast; /**< This indicates if the first or second operand should be the one that is cast */
 
+        string returnLabel; /**< This is for storing the string id of any temporary result register that may be created during 3AC generation */
+        
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
