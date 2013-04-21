@@ -47,103 +47,225 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
     {
         case ADD:
             {
-                //TODO - add
+                //TODO - adds op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "ADD"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
             }
             break;
 
         case SUB:
             {
-                //TODO - subtract
+                //TODO - subtracts op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "SUB"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
             }
             break;
 
         case MULT:
             {
-                //TODO - multiply
+                //TODO - multiplys op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "MULT"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
             }
             break;
 
         case DIV:
             {
-                //TODO - divide
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "ADD"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
             }
             break;
 
         case EQ:
             {
-                //TODO - equal
+                //TODO - if op1 and op2 are equal, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "EQ"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;                
             }
             break;
 
         case GT:
             {
-                //TODO - greater than
+                //TODO - if op1 is greater than op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "GT"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;   
             }
             break;
 
         case LT:
             {
-                //TODO - less than
+                //TODO - if op1 is less than op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "LT"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;  
             }
             break;
 
         case GE:
             {
-                //TODO - greater or equal
+                //TODO - if op1 is greater than or equal to op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "GE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;  
             }
             break;
 
         case LE:
             {
-                //TODO - less or equal
+                //TODO - if op1 is less than or equal to op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "LE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case NE:
             {
-                //TODO - not equal
+                //TODO - if op1 is not equal to op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "NE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BREQ:
             {
-                //TODO - branch equal
+                //TODO - if op1 is equal to op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BREQ"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BRGT:
             {
-                //TODO - branch greater than
+                //TODO - if op1 is greater than op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BREQ"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BRLT:
             {
-                //TODO - branch less than
+                //TODO - if op1 is less than op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BRLT"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BRGE:
             {
-                //TODO - branch greater than or equal
+                //TODO - if op1 is greater than or equal to op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BRGE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BRLE:
             {
-                //TODO - branch less than or equal
+                //TODO - if op1 is less than or equal to op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BRLE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
         case BRNE:
             {
-                //TODO - branch not equal
-            }
-            break;
-
-        case PROCENTRY:
-            {
-                //TODO - begins the definition of a function
+                //TODO - if op1 is not equal to op2, then branch to op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "BRNE"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
             }
             break;
 
@@ -196,6 +318,12 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
         case ASSIGN:
             {
                 //TODO - assignment
+                string* ptr1 = (string*)op1; //The register to write to memory
+                int offset = (long)op2; //The offset in memory to write the value to
+                
+                ss << setw(width) << "ASSIGN"
+                   << setw(width) << *ptr1
+                   << setw(width) << op2;
             }
             break;
 
@@ -306,6 +434,16 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
             }
             break;
 
+        case PROCENTRY:
+            {
+                //TODO - begins the definition of a function
+                string* ptr = (string*)op;
+
+                ss << setw(width) << "PROCENTRY"  
+                   << setw(width) << *ptr;
+            }
+            break;
+            
         case COMMENT:
             {
                 string* ptr = (string*)op;
@@ -341,6 +479,14 @@ void TAC_Generator::toTAC(NoOpInstructions t, string c)
 
         case RETURN:
             ss << setw(width) << "RETURN";
+            break;
+            
+        case BEGINFRAME:
+            ss << setw(width) << "BEGINFRAME";
+            break;
+            
+        case ENDFRAME:
+            ss << setw(width) << "ENDFRAME";
             break;
     }
 

@@ -1,7 +1,8 @@
 int main()
 {
     int b = 3;
-    int c = 2;
+    char c = 'a';
+    
     b = b * c;
 
     !!S

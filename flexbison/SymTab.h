@@ -102,19 +102,19 @@ class SymTab
 	     void EnterScope()
 	     {
 	         ++currentLevel;
-		  offsetMap[currentLevel] = 0 ; 
-                  AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>(); 
-		 symTable.push_back(*node); 
+		     offsetMap[currentLevel] = 0 ; 
+             AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>(); 
+		     symTable.push_back(*node); 
 
 	     }   
 	     void LeaveScope()
 	     {
 	         --currentLevel;
 		 
-                 if ( currentLevel > 0 ) 
-                 {
-                   symTable.pop_back(); 
-                 }
+             if ( currentLevel > 0 ) 
+             {
+               symTable.pop_back(); 
+             }
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
@@ -127,7 +127,9 @@ class SymTab
                   } 
 
                   if( symbolInfo.symbol_name != "")    
-                    symTable[currentLevel].Insert(symbolInfo);           
+                    symTable[currentLevel].Insert(symbolInfo); 
+                    
+                    //TODO Should offsets be added in here as well?          
 	     }
 	     void insert_symbol(SymbolInfo symbolInfo, int level)
 	     {
@@ -136,9 +138,9 @@ class SymTab
                     
                      if ( symbolInfo.symbolType != NULL ) 
                      {
-                          offsetMap[currentLevel] +=  symbolInfo.symbolType->GetSize();
+                         //Alex 4/21 - I reversed the order of these so that the offset is increased after
                           symbolInfo.offset = offsetMap[currentLevel]; 
-
+                          offsetMap[currentLevel] +=  symbolInfo.symbolType->GetSize();
                      }  
                      symTable[level].Insert(symbolInfo);   
 		  }  

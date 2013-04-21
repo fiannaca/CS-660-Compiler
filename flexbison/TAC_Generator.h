@@ -44,7 +44,6 @@ class TAC_Generator
             BRGE, /**< If(op1 >= op2) goto op3 */
             BRLE, /**< If(op1 <= op2) goto op3 */
             BRNE, /**< If(op1 != op2) goto op3 */
-            PROCENTRY, /**< Marks the beginning of a procedure */
             BOUND /**< Checks the bounds of an array access */
         };
 
@@ -78,6 +77,7 @@ class TAC_Generator
             REFOUT, /**< Pass op1 by reference */
             VALOUT, /**< Pass op1 by value */
             CALL, /**< Call the procedure named op1 */
+            PROCENTRY, /**< Marks the beginning of a procedure */
             COMMENT /**< Output op1 as a comment */
         };
 
@@ -92,6 +92,8 @@ class TAC_Generator
             HALT, /**< Immediately halt execution */
             ENDPROC, /**< Mark the end of a procedure */
             RETURN, /**< Return control to the caller */
+            BEGINFRAME, /**< Marks the beginning of a new stack frame */
+            ENDFRAME /**< Marks the end of a stack frame */
         };
 
         /**
