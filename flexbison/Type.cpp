@@ -13,12 +13,14 @@ Type::Type(string n, int s)
 {
     name = n;
     size = s;
+    t = BASE;
 }
 
 Type::Type(Type &t)
 {
     name = t.name;
     size = t.size;
+    this->t = t.t;
 }
 
 bool Type::CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t)
@@ -26,12 +28,137 @@ bool Type::CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t)
     t = NONE;
     isConvertable = false;
     
+    if(this->t == rhs->t)
+    {
+        switch(this->t)
+        {
+            case BASE: break;
+            case PODTYPE:
+                return ((PODType*)this)->CheckType((PODType*)rhs, isConvertable, t);
+                break;
+                
+            case TYPEDEFTYPE:
+                return ((TypedefType*)this)->CheckType((TypedefType*)rhs, isConvertable, t);
+                break;
+                
+            case ENUMTYPE:
+                return ((EnumType*)this)->CheckType((EnumType*)rhs, isConvertable, t);
+                break;
+                
+            case ARRAYTYPE:
+                return ((ArrayType*)this)->CheckType((ArrayType*)rhs, isConvertable, t);
+                break;
+                
+            case STRUCTTYPE:
+                return ((StructType*)this)->CheckType((StructType*)rhs, isConvertable, t);
+                break;
+                
+            case UNIONTYPE:
+                return ((UnionType*)this)->CheckType((UnionType*)rhs, isConvertable, t);
+                break;
+                
+            case FUNCTIONTYPE:
+                return ((FunctionType*)this)->CheckType((FunctionType*)rhs, isConvertable, t);
+                break;
+                
+            case POINTERTYPE:
+                return ((PointerType*)this)->CheckType((PointerType*)rhs, isConvertable, t);
+                break;
+        }
+    }
+    
     if(name == rhs->name && size == rhs->size)
         return true;
         
     return false;
 }
-
+Type* Type::GetResultingType(CONVERSIONTYPE ct, bool castUp)
+{
+    if(castUp)
+    {
+        switch(ct)
+        {
+            case INT2FLT:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case INT2DBL:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+            case SHT2FLT:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case SHT2DBL:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+            case LNG2FLT:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case LNG2DBL:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+            case FLT2INT:
+                return new Type("INT", INT_SIZE);
+                break;
+            case FLT2SHT:
+                return new Type("SHORT", SHORT_SIZE);
+                break;
+            case FLT2LNG:
+                return new Type("LONG", LONG_SIZE);
+                break;
+            case DBL2INT:
+                return new Type("INT", INT_SIZE);
+                break;
+            case DBL2SHT:
+                return new Type("SHORT", SHORT_SIZE);
+                break;
+            case DBL2LNG:
+                return new Type("LONG", LONG_SIZE);
+                break;
+        }
+    }
+    else
+    {
+        switch(ct)
+        {
+            case INT2FLT:
+                return new Type("INT", INT_SIZE);
+                break;
+            case INT2DBL:
+                return new Type("INT", INT_SIZE);
+                break;
+            case SHT2FLT:
+                return new Type("SHORT", SHORT_SIZE);
+                break;
+            case SHT2DBL:
+                return new Type("SHORT", SHORT_SIZE);
+                break;
+            case LNG2FLT:
+                return new Type("LONG", LONG_SIZE);
+                break;
+            case LNG2DBL:
+                return new Type("LONG", LONG_SIZE);
+                break;
+            case FLT2INT:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case FLT2SHT:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case FLT2LNG:
+                return new Type("FLOAT", FLOAT_SIZE);
+                break;
+            case DBL2INT:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+            case DBL2SHT:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+            case DBL2LNG:
+                return new Type("DOUBLE", DOUBLE_SIZE);
+                break;
+        }
+    }
+}
 /*****************************************************************************/
 /* Plain Old Data Type Class - These are the data types that come by default */
 /*                   with the C programming language. These include:         */
@@ -44,7 +171,8 @@ bool Type::CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t)
 PODType::PODType(string n, int s)
     : Type(n, s)
 {
-     is_signed = true; 
+    this->t = PODTYPE;
+    is_signed = true; 
 }
 
 bool PODType::CheckType(PODType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
@@ -152,6 +280,7 @@ bool PODType::CheckType(PODType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
 TypedefType::TypedefType(Type* actual, string tdname)
     : Type(*actual)
 {
+    this->t = TYPEDEFTYPE;
     typedefName = tdname;
     actualType = actual;
 }
@@ -172,8 +301,9 @@ bool TypedefType::CheckType(TypedefType *rhs, bool &isConvertable, CONVERSIONTYP
 /*****************************************************************************/
 
 EnumType::EnumType(string n, int startVal=0)
-         :Type(n,INT_SIZE)
+    : Type(n,INT_SIZE)
 {
+    this->t = ENUMTYPE;
     currentVal = startVal;
 }
 
@@ -220,8 +350,9 @@ bool EnumType::CheckType(EnumType *rhs, bool &isConvertable, CONVERSIONTYPE &t)
 ArrayType::ArrayType(Type* baseType,string name,int dims)
     : Type(name,0)
 {
-      this->baseType = baseType; 
-      dimensions = dims;
+    this->t = ARRAYTYPE;
+    this->baseType = baseType; 
+    dimensions = dims;
 }
 
 int ArrayType::SetCapacity(int cap)
@@ -253,9 +384,9 @@ bool ArrayType::CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t
 /*                   members of any predeclared type                         */
 /*****************************************************************************/
 StructType::StructType(string n)
-          :Type(n,0)
+    : Type(n,0)
 {
-    
+    this->t = STRUCTTYPE;
 }
 
 void StructType::AddMember(string s, Type* t)
@@ -295,9 +426,9 @@ bool StructType::CheckType(StructType *rhs, bool &isConvertable, CONVERSIONTYPE 
 /*                   members of any predeclared type                         */
 /*****************************************************************************/
 UnionType::UnionType(string n)
-          : Type(n,0)
+    : Type(n,0)
 {
-    
+    this->t = UNIONTYPE;    
 }
 
 void UnionType::AddMember(string s, Type* t)
@@ -337,9 +468,9 @@ bool UnionType::CheckType(UnionType *rhs, bool &isConvertable, CONVERSIONTYPE &t
 /*                   containing parameters of any predeclared type           */
 /*****************************************************************************/
 FunctionType::FunctionType(string n)
-             :Type(n,0)
+    : Type(n,0)
 {
-    
+    this->t = FUNCTIONTYPE;
 }
 
 void FunctionType::AddParam(Type* t)
@@ -368,8 +499,10 @@ bool FunctionType::CheckType(FunctionType *rhs, bool &isConvertable, CONVERSIONT
 /*                      types.                                               */
 /*****************************************************************************/
 PointerType::PointerType(Type* base, bool baseIsPtr, string n)
-            :Type(n,0)
+    : Type(n,0)
 {
+    this->t = POINTERTYPE;
+    
     baseType = base;
     
 

@@ -1368,6 +1368,9 @@ conditional_expression
 		{
 		    driver.printRed("conditional_expresion -> logical_or_expression WHAT expression COLON conditional_expression");
                     $$ = (AST*) new AstConditionalExpr((AstLogicOrExpr*)$1, (AstExpression*)$3, (AstConditionalExpr*)$5);
+                    if($$->needsCast)
+                        driver.error(yyloc, "These types must match!");
+                    
 		}
 	;
 
@@ -1389,6 +1392,8 @@ logical_or_expression
 		{
 		    driver.printRed("logical_or_expression -> logical_or_epression OR_OP logical_and_expression");
                     $$ = (AST*) new AstLogicOrExpr((AstLogicOrExpr*)$1, (AstLogicAndExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1402,6 +1407,8 @@ logical_and_expression
 		{
 		    driver.printRed("logical_and_expression -> logical_and_expression AND_OP inclusive_or_expression");
                     $$ = (AST*) new AstLogicAndExpr((AstLogicAndExpr*)$1, (AstORExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1415,6 +1422,8 @@ inclusive_or_expression
 		{
 		    driver.printRed("inclusive_or_expression -> inclusive_or_expression BIN_OR exclusive_or_expression");
                     $$ = (AST*) new AstORExpr((AstORExpr*)$1, (AstXORExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1428,6 +1437,8 @@ exclusive_or_expression
 		{
 		    driver.printRed("exclusive_or_expression -> exclusive_or_expression BIN_XOR and_expression");
                     $$ = (AST*) new AstXORExpr((AstXORExpr*)$1, (AstAndExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1441,6 +1452,8 @@ and_expression
 		{
 		    driver.printRed("and_expression -> and_expression BIN_AND equality_expression");
                     $$ = (AST*) new AstAndExpr((AstAndExpr*)$1, (AstEqExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1454,11 +1467,15 @@ equality_expression
 		{
 		    driver.printRed("equality_expression -> equality_expression EQ_OP relational_expression");
                     $$ = (AST*) new AstEqExpr((AstEqExpr*)$1, AstEqExpr::EQ_OP, (AstRelExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| equality_expression NE_OP relational_expression
 		{
 		    driver.printRed("equality_expression -> equality_expression NE_OP relational_expression");
                     $$ = (AST*) new AstEqExpr((AstEqExpr*)$1, AstEqExpr::NE_OP, (AstRelExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1472,21 +1489,29 @@ relational_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression LT_OP shift_expression");
                     $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::LT_OP, (AstShiftExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| relational_expression GT_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression GT_OP shift_expression");
                     $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::GT_OP, (AstShiftExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| relational_expression LE_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression LE_OP shift_expression");
                     $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::LE_OP, (AstShiftExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| relational_expression GE_OP shift_expression
 		{
 		    driver.printRed("relational_expression -> relational_expression GE_OP shift_expression");
                     $$ = (AST*) new AstRelExpr((AstRelExpr*)$1, AstRelExpr::GE_OP, (AstShiftExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1500,11 +1525,15 @@ shift_expression
 		{
 		    driver.printRed("shift_expression -> shift_expression LEFT_OP additive_expression");
                     $$ = (AST*) new AstShiftExpr((AstShiftExpr*)$1, AstShiftExpr::LEFT_OP, (AstAddExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| shift_expression RIGHT_OP additive_expression
 		{
 		    driver.printRed("shift_expression -> shift_expression RIGHT_OP additive_expression");
                     $$ = (AST*) new AstShiftExpr((AstShiftExpr*)$1, AstShiftExpr::RIGHT_OP, (AstAddExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1518,11 +1547,15 @@ additive_expression
 		{
 		    driver.printRed("additive_expression -> additive_expression PLUS multiplicative_expression");
                     $$ = (AST*) new AstAddExpr((AstAddExpr*)$1, AstAddExpr::PLUS, (AstMultExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| additive_expression MINUS multiplicative_expression
 		{
 		    driver.printRed("additive_expression -> additive_expression MINUS multiplicative_expression");
                     $$ = (AST*) new AstAddExpr((AstAddExpr*)$1, AstAddExpr::MINUS, (AstMultExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1536,16 +1569,22 @@ multiplicative_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression STAR cast_expression");
                     $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::STAR, (AstCastExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| multiplicative_expression DIV cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression DIV cast_expression");
                     $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::DIV, (AstCastExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	| multiplicative_expression MOD cast_expression
 		{
 		    driver.printRed("multiplicative_expression -> multiplicative_expression MOD cast_expression");
                     $$ = (AST*) new AstMultExpr((AstMultExpr*)$1, AstMultExpr::MOD, (AstCastExpr*)$3);
+                    if($$->needsCast && !$$->isConv)
+                        driver.error(yyloc, "These types cannot be implicitly converted!");
 		}
 	;
 
@@ -1557,7 +1596,10 @@ cast_expression
 		}
 	| LPAREN type_name RPAREN cast_expression
 		{
+		    // TODO we need to verify if this is a valid cast and then insert the cast into the AST
+		    
 		    driver.printRed("cast_expression -> LPAREN type_name RPAREN cast_expression");
+		    driver.error(yylloc, "Cast expressions are not currently supported by this compiler!");
                     $$ = (AST*) new AstCastExpr((AstTypeName*)$2, (AstCastExpr*)$4);
 		}
 	;
@@ -1753,7 +1795,21 @@ identifier
 		    // TODO if this ID is a function, then we need to pass ((FunctionType*)$1->symbolType)->GetReturnType(), rather than $1->symbolType
                     driver.currentSymbol->symbol_name = $1->symbol_name;  
                     driver.printRed("identifier -> IDENTIFIER");
-                    $$ = (AST*) new AstID($1->symbol_name, $1->symbolType);
+                    
+                    //This is a hack to get the correct type information
+                    int level;
+                    SymbolInfo s;
+                    s.symbol_name = $1->symbol_name;
+                    
+                    if(driver.SymbolTable.find_symbol(s, level))
+                    {
+                        $$ = (AST*) new AstID($1->symbol_name, 
+		                        driver.SymbolTable.fetch_symbol(s, level)->symbolType);
+                    }
+                    else
+                    {
+                        $$ = (AST*) new AstID($1->symbol_name, NULL);
+                    }
 		}
 	;
 %%

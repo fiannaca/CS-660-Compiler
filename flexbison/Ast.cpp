@@ -372,7 +372,8 @@ AstUnaryExpr::AstUnaryExpr(AstPostfixExpr *e)
     this->uniexpr = NULL;
     this->tname = NULL;
     this->t = POSTFIX;
-
+    this->type = e->type;
+    
     this->setLabel("UnaryExpression - Postfix");
 }
 
@@ -385,6 +386,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryExpr* e, bool inc)
     this->cast = NULL;
     this->uniexpr = e;
     this->tname = NULL;
+    this->type = e->type;
 
     if(inc)
         this->t = INC;
@@ -403,6 +405,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryOp* o, AstCastExpr* c)
     this->cast = c;
     this->uniexpr = NULL;
     this->tname = NULL;
+    this->type = c->type;
 
     this->t = CAST;
 
@@ -418,6 +421,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryExpr* e)
     this->cast = NULL;
     this->uniexpr = e;
     this->tname = NULL;
+    this->type = e->type;
 
     this->t = SIZEOF;
 
@@ -433,6 +437,7 @@ AstUnaryExpr::AstUnaryExpr(AstTypeName* t)
     this->cast = NULL;
     this->uniexpr = NULL;
     this->tname = t;
+    this->type = new PODType("INT", INT_SIZE);
 
     this->t = SIZEOF_TYPE;
 
@@ -529,6 +534,7 @@ AstCastExpr::AstCastExpr(AstUnaryExpr* u)
     this->uniexpr = u;
     this->cast = NULL;
     this->tname = NULL;
+    this->type = u->type;
 
     this->setLabel("CastExpression");
 }
@@ -539,6 +545,8 @@ AstCastExpr::AstCastExpr(AstTypeName* t, AstCastExpr* c)
     this->cast = c;
     this->tname = t;
 
+    // TODO Figure out how to do this type checking thing later...
+    
     this->setLabel("CastExpression");
 }
 
@@ -738,6 +746,7 @@ AstMultExpr::AstMultExpr(AstCastExpr* c)
     this->cast = c;
     this->mult = NULL;
     this->op = NONE;
+    this->type = c->type;
 
     this->setLabel("MultiplicativeExpression");
 }
@@ -747,6 +756,16 @@ AstMultExpr::AstMultExpr(AstMultExpr* m, Operator o, AstCastExpr* c)
     this->cast = c;
     this->mult = m;
     this->op = o;
+    
+    needsCast = !m->type->CheckType(c->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = m->type;
+    }
 
     this->setLabel("MultiplicativeExpression");
 }
@@ -790,6 +809,7 @@ AstAddExpr::AstAddExpr(AstMultExpr* m)
     this->mult = m;
     this->add = NULL;
     this->op = NONE;
+    this->type = m->type;
 
     this->setLabel("AdditiveExpression");
 }
@@ -799,7 +819,17 @@ AstAddExpr::AstAddExpr(AstAddExpr* a, Operator o, AstMultExpr* m)
     this->mult = m;
     this->add = a;
     this->op = o;
-
+    
+    needsCast = !a->type->CheckType(m->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = a->type;
+    }
+    
     this->setLabel("AdditiveExpression");
 }
 
@@ -841,6 +871,7 @@ AstShiftExpr::AstShiftExpr(AstAddExpr* a)
     this->add = a;
     this->shift = NULL;
     this->op = NONE;
+    this->type = a->type;
 
     this->setLabel("ShiftExpression");
 }
@@ -850,6 +881,16 @@ AstShiftExpr::AstShiftExpr(AstShiftExpr* s, Operator o, AstAddExpr* a)
     this->add = a;
     this->shift = s;
     this->op = o;
+    
+    needsCast = !s->type->CheckType(a->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = s->type;
+    }
 
     this->setLabel("ShiftExpression");
 }
@@ -890,6 +931,7 @@ AstRelExpr::AstRelExpr(AstShiftExpr* s)
     this->shift = s;
     this->rel = NULL;
     this->op = NONE;
+    this->type = s->type;
 
     this->setLabel("RelationalExpression");
 }
@@ -899,6 +941,16 @@ AstRelExpr::AstRelExpr(AstRelExpr* r, Operator o, AstShiftExpr* s)
     this->shift = s;
     this->rel = r;
     this->op = o;
+    
+    needsCast = !r->type->CheckType(s->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = r->type;
+    }
 
     this->setLabel("RelationalExpression");
 }
@@ -939,6 +991,7 @@ AstEqExpr::AstEqExpr(AstRelExpr* r)
     this->rel = r;
     this->eq = NULL;
     this->op = NONE;
+    this->type = r->type;
 
     this->setLabel("EqualityExpression");
 }
@@ -948,6 +1001,16 @@ AstEqExpr::AstEqExpr(AstEqExpr* e, Operator o, AstRelExpr* r)
     this->rel = r;
     this->eq = e;
     this->op = o;
+    
+    needsCast = !e->type->CheckType(r->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = e->type;
+    }
 
     this->setLabel("EqualityExpression");
 }
@@ -987,6 +1050,7 @@ AstAndExpr::AstAndExpr(AstEqExpr* e)
 {
     this->eq = e;
     this->a = NULL;
+    this->type = e->type;
 
     this->setLabel("EqualityExpression");
 }
@@ -994,6 +1058,16 @@ AstAndExpr::AstAndExpr(AstAndExpr* a, AstEqExpr* e)
 {
     this->eq = e;
     this->a = a;
+    
+    needsCast = !a->type->CheckType(e->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = a->type;
+    }
 
     this->setLabel("EqualityExpression");
 }
@@ -1031,6 +1105,7 @@ AstXORExpr::AstXORExpr(AstAndExpr* a)
 {
     this->a = a;
     this->x = NULL;
+    this->type = a->type;
 
     this->setLabel("ExclusiveOrExpression");
 }
@@ -1039,6 +1114,16 @@ AstXORExpr::AstXORExpr(AstXORExpr* x, AstAndExpr* a)
 {
     this->a = a;
     this->x = x;
+    
+    needsCast = !x->type->CheckType(a->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = x->type;
+    }
 
     this->setLabel("ExclusiveOrExpression");
 }
@@ -1077,6 +1162,8 @@ AstORExpr::AstORExpr(AstXORExpr* x)
 {
     this->x = x;
     this->o = NULL;
+    this->type = x->type;
+    
     this->setLabel("InclusiveOrExpression");
 }
 
@@ -1084,6 +1171,17 @@ AstORExpr::AstORExpr(AstORExpr* o, AstXORExpr* x)
 {
     this->x = x;
     this->o = o;
+    
+    needsCast = !o->type->CheckType(x->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = o->type;
+    }
+    
     this->setLabel("InclusiveOrExpression");
 }
 
@@ -1120,6 +1218,7 @@ AstLogicAndExpr::AstLogicAndExpr(AstORExpr* o)
 {
     this->o = o;
     this->a = NULL;
+    this->type = o->type;
 
     this->setLabel("LogicalAndExpression");
 }
@@ -1128,6 +1227,16 @@ AstLogicAndExpr::AstLogicAndExpr(AstLogicAndExpr* a, AstORExpr* o)
 {
     this->o = o;
     this->a = a;
+    
+    needsCast = !a->type->CheckType(o->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = a->type;
+    }
 
     this->setLabel("LogicalAndExpression");
 }
@@ -1165,6 +1274,7 @@ AstLogicOrExpr::AstLogicOrExpr(AstLogicAndExpr* a)
 {
     this->a = a;
     this->o = NULL;
+    this->type = a->type;
 
     this->setLabel("LogicalOrExpression");
 }
@@ -1173,6 +1283,16 @@ AstLogicOrExpr::AstLogicOrExpr(AstLogicOrExpr* o, AstLogicAndExpr* a)
 {
     this->a = a;
     this->o = o;
+    
+    needsCast = !o->type->CheckType(a->type, isConv, convType);
+    if(needsCast)
+    {
+        this->type = Type::GetResultingType(convType,true);
+    }
+    else
+    {
+        this->type = o->type;
+    }
 
     this->setLabel("LogicalOrExpression");
 }
@@ -1211,6 +1331,7 @@ AstConditionalExpr::AstConditionalExpr(AstLogicOrExpr* o)
     this->o = o;
     this->e = NULL;
     this->ce = NULL;
+    this->type = o->type;
 
     this->setLabel("ConditionalExpression");
 }
@@ -1220,6 +1341,9 @@ AstConditionalExpr::AstConditionalExpr(AstLogicOrExpr* o, AstExpression* e, AstC
     this->o = o;
     this->e = e;
     this->ce = ce;
+    
+    needsCast = !e->type->CheckType(ce->type, isConv, convType);
+    this->type = e->type;
 
     this->setLabel("ConditionalExpression");
 }
@@ -1260,6 +1384,7 @@ void AstConditionalExpr::Visit()
 AstConstantExpr::AstConstantExpr(AstConditionalExpr *e)
 {
     this->expr = e;
+    this->type = e->type;
 
     this->setLabel("ConstantExpression");
 }

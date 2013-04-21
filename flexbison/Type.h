@@ -60,12 +60,26 @@ enum BaseTypes {
 class Type
 {
     public:
+        enum DerivedType {
+            BASE,
+            PODTYPE,
+            TYPEDEFTYPE,
+            ENUMTYPE,
+            ARRAYTYPE,
+            STRUCTTYPE,
+            UNIONTYPE,
+            FUNCTIONTYPE,
+            POINTERTYPE
+        } t;
+        
         Type(string n, int s); //sets the name and size of the type
         Type(Type &t);
         string GetName() { return name; }
         int GetSize() { return size; }
         void SetName(string n) { name  = n ; }
         bool CheckType(Type* rhs, bool &isConvertable, CONVERSIONTYPE &t);
+        
+        static Type* GetResultingType(CONVERSIONTYPE ct, bool castUp);
         
     protected:
         string name;

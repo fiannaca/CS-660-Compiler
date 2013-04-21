@@ -26,6 +26,10 @@ class AST
         {
             uid = Visualizer::GetNextUID();
             label = "LabelNotSet";
+            needsCast = false;
+            convType = NONE;
+            operandToCast = 1;
+            isConv = true;
         }
 
         /**
@@ -65,6 +69,11 @@ class AST
          * generated at the current node.
          */
 	    virtual void Visit(){};
+	    
+        bool needsCast; /**< This indicates if cast 3AC needs to be output, and is only relevant for expressions */
+        bool isConv; /**< Indicates is a conversion is possible */
+        CONVERSIONTYPE convType; /**< If needsCast is true, then this indicates what the cast should be */
+        int operandToCast; /**< This indicates if the first or second operand should be the one that is cast */
 
     protected:
         int uid; /**< The unique id */
@@ -87,6 +96,7 @@ public:
         {
 			this->setLabel("TypeName");
 		}
+		
         AstTypeName(AstSpeciQualList *list , AstAbstractDecl *decl )
         {
 			this->list = list ;
@@ -289,7 +299,7 @@ class AstUnaryExpr : public AST
     AstTypeName  *tname;
 
     public:
-        enum Type
+        enum ExprType
         {
             POSTFIX,
             INC,
@@ -305,6 +315,8 @@ class AstUnaryExpr : public AST
         AstUnaryExpr(AstUnaryOp* o, AstCastExpr* c);
         AstUnaryExpr(AstUnaryExpr* e);
         AstUnaryExpr(AstTypeName* t);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -321,6 +333,8 @@ class AstCastExpr : public AST
         //Constructor
         AstCastExpr(AstUnaryExpr* u);
         AstCastExpr(AstTypeName* t, AstCastExpr* c);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -344,6 +358,8 @@ class AstMultExpr : public AST
         //Constructor
         AstMultExpr(AstCastExpr* c);
         AstMultExpr(AstMultExpr* m, Operator o, AstCastExpr* c);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -366,6 +382,8 @@ class AstAddExpr : public AST
         //Constructor
         AstAddExpr(AstMultExpr* m);
         AstAddExpr(AstAddExpr* a, Operator o, AstMultExpr* m);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -388,6 +406,8 @@ class AstShiftExpr : public AST
         //Constructor
         AstShiftExpr(AstAddExpr* a);
         AstShiftExpr(AstShiftExpr* s, Operator o, AstAddExpr* a);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -412,6 +432,8 @@ class AstRelExpr : public AST
         //Constructor
         AstRelExpr(AstShiftExpr* s);
         AstRelExpr(AstRelExpr* r, Operator o, AstShiftExpr* s);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -434,6 +456,8 @@ class AstEqExpr : public AST
         //Constructor
         AstEqExpr(AstRelExpr* r);
         AstEqExpr(AstEqExpr* e, Operator o, AstRelExpr* r);
+        
+        Type* type;
 
         //Traversal
         void Visit();
@@ -447,6 +471,9 @@ class AstAndExpr : public AST
     public:
         AstAndExpr(AstEqExpr* e);
         AstAndExpr(AstAndExpr* a, AstEqExpr* e);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -458,6 +485,9 @@ class AstXORExpr : public AST
     public:
         AstXORExpr(AstAndExpr* a);
         AstXORExpr(AstXORExpr* x, AstAndExpr* a);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -469,6 +499,9 @@ class AstORExpr : public AST
     public:
         AstORExpr(AstXORExpr* x);
         AstORExpr(AstORExpr* o, AstXORExpr* x);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -480,6 +513,9 @@ class AstLogicAndExpr : public AST
     public:
         AstLogicAndExpr(AstORExpr* o);
         AstLogicAndExpr(AstLogicAndExpr* a, AstORExpr* o);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -491,6 +527,9 @@ class AstLogicOrExpr : public AST
     public:
         AstLogicOrExpr(AstLogicAndExpr* a);
         AstLogicOrExpr(AstLogicOrExpr* o, AstLogicAndExpr* a);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -504,6 +543,9 @@ class AstConditionalExpr : public AST
 
         AstConditionalExpr(AstLogicOrExpr* o);
         AstConditionalExpr(AstLogicOrExpr* o, AstExpression* e, AstConditionalExpr* ce);
+        
+        Type* type;
+        
         void Visit();
 };
 
@@ -513,6 +555,9 @@ class AstConstantExpr : public AST
 
     public:
         AstConstantExpr(AstConditionalExpr *e);
+        
+        Type* type;
+        
         void Visit();
 };
 
