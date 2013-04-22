@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <list>
 
+#include "SymTab.h" 
 using namespace std;
 
 /**
@@ -32,6 +33,14 @@ class TAC_Generator
             SUB, /**< Subtract the value of two temps */
             MULT, /**< Multiply the value of two temps */
             DIV, /**< Divide the value of two temps */
+            REM , /** < Reminder of the value of two temps */
+            SHIFTL ,  /**< left shift the value of two temps */
+            SHIFTR ,  /**< right shift the value of two temps */
+            AND , /**< biwise and the value of two temps */
+            XOR , /**< biwise xor  the value of two temps */
+            OR  ,  /**< biwise OR  the value of two temps */
+            LOR , /**< logical OR  the value of two temps */
+            LAND , /**< logical OR  the value of two temps */
             EQ, /**< Set op3 to 1 is op1 == op2, or 0 otherwise */
             GT, /**< Set op3 to 1 is op1 > op2, or 0 otherwise */
             LT, /**< Set op3 to 1 is op1 < op2, or 0 otherwise */
@@ -62,7 +71,8 @@ class TAC_Generator
             GLOBAL, /**< Declare op1 as a global of size op2 */
             STRING, /**< Associate string op1 with label op2 */
             IMMEDIATE_I, /**< Load an integer into a register */
-            IMMEDIATE_F /**< Load a float into a register */
+            IMMEDIATE_F, /**< Load a float into a register */
+            MOV  /* does op1 = op2 */ 
         };
 
         /**
@@ -198,6 +208,9 @@ class TAC_Generator
          *
          * @param commentStart String to be place at the beginning of every comment
          */
+       
+        void Fetch(string varName , SymTab symbolTable , string targetTemp);  
+
         void SetCommentStart(string commentStart);
 
         /**
@@ -248,7 +261,8 @@ class TAC_Generator
          * @param flag True if there should be an empty line before each comment
          */
         void SetBlankBeforeComments(bool flag);
-            	
+        
+          	
 
         /**
          * Generates a unique label string.
@@ -294,6 +308,7 @@ class TAC_Generator
         
         string CurrentLabel;
 };
+
 
 #endif // ! TAC_GENERATOR_H_
 

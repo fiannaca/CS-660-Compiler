@@ -1,3 +1,4 @@
+
 #include "TAC_Generator.h"
 
 int TAC_Generator::lCount = 0;
@@ -107,7 +108,97 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
                    << setw(width) << *ptr3;
             }
             break;
-
+        case SHIFTL:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "SHIFTL"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break;
+        case SHIFTR:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "SHIFTR"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break;
+        case AND:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "AND"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break; 
+        case LAND:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "LAND"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break; 
+        case XOR:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "XOR"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break; 
+        case OR:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "OR"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break; 
+        case LOR:
+            {
+                //TODO - divides op1 and op2 and places the result in op3
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "LOR"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
+            }
+            break;              
         case EQ:
             {
                 //TODO - if op1 and op2 are equal, then op3 is 1, else op3 is 0
@@ -163,7 +254,19 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
                    << setw(width) << *ptr3;  
             }
             break;
-
+        case REM:
+            {
+                //TODO - if op1 is greater than or equal to op2, then op3 is 1, else op3 is 0
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+                
+                ss << setw(width) << "REM"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;  
+            }
+            break;
         case LE:
             {
                 //TODO - if op1 is less than or equal to op2, then op3 is 1, else op3 is 0
@@ -298,6 +401,22 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
 
     switch(t)
     {
+
+
+
+        case MOV:
+            {
+                //op2 gets negative op1
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+
+                ss << setw(width) << "MOV" 
+                   << setw(width) << *ptr1 
+                   << setw(width) << *ptr2;
+            }
+            break;
+
+
         case NEG:
             {
                 //op2 gets negative op1
@@ -622,7 +741,19 @@ string TAC_Generator::GetFVarName()
     return ss.str();
 }
 
+void TAC_Generator::Fetch(string varName , SymTab symbolTable , string targetTemp)
+{
+    /**
+         TODO Add code to fetch the symbole for the symbol table 
+          
+         // Assume all variables are GLOBAL for the time being 
+    */
+              
+     toTAC(MOV ,(void*) &targetTemp ,(void *) &varName); 
 
+
+
+} 
 
 
 

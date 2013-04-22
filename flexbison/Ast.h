@@ -81,9 +81,10 @@ class AST
         bool isConv; /**< Indicates is a conversion is possible */
         CONVERSIONTYPE convType; /**< If needsCast is true, then this indicates what the cast should be */
         int operandToCast; /**< This indicates if the first or second operand should be the one that is cast */
-
+        string currentTemp;  
         string returnLabel; /**< This is for storing the string id of any temporary result register that may be created during 3AC generation */
-        
+        list<string> tempStack; /* stack to hold the temporay variables used */    
+        string lastID;   
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
@@ -134,6 +135,9 @@ class AstString : public AST
 
 class AstConstant : public AST
 {
+    
+
+public:
     enum ConstType
     {
         INT,
@@ -148,7 +152,7 @@ class AstConstant : public AST
     string str;
     double dval; 
 
-    public:
+    
     
     AstConstant(int val);
     AstConstant(string val);
@@ -187,9 +191,11 @@ class AstUnaryOp : public AST
 
 class AstID : public AST
 {
+    
+public:
     string str;
 
-    public:
+   
     AstID(string s, Type* t);
     
     Type* type;
@@ -589,10 +595,11 @@ class AstAssignOp : public AST
             OR_ASSIGN
         };
 
-    private:
-        Operator op;
+   
+        
 
     public:
+        Operator op;
         //Constructor
         AstAssignOp(Operator o);
 
