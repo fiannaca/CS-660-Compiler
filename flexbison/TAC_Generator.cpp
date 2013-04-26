@@ -110,7 +110,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case SHIFTL:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -123,7 +123,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case SHIFTR:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -136,7 +136,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case AND:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -149,7 +149,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case LAND:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -162,7 +162,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case XOR:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -175,7 +175,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case OR:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -188,7 +188,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case LOR:
             {
-                //TODO - divides op1 and op2 and places the result in op3
+                //TODO - 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -256,7 +256,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case REM:
             {
-                //TODO - if op1 is greater than or equal to op2, then op3 is 1, else op3 is 0
+                //TODO -
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -406,7 +406,7 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
 
         case MOV:
             {
-                //op2 gets negative op1
+                //TODO
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
 
@@ -599,6 +599,13 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
 
                 ss << commentStart << *ptr << commentEnd;
             }
+            
+        case BEGINFRAME:
+            {   
+                int val = (long)op;
+                ss << setw(width) << "BEGINFRAME"
+                   << setw(width) << val;
+            }
             break;
 
     }
@@ -628,10 +635,6 @@ void TAC_Generator::toTAC(NoOpInstructions t, string c)
 
         case RETURN:
             ss << setw(width) << "RETURN";
-            break;
-            
-        case BEGINFRAME:
-            ss << setw(width) << "BEGINFRAME";
             break;
             
         case ENDFRAME:

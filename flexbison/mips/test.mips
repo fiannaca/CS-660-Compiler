@@ -1,0 +1,11 @@
+################################################################################
+#
+# MIPS Assembly Code
+# Filename:     test.mips
+# Input file:   test.tac
+# Generated on: Fri Apr 26 10:52:38 2013
+#
+################################################################################
+
+.include "macros.asm"
+#  This is a comment
