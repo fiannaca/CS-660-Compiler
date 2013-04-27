@@ -31,7 +31,7 @@ class AST
             convType = NONE;
             operandToCast = 1;
             isConv = true;
-            returnLabel = "";
+           
         }
 
         /**
@@ -81,14 +81,15 @@ class AST
         bool isConv; /**< Indicates is a conversion is possible */
         CONVERSIONTYPE convType; /**< If needsCast is true, then this indicates what the cast should be */
         int operandToCast; /**< This indicates if the first or second operand should be the one that is cast */
-        string currentTemp;  
-        string returnLabel; /**< This is for storing the string id of any temporary result register that may be created during 3AC generation */
-        list<string> tempStack; /* stack to hold the temporay variables used */    
-        string lastID;   
+        static string currentTemp;  
+        static string returnLabel; /**< This is for storing the string id of any temporary result register that may be created during 3AC generation */
+        static list<string> tempStack; /* stack to hold the temporay variables used */    
+        static string lastID;   
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
 };
+
 
 class AstSpeciQualList;
 class AstAbstractDecl;

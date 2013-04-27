@@ -90,7 +90,7 @@ class TAC_Generator
             VALOUT, /**< Pass op1 by value */
             CALL, /**< Call the procedure named op1 */
             PROCENTRY, /**< Marks the beginning of a procedure */
-            COMMENT /**< Output op1 as a comment */
+            COMMENT, /**< Output op1 as a comment */
             BEGINFRAME, /**< Marks the beginning of a new stack frame, and passes in the size of the memory required on the stack*/
         };
 

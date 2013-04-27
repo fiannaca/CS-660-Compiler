@@ -110,7 +110,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case SHIFTL:
             {
-                //TODO - 
+                //TODO - shifts op1 by op2 left  and places the result in op3 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -123,7 +123,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case SHIFTR:
             {
-                //TODO - 
+                //TODO - shifts op1 by op2 right and places the result in op3
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -136,7 +136,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break;
         case AND:
             {
-                //TODO - 
+                //TODO - bitwise ands op1 and op2 and places the result in op3
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -149,7 +149,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case LAND:
             {
-                //TODO - 
+                //TODO - logical ands the op1 and op2 and places the result in op3
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -162,7 +162,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case XOR:
             {
-                //TODO - 
+                //TODO - bitwise xor op1 and op2 and place the result in op3 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -175,7 +175,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case OR:
             {
-                //TODO - 
+                //TODO - bitwise or op1 and op2 and place the result in op3
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
@@ -188,7 +188,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
             break; 
         case LOR:
             {
-                //TODO - 
+                //TODO - logical or op1 and op2 and place the result in op3 
                 string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
