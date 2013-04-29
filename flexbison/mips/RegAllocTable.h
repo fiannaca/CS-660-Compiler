@@ -4,6 +4,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <fstream>
+#include <iomanip>
 
 #include "AddressTable.h"
 
@@ -31,7 +33,7 @@ struct Register {
     string name;
     
     /**
-     *
+     * Indicates the offset of this register into the spill register memory segment
      */
     int spillOffset;
     
@@ -95,13 +97,72 @@ class RegAllocTable {
          */
         int GetSpillSize();
         
+        /**
+         * Sets the file stream to which the GetRegister function will output 
+         * MIPS when need be.
+         */
+        void SetFstream(fstream* fs);
+        
     private:
         int size; /** Indicates the number of available registers that can be used */
-        int numSpills; /** Indicates the number of spill registers allocated by default in the data section */
+        
         string prefix; /**< Indicates how registers are named (i.e. $t for MIPS) */
         
+        int width; /**< Indicates the column width in the output MIPS */
+        /**
+         * Indicates the number of spill registers allocated by default in the 
+         * data section 
+         */
+        int numSpills;
+        
+        /**
+         * This is the filestream which spilling MIPS will be output to. It 
+         * should be opened by the tac2mips owning object. 
+         */
+        fstream* fout; 
+        
+        /**
+         * Finds the index of the next open spill register.
+         */
+        int GetSpillIndex();
+        
+        /**
+         * Finds the index of the next open register.
+         *
+         * @param found Indicates if an open register was found.
+         * @return The index of the open register. Invalid if found == false
+         */
+        int GetOpenRegIndex(bool &found);
+        
+        /**
+         * Increments the lifespan of all registers (real and spill) which are 
+         * owned.
+         */
         void incrementLifes();
-        void RegToMem(string rname, int offset);
+        
+        /**
+         * Gets the index of the register with the highest lifespan.
+         * 
+         * @return The index of the register with the highest lifespan.
+         */
+        int GetHighestLifeIndex();
+        
+        /**
+         * Outputs the MIPS code to move the contents of a real register to a
+         * spill register.
+         */
+        void RegToSpill(int rindex, int sindex);
+        
+        /**
+         * Outputs the MIPS code to move the contents of a spill register into
+         * a real register.
+         */
+        void SpillToReg(int sindex, int rindex);
+        
+        /**
+         * Outputs the MIPS code to swap a spill register with a real register.
+         */
+        void SwapRegToSpill(int rindex, int sindex);
         
         /**
          * A reference to the address table. This should never be deleted since
@@ -110,9 +171,13 @@ class RegAllocTable {
         AddressTable* addtab;
         
         /**
-         * Collection of registers.
+         * Collection of real registers.
          */
         Register* registers;
+        
+        /**
+         * Collection of spill registers declared in the global data block.
+         */
         Register* spills;
 };
 

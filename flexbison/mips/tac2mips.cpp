@@ -12,6 +12,8 @@ tac2mips::tac2mips(string filename)
     
     fout.open(outfname, std::ios_base::out);
     
+    regtab.SetFstream(&fout);
+    
     this->OutputPreamble();
 }
 
@@ -41,7 +43,7 @@ void tac2mips::error(const std::string& msg)
 
 string tac2mips::GetRegister(string tempName, bool &isNew)
 {
-
+    return regtab.GetRegister(tempName, isNew);
 }
 
 void tac2mips::OutputPreamble()
@@ -57,10 +59,25 @@ void tac2mips::OutputPreamble()
     fout << "# Generated on: " << dt << "#" << endl;
     fout << setw(80) << setfill('#') << "#" << endl;
     
-    fout << endl << ".include \"macros.asm\"" << endl << endl;
+    fout << endl << "\t.include \"macros.asm\"" << endl;
+    
+    fout << endl << "\t.data" << endl
+         << "spills:\t.space " << regtab.GetSpillSize() << endl << endl;
 }
 
 void tac2mips::Comment(std::string txt)
 {
-    fout << "# " << txt << endl;
+    fout << "#" << txt << endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
