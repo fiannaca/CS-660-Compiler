@@ -3,7 +3,7 @@
 using namespace std;
 
 tac2mips::tac2mips(string filename)
-    : regtab(8, "$t")
+    : regtab(8, "$t", &addtab)
 {
     fname = filename;
     
