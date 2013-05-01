@@ -1,13 +1,15 @@
-Output a test string to see if fout works
 ################################################################################
 #
 # MIPS Assembly Code
 # Filename:     test.mips
 # Input file:   test.tac
-# Generated on: Mon Apr 29 09:09:06 2013
+# Generated on: Wed May  1 09:37:13 2013
 #
 ################################################################################
 
-.include "macros.asm"
+	.include "macros.asm"
 
-#  This is a comment
+	.data
+spills:	.space 80
+
+# This is a comment

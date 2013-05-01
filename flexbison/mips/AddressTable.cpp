@@ -10,7 +10,7 @@ AddressTable::~AddressTable()
 
 }
 
-void AddressTable::AddReg(string name, string rname)
+void AddressTable::Add(string name, string rname)
 {
     Address* newAddr = new Address;
     
@@ -21,7 +21,7 @@ void AddressTable::AddReg(string name, string rname)
     Variables[name] = newAddr;
 }
 
-void AddressTable::AddMem(string name, int offset)
+void AddressTable::Add(string name, int offset)
 {
     Address* newAddr = new Address;
     

@@ -5,6 +5,8 @@
 #include <sstream>
 #include <vector>
 #include <fstream>
+#include <sstream>
+#include <iostream>
 #include <iomanip>
 
 #include "AddressTable.h"
@@ -60,6 +62,13 @@ class RegAllocTable {
         ~RegAllocTable();
         
         /**
+         * This function is for the purpose of debugging the register allocation
+         * algorithms. It simply prints out a listing of each of the owned 
+         * registers.
+         */
+        void PrintRegisters();
+        
+        /**
          * Handles the allocation of registers including spilling when required.
          * This function first checks if the name is already in a register. If
          * the name is already assigned to a register, then isNew is set to false
@@ -98,10 +107,10 @@ class RegAllocTable {
         int GetSpillSize();
         
         /**
-         * Sets the file stream to which the GetRegister function will output 
-         * MIPS when need be.
+         * Used to set the pointer to the output stream which must be created
+         * by the owning class (i.e. tac2mips).
          */
-        void SetFstream(fstream* fs);
+        void SetFstream(fstream *fs);
         
     private:
         int size; /** Indicates the number of available registers that can be used */
@@ -115,12 +124,8 @@ class RegAllocTable {
          */
         int numSpills;
         
-        /**
-         * This is the filestream which spilling MIPS will be output to. It 
-         * should be opened by the tac2mips owning object. 
-         */
-        fstream* fout; 
-        
+        fstream *fout; /**< A pointer to the MIPS file */
+               
         /**
          * Finds the index of the next open spill register.
          */

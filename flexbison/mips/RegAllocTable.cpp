@@ -33,6 +33,30 @@ RegAllocTable::~RegAllocTable()
     delete [] registers;
 }
 
+void RegAllocTable::PrintRegisters()
+{
+    cout << endl << "Registers:" << endl;
+    
+    for(int i = 0; i < size; i++)
+    {
+        if(registers[i].isOwned)
+            cout << i << ". Name: " << registers[i].name 
+                 << ", Owner: " << registers[i].owner << endl;
+    }
+    
+    cout << endl << "Spill Registers:" << endl;
+    
+    for(int i = 0; i < numSpills; i++)
+    {
+        if(spills[i].isOwned)
+            cout << i << ". Name: " << spills[i].name 
+                 << ", Offset: " << spills[i].spillOffset 
+                 << ", Owner: " << spills[i].owner << endl;
+    }
+    
+    cout << endl;
+}
+
 std::string RegAllocTable::GetRegister(std::string name, bool &isNew)
 {
     int ctr = 0;
@@ -89,8 +113,9 @@ std::string RegAllocTable::GetRegister(std::string name, bool &isNew)
 void RegAllocTable::FreeRegister(std::string name)
 {
     int ctr = 0;
+    bool found = false;
     
-    while(ctr < size)
+    while(ctr < size && !found)
     {
         if(registers[ctr].owner == name)
         {
@@ -98,7 +123,7 @@ void RegAllocTable::FreeRegister(std::string name)
             registers[ctr].owner = "";
             registers[ctr].lifespan = 0;
             
-            return;
+            found = true;
         }
         else
         {
@@ -106,14 +131,38 @@ void RegAllocTable::FreeRegister(std::string name)
         }        
     }
     
-    //If there are spilled registers then one should be moved into this one
-    for(int i = 0; i < numSpills; ++i)
+    //Check if it is in a spill register if it wasn't found in the regular registers
+    if(!found)
     {
-        //Just choose the first spill to be moved back
-        if(spills[i].isOwned)
+        ctr = 0;
+        while(ctr < numSpills)
         {
-            SpillToReg(i, ctr);
-            return;
+            if(spills[ctr].owner == name)
+            {
+                spills[ctr].isOwned = false;
+                spills[ctr].owner = "";
+                spills[ctr].lifespan = 0;
+                
+                return; //return since no spills need to move to spills
+            }
+            else
+            {
+                ++ctr;
+            }        
+        }
+    }
+    
+    if(found)
+    {
+        //If there are spilled registers then one should be moved into this one
+        for(int i = 0; i < numSpills; ++i)
+        {
+            //Just choose the first spill to be moved back
+            if(spills[i].isOwned)
+            {
+                SpillToReg(i, ctr);
+                return;
+            }
         }
     }
 }
@@ -156,14 +205,18 @@ int RegAllocTable::GetOpenRegIndex(bool &found)
 int RegAllocTable::GetHighestLifeIndex()
 {
     int max = 0;
+    int index = 0;
     
     for(int i = 0; i < size; ++i)
     {
         if(registers[i].lifespan > max)
+        {
             max = registers[i].lifespan;
+            index = i;
+        }
     }
     
-    return max;
+    return index;
 }
 
 void RegAllocTable::incrementLifes()
@@ -183,9 +236,14 @@ void RegAllocTable::incrementLifes()
 
 void RegAllocTable::RegToSpill(int rindex, int sindex)
 {
+    stringstream ss;
+    ss << "\t# Storing the real register " << registers[rindex].name
+       << " into the spill register " << spills[sindex].spillOffset;
+    
     //Output MIPS
-    (*fout) << "\tsw" << registers[rindex].name << ", " 
-            << "spills + " << spills[sindex].spillOffset << endl;
+    (*fout) << ss.str() << endl
+            << "\tsw " << registers[rindex].name << ", " 
+            << "spills + " << spills[sindex].spillOffset << endl << endl;
          
     //Update the Spill register information
     spills[sindex].lifespan = 0;
@@ -200,8 +258,13 @@ void RegAllocTable::RegToSpill(int rindex, int sindex)
 
 void RegAllocTable::SpillToReg(int sindex, int rindex)
 {
+    stringstream ss;
+    ss << "\t# Loading the spill register at offset " << spills[sindex].spillOffset 
+       << " into the real register " << registers[rindex].name;
+
     //Output MIPS
-    (*fout) << "\tlw" << registers[rindex].name << ", " 
+    (*fout) << ss.str() << endl
+            << "\tlw " << registers[rindex].name << ", " 
             << "spills + " << spills[sindex].spillOffset << endl << endl;
     
     //Update the real register information
@@ -213,14 +276,17 @@ void RegAllocTable::SpillToReg(int sindex, int rindex)
     spills[sindex].lifespan = 0;
     spills[sindex].isOwned = false;
     spills[sindex].owner = "";
-    
-    
 }
 
 void RegAllocTable::SwapRegToSpill(int rindex, int sindex)
 {
+    stringstream ss;
+    ss << "\t# Swapping spill register at offset " << spills[sindex].spillOffset
+       << " with the real register " << registers[rindex].name;
+       
     //Output MIPS
-	(*fout) << "\tmove $t8, " << registers[rindex].name << endl
+	(*fout) << ss.str() << endl
+	        << "\tmove $t8, " << registers[rindex].name << endl
 	        << "\tlw " << registers[rindex].name 
 	        << ", spills + " << spills[sindex].spillOffset << endl
 	        << "\tsw $t8, spills + " << spills[sindex].spillOffset << endl << endl;

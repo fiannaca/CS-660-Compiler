@@ -22,7 +22,7 @@ struct Address {
     {
         varName = "";
         loc = MEMORY;
-        regNum = -1;
+        reg = -1;
         memOffset = -1;
     }
     
@@ -30,7 +30,7 @@ struct Address {
     {
         varName = rhs.varName;
         loc = rhs.loc;
-        regNum = rhs.regNum;
+        reg = rhs.reg;
         memOffset = rhs.memOffset;
     }
 };
