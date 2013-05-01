@@ -1,19 +1,14 @@
-//Tests shadowing
-int a = 0; //first declaration
-
-int main(int argc, char** argv)
+/**
+ * Test2.c is designed to test the proper allocation of arrays and calculation 
+ * of array indices and access operations.
+ */
+int main()
 {
-    int a = 1; //shadows line 2
-
-    if(a == 1)
-    {
-        int a = 2; //shadows line 6
-
-        if(a == 2)
-        {
-            int a = 3; //shadows line 10
-        }
-    }
-
-    return 0;
+    int a[3];
+    
+    a[0] = 3;
+    a[1] = 2;
+    a[2] = 1;
+    
+    return 0;    
 }

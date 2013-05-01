@@ -1,21 +1,17 @@
-//Tests variable declarations
-int main(int argc, char** argv)
+/**
+ * Test1.c is designed to test the most basic features of C, including variable
+ * declarations, simple assignments, and simple arithmetic operations.
+ */
+int main()
 {
-    //These declarations should all work correctly
-    int a;
-    int b = 1234ul;
-    float c;
-    float d = 1234.5678;
-    float e = 123.5e10000;
-    char a[] = L"blah \t blah";
-
-    //Check the symbol table for the above declarations
-    !!S
-
-    a = b + c;
-
-    //This next line should fail
-    char e;
-
+    int i;
+    int j;
+    int k;
+    
+    i = 1;
+    j = 2;
+    
+    k = i + j;
+    
     return 0;
 }

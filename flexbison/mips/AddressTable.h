@@ -15,7 +15,7 @@ enum MemLocation {
 struct Address {
     string      varName;
     MemLocation loc;
-    int         regNum;
+    string      reg;
     int         memOffset;
     
     Address()
@@ -40,9 +40,9 @@ class AddressTable {
         AddressTable();
         ~AddressTable();
         
-        void AddReg(string name, int regNum);
-        void AddMem(string name, int offset);
-        void Add(string name, int regNum, int offset);
+        void Add(string name, string reg);
+        void Add(string name, int offset);
+        void Add(string name, string reg, int offset);
         
         void Remove(string name);
         

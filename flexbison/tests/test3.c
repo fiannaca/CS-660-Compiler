@@ -1,29 +1,20 @@
-int myint;
-
-void main(int argc, char **argv)
+/**
+ *  Test3.c is designed to test the use of if-else statements.
+ */
+int main()
 {
-    int * intptr = 0;
-    float testdec = 3.1415;
-    float testhex = 0x0AB1223.2;
-    float testoct = 014115.12;
-    int = 3;
-
-    myint = 4;
-
-    myint += 1;
-
     int a;
-
-    cout << "This is a string";
-
-    intptr->test();
-
-    //This is going to test whether or not comments work
-
-    /**
-     * This should also test the comments
-     */
-
+    
+    a = 1;
+    
+    if(a == 2)
+    {
+        a = 0;
+    }
+    else
+    {
+        a = -1;
+    }
+    
     return 0;
-
 }

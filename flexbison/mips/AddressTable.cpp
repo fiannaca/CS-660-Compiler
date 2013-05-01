@@ -10,12 +10,12 @@ AddressTable::~AddressTable()
 
 }
 
-void AddressTable::AddReg(string name, int rname)
+void AddressTable::AddReg(string name, string rname)
 {
     Address* newAddr = new Address;
     
     newAddr->varName = name;
-    newAddr->regNum = rname;
+    newAddr->reg = rname;
     newAddr->loc = REGISTER;
     
     Variables[name] = newAddr;
@@ -32,12 +32,12 @@ void AddressTable::AddMem(string name, int offset)
     Variables[name] = newAddr;
 }
 
-void AddressTable::Add(string name, int rname, int offset)
+void AddressTable::Add(string name, string rname, int offset)
 {
     Address* newAddr = new Address;
     
     newAddr->varName = name;
-    newAddr->regNum = rname;
+    newAddr->reg = rname;
     newAddr->memOffset = offset;
     newAddr->loc = BOTH;
     
