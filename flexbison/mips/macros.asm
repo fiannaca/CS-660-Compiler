@@ -34,3 +34,22 @@ strlab:	.asciiz %str
 	la $a0, strlab
 	syscall
 	.end_macro
+	
+#
+# Prints a function prolog
+#
+	.macro prolog (%name)
+	.ent %name
+%name:
+	.frame $sp, 0, %31
+	.end_macro
+	
+#
+# Prints a function prolog for a function which allocates space on the stack
+#
+	.macro prolog_s (%name, %stacksize)
+	.ent %name
+%name:
+	subu $sp, %stacksize
+	.frame $sp, %stacksize, %31
+	.end_macro
