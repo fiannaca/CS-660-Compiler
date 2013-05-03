@@ -2,30 +2,65 @@
 #define ADDRESSTABLE_H
 
 #include <string>
+#include <iostream>
+#include <iomanip>
 #include <map>
+
+#include "RegAllocTable.h"
 
 using namespace std;
 
+/**
+ * This enum describes the location of a given variable in the program, whether
+ * it is in memory, in a register, or in both.
+ */
 enum MemLocation {
     MEMORY,
     REGISTER,
     BOTH
 };
 
+/**
+ * This struct describes the entire location information of a variable in the 
+ * program including the memory location flag, the name of the register it is
+ * in (if it is in a register), and the memory offset location it is in (if it
+ * is also in memory).
+ */
 struct Address {
+	/**
+	 * The name of the variable.
+	 */
     string      varName;
+    
+	/**
+	 * Flag indicating where the variable is (memory, register, or both).
+	 */
     MemLocation loc;
+    
+	/**
+	 * The register the variable is located in.
+	 */
     string      reg;
+    
+	/**
+	 * The memory offset of the variable.
+	 */
     int         memOffset;
     
+	/**
+	 * Default constructor.
+	 */
     Address()
     {
         varName = "";
         loc = MEMORY;
-        reg = -1;
+        reg = "";
         memOffset = -1;
     }
     
+	/**
+	 * Standard copy constructor.
+	 */
     Address(const Address& rhs)
     {
         varName = rhs.varName;
@@ -37,22 +72,112 @@ struct Address {
 
 class AddressTable {
     public:
-        AddressTable();
+    
+		/**
+		 * The default constructor for the address table.
+		 *
+		 * @param rt A reference to the register allocation table.
+		 */
+        AddressTable(RegAllocTable* rt);
+    
+		/**
+		 * Destructor for the address table.
+		 */
         ~AddressTable();
         
+		/**
+		 * Adds a variable to the address table and sets the variable's 
+		 * location to the provided register.
+		 * 
+		 * @param name The name of the variable.
+		 * @param reg The name of the register the variable is in.
+		 */
         void Add(string name, string reg);
+    
+		/**
+		 * Adds a variable to the address table and sets the variable's 
+		 * location to the provided memory offset.
+		 * 
+		 * @param name The name of the variable.
+		 * @param offset The memory offset the variable is in.
+		 */
         void Add(string name, int offset);
+    
+		/**
+		 * Adds a variable to the address table and sets the variable's
+		 * location to both the provided register and memory offset.
+		 * 
+		 * @param name The name of the variable.
+		 * @param reg The name of the register the variable is in.
+		 * @param offset The memory offset the variable is in.
+		 */
         void Add(string name, string reg, int offset);
         
+		/**
+		 * Removes the record for the given variable from the address table. In
+		 * essence, by calling this function, it is assumed that the variable 
+		 * will never again be used in the program.
+		 *
+		 * @param name The name of the variable to remove from the table.
+		 */
         void Remove(string name);
         
+        /**
+         * This function looks up the variable of the given name and then 
+         * returns a pointer to the record for that variable.
+         *
+         * @param name The name of the variable in the table to look up.
+         * @return A pointer to the address table record for the requested variable.
+         */
         Address* GetAddress(string name);        
         
+        /**
+         * This function is responsible for loading variables from memory into
+         * a register.
+         *
+         * @param name The name of the variable to load
+         * @return The name of the register the variable has been loaded into
+         */
+        string Load(string name);
+        
+        /**
+         * This function is responsible for storing the given variable back into
+         * memory (no effect will occur if the provided variable is only 
+         * currently in memory and not in a register).
+         *
+         * @param name The name of the variable to store back to memory.
+         */
+        void Store(string name);
+        
+        /**
+         * Clears out all the records in the address table.
+         */
         void clear();
+        
+        /**
+         * Returns the number of records in the address table.
+         *
+         * @return The number of records in the address table.
+         */
         int  size();
         
+        /**
+         * This function is intended for debugging uses only. This function 
+         * prints out the current contents of the address table.
+         */
+        void Print();
+        
     private:
+    	/**
+    	 * The internal data structure for the table.
+    	 */
         map<string, Address*> Variables;
+        
+        /**
+         * A reference to the register allocation table owned by the tac2mips 
+         * object which also owns this object.
+         */
+        RegAllocTable* regtab;
 };
 
 #endif // ! ADDRESSTABLE_H

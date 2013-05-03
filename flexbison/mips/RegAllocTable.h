@@ -9,8 +9,6 @@
 #include <iostream>
 #include <iomanip>
 
-#include "AddressTable.h"
-
 using namespace std;
 
 struct Register {
@@ -58,7 +56,7 @@ struct Register {
 
 class RegAllocTable {
     public:
-        RegAllocTable(int maxRegisters, string regPrefix, AddressTable* at);
+        RegAllocTable(int maxRegisters, string regPrefix);
         ~RegAllocTable();
         
         /**
@@ -168,12 +166,6 @@ class RegAllocTable {
          * Outputs the MIPS code to swap a spill register with a real register.
          */
         void SwapRegToSpill(int rindex, int sindex);
-        
-        /**
-         * A reference to the address table. This should never be deleted since
-         * the tac2mips class is the owner of the Address Table.
-         */
-        AddressTable* addtab;
         
         /**
          * Collection of real registers.

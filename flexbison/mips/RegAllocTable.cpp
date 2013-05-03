@@ -1,12 +1,11 @@
 #include "RegAllocTable.h"
 
-RegAllocTable::RegAllocTable(int maxRegisters, string regPrefix, AddressTable* at)
+RegAllocTable::RegAllocTable(int maxRegisters, string regPrefix)
     : numSpills(20)
     , width(8)
 {
     size = maxRegisters;
     prefix = regPrefix;
-    addtab = at;
     
     registers = new Register[size];
     spills = new Register[numSpills];

@@ -6,9 +6,12 @@ LIBS=
 all: TAC_Parser.o TAC_Scanner.o RegAllocTable.o AddressTable.o tac2mips.o main.o
 	g++ -o tac2mips main.o tac2mips.o RegAllocTable.o AddressTable.o TAC_Parser.o TAC_Scanner.o $(LIBS)
 
-tests: SpillTest.o RegAllocTable.o AddressTable.o
+testreg: SpillTest.o RegAllocTable.o AddressTable.o
 	g++ -o spill SpillTest.o RegAllocTable.o AddressTable.o
-    
+
+testaddr: AddressTest.o AddressTable.o
+	g++ -o addr AddressTest.o AddressTable.o
+
 %.o: %.cpp
 	g++ $(CXX_FLAGS) -c -o $@ $<
 
