@@ -3,6 +3,7 @@
 RegAllocTable::RegAllocTable(int maxRegisters, string regPrefix)
     : numSpills(20)
     , width(8)
+    , UpdatedEvent(this)
 {
     size = maxRegisters;
     prefix = regPrefix;
@@ -106,6 +107,8 @@ std::string RegAllocTable::GetRegister(std::string name, bool &isNew)
     isNew = true;
     incrementLifes();
     
+    UpdatedEvent.FireEvent(NULL);
+    
     return regName;
 }
 
@@ -142,6 +145,8 @@ void RegAllocTable::FreeRegister(std::string name)
                 spills[ctr].owner = "";
                 spills[ctr].lifespan = 0;
                 
+                UpdatedEvent.FireEvent(NULL);
+                
                 return; //return since no spills need to move to spills
             }
             else
@@ -160,6 +165,7 @@ void RegAllocTable::FreeRegister(std::string name)
             if(spills[i].isOwned)
             {
                 SpillToReg(i, ctr);
+                UpdatedEvent.FireEvent(NULL);
                 return;
             }
         }
@@ -169,6 +175,23 @@ void RegAllocTable::FreeRegister(std::string name)
 int RegAllocTable::GetSpillSize()
 {
     return (numSpills * 4);
+}
+
+string RegAllocTable::Lookup(string name)
+{
+	for(int i = 0; i < size; ++i)
+	{
+		if(registers[i].isOwned && registers[i].owner == name)
+			return registers[i].name;
+	}
+	
+	for(int i = 0; i < numSpills; ++i)
+	{
+		if(spills[i].isOwned && spills[i].owner == name)
+			return spills[i].name;
+	}
+	
+	return "";
 }
 
 void RegAllocTable::SetFstream(fstream *fs)

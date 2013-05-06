@@ -3,6 +3,7 @@
 AddressTable::AddressTable(RegAllocTable* rt)
 {
 	regtab = rt;
+	regtab->UpdatedEvent.Subscribe(Update, this);
 }
 
 AddressTable::~AddressTable()
@@ -105,6 +106,27 @@ void AddressTable::Store(string name)
 	}
 }
 
+void AddressTable::Update(RegAllocTable *src, void *data, void *context)
+{
+	AddressTable* add = static_cast<AddressTable*>(context);
+	
+	add->UpdateRegisters(src);
+}
+
+void AddressTable::UpdateRegisters(RegAllocTable *src)
+{
+	for(auto it = Variables.begin(); it != Variables.end(); ++it)
+	{
+		if(it->second->loc != MEMORY)
+		{
+			string reg = src->Lookup(it->second->varName);
+			
+			if(reg != "" && reg != it->second->reg)
+				it->second->reg = reg;
+		}
+	}
+}
+        
 void AddressTable::clear()
 {
     Variables.clear();

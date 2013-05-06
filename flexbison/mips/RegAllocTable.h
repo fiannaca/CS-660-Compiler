@@ -9,7 +9,10 @@
 #include <iostream>
 #include <iomanip>
 
+#include "Event.h"
+
 using namespace std;
+using namespace GoFPatterns;
 
 struct Register {
     /**
@@ -103,6 +106,22 @@ class RegAllocTable {
          * allocated for the spill registers.
          */
         int GetSpillSize();
+        
+        /**
+         * This class implements the observable pattern so that the Address Table
+         * can update the register locations it stores whenever possible changes 
+         * to the register locations have occured.
+         */
+        Event<RegAllocTable, void*> UpdatedEvent;
+        
+        /**
+         * This function lookups up the register location of the given name.
+         *
+         * @param name The name of a variable or temp register to lookup
+         * @return The register which is owned by the given name, or an empty
+         *         string if that name doesn't own a register
+         */
+        string Lookup(string name);
         
         /**
          * Used to set the pointer to the output stream which must be created

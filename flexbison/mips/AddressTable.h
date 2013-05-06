@@ -151,6 +151,26 @@ class AddressTable {
         void Store(string name);
         
         /**
+         * This static function receives the event notification from the register
+         * allocation table and fires the update function for the provided
+         * address table context object
+         *
+         * @param src A reference to the register allocation table
+         * @param data This will ALWAYS be a null pointer
+         * @param context This is a pointer to the AddressTable object
+         */
+        static void Update(RegAllocTable *src, void *data, void *context);
+        
+        /**
+         * This function is responsible for updating the register locations stored
+         * in the address table for any variables currently in a register after 
+         * any operations which require register changes
+         *
+         * @param src A reference to the register allocation table
+         */
+        void UpdateRegisters(RegAllocTable *src);
+        
+        /**
          * Clears out all the records in the address table.
          */
         void clear();
@@ -164,6 +184,8 @@ class AddressTable {
 		
 		/**
 		 * Sets the output stream.
+		 *
+		 * @param fs A reference to the filestream.
 		 */
 		void SetFstream(fstream* fs);
         
