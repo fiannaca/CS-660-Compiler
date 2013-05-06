@@ -9,8 +9,8 @@ all: TAC_Parser.o TAC_Scanner.o RegAllocTable.o AddressTable.o tac2mips.o main.o
 testreg: SpillTest.o RegAllocTable.o AddressTable.o
 	g++ -o spill SpillTest.o RegAllocTable.o AddressTable.o
 
-testaddr: AddressTest.o AddressTable.o
-	g++ -o addr AddressTest.o AddressTable.o
+testaddr: AddressTest.o AddressTable.o RegAllocTable.o 
+	g++ -o addr AddressTest.o AddressTable.o RegAllocTable.o 
 
 %.o: %.cpp
 	g++ $(CXX_FLAGS) -c -o $@ $<

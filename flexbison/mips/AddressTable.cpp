@@ -56,27 +56,53 @@ Address* AddressTable::GetAddress(string name)
 
 string AddressTable::Load(string name)
 {
+	bool isNew = false;
 	auto it = Variables.find(name);
 	
 	if(it != Variables.end())
 	{
-		MemLocation loc = it->second.loc;
+		MemLocation loc = it->second->loc;
 		if(loc == MEMORY)
 		{
 			//The variable is in memory and needs to be pulled in
-			reg = regtab->GetRegister(name);
+			string reg = regtab->GetRegister(name, isNew);
+			it->second->reg = reg;
+			(*fout) << "\tlw " << reg << ", " << it->second->memOffset << "($sp)" << endl;
 			
+			it->second->loc = BOTH;
+			
+			return reg;
 		}
 		else
 		{
-			
+			//Spilling may have occured - i.e., the register may have changed
+			// Therefore, always call GetRegister in order to ensure that you
+			// output the correct register
+			it->second->reg = regtab->GetRegister(name, isNew);
+			return it->second->reg;
 		}
 	}
 }
    
 void AddressTable::Store(string name)
 {
-
+	auto it = Variables.find(name);
+	
+	if(it != Variables.end())
+	{
+		MemLocation loc = it->second->loc;
+		if(loc != MEMORY)
+		{
+			(*fout) << "\tsw " << it->second->reg 
+				 	<< ", " << it->second->memOffset << "($sp)" << endl;
+			
+			//Release the register
+			regtab->FreeRegister(name);
+			
+			it->second->reg = "";
+			it->second->loc = MEMORY;
+		}
+	}
 }
 
 void AddressTable::clear()
