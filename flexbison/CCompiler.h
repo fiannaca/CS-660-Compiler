@@ -119,7 +119,9 @@ class CCompiler
         int structVarCount;
         string currentStorageType;
         string currentTypeQual; 
+	string currentFunctionName; 
         AST * source_ast;
+	bool isFuncDef; 
         
         /**
          * Should check the type of the symbol with the input key and insert any

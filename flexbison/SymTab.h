@@ -88,7 +88,9 @@ class SymTab
              CCompiler* driver;
              void error(string msg);
              void warning(string msg);
-
+	     list<string> funcNames;
+	     map<string, AVLTree<SymbolInfo> > funcSymMap; 
+	     map<string,int> funOffMap;
 	 public:
              SymTab(CCompiler* ref);
              SymTab()
@@ -116,6 +118,15 @@ class SymTab
                symTable.pop_back(); 
              }
 	     }
+	     void map_function_vars(const string &funcName)
+	     {
+		if ( currentLevel >=  0 )  
+		{
+		   funcSymMap[funcName] = symTable[currentLevel];
+		   funOffMap[funcName] = offsetMap[currentLevel];
+		}
+	     }
+	    
 	     void insert_symbol(SymbolInfo symbolInfo)
 	     {
 	          int level; 
@@ -201,7 +212,30 @@ class SymTab
 	     {
 	          symTable[level].Dump();  
 	     }  
-             
+             list<SymbolInfo> GetGlobals()
+	     {
+		  return symTable[0].GetElements();
+	     }
+	     list<SymbolInfo> GetLocals(string &funcName)
+	     {
+		  return funcSymMap[funcName].GetElements();
+	     }
+             bool IsGlobal(string &symName)
+	     {
+		 SymbolInfo inf; 
+		 int level ; 
+		 bool exists =  false;
+		 inf.symbol_name = symName ; 
+		 exists = find_symbol(inf,level);
+		 return ( exists && ( level == 0 ));
+		 
+	     } 
+	     int GetFuncOffset(string &funcName)
+	     {
+		 
+		return funOffMap[funcName] ;
+	     }
+            
 };
 
 #endif 

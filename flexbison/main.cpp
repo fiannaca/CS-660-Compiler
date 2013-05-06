@@ -66,12 +66,12 @@ int main(int argc, char** argv)
 
     //Run the parsing
     int retValue =  driver.parse(fname);
-    
+    AST::symbolTable = &(driver.SymbolTable);
     //Get ready for 3AC generation
     AST::tacGen.WriteComment("");
     AST::tacGen.WriteComment("3AC For the Input Code File: " + fname);
     AST::tacGen.WriteComment("");
-    
+    GenGlobals(driver.SymbolTable,AST::tacGen);
     //Walk the AST to generate 3AC
     driver.source_ast->Visit();
     

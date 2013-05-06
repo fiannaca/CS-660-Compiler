@@ -744,19 +744,39 @@ string TAC_Generator::GetFVarName()
     return ss.str();
 }
 
-void TAC_Generator::Fetch(string varName , SymTab symbolTable , string targetTemp)
+void TAC_Generator::Fetch(string varName , SymTab *symbolTable , string targetTemp)
 {
     /**
          TODO Add code to fetch the symbole for the symbol table 
           
          // Assume all variables are GLOBAL for the time being 
     */
-              
-     toTAC(MOV ,(void*) &targetTemp ,(void *) &varName); 
+     if ( symbolTable->IsGlobal(varName))        
+        toTAC(MOV  , (void *) &varName ,(void*) &targetTemp); 
 
 
 
 } 
+
+void GenGlobals (  SymTab &symTab ,  TAC_Generator &tacGen)
+{
+     list<SymbolInfo> globalItems; 
+     string symName;
+     long symSize;
+     globalItems =  symTab.GetGlobals();	
+	 list<SymbolInfo>::iterator items = globalItems.begin();
+	 while ( items != globalItems.end())
+	 {
+	   
+	       
+	       symName = items->symbol_name;
+	       symSize = items->symbolType->GetSize();
+	       cout<< " \n Name = " << symName << " Size = " << symSize;
+	       tacGen.toTAC(TAC_Generator::GLOBAL,(void *)&symName ,(void *)symSize );
+	       items++;
+	 }
+	
+}
 
 
 

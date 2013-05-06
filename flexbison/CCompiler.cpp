@@ -26,7 +26,8 @@ CCompiler::CCompiler()
     allocateSymbol(); 
     anonymousEnum = false;      
     set_insert_mode(true);
-       
+    isFuncDef = true;  
+    currentFunctionName= "" ; 
 }
 
 CCompiler::~CCompiler()
@@ -80,6 +81,7 @@ void CCompiler::enterScope()
 void CCompiler::leaveScope()
 {
     //Call the symtab function for leaving a scope
+    SymbolTable.map_function_vars(currentFunctionName);
     SymbolTable.LeaveScope(); 
 }
 
