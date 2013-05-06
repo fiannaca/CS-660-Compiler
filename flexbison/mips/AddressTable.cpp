@@ -56,7 +56,22 @@ Address* AddressTable::GetAddress(string name)
 
 string AddressTable::Load(string name)
 {
+	auto it = Variables.find(name);
 	
+	if(it != Variables.end())
+	{
+		MemLocation loc = it->second.loc;
+		if(loc == MEMORY)
+		{
+			//The variable is in memory and needs to be pulled in
+			reg = regtab->GetRegister(name);
+			
+		}
+		else
+		{
+			
+		}
+	}
 }
    
 void AddressTable::Store(string name)
@@ -72,6 +87,11 @@ void AddressTable::clear()
 int  AddressTable::size()
 {
     return Variables.size();
+}
+
+void AddressTable::SetFstream(fstream* fs)
+{
+	fout = fs;
 }
 
 void AddressTable::Print()

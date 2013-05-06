@@ -2,6 +2,7 @@
 #define ADDRESSTABLE_H
 
 #include <string>
+#include <fstream>
 #include <iostream>
 #include <iomanip>
 #include <map>
@@ -160,6 +161,11 @@ class AddressTable {
          * @return The number of records in the address table.
          */
         int  size();
+		
+		/**
+		 * Sets the output stream.
+		 */
+		void SetFstream(fstream* fs);
         
         /**
          * This function is intended for debugging uses only. This function 
@@ -178,6 +184,11 @@ class AddressTable {
          * object which also owns this object.
          */
         RegAllocTable* regtab;
+		
+		/**
+		 * The output stream to print MIPS to.
+		 */
+		fstream *fout;
 };
 
 #endif // ! ADDRESSTABLE_H
