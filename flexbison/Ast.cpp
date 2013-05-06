@@ -8,7 +8,8 @@ list<string> AST::tempStack;
 string AST::currentTemp="";
 string AST::returnLabel="";
 string AST::lastID="";
-
+string AST::currentFunction="";
+SymTab* AST::symbolTable=NULL;
 
 ///////////////////////////////////////////////////////////////////////////////
 // BEGIN: AstPrimaryExpr  /////////////////////////////////////////////////////
@@ -82,7 +83,7 @@ void AstPrimaryExpr::Visit()
 
              currentLabel =TAC_Generator::GetIVarName();
              AST::tempStack.push_back(this->id->str); 
-            // AST::tacGen.Fetch(this->id->str,dummy ,currentLabel);   
+             AST::tacGen.Fetch(this->id->str,AST::symbolTable ,currentLabel);   
              AST::lastID = this->id->str;
 
                        
@@ -730,6 +731,7 @@ void AstConstant::Visit()
                 ss << "Value: " << ival;
                 string lbl = tacGen.GetIVarName();
                 tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void*)&lbl, (void*)ival);
+                AST::tempStack.push_back(lbl);
             }
             break;
     

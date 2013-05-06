@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <string>
 #include <fstream>
+#include <list>
 
 /**
  * Allows for variability in the number of children a given node in the tree can 
@@ -54,7 +55,7 @@ class AVLTree
     };
     
     Node *root; /**< Root node of the AVL tree */
-      
+    list<DataItem> elements;   
     private:
         /**
          * Performs a single rotation in the indicated direction and about the
@@ -168,6 +169,19 @@ class AVLTree
                 Dump(node->children[RIGHT]);  
             }
         }
+	
+	list<DataItem> GetElements(Node *node)
+	{
+	    
+	    if( node != NULL )
+            {
+                cout<< node->data;
+		elements.push_back(node->data); 
+                GetElements(node->children[LEFT]);
+                GetElements(node->children[RIGHT]);  
+            }
+	    return elements;
+	}
          
     public:
         /**
@@ -328,7 +342,15 @@ class AVLTree
         void Dump()
         {
             Dump(this->root); 
-        }    	           	 
+        }    
+	
+	list<DataItem> GetElements()
+	{
+	    elements.clear();
+	    return GetElements(this->root);
+	
+	    
+	}	           	 
 };
 
 #endif 

@@ -10,6 +10,9 @@
 #include "SymTab.h" 
 using namespace std;
 
+
+
+
 /**
  * A class for generating three address code. The TAC_Generator class is 
  * responsible for generating well-formatted three address code (3AC or TAC). 
@@ -209,7 +212,7 @@ class TAC_Generator
          * @param commentStart String to be place at the beginning of every comment
          */
        
-        void Fetch(string varName , SymTab symbolTable , string targetTemp);  
+        void Fetch(string varName , SymTab *symbolTable , string targetTemp);  
 
         void SetCommentStart(string commentStart);
 
@@ -309,6 +312,7 @@ class TAC_Generator
         string CurrentLabel;
 };
 
+extern void GenGlobals (  SymTab &symTab ,  TAC_Generator &tacGen);
 
 #endif // ! TAC_GENERATOR_H_
 

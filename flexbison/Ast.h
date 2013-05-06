@@ -3,6 +3,7 @@
 
 #include <string>
 #include <sstream>
+#include "SymTab.h"
 #include "Visualizer.h"
 #include "Type.h"
 #include "TAC_Generator.h"
@@ -85,6 +86,8 @@ class AST
         static string returnLabel; /**< This is for storing the string id of any temporary result register that may be created during 3AC generation */
         static list<string> tempStack; /* stack to hold the temporay variables used */    
         static string lastID;   
+	static SymTab *symbolTable;
+	static string currentFunction;
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
@@ -1054,30 +1057,6 @@ class AstCompound;
 class AstDeclList;
 class AstDecl;
 
-class AstFuncDef: public AST 
-{
-	AstDeclarator *decl;
-	AstCompound *comp;
-	AstDeclList *dlist;
-	AstDecSpeci *speci ; 
-	AstDecl *dec; 
-	public:
-		AstFuncDef( AstDeclarator *decl , AstCompound *comp , AstDeclList *dlist, AstDecSpeci *speci)
-		{
-			this->decl = decl ;
-			this->comp = comp;
-			this->dlist = dlist;
-			this->speci = speci;
-                        this->setLabel("AstFuncDef");
-  
-		}
-		void Visit() 
-		{
-			VisVist(4 , this,decl ,comp , dlist,speci);
-
-		}
-	
-};
 
 class AstDeclarationList : public AST 
 {
@@ -1233,7 +1212,15 @@ public:
 	   VisVist(6,this,id,ddecl,decl,exp,pList,idList);	
            VisAddIntNode(this,type); 
 	}
-	
+	AstID* GetID()
+	{
+	   return  id;
+	}
+	AstDirectDecl* GetDirectDecl()
+	{
+	  return ddecl;
+	  
+	}
 } ; 
 class AstTypeSpeci;
 class AstDecSpeci: public AST 
@@ -1538,6 +1525,12 @@ public:
 	        this->setLabel("AstDeclarator");
 	
 	}  
+	AstDirectDecl *GetDirectDecl()
+	{
+	   return decl;
+	  
+	}
+	
 	void Visit()
 	{
 		VisVist(2 ,this,  pointer , decl );
@@ -1546,4 +1539,54 @@ public:
 	
 	
 };
+
+class AstFuncDef: public AST 
+{
+	AstDeclarator *decl;
+	AstCompound *comp;
+	AstDeclList *dlist;
+	AstDecSpeci *speci ; 
+	AstDecl *dec; 
+	public:
+		AstFuncDef( AstDeclarator *decl , AstCompound *comp , AstDeclList *dlist, AstDecSpeci *speci)
+		{
+			this->decl = decl ;
+			this->comp = comp;
+			this->dlist = dlist;
+			this->speci = speci;
+                        this->setLabel("AstFuncDef");
+  
+		}
+		string GetFunctionName()
+		{
+		   AstDirectDecl *directDecl;
+		   if ( decl!= NULL )
+		   { 
+		       directDecl = decl->GetDirectDecl();
+		       
+		       while ( directDecl->GetID() == NULL )
+		       {
+			  directDecl = directDecl->GetDirectDecl();
+			   
+		       }
+		       AST::currentFunction = directDecl->GetID()->str;
+		       return directDecl->GetID()->str;
+		   }
+		   
+		  
+		}
+		
+		void Visit() 
+		{
+			string functionName = GetFunctionName();
+			int frameSize = AST::symbolTable->GetFuncOffset(AST::currentFunction);
+			AST::tacGen.toTAC(TAC_Generator::PROCENTRY,(void *)&functionName);
+			AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)frameSize);
+			VisVist(4 , this,speci , decl , dlist, comp );
+                        
+		  
+		}
+	 
+};
+
 #endif 
