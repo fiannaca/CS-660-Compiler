@@ -9,7 +9,7 @@ tac2mips::tac2mips(string filename)
     fname = filename;
     
     int lastindex = fname.find_last_of("."); 
-    outfname = fname.substr(0, lastindex) + ".mips";
+    outfname = fname.substr(0, lastindex) + ".asm";
     
     fout.open(outfname, std::ios_base::out);
     
@@ -43,8 +43,9 @@ void tac2mips::error(const std::string& msg)
     exit(EXIT_FAILURE);
 }
 
-string tac2mips::GetRegister(string name, bool &isNew)
+string tac2mips::GetRegister(string name)
 {
+	bool isNew = false;
 	Address* addr = addtab.Lookup(name);
 	
 	if(addr)
@@ -99,18 +100,51 @@ void tac2mips::AddLabel(std::string name)
 
 void tac2mips::Comment(std::string txt)
 {
-    fout << "#" << txt << endl;
+    fout << "\t#" << txt << endl;
 }
 
-void tac2mips::toMIPS(std::string txt)
+void tac2mips::WS(int lines)
 {
-	fout << "\t" << txt << endl;
+	for(int i = 0; i < lines; i++)
+	{
+		fout << endl;
+	}
+}
+
+void tac2mips::toMIPS(std::string psuedoop)
+{
+	fout << "\t" << psuedoop << endl;
+}
+
+void tac2mips::toMIPS(string opcode, string op1)
+{
+	fout << "\t" << opcode << "\t" << op1 << endl;
+}
+
+void tac2mips::toMIPS(string opcode, string op1, string op2)
+{
+	fout << "\t" << opcode << "\t" << op1 << ", " << op2 << endl;
+}
+
+void tac2mips::toMIPS(string opcode, string op1, string op2, string op3)
+{
+	fout << "\t" << opcode << "\t" << op1 << ", " << op2 << ", " << op3 << endl;
+}
+
+void tac2mips::Macro(string name, string params)
+{
+	fout << "\t" << name << "(" << params << ")" << endl;
+}
+
+void tac2mips::Macro(string name)
+{
+	fout << "\t" << name << endl;
 }
 
 void tac2mips::Label(std::string txt)
 {
 	AddLabel(txt);
-	fout << endl << txt << ":";
+	fout << txt << ":";
 }
 
 

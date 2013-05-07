@@ -70,13 +70,10 @@ class tac2mips {
          *
          * @param tempName The name of the temporary register in the 3AC which 
          *                 needs to be mapped to a real register.
-         * @param isNew    An output ref parameter indicating if the temp register
-         *                 was already mapped to this real register, or if the
-         *                 mapping is new.
          * @return The name of the real register to which the temp register has
          *         been mapped/assigned.
          */
-        std::string GetRegister(std::string tempName, bool &isNew);
+        std::string GetRegister(std::string tempName);
         
 		/**
 		 * Frees a register after when it is no longer live.
@@ -126,11 +123,25 @@ class tac2mips {
         void Comment(std::string txt);
 		
 		/**
+		 * Outputs the specified number of blank lines to the MIPS file in order 
+		 * make the MIPS easier to read.
+		 *
+		 * @param lines The number of blank lines to output
+		 */
+		void WS(int lines = 1);
+		
+		/**
 		 * Adds a line of code to the MIPS file and formats it correctly.
 		 *
-		 * @param txt A MIPS command, i.e. "sw $t0, 0($sp)" 
+		 * @param opcode A MIPS command, i.e. "sw" 
+		 * @param op1 The operand, i.e. "$t0, 0($sp)"
 		 */
-		void toMIPS(std::string txt);
+		void toMIPS(std::string psuedoop);
+		void toMIPS(std::string opcode, std::string op1);
+		void toMIPS(std::string opcode, std::string op1, std::string op2);
+		void toMIPS(std::string opcode, std::string op1, std::string op2, std::string op3);
+		void Macro(std::string name, std::string params);
+		void Macro(std::string name);
 		
 		/**
 		 * Adds a label to the MIPS file and formats it correctly.

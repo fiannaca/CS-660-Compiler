@@ -11,7 +11,13 @@ int main()
     i = 1;
     j = 2;
     
-    k = i + j;
+    k = i + j; //3
+    
+    k = j - i; //1
+    
+    k = i * j; //2
+    
+    k = j / i; //2
     
     return 0;
 }

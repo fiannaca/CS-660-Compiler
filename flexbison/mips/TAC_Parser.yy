@@ -30,6 +30,21 @@ class tac2mips;
 #include "tac2mips.h"
 
 string CurrentFunction = "";
+
+string toString(int i)
+{
+	stringstream ss;
+	ss << i;
+	return ss.str();
+}
+
+string toString(int i, string txt)
+{
+	stringstream ss;
+	ss << i << txt;
+	return ss.str();
+}
+
 }
 
 %token END 0 "EOF"
@@ -56,36 +71,21 @@ commands
 tac_command
     : allocate_list
     	{
-    		//Change the stack pointer after the allocate list is complete
-    		stringstream ss1, ss2, ss3, ss4;
-    		
+    		//Change the stack pointer after the allocate list is complete    		
     		int space = driver.funtab.GetStackSpace(CurrentFunction);
-    		
-    		ss1 << "subu $sp, $sp, " << (space + 4);    		
-    		driver.toMIPS(ss1.str());
-    		
-    		ss2 << "sw $31, " << space << "($sp)";
-    		driver.toMIPS(ss2.str());
-    		
-    		//Apparently MARS doesn't recognize these commands
-    		//driver.toMIPS(".mask 0x80000000, -4");
-    		
-    		//ss3 << ".frame $sp, " << (space + 4) << ", $31";
-    		//driver.toMIPS(ss3.str());
+    		 		
+    		driver.toMIPS("subu", "$sp", "$sp", toString(space + 4));    		
+    		driver.toMIPS("sw", "$31", toString(space, "($sp)"));
     	}    
     | ADD STRING STRING STRING
         {
             //adds $2 and $3 and places the result in $4
-			bool isNew = false;
+            			
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);
 			
-			string reg1 = driver.GetRegister(*$2, isNew);
-			string reg2 = driver.GetRegister(*$3, isNew);
-			string reg3 = driver.GetRegister(*$4, isNew);
-			
-			stringstream ss;
-			ss << "add " << reg3 << " " << reg1 << " " << reg2;
-			
-			driver.toMIPS(ss.str());
+			driver.toMIPS("add", reg3, reg1, reg2);
 			
 			driver.FreeRegister(reg1);
 			driver.FreeRegister(reg2);
@@ -93,16 +93,11 @@ tac_command
     | SUB STRING STRING STRING
         {
             //subtracts $2 and $3 and places the result in $4
-			bool isNew = false;
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);
 			
-			string reg1 = driver.GetRegister(*$2, isNew);
-			string reg2 = driver.GetRegister(*$3, isNew);
-			string reg3 = driver.GetRegister(*$4, isNew);
-			
-			stringstream ss;
-			ss << "sub " << reg3 << " " << reg1 << " " << reg2;
-			
-			driver.toMIPS(ss.str());
+			driver.toMIPS("sub", reg3, reg2, reg1);
 			
 			driver.FreeRegister(reg1);
 			driver.FreeRegister(reg2);
@@ -110,20 +105,13 @@ tac_command
     | MULT STRING STRING STRING
         {
             //multiplies $2 and $3 and places the result in $4
-			bool isNew = false;
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);
 			
-			string reg1 = driver.GetRegister(*$2, isNew);
-			string reg2 = driver.GetRegister(*$3, isNew);
-			string reg3 = driver.GetRegister(*$4, isNew);
-			
-			stringstream ss1, ss2;
-			ss1 << "mult " << reg1 << " " << reg2;
-			
-			driver.toMIPS(ss1.str());
-			
-			ss2 << "mflo " << reg3;
-			
-			driver.toMIPS(ss2.str());
+			driver.toMIPS("mult", reg1, reg2);			
+			driver.toMIPS("mflo", reg3);
 			
 			driver.FreeRegister(reg1);
 			driver.FreeRegister(reg2);
@@ -131,20 +119,13 @@ tac_command
     | DIV STRING STRING STRING
         {
             //divides $2 by $3 and places the result in $4
-			bool isNew = false;
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);
 			
-			string reg1 = driver.GetRegister(*$2, isNew);
-			string reg2 = driver.GetRegister(*$3, isNew);
-			string reg3 = driver.GetRegister(*$4, isNew);
-			
-			stringstream ss1, ss2;
-			ss1 << "div " << reg1 << " " << reg2;
-			
-			driver.toMIPS(ss1.str());
-			
-			ss2 << "mflo " << reg3;
-			
-			driver.toMIPS(ss2.str());
+			driver.toMIPS("div", reg1, reg2);			
+			driver.toMIPS("mflo", reg3);
 			
 			driver.FreeRegister(reg1);
 			driver.FreeRegister(reg2);
@@ -235,22 +216,21 @@ tac_command
         }
     | MOV STRING STRING 
         {
-            //This one does a store (it stores a register into a variable memory 
-            // location)
-            bool isNew = false;
+            //This one does a store (it stores a register into a variable memory location)
+            stringstream ss;
             
-            string reg = driver.GetRegister(*$2, isNew);
+            string reg = driver.GetRegister(*$2);
             
             driver.addtab.Store(reg, *$3);
             
-            //for verifying program correctness
-            stringstream ss, ss1;
-            ss << "print_str(\"The value of " << (*$3) << " is: \")";
-            driver.toMIPS(ss.str());
-            
-            ss1 << "print_int(" << reg << ")";
-            driver.toMIPS(ss1.str());
-            driver.toMIPS("print_newline");
+            ss << "\"The value of " << (*$3) << " is: \"";
+                        
+            driver.WS();
+            driver.Comment("Output the stored value to verify program correctness...");
+            driver.Macro("print_str", ss.str());
+            driver.Macro("print_int", reg);
+            driver.Macro("print_newline");            
+            driver.WS();
         }
     | NEG STRING STRING 
         {
@@ -280,20 +260,16 @@ tac_command
 			driver.Label(*$2);
 			
 			stringstream ss;
-			ss << ".asciiz \"" << (*$3) << "\"";
-			driver.toMIPS(ss.str());
+			ss << "\"" << (*$3) << "\"";
+			driver.toMIPS(".asciiz", ss.str());
         }
     | IMMEDIATE_I STRING STRING
         {
             //load the value of $3 into the temporary $2 (integer)
-			bool isNew = false;
 			
-			string reg = driver.GetRegister(*$2, isNew);
+			string reg = driver.GetRegister(*$2);
 			
-			stringstream ss;
-			ss << "li " << reg << ", " << (*$3);
-			
-			driver.toMIPS(ss.str());
+			driver.toMIPS("li", reg, (*$3));
         }
     | IMMEDIATE_F STRING STRING
         {
@@ -316,7 +292,7 @@ tac_command
 				stringstream ss;
 				ss << "b " << (*$2);
 				
-				driver.toMIPS(ss.str());
+				driver.toMIPS("b", (*$2));
 			}
 			else
 			{
@@ -347,11 +323,14 @@ tac_command
             if((*$2) == "main")
             {
             	driver.funtab.AddFunction(CurrentFunction);
+            	driver.WS();
             	driver.toMIPS(".text");
-            	driver.toMIPS(".globl main");
-            	driver.toMIPS("jal main");
-            	driver.toMIPS("done");
-            	driver.toMIPS(".ent main");
+            	driver.toMIPS(".globl", "main");
+            	driver.WS();
+            	driver.toMIPS("jal", "main");
+            	driver.Macro("done");
+            	driver.WS();
+            	driver.toMIPS(".ent", "main");
             	driver.Label("main");
             }
         }
@@ -367,25 +346,21 @@ tac_command
     | HALT
         {
             //call the 'done' macro to immediately terminate execution
-			driver.toMIPS("done");
+            driver.WS();
+            driver.Comment("Immediately terminating execution");
+			driver.Macro("done");
         }
     | ENDPROC
         {
             //mark the end of a procedure - output the epilog
-    		stringstream ss1, ss2, ss3;
-    		
+            
     		int space = driver.funtab.GetStackSpace(CurrentFunction);
     		
-    		ss2 << "lw $31, " << space << "($sp)";
-    		driver.toMIPS(ss2.str());     
-    		
-    		ss1 << "addu $sp, $sp, " << (space + 4);    		
-    		driver.toMIPS(ss1.str());   
-    		
-    		driver.toMIPS("jr $31");
-    		
-    		ss3 << ".end " << CurrentFunction;
-    		driver.toMIPS(ss3.str());  
+    		driver.toMIPS("lw", "$31", toString(space, "($sp)"));   		
+    		driver.toMIPS("addu", "$sp", "$sp", toString(space + 4));
+    		driver.toMIPS("jr", "$31");
+    		driver.toMIPS(".end", CurrentFunction);  
+        	driver.WS();
         }
     | RETURN
         {

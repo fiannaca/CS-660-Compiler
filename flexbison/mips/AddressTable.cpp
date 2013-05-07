@@ -73,7 +73,7 @@ string AddressTable::Load(string name)
 			//The variable is in memory and needs to be pulled in
 			string reg = regtab->GetRegister(name, isNew);
 			it->second->reg = reg;
-			(*fout) << "\tlw " << reg << ", " << it->second->memOffset << "($sp)" << endl;
+			(*fout) << "\tlw \t" << reg << ", " << it->second->memOffset << "($sp)" << endl;
 			
 			it->second->loc = BOTH;
 			
@@ -100,7 +100,7 @@ string AddressTable::Load(Address* addr)
 		//The variable is in memory and needs to be pulled in
 		string reg = regtab->GetRegister(addr->varName, isNew);
 		addr->reg = reg;
-		(*fout) << "\tlw " << reg << ", " << addr->memOffset << "($sp)" << endl;
+		(*fout) << "\tlw \t" << reg << ", " << addr->memOffset << "($sp)" << endl;
 		
 		addr->loc = BOTH;
 		
@@ -125,7 +125,7 @@ void AddressTable::Store(string name)
 		MemLocation loc = it->second->loc;
 		if(loc != MEMORY)
 		{
-			(*fout) << "\tsw " << it->second->reg 
+			(*fout) << "\tsw \t" << it->second->reg 
 				 	<< ", " << it->second->memOffset << "($sp)" << endl;
 			
 			//Release the register
@@ -149,7 +149,7 @@ void AddressTable::Store(string reg, string name)
 	
 	if(it != Variables.end())
 	{
-		(*fout) << "\tsw " << reg 
+		(*fout) << "\tsw \t" << reg 
 			 	<< ", " << it->second->memOffset << "($sp)" << endl;
 		
 		//Release the register

@@ -264,7 +264,7 @@ void RegAllocTable::RegToSpill(int rindex, int sindex)
     
     //Output MIPS
     (*fout) << ss.str() << endl
-            << "\tsw " << registers[rindex].name << ", " 
+            << "\tsw \t" << registers[rindex].name << ", " 
             << "spills + " << spills[sindex].spillOffset << endl << endl;
          
     //Update the Spill register information
@@ -286,7 +286,7 @@ void RegAllocTable::SpillToReg(int sindex, int rindex)
 
     //Output MIPS
     (*fout) << ss.str() << endl
-            << "\tlw " << registers[rindex].name << ", " 
+            << "\tlw \t" << registers[rindex].name << ", " 
             << "spills + " << spills[sindex].spillOffset << endl << endl;
     
     //Update the real register information
@@ -308,10 +308,10 @@ void RegAllocTable::SwapRegToSpill(int rindex, int sindex)
        
     //Output MIPS
 	(*fout) << ss.str() << endl
-	        << "\tmove $t8, " << registers[rindex].name << endl
-	        << "\tlw " << registers[rindex].name 
+	        << "\tmove \t$t8, " << registers[rindex].name << endl
+	        << "\tlw \t" << registers[rindex].name 
 	        << ", spills + " << spills[sindex].spillOffset << endl
-	        << "\tsw $t8, spills + " << spills[sindex].spillOffset << endl << endl;
+	        << "\tsw \t$t8, spills + " << spills[sindex].spillOffset << endl << endl;
 	     
     //Update the real register information
     string tmp = registers[rindex].owner;
