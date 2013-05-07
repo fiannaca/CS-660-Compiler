@@ -48,18 +48,66 @@ tac_command
     : ADD STRING STRING STRING
         {
             //adds $2 and $3 and places the result in $4
+			bool isNew = false;
+			
+			string reg1 = driver.GetRegister($2, isNew);
+			string reg2 = driver.GetRegister($3, isNew);
+			string reg3 = driver.GetRegister($4, isNew);
+			
+			stringstream ss;
+			ss << "add " << reg3 << " " << reg1 << " " << reg2;
+			
+			driver.toMIPS(ss.str());
         }
     | SUB STRING STRING STRING
         {
             //subtracts $2 and $3 and places the result in $4
+			bool isNew = false;
+			
+			string reg1 = driver.GetRegister($2, isNew);
+			string reg2 = driver.GetRegister($3, isNew);
+			string reg3 = driver.GetRegister($4, isNew);
+			
+			stringstream ss;
+			ss << "sub " << reg3 << " " << reg1 << " " << reg2;
+			
+			driver.toMIPS(ss.str());
         }
     | MULT STRING STRING STRING
         {
             //multiplies $2 and $3 and places the result in $4
+			bool isNew = false;
+			
+			string reg1 = driver.GetRegister($2, isNew);
+			string reg2 = driver.GetRegister($3, isNew);
+			string reg3 = driver.GetRegister($4, isNew);
+			
+			stringstream ss1, ss2;
+			ss1 << "mult " << reg1 << " " << reg2;
+			
+			driver.toMIPS(ss1.str());
+			
+			ss2 << "mflo " << reg3;
+			
+			driver.toMIPS(ss2.str());
         }
     | DIV STRING STRING STRING
         {
             //divides $2 by $3 and places the result in $4
+			bool isNew = false;
+			
+			string reg1 = driver.GetRegister($2, isNew);
+			string reg2 = driver.GetRegister($3, isNew);
+			string reg3 = driver.GetRegister($4, isNew);
+			
+			stringstream ss1, ss2;
+			ss1 << "div " << reg1 << " " << reg2;
+			
+			driver.toMIPS(ss1.str());
+			
+			ss2 << "mflo " << reg3;
+			
+			driver.toMIPS(ss2.str());
         }
     | SHIFTL STRING STRING STRING
         {
@@ -172,22 +220,53 @@ tac_command
     | STR STRING STRING
         {
             //associate string $3 with label $2
+			
+			//TODO This needs to be moved into the data section
+			driver.Label($2);
+			
+			stringstream ss;
+			ss << ".asciiz \"" << $3 << "\"";
+			driver.toMIPS(ss.str());
         }
     | IMMEDIATE_I STRING STRING
         {
             //load the value of $3 into the temporary $2 (integer)
+			bool isNew = false;
+			
+			string reg = driver.GetRegister($2);
+			
+			stringstream ss;
+			ss << "li " << reg << $3;
+			
+			driver.toMIPS(ss.str());
         }
     | IMMEDIATE_F STRING STRING
         {
             //load the value of $3 into the temporary $2 (float)
+			
+			//TODO This is probably the exact same as IMMEDIATE_I
         }
     | LABEL STRING 
         {
             //create a label $2
+			driver.Label($2);
         }
     | BR STRING
         {
             //branch to label $2
+			
+			//TODO This check probably isn't valid and may need to be removed later
+			if(LabelExists($2))
+			{
+				stringstream ss;
+				ss << "b " << $2;
+				
+				driver.toMIPS(ss.str());
+			}
+			else
+			{
+				driver.error("Attempted to branch to an unknown label");
+			}
         }
     | ARGS STRING
         {
@@ -220,7 +299,8 @@ tac_command
         }
     | HALT
         {
-            //immediately terminate execution
+            //call the 'done' macro to immediately terminate execution
+			driver.toMIPS("done");
         }
     | ENDPROC
         {

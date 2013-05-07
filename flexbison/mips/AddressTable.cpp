@@ -50,9 +50,14 @@ void AddressTable::Remove(string name)
     Variables.erase(name);
 }
 
-Address* AddressTable::GetAddress(string name)
+Address* AddressTable::Lookup(string name)
 {
-    return Variables[name];
+	auto it = Variables.find(name);
+	
+	if(it != Variables.end())
+		return it->second;
+	else
+		return NULL;
 }
 
 string AddressTable::Load(string name)
@@ -84,7 +89,33 @@ string AddressTable::Load(string name)
 		}
 	}
 }
-   
+
+string AddressTable::Load(Address* addr)
+{
+	bool isNew = false;
+	
+	MemLocation loc = addr->loc;
+	if(loc == MEMORY)
+	{
+		//The variable is in memory and needs to be pulled in
+		string reg = regtab->GetRegister(name, isNew);
+		addr->reg = reg;
+		(*fout) << "\tlw " << reg << ", " << addr->memOffset << "($sp)" << endl;
+		
+		addr->loc = BOTH;
+		
+		return reg;
+	}
+	else
+	{
+		//Spilling may have occured - i.e., the register may have changed
+		// Therefore, always call GetRegister in order to ensure that you
+		// output the correct register
+		addr->reg = regtab->GetRegister(name, isNew);
+		return addr->reg;
+	}
+}
+  
 void AddressTable::Store(string name)
 {
 	auto it = Variables.find(name);

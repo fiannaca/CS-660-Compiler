@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <fstream>
 #include <ctime>
+#include <set>
 
 #include "TAC_Parser.hpp"
 #include "RegAllocTable.h"
@@ -76,9 +77,31 @@ class tac2mips {
          */
         std::string GetRegister(std::string tempName, bool &isNew);
         
+		/**
+		 * Frees a register after when it is no longer live.
+		 *
+		 * @param name The name of the owner of a register which needs to be freed
+		 */
+		void FreeRegister(std::string name);
+		
         RegAllocTable regtab; /**< The register allocation table */
         AddressTable addtab; /**< The address table */
         
+		/**
+		 * A collection of all of the labels in the MIPS output
+		 */
+		set<string> labels;
+		
+		/**
+		 * Checks if a label exists
+		 */
+		bool LabelExists(std::string name);
+		
+		/**
+		 * Adds a label to the collection of labels
+		 */
+		void AddLabel(std::string name);
+		
         /**
          * Outputs the beginning of the MIPS file. This includes items like an
          * include directive to include the macros file which is used for 
@@ -93,6 +116,20 @@ class tac2mips {
          * @param txt The comment text to output.
          */
         void Comment(std::string txt);
+		
+		/**
+		 * Adds a line of code to the MIPS file and formats it correctly.
+		 *
+		 * @param txt A MIPS command, i.e. "sw $t0, 0($sp)" 
+		 */
+		void toMIPS(std::string txt);
+		
+		/**
+		 * Adds a label to the MIPS file and formats it correctly.
+		 *
+		 * @param txt A MIPS label to output, i.e. "spills"
+		 */
+		void Label(std::string txt);
 };
 
 #endif // ! TAC2MIPS_H

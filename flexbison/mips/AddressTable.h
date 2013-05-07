@@ -125,12 +125,16 @@ class AddressTable {
         
         /**
          * This function looks up the variable of the given name and then 
-         * returns a pointer to the record for that variable.
+         * returns a pointer to the record for that variable. This function can
+		 * also be used to determine if a string refers to a variable or a temp
+		 * register. If the return value is NULL, then the string passed in refers 
+		 * to a temp register since the string is not a name of a variable in the
+		 * table.
          *
          * @param name The name of the variable in the table to look up.
          * @return A pointer to the address table record for the requested variable.
          */
-        Address* GetAddress(string name);        
+        Address* Lookup(string name);        
         
         /**
          * This function is responsible for loading variables from memory into
@@ -139,7 +143,16 @@ class AddressTable {
          * @param name The name of the variable to load
          * @return The name of the register the variable has been loaded into
          */
-        string Load(string name);
+        string Load(string name);     
+        
+        /**
+         * This function is responsible for loading variables from memory into
+         * a register.
+         *
+         * @param addr A reference to the address struct of the variable to load
+         * @return The name of the register the variable has been loaded into
+         */
+        string Load(Address* addr);
         
         /**
          * This function is responsible for storing the given variable back into

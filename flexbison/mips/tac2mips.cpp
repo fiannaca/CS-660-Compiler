@@ -42,9 +42,24 @@ void tac2mips::error(const std::string& msg)
     exit(EXIT_FAILURE);
 }
 
-string tac2mips::GetRegister(string tempName, bool &isNew)
+string tac2mips::GetRegister(string name, bool &isNew)
 {
-    return regtab.GetRegister(tempName, isNew);
+	Address* addr = addtab.Lookup(name);
+	
+	if(addr)
+		return addtab.Load(addr);
+	else
+		return regtab.GetRegister(name, isNew);
+}
+
+void tac2mips::FreeRegister(std::string name)
+{
+	Address* addr = addtab.Lookup(name);
+	
+	if(addr)
+		addtab.Store(name);
+	else
+		regtab.FreeRegister(name);
 }
 
 void tac2mips::OutputPreamble()
@@ -66,9 +81,35 @@ void tac2mips::OutputPreamble()
          << "spills:\t.space " << regtab.GetSpillSize() << endl << endl;
 }
 
+bool tac2mips::LabelExists(std::string name)
+{
+	auto it = labels.find(name);
+	
+	if(it != labels.end())
+		return true;
+	
+	return false;
+}
+
+void tac2mips::AddLabel(std::string name)
+{
+	labels.insert(name);
+}
+
 void tac2mips::Comment(std::string txt)
 {
     fout << "#" << txt << endl;
+}
+
+void tac2mips::toMIPS(std::string txt)
+{
+	fout << "\t" << txt << endl;
+}
+
+void tac2mips::Label(std::string txt)
+{
+	AddLabel(txt);
+	fout << endl << txt << ":";
 }
 
 
