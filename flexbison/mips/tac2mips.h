@@ -12,6 +12,7 @@
 #include "TAC_Parser.hpp"
 #include "RegAllocTable.h"
 #include "AddressTable.h"
+#include "FunctionTable.h"
 
 //! Macro defining the scanner's lex function
 #define YY_DECL                                     \
@@ -86,6 +87,13 @@ class tac2mips {
 		
         RegAllocTable regtab; /**< The register allocation table */
         AddressTable addtab; /**< The address table */
+        
+        /** 
+         * A table for tracking functions and the associated information for 
+         * each function such as the required stack space for the variables in 
+         * the function and the parameters to the function.
+         */
+        FunctionTable funtab; 
         
 		/**
 		 * A collection of all of the labels in the MIPS output

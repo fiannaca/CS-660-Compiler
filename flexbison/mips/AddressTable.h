@@ -164,6 +164,17 @@ class AddressTable {
         void Store(string name);
         
         /**
+         * This function stores the value of a register into a variable in memory.
+         * In addition, this requires that if the variable was already in a register,
+         * the register must be freed and the location of the variable must be 
+         * set to MEMORY.
+         *
+         * @param reg The register to store to the variable
+         * @param name The variable name to store a value to
+         */
+        void Store(string reg, string name);
+        
+        /**
          * This static function receives the event notification from the register
          * allocation table and fires the update function for the provided
          * address table context object

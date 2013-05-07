@@ -17,9 +17,9 @@
 #
 # Prints an integer (either a register or an immediate)
 #
-	.macro print_int (%immediate)
+	.macro print_int (%val)
 	li $v0, 1
-	add $a0, $zero, %immediate
+	add $a0, $zero, %val
 	syscall
 	.end_macro
 
@@ -28,13 +28,25 @@
 #
 	.macro print_str (%str)
 	.data
-strlab:	.asciiz %str
+stringlabel:	.asciiz %str
 	.text
 	li $v0, 4
-	la $a0, strlab
+	la $a0, stringlabel
 	syscall
 	.end_macro
-	
+
+#
+# Prints a newline
+#
+	.macro print_newline
+	.data
+nl:	.asciiz "\n"
+	.text
+	li $v0, 4
+	la $a0, nl
+	syscall	
+	.end_macro
+
 #
 # Prints a function prolog
 #

@@ -1,10 +1,10 @@
-YACC_FLAGS= --skeleton=lalr1.cc --defines --debug
-FLEX_FLAGS= --debug --warn --nodefault --noyywrap --batch --header-file=TAC_Scanner.h
+YACC_FLAGS= --skeleton=lalr1.cc --defines
+FLEX_FLAGS= --warn --nodefault --noyywrap --batch --header-file=TAC_Scanner.h
 CXX_FLAGS= -std=c++0x -g
 LIBS=
 
-all: TAC_Parser.o TAC_Scanner.o RegAllocTable.o AddressTable.o tac2mips.o main.o
-	g++ -o tac2mips main.o tac2mips.o RegAllocTable.o AddressTable.o TAC_Parser.o TAC_Scanner.o $(LIBS)
+all: TAC_Parser.o TAC_Scanner.o RegAllocTable.o AddressTable.o FunctionTable.o tac2mips.o main.o
+	g++ -o tac2mips main.o tac2mips.o RegAllocTable.o AddressTable.o FunctionTable.o TAC_Parser.o TAC_Scanner.o $(LIBS)
 
 testreg: SpillTest.o RegAllocTable.o AddressTable.o
 	g++ -o spill SpillTest.o RegAllocTable.o AddressTable.o

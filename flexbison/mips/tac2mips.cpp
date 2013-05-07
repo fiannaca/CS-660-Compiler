@@ -14,6 +14,7 @@ tac2mips::tac2mips(string filename)
     fout.open(outfname, std::ios_base::out);
     
     regtab.SetFstream(&fout);
+    addtab.SetFstream(&fout);
     
     this->OutputPreamble();
 }

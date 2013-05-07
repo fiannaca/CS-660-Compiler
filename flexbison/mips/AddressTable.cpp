@@ -98,7 +98,7 @@ string AddressTable::Load(Address* addr)
 	if(loc == MEMORY)
 	{
 		//The variable is in memory and needs to be pulled in
-		string reg = regtab->GetRegister(name, isNew);
+		string reg = regtab->GetRegister(addr->varName, isNew);
 		addr->reg = reg;
 		(*fout) << "\tlw " << reg << ", " << addr->memOffset << "($sp)" << endl;
 		
@@ -111,7 +111,7 @@ string AddressTable::Load(Address* addr)
 		//Spilling may have occured - i.e., the register may have changed
 		// Therefore, always call GetRegister in order to ensure that you
 		// output the correct register
-		addr->reg = regtab->GetRegister(name, isNew);
+		addr->reg = regtab->GetRegister(addr->varName, isNew);
 		return addr->reg;
 	}
 }
@@ -134,6 +134,38 @@ void AddressTable::Store(string name)
 			it->second->reg = "";
 			it->second->loc = MEMORY;
 		}
+	}
+	else
+	{
+		cout << "Error: Tried to store a variable which doesn't exist."
+			 << " AddressTable.cpp:140" 
+		 	 << endl;
+	}
+}
+
+void AddressTable::Store(string reg, string name)
+{
+	auto it = Variables.find(name);
+	
+	if(it != Variables.end())
+	{
+		(*fout) << "\tsw " << reg 
+			 	<< ", " << it->second->memOffset << "($sp)" << endl;
+		
+		//Release the register
+		if(it->second->loc != MEMORY)
+			regtab->FreeRegister(name);
+		
+		regtab->FreeRegister(reg);
+		
+		it->second->reg = "";
+		it->second->loc = MEMORY;
+	}
+	else
+	{
+		cout << "Error: Tried to store a variable which doesn't exist."
+			 << " AddressTable.cpp:157" 
+		 	 << endl;
 	}
 }
 

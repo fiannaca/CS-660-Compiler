@@ -195,6 +195,10 @@ typedef yy::TAC_Parser::token token;
             return token::PROCENTRY;
         }   
 
+"ALLOC" {
+			return token::ALLOC;
+		}
+		
 "#"     {
             BEGIN(COMMENT);
         }
