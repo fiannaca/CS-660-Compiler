@@ -1581,7 +1581,26 @@ class AstFuncDef: public AST
 			string functionName = GetFunctionName();
 			int frameSize = AST::symbolTable->GetFuncOffset(AST::currentFunction);
 			AST::tacGen.toTAC(TAC_Generator::PROCENTRY,(void *)&functionName);
-			AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)frameSize);
+			//AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)frameSize);
+			list<SymbolInfo> localItems; 
+                        string symName;
+                        long symSize;
+			string typeName;
+                        localItems =  AST::symbolTable->GetLocals(functionName);	
+	                list<SymbolInfo>::iterator items = localItems.begin();
+			while ( items != localItems.end())
+			{
+	   
+	       
+			  symName = items->symbol_name;
+	                  symSize = items->symbolType->GetSize();
+	                  typeName = items->symbolType->GetName();
+			  cout<< " \n Name = " << symName << " Size = " << symSize;
+	                  tacGen.toTAC(TAC_Generator::ALLOC,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
+			  items++;
+	                }
+			
+			
 			VisVist(4 , this,speci , decl , dlist, comp );
                         
 		  

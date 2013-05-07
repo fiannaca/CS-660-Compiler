@@ -56,7 +56,8 @@ class TAC_Generator
             BRGE, /**< If(op1 >= op2) goto op3 */
             BRLE, /**< If(op1 <= op2) goto op3 */
             BRNE, /**< If(op1 != op2) goto op3 */
-            BOUND /**< Checks the bounds of an array access */
+            BOUND, /**< Checks the bounds of an array access */
+	    ALLOC, /** Allocate on procedure stack */
         };
 
         /**
@@ -75,7 +76,7 @@ class TAC_Generator
             STRING, /**< Associate string op1 with label op2 */
             IMMEDIATE_I, /**< Load an integer into a register */
             IMMEDIATE_F, /**< Load a float into a register */
-            MOV  /* does op1 = op2 */ 
+            MOV  /** does op1 = op2 */ 
         };
 
         /**
