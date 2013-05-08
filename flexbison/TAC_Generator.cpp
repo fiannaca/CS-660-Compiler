@@ -102,7 +102,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
                 string* ptr2 = (string*)op2;
                 string* ptr3 = (string*)op3;
                 
-                ss << setw(width) << "ADD"
+                ss << setw(width) << "DIV"
                    << setw(width) << *ptr1
                    << setw(width) << *ptr2
                    << setw(width) << *ptr3;
