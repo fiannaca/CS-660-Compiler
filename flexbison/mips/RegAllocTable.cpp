@@ -4,6 +4,7 @@ RegAllocTable::RegAllocTable(int maxRegisters, string regPrefix)
     : numSpills(20)
     , width(8)
     , UpdatedEvent(this)
+    , verbose(false)
 {
     size = maxRegisters;
     prefix = regPrefix;
@@ -121,6 +122,9 @@ void RegAllocTable::FreeRegister(std::string name)
     {
         if(registers[ctr].owner == name)
         {
+        	if(verbose)
+        		(*fout) << "\t# Freeing register " << registers[ctr].name << endl;
+        		
             registers[ctr].isOwned = false;
             registers[ctr].owner = "";
             registers[ctr].lifespan = 0;
@@ -141,6 +145,14 @@ void RegAllocTable::FreeRegister(std::string name)
         {
             if(spills[ctr].owner == name)
             {
+            	if(verbose)
+            	{
+		    		(*fout) << "\t# Freeing spill register " << ctr 
+		    				<< " (" << spills[ctr].name 
+		    				<< " + " << spills[ctr].spillOffset << ")"
+		    				<< endl;
+        		}
+        		
                 spills[ctr].isOwned = false;
                 spills[ctr].owner = "";
                 spills[ctr].lifespan = 0;
@@ -164,6 +176,15 @@ void RegAllocTable::FreeRegister(std::string name)
             //Just choose the first spill to be moved back
             if(spills[i].isOwned)
             {
+            	if(verbose)
+            	{
+		        	(*fout) << "\t# Restoring spill register " << i 
+		    				<< " (" << spills[i].name 
+		    				<< " + " << spills[i].spillOffset << ")"
+		    				<< " to the real register " << registers[ctr].name
+		    				<< endl;
+        		}
+        			
                 SpillToReg(i, ctr);
                 UpdatedEvent.FireEvent(NULL);
                 return;
@@ -194,9 +215,23 @@ string RegAllocTable::Lookup(string name)
 	return "";
 }
 
+string RegAllocTable::LookupOwner(string reg)
+{
+	for(int i = 0; i < size; ++i)
+	{
+		if(registers[i].name == reg)
+			return registers[i].owner;
+	}
+}
+
 void RegAllocTable::SetFstream(fstream *fs)
 {
     fout = fs;
+}
+
+void RegAllocTable::SetVerbose(bool flag)
+{
+	verbose = flag;
 }
 
 int RegAllocTable::GetSpillIndex()
@@ -258,13 +293,15 @@ void RegAllocTable::incrementLifes()
 
 void RegAllocTable::RegToSpill(int rindex, int sindex)
 {
-    stringstream ss;
-    ss << "\t# Storing the real register " << registers[rindex].name
-       << " into the spill register " << spills[sindex].spillOffset;
+	if(verbose)
+	{
+		(*fout) << "\t# Storing the real register " << registers[rindex].name
+		   		<< " into the spill register " << spills[sindex].spillOffset
+		   		<< endl;
+    }
     
     //Output MIPS
-    (*fout) << ss.str() << endl
-            << "\tsw \t" << registers[rindex].name << ", " 
+    (*fout) << "\tsw \t" << registers[rindex].name << ", " 
             << "spills + " << spills[sindex].spillOffset << endl << endl;
          
     //Update the Spill register information
@@ -280,13 +317,8 @@ void RegAllocTable::RegToSpill(int rindex, int sindex)
 
 void RegAllocTable::SpillToReg(int sindex, int rindex)
 {
-    stringstream ss;
-    ss << "\t# Loading the spill register at offset " << spills[sindex].spillOffset 
-       << " into the real register " << registers[rindex].name;
-
     //Output MIPS
-    (*fout) << ss.str() << endl
-            << "\tlw \t" << registers[rindex].name << ", " 
+    (*fout) << "\tlw \t" << registers[rindex].name << ", " 
             << "spills + " << spills[sindex].spillOffset << endl << endl;
     
     //Update the real register information
@@ -302,13 +334,15 @@ void RegAllocTable::SpillToReg(int sindex, int rindex)
 
 void RegAllocTable::SwapRegToSpill(int rindex, int sindex)
 {
-    stringstream ss;
-    ss << "\t# Swapping spill register at offset " << spills[sindex].spillOffset
-       << " with the real register " << registers[rindex].name;
+	if(verbose)
+	{
+		(*fout) << "\t# Swapping spill register at offset " << spills[sindex].spillOffset
+			   	<< " with the real register " << registers[rindex].name
+			   	<< endl;
+    }
        
     //Output MIPS
-	(*fout) << ss.str() << endl
-	        << "\tmove \t$t8, " << registers[rindex].name << endl
+	(*fout) << "\tmove \t$t8, " << registers[rindex].name << endl
 	        << "\tlw \t" << registers[rindex].name 
 	        << ", spills + " << spills[sindex].spillOffset << endl
 	        << "\tsw \t$t8, spills + " << spills[sindex].spillOffset << endl << endl;

@@ -3,7 +3,7 @@
 # MIPS Assembly Code
 # Filename:     tests/test1_1.asm
 # Input file:   tests/test1_1.tac
-# Generated on: Tue May  7 15:33:11 2013
+# Generated on: Wed May  8 08:16:20 2013
 #
 ################################################################################
 
@@ -42,6 +42,8 @@ main:	subu	$sp, $sp, 16
 	lw 	$t2, 0($sp)
 	lw 	$t3, 8($sp)
 	add	$t4, $t2, $t3
+	sw 	$t2, 0($sp)
+	sw 	$t3, 8($sp)
 	sw 	$t4, 4($sp)
 
 	#Output the stored value to verify program correctness...
@@ -49,7 +51,11 @@ main:	subu	$sp, $sp, 16
 	print_int($t4)
 	print_newline
 
-	sub	$t5, $t2, $t3
+	lw 	$t2, 8($sp)
+	lw 	$t3, 0($sp)
+	sub	$t5, $t3, $t2
+	sw 	$t2, 8($sp)
+	sw 	$t3, 0($sp)
 	sw 	$t5, 4($sp)
 
 	#Output the stored value to verify program correctness...
@@ -57,8 +63,12 @@ main:	subu	$sp, $sp, 16
 	print_int($t5)
 	print_newline
 
+	lw 	$t2, 0($sp)
+	lw 	$t3, 8($sp)
 	mult	$t2, $t3
 	mflo	$t6
+	sw 	$t2, 0($sp)
+	sw 	$t3, 8($sp)
 	sw 	$t6, 4($sp)
 
 	#Output the stored value to verify program correctness...
@@ -66,7 +76,11 @@ main:	subu	$sp, $sp, 16
 	print_int($t6)
 	print_newline
 
-	add	$t7, $t3, $t2
+	lw 	$t2, 8($sp)
+	lw 	$t3, 0($sp)
+	add	$t7, $t2, $t3
+	sw 	$t2, 8($sp)
+	sw 	$t3, 0($sp)
 	sw 	$t7, 4($sp)
 
 	#Output the stored value to verify program correctness...
@@ -74,10 +88,7 @@ main:	subu	$sp, $sp, 16
 	print_int($t7)
 	print_newline
 
-	# Storing the real register $t0 into the spill register 0
-	sw 	$t0, spills + 0
-
-	li	$t0, 0
+	li	$t2, 0
 	lw	$31, 12($sp)
 	addu	$sp, $sp, 16
 	jr	$31

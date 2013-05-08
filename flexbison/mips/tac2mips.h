@@ -42,9 +42,10 @@ class tac2mips {
          */
         void Run();
         
-        std::string fname; /**< Standard assembly code output stream filename */
-        std::string outfname; /**< The name of the output MIPS file */
-        std::fstream fout; /**< The MIPS output file stream */
+        /**
+         * Standard assembly code output stream filename 
+         */
+        std::string fname;
         
         /**
          * Initializes the scanning process. This function sets up the scanner
@@ -82,8 +83,15 @@ class tac2mips {
 		 */
 		void FreeRegister(std::string name);
 		
-        RegAllocTable regtab; /**< The register allocation table */
-        AddressTable addtab; /**< The address table */
+		/**
+		 * The register allocation table 
+		 */
+        RegAllocTable regtab;
+        
+        /**
+         * The address table 
+         */
+        AddressTable addtab;
         
         /** 
          * A table for tracking functions and the associated information for 
@@ -91,11 +99,6 @@ class tac2mips {
          * the function and the parameters to the function.
          */
         FunctionTable funtab; 
-        
-		/**
-		 * A collection of all of the labels in the MIPS output
-		 */
-		set<string> labels;
 		
 		/**
 		 * Checks if a label exists
@@ -119,8 +122,10 @@ class tac2mips {
          * Outputs a comment into the MIPS file.
          *
          * @param txt The comment text to output.
+         * @param VerboseOnly Indicates if this comment should only be printed 
+         *                    if the verbose flag is true
          */
-        void Comment(std::string txt);
+        void Comment(std::string txt, bool VerboseOnly);
 		
 		/**
 		 * Outputs the specified number of blank lines to the MIPS file in order 
@@ -133,14 +138,50 @@ class tac2mips {
 		/**
 		 * Adds a line of code to the MIPS file and formats it correctly.
 		 *
-		 * @param opcode A MIPS command, i.e. "sw" 
-		 * @param op1 The operand, i.e. "$t0, 0($sp)"
+		 * @param psuedoop A MIPS psuedo-opcode command, i.e. ".globl"
 		 */
 		void toMIPS(std::string psuedoop);
+		
+		/**
+		 * Adds a line of code to the MIPS file and formats it correctly.
+		 *
+		 * @param opcode A MIPS command, i.e. "jr" 
+		 * @param op1 The operand, i.e. "$t31"
+		 */
 		void toMIPS(std::string opcode, std::string op1);
+		
+		/**
+		 * Adds a line of code to the MIPS file and formats it correctly.
+		 *
+		 * @param opcode A MIPS command, i.e. "sw" 
+		 * @param op1 The operand, i.e. "$t0"
+		 * @param op2 The operand, i.e. "0($sp)"
+		 */
 		void toMIPS(std::string opcode, std::string op1, std::string op2);
+		
+		/**
+		 * Adds a line of code to the MIPS file and formats it correctly.
+		 *
+		 * @param opcode A MIPS command, i.e. "add" 
+		 * @param op1 The operand, i.e. "$t0"
+		 * @param op2 The operand, i.e. "$t1"
+		 * @param op3 The operand, i.e. "$t2"
+		 */
 		void toMIPS(std::string opcode, std::string op1, std::string op2, std::string op3);
+		
+		/**
+		 * Outputs a macro with the given name and parameters
+		 *
+		 * @param name The name of the macro to output
+		 * @param params The parameters for the macro
+		 */
 		void Macro(std::string name, std::string params);
+		
+		/**
+		 * Outputs a macro with the given name and no parameters
+		 *
+		 * @param name The name of the macro to output
+		 */
 		void Macro(std::string name);
 		
 		/**
@@ -149,6 +190,33 @@ class tac2mips {
 		 * @param txt A MIPS label to output, i.e. "spills"
 		 */
 		void Label(std::string txt);
+        
+        /**
+         * Turns verbose comments on or off
+         */
+        void SetVerbose(bool flag);
+        
+    private:
+        
+        /**
+         * The name of the output MIPS file 
+         */
+        std::string outfname; 
+        
+        /**
+         * The MIPS output file stream 
+         */
+        std::fstream fout; 
+        
+		/**
+		 * A collection of all of the labels in the MIPS output
+		 */
+		set<string> labels;
+		
+        /**
+         * Indicates if verbose comments should be output in the MIPS
+         */
+        bool verbose;
 };
 
 #endif // ! TAC2MIPS_H

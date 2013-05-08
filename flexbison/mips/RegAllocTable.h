@@ -31,7 +31,7 @@ struct Register {
     string owner;
     
     /**
-     * Name used by the assembly language to reference the register.
+     * Name used by the assembly language to reference the register. (i.e. "$t0")
      */
     string name;
     
@@ -124,10 +124,24 @@ class RegAllocTable {
         string Lookup(string name);
         
         /**
+         * This function lookups up the owner a of real register.
+         *
+         * @param reg The name of the register to lookup
+         * @return The owner of the register, or an empty string if that register 
+         *         doesn't have an owner
+         */
+        string LookupOwner(string reg);
+        
+        /**
          * Used to set the pointer to the output stream which must be created
          * by the owning class (i.e. tac2mips).
          */
         void SetFstream(fstream *fs);
+        
+        /**
+         * Turns verbose comments on or off
+         */
+        void SetVerbose(bool flag);
         
     private:
         int size; /** Indicates the number of available registers that can be used */
@@ -195,6 +209,11 @@ class RegAllocTable {
          * Collection of spill registers declared in the global data block.
          */
         Register* spills;
+        
+        /**
+         * Indicates if verbose comments should be output in the MIPS
+         */
+        bool verbose;
 };
 
 #endif // ! REGALLOCTABLE_H

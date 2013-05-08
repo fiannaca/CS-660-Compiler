@@ -134,7 +134,8 @@ class AddressTable {
          * @param name The name of the variable in the table to look up.
          * @return A pointer to the address table record for the requested variable.
          */
-        Address* Lookup(string name);        
+        Address* Lookup(string name); 
+        Address* LookupReg(string reg);        
         
         /**
          * This function is responsible for loading variables from memory into
@@ -219,6 +220,11 @@ class AddressTable {
          */
         void Print();
         
+        /**
+         * Turns verbose comments on or off
+         */
+        void SetVerbose(bool flag);
+        
     private:
     	/**
     	 * The internal data structure for the table.
@@ -235,6 +241,11 @@ class AddressTable {
 		 * The output stream to print MIPS to.
 		 */
 		fstream *fout;
+        
+        /**
+         * Indicates if verbose comments should be output in the MIPS
+         */
+        bool verbose;
 };
 
 #endif // ! ADDRESSTABLE_H

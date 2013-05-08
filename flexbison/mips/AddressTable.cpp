@@ -60,6 +60,17 @@ Address* AddressTable::Lookup(string name)
 		return NULL;
 }
 
+Address* AddressTable::LookupReg(string reg)
+{
+	for(auto it = Variables.begin(); it != Variables.end(); ++it)
+	{
+		if(it->second->loc != MEMORY && it->second->reg == reg)
+			return it->second;
+	}
+	
+	return NULL;
+}
+
 string AddressTable::Load(string name)
 {
 	bool isNew = false;
@@ -156,7 +167,7 @@ void AddressTable::Store(string reg, string name)
 		if(it->second->loc != MEMORY)
 			regtab->FreeRegister(name);
 		
-		regtab->FreeRegister(reg);
+		regtab->FreeRegister(regtab->LookupOwner(reg));
 		
 		it->second->reg = "";
 		it->second->loc = MEMORY;
@@ -258,6 +269,10 @@ void AddressTable::Print()
 	     << setfill('=') << "=" << endl << endl;
 }
 
+void AddressTable::SetVerbose(bool flag)
+{
+	verbose = flag;
+}
 
 
 

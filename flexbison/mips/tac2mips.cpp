@@ -54,14 +54,14 @@ string tac2mips::GetRegister(string name)
 		return regtab.GetRegister(name, isNew);
 }
 
-void tac2mips::FreeRegister(std::string name)
+void tac2mips::FreeRegister(std::string reg)
 {
-	Address* addr = addtab.Lookup(name);
+	Address* addr = addtab.LookupReg(reg);
 	
 	if(addr)
-		addtab.Store(name);
+		addtab.Store(addr->varName);
 	else
-		regtab.FreeRegister(name);
+		regtab.FreeRegister(reg);
 }
 
 void tac2mips::OutputPreamble()
@@ -98,9 +98,12 @@ void tac2mips::AddLabel(std::string name)
 	labels.insert(name);
 }
 
-void tac2mips::Comment(std::string txt)
+void tac2mips::Comment(std::string txt, bool VerboseOnly)
 {
-    fout << "\t#" << txt << endl;
+	if(VerboseOnly && !verbose)
+		return;
+		
+    fout << "\t# " << txt << endl;
 }
 
 void tac2mips::WS(int lines)
@@ -145,6 +148,13 @@ void tac2mips::Label(std::string txt)
 {
 	AddLabel(txt);
 	fout << txt << ":";
+}
+
+void tac2mips::SetVerbose(bool flag)
+{
+	verbose = flag;
+	addtab.SetVerbose(flag);
+	regtab.SetVerbose(flag);
 }
 
 

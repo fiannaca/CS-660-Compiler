@@ -64,20 +64,41 @@ string toString(int i, string txt)
 commands
 	: 
 	
-	| tac_command commands
-	
+	| commands command
+		
 	;
+
+command
+	: tac_command
 	
-tac_command
-    : allocate_list
+	| allocate_command_list
     	{
     		//Change the stack pointer after the allocate list is complete    		
     		int space = driver.funtab.GetStackSpace(CurrentFunction);
     		 		
     		driver.toMIPS("subu", "$sp", "$sp", toString(space + 4));    		
     		driver.toMIPS("sw", "$31", toString(space, "($sp)"));
-    	}    
-    | ADD STRING STRING STRING
+    	}
+	;
+	
+allocate_command_list
+	:
+	
+	| allocate_command_list allocate_command
+	
+	;
+	
+allocate_command
+    : ALLOC STRING STRING STRING
+    	{
+    		//Add a variable reference to the function table and address table
+    		driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
+    		driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    	}
+    ;
+    		
+tac_command
+    : ADD STRING STRING STRING
         {
             //adds $2 and $3 and places the result in $4
             			
@@ -161,18 +182,54 @@ tac_command
     | EQ STRING STRING STRING
         {
             //if $2 and $3 are equal, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("seq", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | GT STRING STRING STRING
         {
             //if $2 is greater than $3, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("sgt", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | LT STRING STRING STRING
         {
             //if $2 is less than $3, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("slt", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | GE STRING STRING STRING
         {
             //if $2 is greater than $3, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("sge", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | REM STRING STRING STRING
         {
@@ -181,34 +238,100 @@ tac_command
     | LE STRING STRING STRING
         {
             //if $2 is less than or equal to $3, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("sle", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | NE STRING STRING STRING
         {
             //if $2 is not equal to $3, then $4 is set to 1, else $4 is set to 0
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);			
+			
+			driver.toMIPS("sne", reg3, reg1, reg2);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BREQ STRING STRING STRING
         {
             //if $2 is equal to $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("beq", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BRGT STRING STRING STRING
         {
             //if $2 is greater than $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("bgt", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BRLT STRING STRING STRING
         {
             //if $2 is less than $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("blt", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BRGE STRING STRING STRING
         {
             //if $2 is greater than or equal to $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("bge", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BRLE STRING STRING STRING
         {
             //if $2 is less than or equal to $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("ble", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BRNE STRING STRING STRING
         {
             //if $2 is not equal to $3, then branch to $4
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("bne", reg1, reg2, (*$4));
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | BOUND STRING STRING STRING
         {
@@ -226,7 +349,7 @@ tac_command
             ss << "\"The value of " << (*$3) << " is: \"";
                         
             driver.WS();
-            driver.Comment("Output the stored value to verify program correctness...");
+            driver.Comment("Output the stored value to verify program correctness...", true);
             driver.Macro("print_str", ss.str());
             driver.Macro("print_int", reg);
             driver.Macro("print_newline");            
@@ -235,6 +358,13 @@ tac_command
     | NEG STRING STRING 
         {
             //$3 is set to the negative value of $2
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);			
+			
+			driver.toMIPS("neg", reg1, reg2);
+			
+			driver.FreeRegister(reg2);
         }
     | NOT STRING STRING
         {
@@ -337,7 +467,7 @@ tac_command
     | COMMENT_STRING
         {
             //output the comment $1
-            driver.Comment(*$1);
+            driver.Comment(*$1, false);
         }
     | BEGINFRAME STRING
         {
@@ -347,7 +477,7 @@ tac_command
         {
             //call the 'done' macro to immediately terminate execution
             driver.WS();
-            driver.Comment("Immediately terminating execution");
+            driver.Comment("Immediately terminating execution", false);
 			driver.Macro("done");
         }
     | ENDPROC
@@ -371,21 +501,6 @@ tac_command
             //end the current frame
         }
     ;
-
-allocate_list
-	: 
-	
-	| allocate allocate_list
-	
-	;
-	
-allocate
-    : ALLOC STRING STRING STRING
-    	{
-    		//Add a variable reference to the function table and address table
-    		driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
-    		driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
-    	}
 %%
 void yy::TAC_Parser::error(const yy::TAC_Parser::location_type& loc,
                         const std::string& msg)
