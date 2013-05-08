@@ -266,12 +266,12 @@ tac_command
             //if $2 is equal to $3, then branch to $4
             
 			string reg1 = driver.GetRegister(*$2);
-			string reg2 = driver.GetRegister(*$3);			
+			//string reg2 = driver.GetRegister(*$3);			
 			
-			driver.toMIPS("beq", reg1, reg2, (*$4));
+			driver.toMIPS("beq", reg1, (*$3), (*$4));
 			
 			driver.FreeRegister(reg1);
-			driver.FreeRegister(reg2);
+			//driver.FreeRegister(reg2);
         }
     | BRGT STRING STRING STRING
         {
@@ -417,17 +417,17 @@ tac_command
             //branch to label $2
 			
 			//TODO This check probably isn't valid and may need to be removed later
-			if(driver.LabelExists(*$2))
-			{
+			//if(driver.LabelExists(*$2))
+			//{
 				stringstream ss;
 				ss << "b " << (*$2);
 				
 				driver.toMIPS("b", (*$2));
-			}
-			else
-			{
-				driver.error("Attempted to branch to an unknown label");
-			}
+			//}
+			//else
+			//{
+			//	driver.error("Attempted to branch to an unknown label");
+			//}
         }
     | ARGS STRING
         {

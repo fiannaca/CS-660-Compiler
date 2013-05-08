@@ -19,22 +19,7 @@ int main()
     
     k = j / i; //2
     
-    //Extra operations to test proper register allocation (and releasing)
-    k = i + j; //3
-    
-    k = j - i; //1
-    
-    k = i * j; //2
-    
-    k = j / i; //2
-    
-    k = i + j; //3
-    
-    k = j - i; //1
-    
-    k = i * j; //2
-    
-    k = j / i; //2
+    k = (i + j); // + (3 + 4) + (5 + 6) + (7 + 8) + (9 + 10);
     
     return 0;
 }
