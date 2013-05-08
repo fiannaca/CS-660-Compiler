@@ -57,7 +57,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstExpression* e)
     this->constant = NULL;
     this->str = NULL;
     this->expr = e;
-    this->type = STRING;
+    this->type = EXPR;
     this->etype = e->type;
 
     this->setLabel("PrimaryExpression");
@@ -2309,6 +2309,7 @@ void AstIfElse::Visit()
 {
     
     string skipLabel  = TAC_Generator::GetLabelName();
+    string skipElseLabel  = TAC_Generator::GetLabelName();
     string zero = "0" ; 
     string currentLabel;
     
@@ -2323,10 +2324,18 @@ void AstIfElse::Visit()
     
     
     statement->Visit();
+      
+    if(elseStatement)
+    {
+       AST::tacGen.toTAC(TAC_Generator::BR,(void *)&skipElseLabel);                 
+    }         
     AST::tacGen.toTAC(TAC_Generator::LABEL , (void *)&skipLabel ); 
     if(elseStatement)
+    {
         elseStatement->Visit();
+        AST::tacGen.toTAC(TAC_Generator::LABEL , (void *)&skipElseLabel ); 
 
+    }
     AST::vis.addNode(this->getUID(), this->getLabel());
     AST::vis.addEdge(this->getUID(), test->getUID());
     AST::vis.addEdge(this->getUID(), statement->getUID());
