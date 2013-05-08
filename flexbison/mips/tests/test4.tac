@@ -14,7 +14,7 @@
          ADD           1           i   I00000010
          MOV           i   I00000010
         BREQ           i           0   L00000001
- IMMEDIATE_I   I00000013           1
+ IMMEDIATE_I   I00000013           2
          ADD   I00000013           a   I00000014
          MOV   I00000014           a
           BR   L00000000
@@ -25,7 +25,7 @@
  IMMEDIATE_I   I00000020          10
           LT   I00000020           a   I00000021
         BREQ   I00000021           0   L00000003
- IMMEDIATE_I   I00000024           1
+ IMMEDIATE_I   I00000024           2
          ADD   I00000024           a   I00000025
          MOV   I00000025           a
           BR   L00000002
@@ -33,7 +33,7 @@
  IMMEDIATE_I   I00000028           1
          MOV   I00000028           a
        LABEL   L00000004
- IMMEDIATE_I   I00000032           1
+ IMMEDIATE_I   I00000032           2
          ADD   I00000032           a   I00000033
          MOV   I00000033           a
  IMMEDIATE_I   I00000036          10
@@ -42,3 +42,4 @@
           BR   L00000004
        LABEL   L00000005
  IMMEDIATE_I   I00000038           0
+     ENDPROC

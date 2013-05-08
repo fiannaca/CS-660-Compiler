@@ -3,7 +3,7 @@
 # MIPS Assembly Code
 # Filename:     tests/test3.asm
 # Input file:   tests/test3.tac
-# Generated on: Wed May  8 12:55:09 2013
+# Generated on: Wed May  8 14:11:08 2013
 #
 ################################################################################
 
@@ -43,7 +43,7 @@ main:	subu	$sp, $sp, 8
 	print_newline
 
 	b	L00000001
-L00000000:	li	$t1, 1
+L00000000:	li	$t1, -1
 	sw 	$t1, 0($sp)
 
 	print_str("The value of a is: ")
