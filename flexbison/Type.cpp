@@ -378,7 +378,31 @@ bool ArrayType::CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t
         
     return false;
 }
+int ArrayType::GetArrayBrackets()
+{
+   ArrayType *base = this;
+   int count = 0 ;
+   while ( base->GetName() == "ARRAY")
+   {
+           ++count;
+           base = (ArrayType *)(base->GetBase());    
+    
+   } 
+   return  count;
 
+}
+int ArrayType::GetNthBracketDim(int num)
+{
+   ArrayType *base = this;
+   int count = 0 ;
+   while ( count < num )
+   {
+           ++count;
+           base = (ArrayType *)(base->GetBase());    
+    
+   }
+   return base->GetDimension();
+}
 /*****************************************************************************/
 /* Struct Type Class - This type allows for structs to be created containing */
 /*                   members of any predeclared type                         */
@@ -548,4 +572,17 @@ Type* GetInnerType(Type *arrayOrPointer)
             innerType = ((ArrayType*)innerType)->GetBase();   
     }   
     return innerType;  
+}
+
+int GetArraySize( Type *arrayType )
+{
+        
+        Type *outerType = arrayType;
+        int arraySize  =1; 
+        while( outerType->GetName() == "ARRAY" )
+        {          
+              arraySize *= ((ArrayType*)outerType)->GetDimension(); 
+              outerType = ((ArrayType*)outerType)->GetBase();       
+        }    
+        return arraySize;   
 }

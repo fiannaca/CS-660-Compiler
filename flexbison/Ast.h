@@ -88,6 +88,9 @@ class AST
         static string lastID;   
 	static SymTab *symbolTable;
 	static string currentFunction;
+        static int currentConstantValue;
+        static string currentIdName;   
+        static int currentIndexVal;  
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
@@ -1578,7 +1581,9 @@ class AstFuncDef: public AST
 		
 		void Visit() 
 		{
-			string functionName = GetFunctionName();
+			int arraySize = 0; 
+                        string arrayName; 
+                        string functionName = GetFunctionName();
 			int frameSize = AST::symbolTable->GetFuncOffset(AST::currentFunction);
 			AST::tacGen.toTAC(TAC_Generator::PROCENTRY,(void *)&functionName);
 			//AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)frameSize);
@@ -1596,13 +1601,25 @@ class AstFuncDef: public AST
 	                  symSize = items->symbolType->GetSize();
 	                  typeName = items->symbolType->GetName();
 			  cout<< " \n Name = " << symName << " Size = " << symSize;
-	                  tacGen.toTAC(TAC_Generator::ALLOC,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
+	                  if ( typeName == "ARRAY" )
+                          {
+                                arraySize = GetArraySize(items->symbolType);
+                                arrayName = GetInnerType(items->symbolType)->GetName() + "ARRAY";
+                                cout<< " Array Size = "<<arraySize; 
+                                tacGen.toTAC( TAC_Generator::ALLOC,(void *)&symName ,(void *)&arrayName , (void *)&arraySize ); 
+
+                          }
+                          else 
+                          {   
+                               tacGen.toTAC(TAC_Generator::ALLOC,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
+                          }
 			  items++;
 	                }
 			
 			
 			VisVist(4 , this,speci , decl , dlist, comp );
-                        
+                        tacGen.toTAC(TAC_Generator::ENDPROC);
+
 		  
 		}
 	 
