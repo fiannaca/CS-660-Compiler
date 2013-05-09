@@ -134,7 +134,9 @@ class ArrayType : public Type //any array (any # of dimensions)
         Type *GetBase() { return baseType;}  
         void SetBase(Type *base) { this->baseType = base; } 
         bool CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
-         
+        int GetDimension() { return dimensions; }   
+        int GetArrayBrackets();
+        int GetNthBracketDim(int num);       
     protected:
         Type* baseType;
         int dimensions;
@@ -198,4 +200,5 @@ class PointerType : public Type //acts as a layer of indirection towards a prede
 };
 
 Type *GetInnerType(Type* arrayOrPointer); 
+int GetArraySize( Type *arrayType );
 #endif 

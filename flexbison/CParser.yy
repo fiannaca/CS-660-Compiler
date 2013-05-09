@@ -849,7 +849,8 @@ direct_declarator
     | direct_declarator LBRAK constant_expression RBRAK
         {
             driver.printRed("direct_declarator -> direct_declarator LBRAK constant_expression RBRAK");
-            driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", 0);
+            std::cout<< " Current Constant expresssion , Value = "<< AST::currentConstantValue;
+            driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", AST::currentConstantValue);
             $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , (AstExpression * )$3, NULL , NULL , NULL ,4);
  
         }

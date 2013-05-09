@@ -10,6 +10,10 @@ string AST::returnLabel="";
 string AST::lastID="";
 string AST::currentFunction="";
 SymTab* AST::symbolTable=NULL;
+string AST::currentIdName="";
+int AST::currentConstantValue =0;
+int AST::currentIndexVal = 0 ;
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // BEGIN: AstPrimaryExpr  /////////////////////////////////////////////////////
@@ -23,6 +27,7 @@ AstPrimaryExpr::AstPrimaryExpr(AstID* id)
     this->expr = NULL;
     this->type = ID;
     this->etype = id->type;
+    AST::currentIdName=id->str; 
 
     this->setLabel("PrimaryExpression");
 }
@@ -194,8 +199,8 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
     
     this->t = BRACKETS;
     
-    this->type = ((ArrayType*)p->type)->GetBase();
-
+   // this->type = ((ArrayType*)p->type)->GetBase();
+    
     this->setLabel("AstPostfixExpr - Brackets");
 }
 
@@ -273,8 +278,12 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
 void AstPostfixExpr::Visit()
 {
    
+    string tempVar;
     string lastUsedTemp ,currentLabel;
     string one = "1";
+    int arrayBrackets=0;
+    SymbolInfo info;
+    SymbolInfo *arrayinfo;
     switch(t)
     {
         case PRIMARY:
@@ -291,7 +300,22 @@ void AstPostfixExpr::Visit()
 
         case BRACKETS:
             //Visit children nodes
+            AST::currentIndexVal++;
+            AST::tacGen.toTAC(TAC_Generator::ADDR,(void *)&(AST::currentIdName) , (void *)&tempVar);
+            info.symbol_name = AST::currentIdName;
+            arrayinfo = AST::symbolTable->fetch_symbol(info); 
+            cout<< "\n Current Index = "<< AST::currentIndexVal << "  current id   = " << AST::currentIdName;
+            if(arrayinfo == NULL )
+            {
+                  cout<< "Array not found !";
+            }   
+            else 
+            {   
+                  cout<< " Array found !";   
+            }
             ptfExpr->Visit();
+            tempVar=TAC_Generator::GetIVarName();
+           
             brakExpr->Visit();
 
             //Output visualization
@@ -478,9 +502,10 @@ AstUnaryExpr::AstUnaryExpr(AstTypeName* t)
 //Traversal
 void AstUnaryExpr::Visit()
 {
-	string lastUsedTemp;
-	string currentLabel;
-    string one="1";
+    string lastUsedTemp;
+    string currentLabel;
+    long one=1;
+    string immediateValue;
     switch(t)
     {
         case POSTFIX:
@@ -506,8 +531,11 @@ void AstUnaryExpr::Visit()
             //Output 3AC
             currentLabel =TAC_Generator::GetIVarName();
             lastUsedTemp = AST::tempStack.back(); 
+            immediateValue = TAC_Generator::GetIVarName();
             AST::tempStack.pop_back();
-            AST::tacGen.toTAC(TAC_Generator::ADD , (void *) &one , (void *)&lastUsedTemp , (void *)&currentLabel);   
+            
+            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&immediateValue,(void *)&one); 
+            AST::tacGen.toTAC(TAC_Generator::ADD , (void *) &immediateValue , (void *)&lastUsedTemp , (void *)&currentLabel);   
             AST::tacGen.toTAC(TAC_Generator::MOV ,(void*) &lastID ,(void *) &currentLabel); 
             AST::tempStack.push_back( currentLabel);
             break;
@@ -531,7 +559,8 @@ void AstUnaryExpr::Visit()
 
         case CAST:
             //Visit children nodes
-            op->Visit();
+            if(op)
+               op->Visit();
             cast->Visit();
 
             //Output visualization
@@ -684,7 +713,7 @@ AstConstant::AstConstant(int val)
     this->type = INT;
     this->ival = val;
     this->etype = new PODType("INT", INT_SIZE);
-    
+    AST::currentConstantValue = val;  
     this->setLabel("IntegerConstant");
 }
 
@@ -794,7 +823,6 @@ AstID::AstID(string s, Type* t)
 {
     this->str = s;
     this->type = t;
-    
     this->setLabel("Identifier");
 }
 
@@ -1132,16 +1160,16 @@ void AstRelExpr::Visit()
         switch(c)
         {
             case '<': 
-              AST::tacGen.toTAC(TAC_Generator::LT , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);   
+              AST::tacGen.toTAC(TAC_Generator::LT , (void *) &op2 , (void *)&op1 , (void *)&currentLabel);   
               break;
             case '>':
-              AST::tacGen.toTAC(TAC_Generator::GT , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);   
+              AST::tacGen.toTAC(TAC_Generator::GT , (void *) &op2 , (void *)&op1 , (void *)&currentLabel);   
               break;
             case '!':   /* <= */
-              AST::tacGen.toTAC(TAC_Generator::LE , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);   
+              AST::tacGen.toTAC(TAC_Generator::LE , (void *) &op2 , (void *)&op1 , (void *)&currentLabel);   
               break;    
             case '~': /* >=*/
-              AST::tacGen.toTAC(TAC_Generator::GE , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);   
+              AST::tacGen.toTAC(TAC_Generator::GE , (void *) &op2 , (void *)&op1 , (void *)&currentLabel);   
               break;
              
             
@@ -1852,6 +1880,8 @@ AstExpression::AstExpression(AstExpression* e, AstAssignExpr* a)
 
 void AstExpression::Visit()
 {
+    
+    AST::currentIndexVal  = 0 ; 
     if(expr)
         expr->Visit();
 
@@ -2173,12 +2203,11 @@ void AstFor::Visit()
     AST::tacGen.toTAC(TAC_Generator::LABEL,(void *)&loopLabel);
     if(test)
         test->Visit();
-
-    if(increment)
-        increment->Visit();
     currentLabel = AST::tempStack.back();
     AST::tacGen.toTAC(TAC_Generator::BREQ,(void *)&currentLabel , (void *)&zero , (void *)&exitLabel);
-    statement->Visit();
+    statement->Visit(); 
+    if(increment)
+        increment->Visit();
     AST::tacGen.toTAC(TAC_Generator::BR,(void *)&loopLabel);
     AST::tacGen.toTAC(TAC_Generator::LABEL,(void *)&exitLabel); 
     //Visualization
@@ -2442,6 +2471,9 @@ AstCompoundStmt::AstCompoundStmt(AstDeclarationList* d, AstStatementList* s)
 
 void AstCompoundStmt::Visit()
 {
+    
+    long op = 0; 
+    AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)op);
     if(declList)
         declList->Visit();
 
@@ -2455,6 +2487,8 @@ void AstCompoundStmt::Visit()
 
     if(stmtList)
         AST::vis.addEdge(this->getUID(), stmtList->getUID());
+
+    AST::tacGen.toTAC(TAC_Generator::ENDFRAME);
 
     //Output 3AC
 }

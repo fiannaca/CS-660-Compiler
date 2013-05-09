@@ -178,8 +178,20 @@ class SymTab
 	             return symTable[level].Fetch(symbolInfo);
 			 	
 	     }
-
-
+             SymbolInfo* fetch_symbol(SymbolInfo symbolInfo)
+	     {
+	             
+                   SymbolInfo *info = NULL ; 
+                   info = symTable[currentLevel].Fetch(symbolInfo);
+                   if ( info == NULL )
+                   {
+                       info = symTable[0].Fetch(symbolInfo);
+     
+                   }
+                   return  info; 			  	
+	     }
+                
+              
 
    	     void dump_table()
 	     {
