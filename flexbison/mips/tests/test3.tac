@@ -12,7 +12,7 @@
          MOV   I00000007           a
           BR   L00000001
        LABEL   L00000000
- IMMEDIATE_I   I00000010           1
+ IMMEDIATE_I   I00000010          -1
          MOV   I00000010           a
        LABEL   L00000001
  IMMEDIATE_I   I00000012           0
