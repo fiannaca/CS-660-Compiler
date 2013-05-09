@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li class="current"><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -85,26 +88,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock">Here is a list of all documented files with brief descriptions:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Ast_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Ast.h</b></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="AvlTree_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>AvlTree.h</b></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CCompiler_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>CCompiler.h</b></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CParser_8hpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="CParser_8hpp.html" target="_self">CParser.hpp</a></td><td class="desc">Define the yy::parser class</td></tr>
-<tr id="row_4_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CScanner_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>CScanner.h</b></td><td class="desc"></td></tr>
-<tr id="row_5_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="location_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="location_8hh.html" target="_self">location.hh</a></td><td class="desc">Define the <a class="el" href="classyy_1_1location.html" title="Abstract a location.">yy::location</a> class</td></tr>
-<tr id="row_6_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Platform_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Platform.h</b></td><td class="desc"></td></tr>
-<tr id="row_7_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="position_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="position_8hh.html" target="_self">position.hh</a></td><td class="desc">Define the <a class="el" href="classyy_1_1position.html" title="Abstract a position.">yy::position</a> class</td></tr>
-<tr id="row_8_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="stack_8hh_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="stack_8hh.html" target="_self">stack.hh</a></td><td class="desc">Define the <a class="el" href="classyy_1_1stack.html">yy::stack</a> class</td></tr>
-<tr id="row_9_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="SymTab_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>SymTab.h</b></td><td class="desc"></td></tr>
-<tr id="row_10_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="TAC__Generator_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>TAC_Generator.h</b></td><td class="desc"></td></tr>
-<tr id="row_11_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Type_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Type.h</b></td><td class="desc"></td></tr>
-<tr id="row_12_" class="even"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="Visualizer_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Visualizer.h</b></td><td class="desc"></td></tr>
+<div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span>]</div><table class="directory">
+<tr id="row_0_" class="even"><td class="entry"><img id="arr_0_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('0_')"/><img id="img_0_" src="ftv2folderopen.png" alt="-" width="24" height="22" onclick="toggleFolder('0_')"/><a class="el" href="dir_cb085fe681a28f629304affe32ec63da.html" target="_self">mips</a></td><td class="desc"></td></tr>
+<tr id="row_0_0_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="AddressTable_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>AddressTable.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_1_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="AddressTable_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>AddressTable.h</b></td><td class="desc"></td></tr>
+<tr id="row_0_2_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="AddressTest_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>AddressTest.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_3_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Event_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Event.h</b></td><td class="desc"></td></tr>
+<tr id="row_0_4_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="FunctionTable_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>FunctionTable.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_5_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="FunctionTable_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>FunctionTable.h</b></td><td class="desc"></td></tr>
+<tr id="row_0_6_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="mips_2main_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>main.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_7_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="RegAllocTable_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>RegAllocTable.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_8_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="RegAllocTable_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>RegAllocTable.h</b></td><td class="desc"></td></tr>
+<tr id="row_0_9_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="SpillTest_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>SpillTest.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_10_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="tac2mips_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>tac2mips.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_0_11_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="tac2mips_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>tac2mips.h</b></td><td class="desc"></td></tr>
+<tr id="row_0_12_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="TAC__Parser_8yy_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>TAC_Parser.yy</b></td><td class="desc"></td></tr>
+<tr id="row_0_13_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="TAC__Scanner_8ll_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>TAC_Scanner.ll</b></td><td class="desc"></td></tr>
+<tr id="row_1_"><td class="entry"><img id="arr_1_" src="ftv2mnode.png" alt="o" width="16" height="22" onclick="toggleFolder('1_')"/><img id="img_1_" src="ftv2folderopen.png" alt="-" width="24" height="22" onclick="toggleFolder('1_')"/><a class="el" href="dir_59425e443f801f1f2fd8bbe4959a3ccf.html" target="_self">tests</a></td><td class="desc"></td></tr>
+<tr id="row_1_0_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test1_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test1.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_1_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test2_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test2.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_2_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test3_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test3.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_3_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test4_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test4.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_4_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test5_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test5.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_5_"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="test6_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test6.c</b></td><td class="desc"></td></tr>
+<tr id="row_1_6_" class="even"><td class="entry"><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="test7_8c_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>test7.c</b></td><td class="desc"></td></tr>
+<tr id="row_2_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Ast_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Ast.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_3_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Ast_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Ast.h</b></td><td class="desc"></td></tr>
+<tr id="row_4_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="AvlTree_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>AvlTree.h</b></td><td class="desc"></td></tr>
+<tr id="row_5_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CCompiler_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>CCompiler.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_6_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CCompiler_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>CCompiler.h</b></td><td class="desc"></td></tr>
+<tr id="row_7_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CParser_8yy_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="CParser_8yy.html" target="_self">CParser.yy</a></td><td class="desc">NOTE: USE THE LINK BELOW TO VIEW THE SOURCE FOR THIS FILE, THE GENERATED DOCUMENTATION IS NOT VALID SINCE DOXYGEN CANNOT PROPERLY PARSE BISON FILES!</td></tr>
+<tr id="row_8_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="CScanner_8ll_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="CScanner_8ll.html" target="_self">CScanner.ll</a></td><td class="desc">NOTE: USE THE LINK BELOW TO VIEW THE SOURCE FOR THIS FILE, THE GENERATED DOCUMENTATION IS NOT VALID SINCE DOXYGEN CANNOT PROPERLY PARSE FLEX FILES!</td></tr>
+<tr id="row_9_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="main_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="main_8cpp.html" target="_self">main.cpp</a></td><td class="desc">This file serves as an entry point to the compiler</td></tr>
+<tr id="row_10_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Platform_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><a class="el" href="Platform_8h.html" target="_self">Platform.h</a></td><td class="desc">This file simply lists the size in bytes of the base data types</td></tr>
+<tr id="row_11_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="SymTab_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>SymTab.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_12_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="SymTab_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>SymTab.h</b></td><td class="desc"></td></tr>
+<tr id="row_13_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="TAC__Generator_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>TAC_Generator.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_14_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="TAC__Generator_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>TAC_Generator.h</b></td><td class="desc"></td></tr>
+<tr id="row_15_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Type_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Type.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_16_"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Type_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Type.h</b></td><td class="desc"></td></tr>
+<tr id="row_17_" class="even"><td class="entry"><img src="ftv2node.png" alt="o" width="16" height="22" /><a href="Visualizer_8cpp_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Visualizer.cpp</b></td><td class="desc"></td></tr>
+<tr id="row_18_"><td class="entry"><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><a href="Visualizer_8h_source.html"><img src="ftv2doc.png" alt="*" width="24" height="22" /></a><b>Visualizer.h</b></td><td class="desc"></td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:25 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:49 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

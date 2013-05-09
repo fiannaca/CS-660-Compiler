@@ -271,4 +271,245 @@ class CCompiler
         fstream outfile; /**< Standard compiler output stream */
 };
 
+/** \file CScanner.ll
+ *
+ * NOTE: USE THE LINK BELOW TO VIEW THE SOURCE FOR THIS FILE, THE GENERATED 
+ * DOCUMENTATION IS NOT VALID SINCE DOXYGEN CANNOT PROPERLY PARSE FLEX FILES!
+ */
+ 
+/** \file CParser.yy
+ *
+ * NOTE: USE THE LINK BELOW TO VIEW THE SOURCE FOR THIS FILE, THE GENERATED 
+ * DOCUMENTATION IS NOT VALID SINCE DOXYGEN CANNOT PROPERLY PARSE BISON FILES!
+ */
+ 
+/** \example test1.c
+ * \section ABOUT About This Example:
+ * The most basic example. This example demonstrates the basic capabilities of 
+ * the compiler to generate valid MIPS assembler code for variable declarations,
+ * simple assignments, and basic arithmetic. In addition, this example demonstrates
+ * the ability of the register allocation algorithm to handle the need for utelizing
+ * spill registers.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test1.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test1.tac
+ * cd ..
+ * ./tac2mips tests/test1.tac
+ * \endcode
+ *
+ * This will generate the output file test1.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test2.c
+ * \section ABOUT About This Example:
+ * This test is designed to test the proper allocation of arrays and calculation 
+ * of array indices and access operations.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test2.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test2.tac
+ * cd ..
+ * ./tac2mips tests/test2.tac
+ * \endcode
+ *
+ * This will generate the output file test2.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test3.c
+ * \section ABOUT About This Example:
+ * This test is designed to test the use of if-else statements.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test3.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test3.tac
+ * cd ..
+ * ./tac2mips tests/test3.tac
+ * \endcode
+ *
+ * This will generate the output file test3.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test4.c
+ * \section ABOUT About This Example:
+ * This test is designed to test all of the C loops including the for, do-while, 
+ * and while loops. In addition, this file tests the incrementor and decrementor.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test4.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test4.tac
+ * cd ..
+ * ./tac2mips tests/test4.tac
+ * \endcode
+ *
+ * This will generate the output file test4.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test5.c
+ * \section ABOUT About This Example:
+ * This test is designed to test scoping of variables and calculated array 
+ * indices (i.e. line 35). This bubble sort algorithm will be used in the next 
+ * test which tests function calls.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test5.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test5.tac
+ * cd ..
+ * ./tac2mips tests/test5.tac
+ * \endcode
+ *
+ * This will generate the output file test5.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test6.c
+ * \section ABOUT About This Example:
+ * This test is designed to test function calls. This is the primary goal of the 
+ * compiler project. This is a very simple bubble sort algorithm which uses a
+ * call to a swap function to swap two integers in a small array. The input 
+ * array is [3, 2, 1] and the output array should be [1, 2, 3].
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test6.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test6.tac
+ * cd ..
+ * ./tac2mips tests/test6.tac
+ * \endcode
+ *
+ * This will generate the output file test6.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test7.c
+ * \section ABOUT About This Example:
+ * This is the final test. This test evaluates the ability of the compiler to
+ * handle 2 dimensional arrays by running a simple matrix multiplication
+ * algorithm.
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ *
+ * \code
+ * ./ccomp tests/test7.c
+ * cp TAC.out mips/tests/
+ * cd mips/tests/
+ * mv TAC.out test7.tac
+ * cd ..
+ * ./tac2mips tests/test7.tac
+ * \endcode
+ *
+ * This will generate the output file test7.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
 #endif // ! CCompiler_H

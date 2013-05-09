@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -104,6 +106,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td
 <tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
 <tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
 <tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,15 +118,462 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a
 <tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
 <tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
 <tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
 <tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c7b65c7ffb728fa792e87258d381a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20c7b65c7ffb728fa792e87258d381a2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SymTab</b> (<a class="el" href="classCCompiler.html">CCompiler</a> *ref)</td></tr>
+<tr class="separator:a20c7b65c7ffb728fa792e87258d381a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af335dd1ba840dfab4219856545d5d8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af335dd1ba840dfab4219856545d5d8ef"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterScope</b> ()</td></tr>
+<tr class="separator:af335dd1ba840dfab4219856545d5d8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2c44208cdad3ddfc85136136cd27c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd2c44208cdad3ddfc85136136cd27c3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>LeaveScope</b> ()</td></tr>
+<tr class="separator:afd2c44208cdad3ddfc85136136cd27c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaca51de0935bbdbf3fdf434deccccb92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca51de0935bbdbf3fdf434deccccb92"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map_function_vars</b> (const string &amp;funcName)</td></tr>
+<tr class="separator:aaca51de0935bbdbf3fdf434deccccb92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e59e29c50f039570c5844871bf838c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e59e29c50f039570c5844871bf838c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</td></tr>
+<tr class="separator:ad8e59e29c50f039570c5844871bf838c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8372047f573c6d84fa231aa7e9842280"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8372047f573c6d84fa231aa7e9842280"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:a8372047f573c6d84fa231aa7e9842280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aedd91e00780c889e60a60fc0795daf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aedd91e00780c889e60a60fc0795daf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>find_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int &amp;level)</td></tr>
+<tr class="separator:a2aedd91e00780c889e60a60fc0795daf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0bfd9c56cfd8e697046178629adbebc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac0bfd9c56cfd8e697046178629adbebc"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>fetch_symbol</b> (<a class="el" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo, int level)</td></tr>
+<tr class="separator:ac0bfd9c56cfd8e697046178629adbebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c005eb114053be22fdbe315542f55b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4c005eb114053be22fdbe315542f55b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> ()</td></tr>
+<tr class="separator:ab4c005eb114053be22fdbe315542f55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5d45136f341bf024a226fe600fb4dcc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5d45136f341bf024a226fe600fb4dcc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dump_table</b> (int level)</td></tr>
+<tr class="separator:ad5d45136f341bf024a226fe600fb4dcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aced837e720830dd9ccb2d3dde621d489"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aced837e720830dd9ccb2d3dde621d489"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGlobals</b> ()</td></tr>
+<tr class="separator:aced837e720830dd9ccb2d3dde621d489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76b5a70170535019b1fe58fa25a9998c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76b5a70170535019b1fe58fa25a9998c"></a>
+list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetLocals</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a76b5a70170535019b1fe58fa25a9998c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4699d90ffd605b205e9e94be9eacde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c4699d90ffd605b205e9e94be9eacde"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsGlobal</b> (string &amp;symName)</td></tr>
+<tr class="separator:a4c4699d90ffd605b205e9e94be9eacde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793c31d247f484b04a9283e71f172756"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a793c31d247f484b04a9283e71f172756"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetFuncOffset</b> (string &amp;funcName)</td></tr>
+<tr class="separator:a793c31d247f484b04a9283e71f172756"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
+<tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92d574f1857924058d55b69cb146af3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae92d574f1857924058d55b69cb146af3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>warning</b> (string msg)</td></tr>
+<tr class="separator:ae92d574f1857924058d55b69cb146af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac2487968008aeee1b1e2490092c6b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac2487968008aeee1b1e2490092c6b8b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>error</b> (string msg)</td></tr>
 <tr class="separator:aac2487968008aeee1b1e2490092c6b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,21 +586,37 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a6f708ee042ccbbd40be5c4d0f6f2913c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f708ee042ccbbd40be5c4d0f6f2913c"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>currentLevel</b></td></tr>
 <tr class="separator:a6f708ee042ccbbd40be5c4d0f6f2913c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7316b75fd6c760f0e7db584a53ecd978"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7316b75fd6c760f0e7db584a53ecd978"></a>
+<tr class="memitem:a80d93e28fe20ddd6a4154d9e9c96170d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80d93e28fe20ddd6a4154d9e9c96170d"></a>
 vector&lt; <a class="el" href="classAVLTree.html">AVLTree</a>&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>symTable</b></td></tr>
-<tr class="separator:a7316b75fd6c760f0e7db584a53ecd978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40af9119686052330047323628e93fdb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a40af9119686052330047323628e93fdb"></a>
+<tr class="separator:a80d93e28fe20ddd6a4154d9e9c96170d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f05861df6fc8ba34b77bf00084e6eac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f05861df6fc8ba34b77bf00084e6eac"></a>
+map&lt; int, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>offsetMap</b></td></tr>
+<tr class="separator:a5f05861df6fc8ba34b77bf00084e6eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3ff318d1346423faf7b07c3fa0fe7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a3ff318d1346423faf7b07c3fa0fe7d"></a>
 <a class="el" href="classCCompiler.html">CCompiler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>driver</b></td></tr>
-<tr class="separator:a40af9119686052330047323628e93fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4a3ff318d1346423faf7b07c3fa0fe7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a759219549efdb89be3eddc6bcc8f6c60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a759219549efdb89be3eddc6bcc8f6c60"></a>
+list&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>funcNames</b></td></tr>
+<tr class="separator:a759219549efdb89be3eddc6bcc8f6c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2723abd7a5840f6eaca60d0370e8dbfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2723abd7a5840f6eaca60d0370e8dbfa"></a>
+map&lt; string, <a class="el" href="classAVLTree.html">AVLTree</a><br class="typebreak"/>
+&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>funcSymMap</b></td></tr>
+<tr class="separator:a2723abd7a5840f6eaca60d0370e8dbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9226c645497e760d2ad630458318eee4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9226c645497e760d2ad630458318eee4"></a>
+map&lt; string, int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>funOffMap</b></td></tr>
+<tr class="separator:a9226c645497e760d2ad630458318eee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00082">82</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="SymTab_8h_source.html">SymTab.h</a></li>
-<li>SymTab.cpp</li>
+<li><a class="el" href="SymTab_8cpp_source.html">SymTab.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:24 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:48 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

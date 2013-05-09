@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -84,7 +86,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classUnionType-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -97,10 +102,1975 @@ Inheritance diagram for UnionType:</div>
  <div class="center">
   <img src="classUnionType.png" usemap="#UnionType_map" alt=""/>
   <map id="UnionType_map" name="UnionType_map">
-<area href="classType.html" alt="Type" shape="rect" coords="0,0,72,24"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,672,154,696"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,616,154,640"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,560,154,584"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,504,154,528"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,448,154,472"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,392,154,416"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,336,154,360"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,280,154,304"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,224,154,248"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,168,154,192"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,112,154,136"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,56,154,80"/>
+<area href="classType.html" alt="Type" shape="rect" coords="82,0,154,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DerivedType</b> { <br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<br/>
+&#160;&#160;<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<br/>
+&#160;&#160;<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<br/>
+&#160;&#160;<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<b>BASE</b>, 
+<br/>
+&#160;&#160;<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<b>ARRAYTYPE</b>, 
+<br/>
+&#160;&#160;<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<b>POINTERTYPE</b>, 
+<br/>
+&#160;&#160;<b>BASE</b>, 
+<b>PODTYPE</b>, 
+<b>TYPEDEFTYPE</b>, 
+<b>ENUMTYPE</b>, 
+<br/>
+&#160;&#160;<b>ARRAYTYPE</b>, 
+<b>STRUCTTYPE</b>, 
+<b>UNIONTYPE</b>, 
+<b>FUNCTIONTYPE</b>, 
+<br/>
+&#160;&#160;<b>POINTERTYPE</b>
+<br/>
+ }</td></tr>
+<tr class="separator:a781f7b15c4cb75ffcec8778e258e6ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
@@ -112,24 +2082,330 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string
 <tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
 <tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a260525d68649bd4763a6b7b8b454f841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a260525d68649bd4763a6b7b8b454f841"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnionType</b> (string n)</td></tr>
+<tr class="separator:a260525d68649bd4763a6b7b8b454f841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9dd36c1aa315e7751da92f7d8db58b94"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>AddMember</b> (string s, <a class="el" href="classType.html">Type</a> *t)</td></tr>
+<tr class="separator:a9dd36c1aa315e7751da92f7d8db58b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1a65ee5ca5f747da9adcb70e44200ee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>MemberExists</b> (string s)</td></tr>
+<tr class="separator:ab1a65ee5ca5f747da9adcb70e44200ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa040600f09c0d9c6f05dad3bea019dc"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classUnionType.html">UnionType</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:aaa040600f09c0d9c6f05dad3bea019dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
+<tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8143fe4686ae1a5709a5955396c6ee26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8143fe4686ae1a5709a5955396c6ee26"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>GetName</b> ()</td></tr>
 <tr class="separator:a8143fe4686ae1a5709a5955396c6ee26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
 <tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0fca035825759785b525d2a24f69fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0fca035825759785b525d2a24f69fe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>GetSize</b> ()</td></tr>
+<tr class="separator:afe0fca035825759785b525d2a24f69fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
 <tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8d2328a3a76289edf42b9bf0d4f278f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetName</b> (string n)</td></tr>
+<tr class="separator:ab8d2328a3a76289edf42b9bf0d4f278f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2574b17ddc03d5ca13309811d06f1a56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2574b17ddc03d5ca13309811d06f1a56"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CheckType</b> (<a class="el" href="classType.html">Type</a> *rhs, bool &amp;isConvertable, CONVERSIONTYPE &amp;t)</td></tr>
+<tr class="separator:a2574b17ddc03d5ca13309811d06f1a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aadef73d6478155dd78c2dc2f840d72b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aadef73d6478155dd78c2dc2f840d72b6"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:aadef73d6478155dd78c2dc2f840d72b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa5124325ffb607ae18ec77aa8793784"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa5124325ffb607ae18ec77aa8793784"></a>
+static <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>GetResultingType</b> (CONVERSIONTYPE ct, bool castUp)</td></tr>
+<tr class="separator:afa5124325ffb607ae18ec77aa8793784"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a61e8b1da54bc206c702082b8be2783a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61e8b1da54bc206c702082b8be2783a5"></a>
+enum Type::DerivedType&#160;</td><td class="memItemRight" valign="bottom"><b>t</b></td></tr>
+<tr class="separator:a61e8b1da54bc206c702082b8be2783a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac1563d21c72e434e98862244ab2bedb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1563d21c72e434e98862244ab2bedb7"></a>
+<tr class="memitem:a5c90dbb091b39eef1cfe5ec142988e4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c90dbb091b39eef1cfe5ec142988e4d"></a>
 vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>memberNames</b></td></tr>
-<tr class="separator:ac1563d21c72e434e98862244ab2bedb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacb3255f59d079d6d94374b7f4f62b72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacb3255f59d079d6d94374b7f4f62b72"></a>
+<tr class="separator:a5c90dbb091b39eef1cfe5ec142988e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af740376c7cc6919aa1978bfb985afb31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af740376c7cc6919aa1978bfb985afb31"></a>
 vector&lt; <a class="el" href="classType.html">Type</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>memberTypes</b></td></tr>
-<tr class="separator:aacb3255f59d079d6d94374b7f4f62b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:af740376c7cc6919aa1978bfb985afb31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7eeefba3dfcecbdaa98d46aaa84e389"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7eeefba3dfcecbdaa98d46aaa84e389"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:ad7eeefba3dfcecbdaa98d46aaa84e389"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,14 +2413,17 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
 <tr class="separator:a871302dc63ac1a37c0b6a225cf82048d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00157">157</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Type_8h_source.html">Type.h</a></li>
-<li>Type.cpp</li>
+<li><a class="el" href="Type_8cpp_source.html">Type.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:25 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:49 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

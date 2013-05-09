@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -86,7 +88,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classCCompiler-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -122,7 +123,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a66089b35f2d1676f4a6639080a4177c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a66089b35f2d1676f4a6639080a4177c0">setOutfile</a> (std::string <a class="el" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">fname</a>)</td></tr>
 <tr class="memdesc:a66089b35f2d1676f4a6639080a4177c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the filename of the standard compiler output file stream and opens the stream.  <a href="#a66089b35f2d1676f4a6639080a4177c0">More...</a><br/></td></tr>
 <tr class="separator:a66089b35f2d1676f4a6639080a4177c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae37bb9232064de17552090db6a2df97d"><td class="memItemLeft" align="right" valign="top">yy::CParser::token::yytokentype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ae37bb9232064de17552090db6a2df97d">checkType</a> (char *key, const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;loc, <a class="el" href="structSymbolInfo.html">SymbolInfo</a> *sym)</td></tr>
+<tr class="memitem:ae37bb9232064de17552090db6a2df97d"><td class="memItemLeft" align="right" valign="top">yy::CParser::token::yytokentype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ae37bb9232064de17552090db6a2df97d">checkType</a> (char *key, const yy::location &amp;loc, <a class="el" href="structSymbolInfo.html">SymbolInfo</a> *sym)</td></tr>
 <tr class="memdesc:ae37bb9232064de17552090db6a2df97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table.  <a href="#ae37bb9232064de17552090db6a2df97d">More...</a><br/></td></tr>
 <tr class="separator:ae37bb9232064de17552090db6a2df97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf3afdb8d707e764cabcafcb7ac3d66d"></a>
@@ -147,13 +148,165 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a947d3b408eea7a9365b9d05f6f247142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a947d3b408eea7a9365b9d05f6f247142">get_insert_mode</a> ()</td></tr>
 <tr class="memdesc:a947d3b408eea7a9365b9d05f6f247142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets TRUE if the compiler is currently in insert mode and false otherwise.  <a href="#a947d3b408eea7a9365b9d05f6f247142">More...</a><br/></td></tr>
 <tr class="separator:a947d3b408eea7a9365b9d05f6f247142"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720">error</a> (const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memitem:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720">error</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
 <tr class="memdesc:aeb15aaabe4c6eba50ae6448dc994d720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an EXIT_FAILURE return value.  <a href="#aeb15aaabe4c6eba50ae6448dc994d720">More...</a><br/></td></tr>
 <tr class="separator:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42f25efb480223b1bf7a98606d57b8d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a42f25efb480223b1bf7a98606d57b8d4">error</a> (const std::string &amp;msg)</td></tr>
 <tr class="memdesc:a42f25efb480223b1bf7a98606d57b8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream and terminates the program with with an EXIT_FAILURE return value.  <a href="#a42f25efb480223b1bf7a98606d57b8d4">More...</a><br/></td></tr>
 <tr class="separator:a42f25efb480223b1bf7a98606d57b8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2">warning</a> (const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memitem:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2">warning</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a078454badd5c6ecb66c9b177bf8e45e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning.  <a href="#a078454badd5c6ecb66c9b177bf8e45e2">More...</a><br/></td></tr>
+<tr class="separator:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763a49b094c39f1105cb41be54b3cb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a763a49b094c39f1105cb41be54b3cb13">warning</a> (const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a763a49b094c39f1105cb41be54b3cb13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a warning to the standard compiler output stream.  <a href="#a763a49b094c39f1105cb41be54b3cb13">More...</a><br/></td></tr>
+<tr class="separator:a763a49b094c39f1105cb41be54b3cb13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b22e2e590320adbb31fcd74981e1bf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a9b22e2e590320adbb31fcd74981e1bf5">printTok</a> (std::string ttxt)</td></tr>
+<tr class="memdesc:a9b22e2e590320adbb31fcd74981e1bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the recognized token to the token file.  <a href="#a9b22e2e590320adbb31fcd74981e1bf5">More...</a><br/></td></tr>
+<tr class="separator:a9b22e2e590320adbb31fcd74981e1bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a14c4d23d93ef5efb73d7d6dba3e9689e">printTok</a> (std::string ttxt, char *yytext)</td></tr>
+<tr class="memdesc:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the recognized token to the token file with the matched text.  <a href="#a14c4d23d93ef5efb73d7d6dba3e9689e">More...</a><br/></td></tr>
+<tr class="separator:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8067a904454b386b22f4a76c2fa153b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8067a904454b386b22f4a76c2fa153b7">printRed</a> (std::string ptxt)</td></tr>
+<tr class="memdesc:a8067a904454b386b22f4a76c2fa153b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a reduction to the reduction file.  <a href="#a8067a904454b386b22f4a76c2fa153b7">More...</a><br/></td></tr>
+<tr class="separator:a8067a904454b386b22f4a76c2fa153b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8098c8e8071444110d5a517d7fa172a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8098c8e8071444110d5a517d7fa172a8">turnDebugOn</a> (bool flag)</td></tr>
+<tr class="memdesc:a8098c8e8071444110d5a517d7fa172a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the debug output flag to the value provided.  <a href="#a8098c8e8071444110d5a517d7fa172a8">More...</a><br/></td></tr>
+<tr class="separator:a8098c8e8071444110d5a517d7fa172a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05b354c2c416543d9238c9d8203a0f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ad05b354c2c416543d9238c9d8203a0f2">printDebug</a> (std::string txt)</td></tr>
+<tr class="memdesc:ad05b354c2c416543d9238c9d8203a0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a debug string to the standard compiler output stream if the debug output flag is set to true.  <a href="#ad05b354c2c416543d9238c9d8203a0f2">More...</a><br/></td></tr>
+<tr class="separator:ad05b354c2c416543d9238c9d8203a0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d69476eff6dba6b2697b065b7fbc6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a29d69476eff6dba6b2697b065b7fbc6b">save_line</a> (int i, string s)</td></tr>
+<tr class="memdesc:a29d69476eff6dba6b2697b065b7fbc6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores a line of code in the input code buffer.  <a href="#a29d69476eff6dba6b2697b065b7fbc6b">More...</a><br/></td></tr>
+<tr class="separator:a29d69476eff6dba6b2697b065b7fbc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2bf25daa08b040296dab6f21b5b514b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2bf25daa08b040296dab6f21b5b514b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aa2bf25daa08b040296dab6f21b5b514b">CCompiler</a> ()</td></tr>
+<tr class="memdesc:aa2bf25daa08b040296dab6f21b5b514b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br/></td></tr>
+<tr class="separator:aa2bf25daa08b040296dab6f21b5b514b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb4847b222ee42be0305a28fac628c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfb4847b222ee42be0305a28fac628c3"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#acfb4847b222ee42be0305a28fac628c3">~CCompiler</a> ()</td></tr>
+<tr class="memdesc:acfb4847b222ee42be0305a28fac628c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="separator:acfb4847b222ee42be0305a28fac628c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d92c3695f753176bfb14cbf544f398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a52d92c3695f753176bfb14cbf544f398">scan_begin</a> (bool debug_scanning)</td></tr>
+<tr class="memdesc:a52d92c3695f753176bfb14cbf544f398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the scanning process.  <a href="#a52d92c3695f753176bfb14cbf544f398">More...</a><br/></td></tr>
+<tr class="separator:a52d92c3695f753176bfb14cbf544f398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a304e3789eb84bfa2a2e2ef21f84abf12"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a304e3789eb84bfa2a2e2ef21f84abf12">scan_end</a> ()</td></tr>
+<tr class="memdesc:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the different output streams used in the scanner. <br/></td></tr>
+<tr class="separator:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8698733d7659aa1bc138b033a9b4d7fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8698733d7659aa1bc138b033a9b4d7fe">parse</a> (const std::string &amp;<a class="el" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">fname</a>)</td></tr>
+<tr class="memdesc:a8698733d7659aa1bc138b033a9b4d7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the parsing (and consequently the scanning) process.  <a href="#a8698733d7659aa1bc138b033a9b4d7fe">More...</a><br/></td></tr>
+<tr class="separator:a8698733d7659aa1bc138b033a9b4d7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66089b35f2d1676f4a6639080a4177c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a66089b35f2d1676f4a6639080a4177c0">setOutfile</a> (std::string <a class="el" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">fname</a>)</td></tr>
+<tr class="memdesc:a66089b35f2d1676f4a6639080a4177c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the filename of the standard compiler output file stream and opens the stream.  <a href="#a66089b35f2d1676f4a6639080a4177c0">More...</a><br/></td></tr>
+<tr class="separator:a66089b35f2d1676f4a6639080a4177c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae37bb9232064de17552090db6a2df97d"><td class="memItemLeft" align="right" valign="top">yy::CParser::token::yytokentype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ae37bb9232064de17552090db6a2df97d">checkType</a> (char *key, const yy::location &amp;loc, <a class="el" href="structSymbolInfo.html">SymbolInfo</a> *sym)</td></tr>
+<tr class="memdesc:ae37bb9232064de17552090db6a2df97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table.  <a href="#ae37bb9232064de17552090db6a2df97d">More...</a><br/></td></tr>
+<tr class="separator:ae37bb9232064de17552090db6a2df97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf3afdb8d707e764cabcafcb7ac3d66d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#adf3afdb8d707e764cabcafcb7ac3d66d">allocateSymbol</a> ()</td></tr>
+<tr class="memdesc:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new current symbol. <br/></td></tr>
+<tr class="separator:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46e2be0b3d3bc44ecfe0b054e94676ba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a46e2be0b3d3bc44ecfe0b054e94676ba">globalScope</a> ()</td></tr>
+<tr class="memdesc:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the global scope for the input program. <br/></td></tr>
+<tr class="separator:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a907195dbe90c35f4aeec4be6616e3f34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a907195dbe90c35f4aeec4be6616e3f34"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a907195dbe90c35f4aeec4be6616e3f34">enterScope</a> ()</td></tr>
+<tr class="memdesc:a907195dbe90c35f4aeec4be6616e3f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters a new scope in the input program. <br/></td></tr>
+<tr class="separator:a907195dbe90c35f4aeec4be6616e3f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bccef2eb5e1f9a822ebca90f744ac2f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a2bccef2eb5e1f9a822ebca90f744ac2f">leaveScope</a> ()</td></tr>
+<tr class="memdesc:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leaves a scope in the input program. <br/></td></tr>
+<tr class="separator:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0517c73a064cdbd86b9d538464bf72fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a0517c73a064cdbd86b9d538464bf72fc">set_insert_mode</a> (bool iMode)</td></tr>
+<tr class="memdesc:a0517c73a064cdbd86b9d538464bf72fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the insert mode flag to the provided value.  <a href="#a0517c73a064cdbd86b9d538464bf72fc">More...</a><br/></td></tr>
+<tr class="separator:a0517c73a064cdbd86b9d538464bf72fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a947d3b408eea7a9365b9d05f6f247142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a947d3b408eea7a9365b9d05f6f247142">get_insert_mode</a> ()</td></tr>
+<tr class="memdesc:a947d3b408eea7a9365b9d05f6f247142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets TRUE if the compiler is currently in insert mode and false otherwise.  <a href="#a947d3b408eea7a9365b9d05f6f247142">More...</a><br/></td></tr>
+<tr class="separator:a947d3b408eea7a9365b9d05f6f247142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720">error</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memdesc:aeb15aaabe4c6eba50ae6448dc994d720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an EXIT_FAILURE return value.  <a href="#aeb15aaabe4c6eba50ae6448dc994d720">More...</a><br/></td></tr>
+<tr class="separator:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f25efb480223b1bf7a98606d57b8d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a42f25efb480223b1bf7a98606d57b8d4">error</a> (const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a42f25efb480223b1bf7a98606d57b8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream and terminates the program with with an EXIT_FAILURE return value.  <a href="#a42f25efb480223b1bf7a98606d57b8d4">More...</a><br/></td></tr>
+<tr class="separator:a42f25efb480223b1bf7a98606d57b8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2">warning</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a078454badd5c6ecb66c9b177bf8e45e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning.  <a href="#a078454badd5c6ecb66c9b177bf8e45e2">More...</a><br/></td></tr>
+<tr class="separator:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763a49b094c39f1105cb41be54b3cb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a763a49b094c39f1105cb41be54b3cb13">warning</a> (const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a763a49b094c39f1105cb41be54b3cb13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a warning to the standard compiler output stream.  <a href="#a763a49b094c39f1105cb41be54b3cb13">More...</a><br/></td></tr>
+<tr class="separator:a763a49b094c39f1105cb41be54b3cb13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b22e2e590320adbb31fcd74981e1bf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a9b22e2e590320adbb31fcd74981e1bf5">printTok</a> (std::string ttxt)</td></tr>
+<tr class="memdesc:a9b22e2e590320adbb31fcd74981e1bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the recognized token to the token file.  <a href="#a9b22e2e590320adbb31fcd74981e1bf5">More...</a><br/></td></tr>
+<tr class="separator:a9b22e2e590320adbb31fcd74981e1bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a14c4d23d93ef5efb73d7d6dba3e9689e">printTok</a> (std::string ttxt, char *yytext)</td></tr>
+<tr class="memdesc:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the recognized token to the token file with the matched text.  <a href="#a14c4d23d93ef5efb73d7d6dba3e9689e">More...</a><br/></td></tr>
+<tr class="separator:a14c4d23d93ef5efb73d7d6dba3e9689e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8067a904454b386b22f4a76c2fa153b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8067a904454b386b22f4a76c2fa153b7">printRed</a> (std::string ptxt)</td></tr>
+<tr class="memdesc:a8067a904454b386b22f4a76c2fa153b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a reduction to the reduction file.  <a href="#a8067a904454b386b22f4a76c2fa153b7">More...</a><br/></td></tr>
+<tr class="separator:a8067a904454b386b22f4a76c2fa153b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8098c8e8071444110d5a517d7fa172a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8098c8e8071444110d5a517d7fa172a8">turnDebugOn</a> (bool flag)</td></tr>
+<tr class="memdesc:a8098c8e8071444110d5a517d7fa172a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the debug output flag to the value provided.  <a href="#a8098c8e8071444110d5a517d7fa172a8">More...</a><br/></td></tr>
+<tr class="separator:a8098c8e8071444110d5a517d7fa172a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad05b354c2c416543d9238c9d8203a0f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ad05b354c2c416543d9238c9d8203a0f2">printDebug</a> (std::string txt)</td></tr>
+<tr class="memdesc:ad05b354c2c416543d9238c9d8203a0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a debug string to the standard compiler output stream if the debug output flag is set to true.  <a href="#ad05b354c2c416543d9238c9d8203a0f2">More...</a><br/></td></tr>
+<tr class="separator:ad05b354c2c416543d9238c9d8203a0f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d69476eff6dba6b2697b065b7fbc6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a29d69476eff6dba6b2697b065b7fbc6b">save_line</a> (int i, string s)</td></tr>
+<tr class="memdesc:a29d69476eff6dba6b2697b065b7fbc6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores a line of code in the input code buffer.  <a href="#a29d69476eff6dba6b2697b065b7fbc6b">More...</a><br/></td></tr>
+<tr class="separator:a29d69476eff6dba6b2697b065b7fbc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2bf25daa08b040296dab6f21b5b514b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2bf25daa08b040296dab6f21b5b514b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aa2bf25daa08b040296dab6f21b5b514b">CCompiler</a> ()</td></tr>
+<tr class="memdesc:aa2bf25daa08b040296dab6f21b5b514b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br/></td></tr>
+<tr class="separator:aa2bf25daa08b040296dab6f21b5b514b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfb4847b222ee42be0305a28fac628c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acfb4847b222ee42be0305a28fac628c3"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#acfb4847b222ee42be0305a28fac628c3">~CCompiler</a> ()</td></tr>
+<tr class="memdesc:acfb4847b222ee42be0305a28fac628c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="separator:acfb4847b222ee42be0305a28fac628c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52d92c3695f753176bfb14cbf544f398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a52d92c3695f753176bfb14cbf544f398">scan_begin</a> (bool debug_scanning)</td></tr>
+<tr class="memdesc:a52d92c3695f753176bfb14cbf544f398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the scanning process.  <a href="#a52d92c3695f753176bfb14cbf544f398">More...</a><br/></td></tr>
+<tr class="separator:a52d92c3695f753176bfb14cbf544f398"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a304e3789eb84bfa2a2e2ef21f84abf12"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a304e3789eb84bfa2a2e2ef21f84abf12">scan_end</a> ()</td></tr>
+<tr class="memdesc:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes the different output streams used in the scanner. <br/></td></tr>
+<tr class="separator:a304e3789eb84bfa2a2e2ef21f84abf12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8698733d7659aa1bc138b033a9b4d7fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8698733d7659aa1bc138b033a9b4d7fe">parse</a> (const std::string &amp;<a class="el" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">fname</a>)</td></tr>
+<tr class="memdesc:a8698733d7659aa1bc138b033a9b4d7fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the parsing (and consequently the scanning) process.  <a href="#a8698733d7659aa1bc138b033a9b4d7fe">More...</a><br/></td></tr>
+<tr class="separator:a8698733d7659aa1bc138b033a9b4d7fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66089b35f2d1676f4a6639080a4177c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a66089b35f2d1676f4a6639080a4177c0">setOutfile</a> (std::string <a class="el" href="classCCompiler.html#a60b1cadb0db77e19be3b13e80ceade72">fname</a>)</td></tr>
+<tr class="memdesc:a66089b35f2d1676f4a6639080a4177c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the filename of the standard compiler output file stream and opens the stream.  <a href="#a66089b35f2d1676f4a6639080a4177c0">More...</a><br/></td></tr>
+<tr class="separator:a66089b35f2d1676f4a6639080a4177c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae37bb9232064de17552090db6a2df97d"><td class="memItemLeft" align="right" valign="top">yy::CParser::token::yytokentype&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ae37bb9232064de17552090db6a2df97d">checkType</a> (char *key, const yy::location &amp;loc, <a class="el" href="structSymbolInfo.html">SymbolInfo</a> *sym)</td></tr>
+<tr class="memdesc:ae37bb9232064de17552090db6a2df97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table.  <a href="#ae37bb9232064de17552090db6a2df97d">More...</a><br/></td></tr>
+<tr class="separator:ae37bb9232064de17552090db6a2df97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adf3afdb8d707e764cabcafcb7ac3d66d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#adf3afdb8d707e764cabcafcb7ac3d66d">allocateSymbol</a> ()</td></tr>
+<tr class="memdesc:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new current symbol. <br/></td></tr>
+<tr class="separator:adf3afdb8d707e764cabcafcb7ac3d66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46e2be0b3d3bc44ecfe0b054e94676ba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a46e2be0b3d3bc44ecfe0b054e94676ba">globalScope</a> ()</td></tr>
+<tr class="memdesc:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the global scope for the input program. <br/></td></tr>
+<tr class="separator:a46e2be0b3d3bc44ecfe0b054e94676ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a907195dbe90c35f4aeec4be6616e3f34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a907195dbe90c35f4aeec4be6616e3f34"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a907195dbe90c35f4aeec4be6616e3f34">enterScope</a> ()</td></tr>
+<tr class="memdesc:a907195dbe90c35f4aeec4be6616e3f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enters a new scope in the input program. <br/></td></tr>
+<tr class="separator:a907195dbe90c35f4aeec4be6616e3f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2bccef2eb5e1f9a822ebca90f744ac2f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a2bccef2eb5e1f9a822ebca90f744ac2f">leaveScope</a> ()</td></tr>
+<tr class="memdesc:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leaves a scope in the input program. <br/></td></tr>
+<tr class="separator:a2bccef2eb5e1f9a822ebca90f744ac2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0517c73a064cdbd86b9d538464bf72fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a0517c73a064cdbd86b9d538464bf72fc">set_insert_mode</a> (bool iMode)</td></tr>
+<tr class="memdesc:a0517c73a064cdbd86b9d538464bf72fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the insert mode flag to the provided value.  <a href="#a0517c73a064cdbd86b9d538464bf72fc">More...</a><br/></td></tr>
+<tr class="separator:a0517c73a064cdbd86b9d538464bf72fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a947d3b408eea7a9365b9d05f6f247142"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a947d3b408eea7a9365b9d05f6f247142">get_insert_mode</a> ()</td></tr>
+<tr class="memdesc:a947d3b408eea7a9365b9d05f6f247142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets TRUE if the compiler is currently in insert mode and false otherwise.  <a href="#a947d3b408eea7a9365b9d05f6f247142">More...</a><br/></td></tr>
+<tr class="separator:a947d3b408eea7a9365b9d05f6f247142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aeb15aaabe4c6eba50ae6448dc994d720">error</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
+<tr class="memdesc:aeb15aaabe4c6eba50ae6448dc994d720"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an EXIT_FAILURE return value.  <a href="#aeb15aaabe4c6eba50ae6448dc994d720">More...</a><br/></td></tr>
+<tr class="separator:aeb15aaabe4c6eba50ae6448dc994d720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f25efb480223b1bf7a98606d57b8d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a42f25efb480223b1bf7a98606d57b8d4">error</a> (const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a42f25efb480223b1bf7a98606d57b8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an error to the standard compiler output stream and terminates the program with with an EXIT_FAILURE return value.  <a href="#a42f25efb480223b1bf7a98606d57b8d4">More...</a><br/></td></tr>
+<tr class="separator:a42f25efb480223b1bf7a98606d57b8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a078454badd5c6ecb66c9b177bf8e45e2">warning</a> (const yy::location &amp;loc, const std::string &amp;msg)</td></tr>
 <tr class="memdesc:a078454badd5c6ecb66c9b177bf8e45e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning.  <a href="#a078454badd5c6ecb66c9b177bf8e45e2">More...</a><br/></td></tr>
 <tr class="separator:a078454badd5c6ecb66c9b177bf8e45e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a763a49b094c39f1105cb41be54b3cb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a763a49b094c39f1105cb41be54b3cb13">warning</a> (const std::string &amp;msg)</td></tr>
@@ -196,13 +349,13 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a9959c74a24cffc0a33e981091b46ef01">trace_parsing</a></td></tr>
 <tr class="memdesc:a9959c74a24cffc0a33e981091b46ef01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trace parsing flag. <br/></td></tr>
 <tr class="separator:a9959c74a24cffc0a33e981091b46ef01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ec2690957bb31fb7942789d55ac9e76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ec2690957bb31fb7942789d55ac9e76"></a>
-<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a5ec2690957bb31fb7942789d55ac9e76">currentSymbol</a></td></tr>
-<tr class="memdesc:a5ec2690957bb31fb7942789d55ac9e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current symbol table symbol. <br/></td></tr>
-<tr class="separator:a5ec2690957bb31fb7942789d55ac9e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81717a338fc2dec88849f062ced197bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81717a338fc2dec88849f062ced197bd"></a>
+<tr class="memitem:a258fcdf75d50f46d255dc1431eaae4c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a258fcdf75d50f46d255dc1431eaae4c4"></a>
+<a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a258fcdf75d50f46d255dc1431eaae4c4">currentSymbol</a></td></tr>
+<tr class="memdesc:a258fcdf75d50f46d255dc1431eaae4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current symbol table symbol. <br/></td></tr>
+<tr class="separator:a258fcdf75d50f46d255dc1431eaae4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02fc8ef09323133c13a029917bdd948e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02fc8ef09323133c13a029917bdd948e"></a>
 <a class="el" href="classType.html">Type</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>structMemberType</b></td></tr>
-<tr class="separator:a81717a338fc2dec88849f062ced197bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a02fc8ef09323133c13a029917bdd948e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3315c6b835f8f910f175630d365592f0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3315c6b835f8f910f175630d365592f0"></a>
 <a class="el" href="classSymTab.html">SymTab</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SymbolTable</b></td></tr>
 <tr class="separator:a3315c6b835f8f910f175630d365592f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,21 +365,36 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>anonymousEnum</b></td
 <tr class="memitem:aac65ea272c3c5420391022d16e01bc35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac65ea272c3c5420391022d16e01bc35"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>structUnionMode</b></td></tr>
 <tr class="separator:aac65ea272c3c5420391022d16e01bc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a407df7e4274f95a2e2ec253d6622a610"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a407df7e4274f95a2e2ec253d6622a610"></a>
+<tr class="memitem:a287a662cd51fe0664007b567d59471fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a287a662cd51fe0664007b567d59471fe"></a>
 list&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>enumConsts</b></td></tr>
-<tr class="separator:a407df7e4274f95a2e2ec253d6622a610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01d0aa35be4c0654ff619801f4e5a916"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01d0aa35be4c0654ff619801f4e5a916"></a>
+<tr class="separator:a287a662cd51fe0664007b567d59471fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89b905b1d1cfdb45834d614eaef34bb0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89b905b1d1cfdb45834d614eaef34bb0"></a>
 list&lt; <a class="el" href="structSymbolInfo.html">SymbolInfo</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>structUnionTypes</b></td></tr>
-<tr class="separator:a01d0aa35be4c0654ff619801f4e5a916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05461404c98f0c49ff711239228b05f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05461404c98f0c49ff711239228b05f7"></a>
+<tr class="separator:a89b905b1d1cfdb45834d614eaef34bb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ff138adce2161dc4e4245848ee5a046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ff138adce2161dc4e4245848ee5a046"></a>
 <a class="el" href="classEnumType.html">EnumType</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>enumType</b></td></tr>
-<tr class="separator:a05461404c98f0c49ff711239228b05f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdc852314e1f491acf4eedd0d6342bb2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdc852314e1f491acf4eedd0d6342bb2"></a>
+<tr class="separator:a4ff138adce2161dc4e4245848ee5a046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace828fe28709f8cfcb28e6bcdc5a6e98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace828fe28709f8cfcb28e6bcdc5a6e98"></a>
 <a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>enumSym</b></td></tr>
-<tr class="separator:acdc852314e1f491acf4eedd0d6342bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ace828fe28709f8cfcb28e6bcdc5a6e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a786c697900f9a3e71f017c87274b3162"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a786c697900f9a3e71f017c87274b3162"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>structVarCount</b></td></tr>
 <tr class="separator:a786c697900f9a3e71f017c87274b3162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f57d1aee607d53a6ab48eb85946342"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38f57d1aee607d53a6ab48eb85946342"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>currentStorageType</b></td></tr>
+<tr class="separator:a38f57d1aee607d53a6ab48eb85946342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d87c2af58a14b39b5fb8735acaab19"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a61d87c2af58a14b39b5fb8735acaab19"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>currentTypeQual</b></td></tr>
+<tr class="separator:a61d87c2af58a14b39b5fb8735acaab19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca8fde29fdf0b2b75dae37d18c7ac9ba"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca8fde29fdf0b2b75dae37d18c7ac9ba"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>currentFunctionName</b></td></tr>
+<tr class="separator:aca8fde29fdf0b2b75dae37d18c7ac9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94e03364c71137c777ae68d0c39488ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94e03364c71137c777ae68d0c39488ac"></a>
+<a class="el" href="classAST.html">AST</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>source_ast</b></td></tr>
+<tr class="separator:a94e03364c71137c777ae68d0c39488ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e8d71266472caab89f4c3078a07ea50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9e8d71266472caab89f4c3078a07ea50"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFuncDef</b></td></tr>
+<tr class="separator:a9e8d71266472caab89f4c3078a07ea50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c5de89c525d74fa8cbc0ff024cd1ec3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c5de89c525d74fa8cbc0ff024cd1ec3"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a3c5de89c525d74fa8cbc0ff024cd1ec3">trace_symtab</a></td></tr>
 <tr class="memdesc:a3c5de89c525d74fa8cbc0ff024cd1ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag indicating whether or not trace data should be output for the symbol table. <br/></td></tr>
@@ -235,17 +403,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#aa185f3a3e7345798eecf9e4cbfb6be1a">ydbFile</a></td></tr>
 <tr class="memdesc:aa185f3a3e7345798eecf9e4cbfb6be1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bison debug output file. <br/></td></tr>
 <tr class="separator:aa185f3a3e7345798eecf9e4cbfb6be1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8898bce76cc8cce6e1eb516f1b09328d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8898bce76cc8cce6e1eb516f1b09328d"></a>
-map&lt; int, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a8898bce76cc8cce6e1eb516f1b09328d">input_text</a></td></tr>
-<tr class="memdesc:a8898bce76cc8cce6e1eb516f1b09328d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input code buffer. <br/></td></tr>
-<tr class="separator:a8898bce76cc8cce6e1eb516f1b09328d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:ad8fe69bbb8afffda34ca69325af7ff0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8fe69bbb8afffda34ca69325af7ff0b"></a>
-static <a class="el" href="classTAC__Generator.html">TAC_Generator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#ad8fe69bbb8afffda34ca69325af7ff0b">tacGen</a></td></tr>
-<tr class="memdesc:ad8fe69bbb8afffda34ca69325af7ff0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Three address code generator. <br/></td></tr>
-<tr class="separator:ad8fe69bbb8afffda34ca69325af7ff0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d154771bac1905b7885a6a73b24206"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04d154771bac1905b7885a6a73b24206"></a>
+map&lt; int, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCCompiler.html#a04d154771bac1905b7885a6a73b24206">input_text</a></td></tr>
+<tr class="memdesc:a04d154771bac1905b7885a6a73b24206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input code buffer. <br/></td></tr>
+<tr class="separator:a04d154771bac1905b7885a6a73b24206"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -277,6 +438,8 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A minimalist C programming language compiler class. </p>
 <p>This class handles the entire operation of compiling C code, from lexing and parsing, to walking the <a class="el" href="classAST.html" title="Abstract syntax tree node type.">AST</a>, generating 3AC, and generating ASM. </p>
+
+<p>Definition at line <a class="el" href="CCompiler_8h_source.html#l00049">49</a> of file <a class="el" href="CCompiler_8h_source.html">CCompiler.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae37bb9232064de17552090db6a2df97d"></a>
 <div class="memitem">
@@ -291,7 +454,95 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;&#160;</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td>
+          <td class="paramname"><em>sym</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The string key for the token </td></tr>
+    <tr><td class="paramname">loc</td><td>The location of the token </td></tr>
+    <tr><td class="paramname">sym</td><td>a pointer to the symbol in the symbol table</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns either IDENTIFIER, ENUM_CONSTANT, or TYPEDEF_NAME </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae37bb9232064de17552090db6a2df97d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">yy::CParser::token::yytokentype CCompiler::checkType </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSymbolInfo.html">SymbolInfo</a> *&#160;</td>
+          <td class="paramname"><em>sym</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Should check the type of the symbol with the input key and insert any symbol not currently in the symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The string key for the token </td></tr>
+    <tr><td class="paramname">loc</td><td>The location of the token </td></tr>
+    <tr><td class="paramname">sym</td><td>a pointer to the symbol in the symbol table</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns either IDENTIFIER, ENUM_CONSTANT, or TYPEDEF_NAME </dd></dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00098">98</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae37bb9232064de17552090db6a2df97d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">yy::CParser::token::yytokentype CCompiler::checkType </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
           <td class="paramname"><em>loc</em>, </td>
         </tr>
         <tr>
@@ -328,7 +579,79 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="memname">void CCompiler::error </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;&#160;</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an EXIT_FAILURE return value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>The coordinates of the error </td></tr>
+    <tr><td class="paramname">msg</td><td>The error message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aeb15aaabe4c6eba50ae6448dc994d720"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::error </td>
+          <td>(</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints an error to the standard compiler output stream with the coordinates of the code that caused the error and terminates the program with with an EXIT_FAILURE return value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>The coordinates of the error </td></tr>
+    <tr><td class="paramname">msg</td><td>The error message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00193">193</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeb15aaabe4c6eba50ae6448dc994d720"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::error </td>
+          <td>(</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
           <td class="paramname"><em>loc</em>, </td>
         </tr>
         <tr>
@@ -380,6 +703,56 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a class="anchor" id="a42f25efb480223b1bf7a98606d57b8d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::error </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints an error to the standard compiler output stream and terminates the program with with an EXIT_FAILURE return value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The error message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00223">223</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42f25efb480223b1bf7a98606d57b8d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::error </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints an error to the standard compiler output stream and terminates the program with with an EXIT_FAILURE return value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The error message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a947d3b408eea7a9365b9d05f6f247142"></a>
 <div class="memitem">
 <div class="memproto">
@@ -395,6 +768,98 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 <p>Gets TRUE if the compiler is currently in insert mode and false otherwise. </p>
 <dl class="section return"><dt>Returns</dt><dd>The value of the insert mode flag; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a947d3b408eea7a9365b9d05f6f247142"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CCompiler::get_insert_mode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets TRUE if the compiler is currently in insert mode and false otherwise. </p>
+<dl class="section return"><dt>Returns</dt><dd>The value of the insert mode flag; </dd></dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00093">93</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a947d3b408eea7a9365b9d05f6f247142"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CCompiler::get_insert_mode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets TRUE if the compiler is currently in insert mode and false otherwise. </p>
+<dl class="section return"><dt>Returns</dt><dd>The value of the insert mode flag; </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8698733d7659aa1bc138b033a9b4d7fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CCompiler::parse </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the parsing (and consequently the scanning) process. </p>
+<p>This is equivalent to a call to a Run() like function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>The input code file filename</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result value of the parse process </dd></dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00037">37</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8698733d7659aa1bc138b033a9b4d7fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CCompiler::parse </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>fname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Runs the parsing (and consequently the scanning) process. </p>
+<p>This is equivalent to a call to a Run() like function.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>The input code file filename</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The result value of the parse process </dd></dl>
 
 </div>
 </div>
@@ -446,6 +911,106 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00289">289</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad05b354c2c416543d9238c9d8203a0f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printDebug </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>txt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a debug string to the standard compiler output stream if the debug output flag is set to true. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">txt</td><td>The debug string to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ad05b354c2c416543d9238c9d8203a0f2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printDebug </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>txt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a debug string to the standard compiler output stream if the debug output flag is set to true. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">txt</td><td>The debug string to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8067a904454b386b22f4a76c2fa153b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printRed </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ptxt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a reduction to the reduction file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptxt</td><td>Reduction string </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00279">279</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8067a904454b386b22f4a76c2fa153b7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printRed </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ptxt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a reduction to the reduction file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptxt</td><td>Reduction string </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a8067a904454b386b22f4a76c2fa153b7"></a>
@@ -493,6 +1058,128 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00269">269</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b22e2e590320adbb31fcd74981e1bf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printTok </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ttxt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the recognized token to the token file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ttxt</td><td>The token </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9b22e2e590320adbb31fcd74981e1bf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printTok </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ttxt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the recognized token to the token file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ttxt</td><td>The token </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a14c4d23d93ef5efb73d7d6dba3e9689e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printTok </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ttxt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>yytext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the recognized token to the token file with the matched text. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ttxt</td><td>The token </td></tr>
+    <tr><td class="paramname">yytext</td><td>The matched text </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a14c4d23d93ef5efb73d7d6dba3e9689e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::printTok </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ttxt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>yytext</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the recognized token to the token file with the matched text. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ttxt</td><td>The token </td></tr>
+    <tr><td class="paramname">yytext</td><td>The matched text </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00274">274</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,6 +1251,128 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00300">300</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a29d69476eff6dba6b2697b065b7fbc6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::save_line </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stores a line of code in the input code buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Line number </td></tr>
+    <tr><td class="paramname">s</td><td>Line of input code </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a29d69476eff6dba6b2697b065b7fbc6b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::save_line </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>s</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stores a line of code in the input code buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>Line number </td></tr>
+    <tr><td class="paramname">s</td><td>Line of input code </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a52d92c3695f753176bfb14cbf544f398"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::scan_begin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>debug_scanning</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the scanning process. </p>
+<p>This function sets up the scanner output streams, sets the scanner's debug level, and begins the FIRSTLINE state.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">debug_scanning</td><td>Indicates if the scanner should output debug info </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a52d92c3695f753176bfb14cbf544f398"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::scan_begin </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>debug_scanning</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the scanning process. </p>
+<p>This function sets up the scanner output streams, sets the scanner's debug level, and begins the FIRSTLINE state.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">debug_scanning</td><td>Indicates if the scanner should output debug info </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a52d92c3695f753176bfb14cbf544f398"></a>
@@ -609,6 +1418,106 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iMode</td><td>Value to set the insert mode flag to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a0517c73a064cdbd86b9d538464bf72fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::set_insert_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>iMode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the insert mode flag to the provided value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iMode</td><td>Value to set the insert mode flag to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00088">88</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0517c73a064cdbd86b9d538464bf72fc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::set_insert_mode </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>iMode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the insert mode flag to the provided value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iMode</td><td>Value to set the insert mode flag to </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a66089b35f2d1676f4a6639080a4177c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::setOutfile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the filename of the standard compiler output file stream and opens the stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>The filename </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00060">60</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a66089b35f2d1676f4a6639080a4177c0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::setOutfile </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>fname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the filename of the standard compiler output file stream and opens the stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>The filename </td></tr>
   </table>
   </dd>
 </dl>
@@ -661,6 +1570,56 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00284">284</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8098c8e8071444110d5a517d7fa172a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::turnDebugOn </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the debug output flag to the value provided. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flag</td><td>Flag value </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a8098c8e8071444110d5a517d7fa172a8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::turnDebugOn </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the debug output flag to the value provided. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">flag</td><td>Flag value </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a078454badd5c6ecb66c9b177bf8e45e2"></a>
@@ -670,7 +1629,79 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
         <tr>
           <td class="memname">void CCompiler::warning </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classyy_1_1location.html">yy::location</a> &amp;&#160;</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>The coordinates of the warning </td></tr>
+    <tr><td class="paramname">msg</td><td>The warning message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00233">233</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a078454badd5c6ecb66c9b177bf8e45e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::warning </td>
+          <td>(</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
+          <td class="paramname"><em>loc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a warning to the standard compiler output stream with the coordinates of the code that caused the warning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loc</td><td>The coordinates of the warning </td></tr>
+    <tr><td class="paramname">msg</td><td>The warning message </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a078454badd5c6ecb66c9b177bf8e45e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::warning </td>
+          <td>(</td>
+          <td class="paramtype">const yy::location &amp;&#160;</td>
           <td class="paramname"><em>loc</em>, </td>
         </tr>
         <tr>
@@ -722,15 +1753,64 @@ fstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a class="anchor" id="a763a49b094c39f1105cb41be54b3cb13"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a warning to the standard compiler output stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The warning message to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="CCompiler_8cpp_source.html#l00261">261</a> of file <a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a763a49b094c39f1105cb41be54b3cb13"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CCompiler::warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a warning to the standard compiler output stream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>The warning message to print </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="CCompiler_8h_source.html">CCompiler.h</a></li>
-<li>CCompiler.cpp</li>
-<li>CScanner.cpp</li>
+<li><a class="el" href="CCompiler_8cpp_source.html">CCompiler.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:23 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:47 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

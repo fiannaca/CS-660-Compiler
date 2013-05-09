@@ -13,8 +13,10 @@ int main()
     }
     else
     {
-        a = -1;
+        a = 3;
     }
+    
+    //Expected value of a: 3
     
     return 0;
 }
