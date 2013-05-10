@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -99,6 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_0x75.html#index_u"><span>u</span></a></li>
       <li><a href="functions_0x76.html#index_v"><span>v</span></a></li>
       <li><a href="functions_0x77.html#index_w"><span>w</span></a></li>
+      <li><a href="functions_0x78.html#index_x"><span>x</span></a></li>
       <li><a href="functions_0x79.html#index_y"><span>y</span></a></li>
       <li><a href="functions_0x7e.html#index_0x7e"><span>~</span></a></li>
     </ul>
@@ -127,18 +130,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>scan_begin()
 : <a class="el" href="classCCompiler.html#a52d92c3695f753176bfb14cbf544f398">CCompiler</a>
+, <a class="el" href="classtac2mips.html#a5af3758037d1314ce0d8b6f093dc2b60">tac2mips</a>
+, <a class="el" href="classCCompiler.html#a52d92c3695f753176bfb14cbf544f398">CCompiler</a>
+, <a class="el" href="classtac2mips.html#a5af3758037d1314ce0d8b6f093dc2b60">tac2mips</a>
 </li>
 <li>scan_end()
 : <a class="el" href="classCCompiler.html#a304e3789eb84bfa2a2e2ef21f84abf12">CCompiler</a>
-</li>
-<li>semantic_stack_type
-: <a class="el" href="classyy_1_1CParser.html#af0ed7ecea92b2c850e0d79973ea2e6a6">yy::CParser</a>
-</li>
-<li>set_debug_level()
-: <a class="el" href="classyy_1_1CParser.html#ae7e2622d21d62b1918c4a9da72bc572e">yy::CParser</a>
-</li>
-<li>set_debug_stream()
-: <a class="el" href="classyy_1_1CParser.html#ac7ec97c13cd0b7b488bfbaf9fb208bc9">yy::CParser</a>
+, <a class="el" href="classtac2mips.html#a670887603a5bf164a341603174bea1f6">tac2mips</a>
 </li>
 <li>set_insert_mode()
 : <a class="el" href="classCCompiler.html#a0517c73a064cdbd86b9d538464bf72fc">CCompiler</a>
@@ -152,14 +150,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SetCommentEnd()
 : <a class="el" href="classTAC__Generator.html#ad96d5a262c29a34a34324ed6c7aeffe1">TAC_Generator</a>
 </li>
-<li>SetCommentStart()
-: <a class="el" href="classTAC__Generator.html#a8570a01bd5bf10e849017d412440799a">TAC_Generator</a>
-</li>
 <li>SetFile()
 : <a class="el" href="classTAC__Generator.html#a1c8e7f2ace8e7e96b4a2a1909ca054fe">TAC_Generator</a>
 </li>
 <li>SetFormatFlags()
 : <a class="el" href="classTAC__Generator.html#aacd4a0f0dd9c2cc79da4cf9d9d1e442e">TAC_Generator</a>
+</li>
+<li>SetFstream()
+: <a class="el" href="classAddressTable.html#a01cb33a0d15c534e24da5df8343195a0">AddressTable</a>
+, <a class="el" href="classRegAllocTable.html#aa2edeeb09c0812642d9feef4afc3dab5">RegAllocTable</a>
+, <a class="el" href="classAddressTable.html#a01cb33a0d15c534e24da5df8343195a0">AddressTable</a>
+, <a class="el" href="classRegAllocTable.html#aa2edeeb09c0812642d9feef4afc3dab5">RegAllocTable</a>
+, <a class="el" href="classAddressTable.html#a01cb33a0d15c534e24da5df8343195a0">AddressTable</a>
 </li>
 <li>setLabel()
 : <a class="el" href="classAST.html#a71d680856e95ff89f55d5311a552eba6">AST</a>
@@ -167,29 +169,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>setOutfile()
 : <a class="el" href="classCCompiler.html#a66089b35f2d1676f4a6639080a4177c0">CCompiler</a>
 </li>
+<li>SetVerbose()
+: <a class="el" href="classtac2mips.html#a400deab9a6d9751462db4928b8ec53d0">tac2mips</a>
+, <a class="el" href="classAddressTable.html#a63b610938d676f8daac9d8f52e8cad47">AddressTable</a>
+, <a class="el" href="classRegAllocTable.html#ac0a7b57930d008e1cf2c15d4dfbf2b81">RegAllocTable</a>
+, <a class="el" href="classAddressTable.html#a63b610938d676f8daac9d8f52e8cad47">AddressTable</a>
+, <a class="el" href="classtac2mips.html#a400deab9a6d9751462db4928b8ec53d0">tac2mips</a>
+, <a class="el" href="classRegAllocTable.html#ac0a7b57930d008e1cf2c15d4dfbf2b81">RegAllocTable</a>
+, <a class="el" href="classtac2mips.html#a400deab9a6d9751462db4928b8ec53d0">tac2mips</a>
+, <a class="el" href="classRegAllocTable.html#ac0a7b57930d008e1cf2c15d4dfbf2b81">RegAllocTable</a>
+</li>
+<li>SHIFTL
+: <a class="el" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca8f0f0d5e222181f2f8ad11c2931d394f">TAC_Generator</a>
+</li>
+<li>SHIFTR
+: <a class="el" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca0951cdfa8367ee31aa9931730f83a4e4">TAC_Generator</a>
+</li>
 <li>SingleRotate()
 : <a class="el" href="classAVLTree.html#ac7ebd1be164c8e1d0eab990e14285957">AVLTree&lt; DataItem &gt;</a>
 </li>
-<li>state_stack_type
-: <a class="el" href="classyy_1_1CParser.html#aba46c1145be36b531f0765b49ae812e8">yy::CParser</a>
+<li>size()
+: <a class="el" href="classAddressTable.html#ac01532aec4ab77d4f567b2ad0a3560aa">AddressTable</a>
 </li>
-<li>state_type
-: <a class="el" href="classyy_1_1CParser.html#a29e7ee85964141e46dd6d9c39653a87e">yy::CParser</a>
+<li>spillOffset
+: <a class="el" href="structRegister.html#a078293ed75bbe6eb949967d24fa1c3de">Register</a>
 </li>
-<li>step()
-: <a class="el" href="classyy_1_1location.html#a96620cec8dd8ebfc96c60a03c10154d0">yy::location</a>
+<li>spills
+: <a class="el" href="classRegAllocTable.html#abc24f86915af6deb5be25fa716181482">RegAllocTable</a>
+</li>
+<li>SpillToReg()
+: <a class="el" href="classRegAllocTable.html#a8a4f069813248a9143840b01f8fac5f3">RegAllocTable</a>
+</li>
+<li>stackSpace
+: <a class="el" href="structFunction.html#afd7c8ce3641d5f558fc627d60b8f832c">Function</a>
+</li>
+<li>Store()
+: <a class="el" href="classAddressTable.html#a1368d05fc8b6e2dc9c53515093c8ed40">AddressTable</a>
 </li>
 <li>STRING
-: <a class="el" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a6f41d96ce4497e2288e3648ccb54a075">TAC_Generator</a>
+: <a class="el" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a2b52d09086bc8cc004bc9859a6b7dd40">TAC_Generator</a>
 </li>
 <li>SUB
-: <a class="el" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2">TAC_Generator</a>
+: <a class="el" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4caf421605e870566ed803e041ea63fc13e">TAC_Generator</a>
+</li>
+<li>Subscribe()
+: <a class="el" href="classGoFPatterns_1_1Event.html#ae674c9abb7567f6650441a44c475df7f">GoFPatterns::Event&lt; SourceType, EventArgType &gt;</a>
+</li>
+<li>SwapRegToSpill()
+: <a class="el" href="classRegAllocTable.html#a6fe086c95ce7c974b19d47fe73ca2ea0">RegAllocTable</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:25 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:49 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

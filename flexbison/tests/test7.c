@@ -35,5 +35,8 @@ int main()
         }
     }
     
+    //Expected output of c: | 1, 2 |
+    //                      | 3, 4 |
+    
     return 0;
 }

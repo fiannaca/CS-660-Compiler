@@ -1,18 +1,8 @@
 /**
  * Test5.c is designed to test scoping of variables and calculated array 
- * indices (i.e. line 35). This bubble sort algorithm will be used in the next 
+ * indices (i.e. line 25). This bubble sort algorithm will be used in the next 
  * test which tests function calls.
  */
- 
- //Swap takes two integers as reference parameters and swaps their values
- void swap(int &a, int &b)
- {
-    int tmp;
-    
-    tmp = a;
-    a = b;
-    b = tmp;
- }
  
  //The bubble sort algorithm
  int main()
@@ -20,6 +10,7 @@
     int arr[3];
     bool swapped;
     int i;
+    int tmp;
     
     //Initialize the array to sort
     arr[0] = 3;
@@ -35,12 +26,16 @@
         {
             if(a[i - 1] > a[i])
             {
-                swap(a[i - 1], a[i]);
+		        tmp = a[i - 1];
+				a[i - 1] = a[i];
+				a[i] = tmp;
                 swapped = true;
             }
         }
         
     } while (swapped);
+    
+    //Expected output of arr: [1, 2, 3]
     
     return 0;
  }

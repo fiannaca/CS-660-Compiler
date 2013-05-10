@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -93,139 +96,163 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="classTAC__Generator.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4c">   29</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4c" title="Enumeration of 3 operand instructions.">ThreeOpInstructions</a></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        {</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4caebd55c328d6c94f6b1cdab5a40c0fada">   31</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4caebd55c328d6c94f6b1cdab5a40c0fada" title="Add the value of two temps.">ADD</a>, </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2">   32</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cac1c07d4c9064b044cd85f1cd2eff48c2" title="Subtract the value of two temps.">SUB</a>, </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cad044e3bc39a0cda02874051a280ed4a7">   33</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cad044e3bc39a0cda02874051a280ed4a7" title="Multiply the value of two temps.">MULT</a>, </div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca92b17264302f045c424f12f48c08c935">   34</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca92b17264302f045c424f12f48c08c935" title="Divide the value of two temps.">DIV</a>, </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cab2643519b64d78e68bdbd5f052ed46e6">   35</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cab2643519b64d78e68bdbd5f052ed46e6" title="Set op3 to 1 is op1 == op2, or 0 otherwise.">EQ</a>, </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cab77f9b411c364b8e764fb46023392319">   36</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cab77f9b411c364b8e764fb46023392319" title="Set op3 to 1 is op1 &gt; op2, or 0 otherwise.">GT</a>, </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca22beb5be26c57f28bedf15c552f6d715">   37</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca22beb5be26c57f28bedf15c552f6d715" title="Set op3 to 1 is op1 &lt; op2, or 0 otherwise.">LT</a>, </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4caea08b33a5151121653c928796cf5044c">   38</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4caea08b33a5151121653c928796cf5044c" title="Set op3 to 1 is op1 &gt;= op2, or 0 otherwise.">GE</a>, </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cae644e70b5036e8e2d842ec4c70539412">   39</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cae644e70b5036e8e2d842ec4c70539412" title="Set op3 to 1 is op1 &lt;= op2, or 0 otherwise.">LE</a>, </div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cacd54c7d37a6f009438f75882e32652e4">   40</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cacd54c7d37a6f009438f75882e32652e4" title="Set op3 to 1 is op1 != op2, or 0 otherwise.">NE</a>, </div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca30a4fdd5b8030f217bcd16cc32765bcf">   41</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca30a4fdd5b8030f217bcd16cc32765bcf" title="If(op1 == op2) goto op3.">BREQ</a>, </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca3128cf700a547a1f7a64a169a185cbb0">   42</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca3128cf700a547a1f7a64a169a185cbb0" title="If(op1 &gt; op2) goto op3.">BRGT</a>, </div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca8c1aa7cbae5e4919224525bf9971aead">   43</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca8c1aa7cbae5e4919224525bf9971aead" title="If(op1 &lt; op2) goto op3.">BRLT</a>, </div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca4f4a21ae798e08f62766f18be6cb1a2e">   44</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca4f4a21ae798e08f62766f18be6cb1a2e" title="If(op1 &gt;= op2) goto op3.">BRGE</a>, </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca2eaafd3f43c38d4aaf56f651ead9df28">   45</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca2eaafd3f43c38d4aaf56f651ead9df28" title="If(op1 &lt;= op2) goto op3.">BRLE</a>, </div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca935e57d81059cca78b9b988be74a5a04">   46</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca935e57d81059cca78b9b988be74a5a04" title="If(op1 != op2) goto op3.">BRNE</a>, </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca9c42a15b4e0746ce8731fd7c2dfcc284">   47</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4ca9c42a15b4e0746ce8731fd7c2dfcc284" title="Marks the beginning of a procedure.">PROCENTRY</a>, </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4cad12eea4d154eb370c0614d86db840303">   48</a></span>&#160;            BOUND </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        };</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129">   57</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129" title="Enum of 2 operand instructions.">TwoOpInstructions</a></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        {</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a3accf08d872837d04e2a68fd92f48fae">   59</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a3accf08d872837d04e2a68fd92f48fae" title="op2 = -(op1)">NEG</a>, </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129aa58983d3f96e5f269e837a60a2d27550">   60</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129aa58983d3f96e5f269e837a60a2d27550" title="Set op2 to 1 if op1 == 0, or 0 otherwise.">NOT</a>, </div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653">   61</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129ab0625425b985a4180eb54bf940abe653" title="Assign the value of op1 to op2.">ASSIGN</a>, </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34">   62</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a76377537b037680d0d023cf90dab5e34" title="Assign the address of op1 to op2.">ADDR</a>, </div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a2ca6f0770dbf39f9be8f4967ce9feb3d">   63</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a2ca6f0770dbf39f9be8f4967ce9feb3d" title="Declare op1 as a global of size op2.">GLOBAL</a>, </div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129a6f41d96ce4497e2288e3648ccb54a075">   64</a></span>&#160;            STRING </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        };</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123">   73</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123" title="Enum of 1 operand instructions.">OneOpInstructions</a></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123a8b4bb5779b8d5fc3c3b65a38989b5fb7">   75</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123a8b4bb5779b8d5fc3c3b65a38989b5fb7" title="Generate a label.">LABEL</a>, </div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123ad208b8e4a2f64aa203033f49bad6c133">   76</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123ad208b8e4a2f64aa203033f49bad6c133" title="Branch to a label.">BR</a>, </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910">   77</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123abf339879abf087f785908c4a011cc910" title="Specify the number of arguments being sent to the next call.">ARGS</a>, </div>
-<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123aae8ac3510ee6787b97ee7253ca571558">   78</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123aae8ac3510ee6787b97ee7253ca571558" title="Pass op1 by reference.">REFOUT</a>, </div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123a9c87f2c9a418414b6a9f09eb0ebe5091">   79</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123a9c87f2c9a418414b6a9f09eb0ebe5091" title="Pass op1 by value.">VALOUT</a>, </div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123aa556d3b733a3f68eec27a0b0d0184023">   80</a></span>&#160;            <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123aa556d3b733a3f68eec27a0b0d0184023" title="Call the procedure named op1.">CALL</a>, </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123a5813fd66b52a9e97a0fdf1681f3dd2f9">   81</a></span>&#160;            COMMENT </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        };</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5">   90</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5" title="Enum of instructions without operands.">NoOpInstructions</a></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a03b7dc352e386f1ade69363f4f4aac69">   92</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a03b7dc352e386f1ade69363f4f4aac69" title="Immediately halt execution.">HALT</a>, </div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a1faa4114dd25f4a395ce10e7781849de">   93</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a1faa4114dd25f4a395ce10e7781849de" title="Mark the end of a procedure.">ENDPROC</a>, </div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a1a9c621e0c05756889c609dc1ad2a07d">   94</a></span>&#160;            <a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5a1a9c621e0c05756889c609dc1ad2a07d" title="Return control to the caller.">RETURN</a>, </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        };</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        ~<a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>();</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordtype">void</span> toTAC(ThreeOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">void</span>* op2, <span class="keywordtype">void</span>* op3, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordtype">void</span> toTAC(TwoOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">void</span>* op2, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        </div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordtype">void</span> toTAC(OneOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;SymTab.h&quot;</span> </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4c">   33</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#ae032b80a215a10604c5273b65e7dab4c" title="Enumeration of 3 operand instructions.">ThreeOpInstructions</a></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            ADD, </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            SUB, </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            MULT, </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            DIV, </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            REM , </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            SHIFTL ,  </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            SHIFTR ,  </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            AND , </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            XOR , </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            OR  ,  </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            LOR , </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            LAND , </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            EQ, </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            GT, </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            LT, </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            GE, </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            LE, </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            NE, </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            BREQ, </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            BRGT, </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            BRLT, </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            BRGE, </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            BRLE, </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            BRNE, </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            BOUND, </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        ALLOC, </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        };</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129">   69</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#a4e5a63c4a55a85d34f6ffebe5bf48129" title="Enum of 2 operand instructions.">TwoOpInstructions</a></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            NEG, </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            NOT, </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            ASSIGN, </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            ADDR, </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            GLOBAL, </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            STRING, </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            IMMEDIATE_I, </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            IMMEDIATE_F, </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            MOV  </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        };</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123">   88</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#ab58b7044cb5d16a454f4e01514175123" title="Enum of 1 operand instructions.">OneOpInstructions</a></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            LABEL, </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            BR, </div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            ARGS, </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            REFOUT, </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            VALOUT, </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            CALL, </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            PROCENTRY, </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            COMMENT, </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            BEGINFRAME, </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        };</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5">  107</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classTAC__Generator.html#a3942f3e280fb83e44ad85eb13d56dfb5" title="Enum of instructions without operands.">NoOpInstructions</a></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            HALT, </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            ENDPROC, </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            RETURN, </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            ENDFRAME </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        };</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        ~<a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a>();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordtype">void</span> toTAC(ThreeOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">void</span>* op2, <span class="keywordtype">void</span>* op3, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        </div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="keywordtype">void</span> toTAC(TwoOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">void</span>* op2, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        </div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordtype">void</span> toTAC(NoOpInstructions t, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordtype">void</span> SetCommentStart(<span class="keywordtype">string</span> commentStart);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordtype">void</span> SetCommentEnd(<span class="keywordtype">string</span> commentEnd);</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        <span class="keywordtype">void</span> WriteComment(<span class="keywordtype">string</span> comment);</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordtype">void</span> Blank();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordtype">void</span> toTAC(OneOpInstructions t, <span class="keywordtype">void</span>* op1, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span> );</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordtype">void</span> toTAC(NoOpInstructions t, <span class="keywordtype">string</span> c = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordtype">void</span> Fetch(<span class="keywordtype">string</span> varName , <a class="code" href="classSymTab.html">SymTab</a> *symbolTable , <span class="keywordtype">string</span> targetTemp);  </div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <span class="keywordtype">void</span> SetFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        <span class="keywordtype">void</span> SetColumnWidth(<span class="keywordtype">int</span> w);</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordtype">void</span> SetFormatFlags(ios_base::fmtflags ff);</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keywordtype">void</span> SetBlankBeforeComments(<span class="keywordtype">bool</span> flag);</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                </div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetLabelName();</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetIVarName();</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetFVarName();</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keywordtype">void</span> Emit(<span class="keywordtype">string</span> CodeToEmit);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordtype">void</span> SetCommentStart(<span class="keywordtype">string</span> commentStart);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">void</span> SetCommentEnd(<span class="keywordtype">string</span> commentEnd);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordtype">void</span> WriteComment(<span class="keywordtype">string</span> comment);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="keywordtype">void</span> Blank();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="keywordtype">void</span> SetFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <span class="keywordtype">void</span> SetColumnWidth(<span class="keywordtype">int</span> w);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <span class="keywordtype">void</span> SetFormatFlags(ios_base::fmtflags ff);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        <span class="keywordtype">void</span> SetBlankBeforeComments(<span class="keywordtype">bool</span> flag);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        </div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            </div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetLabelName();</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a3609e88e889225e87f604b99b0f2ab7d">  276</a></span>&#160;        list&lt;string&gt; <a class="code" href="classTAC__Generator.html#a3609e88e889225e87f604b99b0f2ab7d" title="A buffer for the generated 3AC.">buffer</a>; </div>
-<div class="line"><a name="l00277"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a28ca6d057dca0033a4ae6e67b903ea7c">  277</a></span>&#160;        ofstream <a class="code" href="classTAC__Generator.html#a28ca6d057dca0033a4ae6e67b903ea7c" title="Output stream.">fout</a>; </div>
-<div class="line"><a name="l00279"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ac530666b410f226e764e9eb33b2a4666">  279</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="classTAC__Generator.html#ac530666b410f226e764e9eb33b2a4666" title="String to be placed at the beginning of every comment.">commentStart</a>; </div>
-<div class="line"><a name="l00280"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a9f011cfb810ea2cd01b31b9a48762123">  280</a></span>&#160;        <span class="keywordtype">string</span> <a class="code" href="classTAC__Generator.html#a9f011cfb810ea2cd01b31b9a48762123" title="String to be placed at the end of every comment.">commentEnd</a>; </div>
-<div class="line"><a name="l00281"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a56e2e1cedb94e46da20203a1baa8c623">  281</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classTAC__Generator.html#a56e2e1cedb94e46da20203a1baa8c623" title="Flag for placing blank lines before comments.">blankBeforeComment</a>; </div>
-<div class="line"><a name="l00283"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a1d4defba19014a3804e2f52b01b3a967">  283</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classTAC__Generator.html#a1d4defba19014a3804e2f52b01b3a967" title="Fixed column width of the output 3AC.">width</a>; </div>
-<div class="line"><a name="l00285"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a27703e9823770349f1ba61d0aff651c1">  285</a></span>&#160;        ios_base::fmtflags <a class="code" href="classTAC__Generator.html#a27703e9823770349f1ba61d0aff651c1" title="Format flags.">flags</a>; </div>
-<div class="line"><a name="l00287"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#ac4da267c055d5463a0a62da16ce6ba1e">  287</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classTAC__Generator.html#ac4da267c055d5463a0a62da16ce6ba1e" title="Current label counter for generating unique labels.">lCount</a>; </div>
-<div class="line"><a name="l00288"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a87349893e585843296a08ad64d50c80c">  288</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classTAC__Generator.html#a87349893e585843296a08ad64d50c80c" title="Current integer counter for generating unique integer labels.">iCount</a>; </div>
-<div class="line"><a name="l00289"></a><span class="lineno"><a class="code" href="classTAC__Generator.html#a744cd7df227e0fa7b2409ceb83beac3a">  289</a></span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classTAC__Generator.html#a744cd7df227e0fa7b2409ceb83beac3a" title="Current float counter for generating unique float labels.">fCount</a>; </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;};</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="preprocessor">#endif // ! TAC_GENERATOR_H_</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetIVarName();</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">string</span> GetFVarName();</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <span class="keywordtype">void</span> Emit(<span class="keywordtype">string</span> CodeToEmit);</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        list&lt;string&gt; buffer; </div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        ofstream fout; </div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keywordtype">string</span> commentStart; </div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordtype">string</span> commentEnd; </div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;        <span class="keywordtype">bool</span> blankBeforeComment; </div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordtype">int</span> width; </div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;        ios_base::fmtflags flags; </div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> lCount; </div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> iCount; </div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> fCount; </div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        <span class="keywordtype">string</span> CurrentLabel;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;};</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> GenGlobals (  <a class="code" href="classSymTab.html">SymTab</a> &amp;symTab ,  <a class="code" href="classTAC__Generator.html" title="A class for generating three address code.">TAC_Generator</a> &amp;tacGen);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#endif // ! TAC_GENERATOR_H_</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:17 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 9 2013 14:45:35 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
