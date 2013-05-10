@@ -76,6 +76,7 @@ class TAC_Generator
             STRING, /**< Associate string op1 with label op2 */
             IMMEDIATE_I, /**< Load an integer into a register */
             IMMEDIATE_F, /**< Load a float into a register */
+            TILDE , /** does op2 = ~(op1) */
             MOV  /** does op1 = op2 */ 
         };
 
