@@ -213,7 +213,7 @@ tac_command
 			string reg2 = driver.GetRegister(*$3);
 			string reg3 = driver.GetRegister(*$4);			
 			
-			driver.toMIPS("slt", reg3, reg2, reg1);
+			driver.toMIPS("slt", reg3, reg1, reg2);
 			
 			driver.FreeRegister(reg1);
 			driver.FreeRegister(reg2);
