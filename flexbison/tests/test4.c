@@ -12,7 +12,7 @@
     
     for(i = 0; i < 10; i++)
     {
-        a = a + 2;
+       a = a + 2;
     }
     
     //This will increment a by 2 from 1 to 11
