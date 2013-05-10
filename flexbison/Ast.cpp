@@ -181,10 +181,12 @@ AstPostfixExpr::AstPostfixExpr(AstPrimaryExpr* p)
     this->argExprList = NULL;
     this->id = NULL;
     this->op = NONE;
-    
+    this->visited = false; 
     this->t = PRIMARY;
     this->type = p->etype;
 
+
+    this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Primary");
 }
 
@@ -196,11 +198,11 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
     this->argExprList = NULL;
     this->id = NULL;
     this->op = NONE;
-    
+    this->visited  = false;
     this->t = BRACKETS;
     
    // this->type = ((ArrayType*)p->type)->GetBase();
-    
+    this->arrayType = NULL; 
     this->setLabel("AstPostfixExpr - Brackets");
 }
 
@@ -212,11 +214,12 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p)
     this->argExprList = NULL;
     this->id = NULL;
     this->op = NONE;
-    
+    this->visited = false;
     this->t = EMPTY_PARENS;
     
     this->type = p->type;
 
+    this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Empty Parens");
 }
 
@@ -228,11 +231,12 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a)
     this->argExprList = a;
     this->id = NULL;
     this->op = NONE;
-    
+    this->visited = false;
     this->t = PARENS;
     
     this->type = p->type;
 
+    this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Parens");
 }
 
@@ -244,14 +248,15 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i)
     this->argExprList = NULL;
     this->id = i;
     this->op = o;
-    
+    this->visited = false; 
     if(o == DOT_OP)
         this->t = DOT;
     else
         this->t = PTR;
 
     this->type = i->type;
-        
+   
+    this->arrayType = NULL;      
     this->setLabel("AstPostfixExpr - Dot or Ptr");
 }
 
@@ -263,14 +268,14 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
     this->argExprList = NULL;
     this->id = NULL;
     this->op = o;
-    
+    this->visited = false; 
     if(o == INC_OP)
         this->t = INC;
     else
         this->t = DEC;
 
     this->type = p->type;
-    
+    this->arrayType = NULL;  
     this->setLabel("AstPostfixExpr - Inc or Dec");
 }
 
@@ -283,7 +288,17 @@ void AstPostfixExpr::Visit()
     string one = "1";
     int arrayBrackets=0;
     SymbolInfo info;
-    SymbolInfo *arrayinfo;
+    SymbolInfo *arrayinfo= NULL;
+    list<SymbolInfo> localItems;
+    localItems =  AST::symbolTable->GetLocals(AST::currentFunction);	
+    list<SymbolInfo>::iterator items = localItems.begin();
+    string arrayName; 
+    string arrayAddr;
+    int arrayTypeSize;   
+    string immediateValue;
+    string result; 
+    string effectiveAddress;
+    int currentDimension; 
     switch(t)
     {
         case PRIMARY:
@@ -300,24 +315,72 @@ void AstPostfixExpr::Visit()
 
         case BRACKETS:
             //Visit children nodes
-            AST::currentIndexVal++;
-            AST::tacGen.toTAC(TAC_Generator::ADDR,(void *)&(AST::currentIdName) , (void *)&tempVar);
-            info.symbol_name = AST::currentIdName;
-            arrayinfo = AST::symbolTable->fetch_symbol(info); 
-            cout<< "\n Current Index = "<< AST::currentIndexVal << "  current id   = " << AST::currentIdName;
-            if(arrayinfo == NULL )
+            
+            if ( ! Visited() )
             {
-                  cout<< "Array not found !";
-            }   
+                      info.symbol_name = AST::currentIdName;
+                      arrayinfo = AST::symbolTable->fetch_symbol(info); 
+                      arrayName = GetArrayName();       
+                      while( items != localItems.end())
+                      {
+                          if ( items->symbol_name ==  arrayName )
+                          {
+                             arrayinfo = &(*items); 
+                          }            
+                          items++;
+                      } 
+                      if(arrayinfo == NULL  )
+                      {
+                            std::cout<< "Array not found !";
+                      }              
+                      else 
+                      {             
+                           arrayTypeSize = GetInnerType(arrayinfo->symbolType)->GetSize();
+                           cout<< "\n Array Type Size :=   "<<arrayTypeSize; 
+                           arrayAddr=TAC_Generator::GetIVarName();
+                           AST::tacGen.toTAC(TAC_Generator::ADDR, (void *)&arrayName,(void *)&arrayAddr); 
+                            
+                           this->arrayType =  arrayinfo->symbolType;  
+                              
+                      }
+                      
+                      tempVar=TAC_Generator::GetIVarName();
+                      visited = true;   
+            }
+            
+            ptfExpr->SetVisited(true);   
+            if ( this->arrayType->GetName() == "ARRAY")
+            {
+                    ptfExpr->SetArrayType(((ArrayType*)this->arrayType)->GetBase());
+            }       
+            ptfExpr->Visit();
+            AST::currentIndexVal++;                     
+            cout<< "\n Current Index = "<< AST::currentIndexVal ;
+            brakExpr->Visit();
+            tempVar=TAC_Generator::GetIVarName();  
+            result= TAC_Generator::GetIVarName();  
+            effectiveAddress =  TAC_Generator::GetIVarName();  
+            immediateValue = AST::tempStack.back();
+            AST::tempStack.pop_back();    
+          
+            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&tempVar,(void *)arrayTypeSize); 
+            AST::tacGen.toTAC(TAC_Generator::MULT, (void *)&immediateValue,(void *)&tempVar,(void *)&result); 
+            
+            if ( this->arrayType != NULL ) 
+            {    
+                AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&arrayAddr , (void *)&result ,(void *)&effectiveAddress);            
+          
+            }     
+            if( !IsAddrExp())
+            { 
+              result = TAC_Generator::GetIVarName(); 
+              AST::tacGen.toTAC(TAC_Generator::ASSIGN,(void *)&effectiveAddress, (void *)&result);
+              AST::tempStack.push_back(result);   
+            }
             else 
             {   
-                  cout<< " Array found !";   
-            }
-            ptfExpr->Visit();
-            tempVar=TAC_Generator::GetIVarName();
-           
-            brakExpr->Visit();
-
+                    AST::tempStack.push_back(effectiveAddress);      
+            } 
             //Output visualization
             AST::vis.addNode(this->getUID(), this->getLabel());
             AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
@@ -1757,7 +1820,7 @@ void AstAssignExpr::Visit()
 {
     
     string op1,op2,currentLabel,tempResult;
-    
+    bool lhsAddr=false;  
     if(cond)
     {
         cond->Visit();
@@ -1769,6 +1832,16 @@ void AstAssignExpr::Visit()
     }
     else
     {
+        
+        if( uni->isPostfix())
+        {
+                   if(uni->GetPostfix()->isBracket())
+                   {   
+                          uni->GetPostfix()->SetAddress(true);
+                          lhsAddr = true;  
+                   }                        
+        }   
+
         uni->Visit();
         op->Visit();
         expr->Visit();
@@ -1786,74 +1859,85 @@ void AstAssignExpr::Visit()
         op2 = AST::tempStack.back(); 
         AST::tempStack.pop_back();
         currentLabel =TAC_Generator::GetIVarName(); 
-        //Output 3AC
+                 //Output 3AC
         switch(op->op)
         {
         case AstAssignOp::EQ:
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 , (void *)&op2 );  
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV
+, (void *) &op1 , (void *)&op2 );  
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::MUL_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::MULT , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);  
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);  
             AST::tempStack.push_back(op1);
                        
             break;
             
         case AstAssignOp::DIV_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::DIV , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);    
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);    
             AST::tempStack.push_back(op1);
             
             break;
             
         case AstAssignOp::MOD_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::REM , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);    
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);    
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::ADD_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::ADD , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);  
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);  
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::SUB_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::SUB , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);   
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);   
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::LEFT_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::SHIFTL , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);   
+            AST::tacGen.toTAC( lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);   
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::RIGHT_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::SHIFTR , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);    
+            AST::tacGen.toTAC( lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);    
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::AND_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::AND , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);   
+            AST::tacGen.toTAC(lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);   
             AST::tempStack.push_back(op1);
             break;
             
         case AstAssignOp::XOR_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::XOR , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);    
+            AST::tacGen.toTAC( lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);    
             AST::tempStack.push_back(op1);
             break;
             
             
         case AstAssignOp::OR_ASSIGN:
             AST::tacGen.toTAC(TAC_Generator::OR , (void *) &op1 , (void *)&op2 , (void *)&currentLabel);  
-            AST::tacGen.toTAC(TAC_Generator::MOV , (void *) &op1 ,  (void *)&currentLabel);    
+            AST::tacGen.toTAC( lhsAddr?TAC_Generator::ASSIGN:TAC_Generator::MOV,
+ (void *) &op1 ,  (void *)&currentLabel);    
             AST::tempStack.push_back(op1);
             break;
         }

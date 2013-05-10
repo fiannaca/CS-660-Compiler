@@ -403,6 +403,22 @@ int ArrayType::GetNthBracketDim(int num)
    }
    return base->GetDimension();
 }
+int ArrayType::GetTotalCapacity()
+{
+    int capacity =1; 
+    ArrayType *base = this;
+    while ( base->GetName() == "ARRAY")
+    {
+           capacity *= base->GetDimension();
+           base = (ArrayType *)(base->GetBase());    
+    
+    } 
+    return capacity; 
+
+}
+
+
+
 /*****************************************************************************/
 /* Struct Type Class - This type allows for structs to be created containing */
 /*                   members of any predeclared type                         */

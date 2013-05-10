@@ -206,7 +206,11 @@ public:
     AstID(string s, Type* t);
     
     Type* type;
-
+    string GetName()
+    {
+        return str;
+    }   
+      
     void Visit();
 };
 
@@ -236,7 +240,10 @@ class AstPrimaryExpr : public AST
         AstPrimaryExpr(AstExpression* e);
 
         Type* etype;
-    
+        AstID *GetID()
+        {
+           return id; 
+        }  
         void Visit();
 };
 
@@ -290,7 +297,9 @@ class AstPostfixExpr : public AST
 
         //Identifies which production we are in so that the proper 3AC can be written
         ExprType t;    
-
+        bool visited;
+        Type *arrayType; 
+        bool isAddr; 
     public:
 
         //Constructor
@@ -300,9 +309,76 @@ class AstPostfixExpr : public AST
         AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a);
         AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i);
         AstPostfixExpr(AstPostfixExpr *p, Operator o);
-        
-        Type* type;
+        AstPostfixExpr *GetPostfix()
+        {
+            return ptfExpr;
+        }
+        AstPrimaryExpr *GetPrimary()
+        {
+            return priexpr; 
+               
+        }
+        void SetVisited(bool value)
+        {
+            visited = value;
+        } 
+        bool Visited()
+        {
+            return visited; 
 
+        }
+        string GetArrayName()
+        {
+            
+             AstPostfixExpr *exp=this;  
+             string arrayName="";
+               
+             while( exp->isBracket() )
+             {
+                     exp = exp->GetPostfix();
+                     
+             }
+             if ( exp->isPrimary())
+             {
+                   return exp->GetPrimary()->GetID()->GetName(); 
+             }
+             return "";      
+
+        }  
+        AstExpression *GetBrackExpr()
+        {
+           return brakExpr;
+          
+        }
+           
+        bool isBracket()
+        {
+              return (t == BRACKETS);
+        }     
+        bool isPrimary()
+        {
+             return (t  == PRIMARY); 
+     
+        }      
+        Type* type;
+        Type* GetArrayType()
+        {
+            return this->arrayType;
+
+        }     
+        void SetArrayType ( Type *arrType)
+        {
+               
+           this->arrayType = arrType;     
+        }    
+        void SetAddress(bool value)
+        { 
+            this->isAddr  = value;
+        }  
+        bool IsAddrExp()
+        { 
+              return this->isAddr; 
+        }
         //Traversal
         void Visit();
 };
@@ -337,7 +413,14 @@ class AstUnaryExpr : public AST
         AstUnaryExpr(AstUnaryOp* o, AstCastExpr* c);
         AstUnaryExpr(AstUnaryExpr* e);
         AstUnaryExpr(AstTypeName* t);
-        
+        AstPostfixExpr *GetPostfix()
+        {
+            return expr; 
+        }
+        bool isPostfix()
+        {
+             return (t == POSTFIX);  
+        }  
         Type* type;
 
         //Traversal
