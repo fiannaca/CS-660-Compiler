@@ -191,7 +191,26 @@ class AstUnaryOp : public AST
     public:
         //Constructor
         AstUnaryOp(Operator o);
-
+        bool isAddressOff()
+        {
+            return ( op == BIN_AND);
+        }     
+        bool isNeg() 
+        {
+            return ( op == MINUS) ;  
+        }
+        bool isTilde()
+        {
+            return ( op == TILDE);
+        } 
+        bool isBang()
+        {
+            return ( op == BANG); 
+        }
+        bool isStar()
+        {
+           return ( op == STAR);    
+        }
         //Traversal
         void Visit();
 };
@@ -294,7 +313,7 @@ class AstPostfixExpr : public AST
         AstArgExprList *argExprList;
         AstID          *id;
         Operator       op;
-
+        int currentOffset;  
         //Identifies which production we are in so that the proper 3AC can be written
         ExprType t;    
         bool visited;
@@ -359,7 +378,18 @@ class AstPostfixExpr : public AST
         {
              return (t  == PRIMARY); 
      
-        }      
+        }
+        void SetOffset( int offsetVal)
+        {
+            this->currentOffset = offsetVal;
+
+        }
+        int GetOffset()
+        {
+           return this->currentOffset;   
+        
+        }             
+     
         Type* type;
         Type* GetArrayType()
         {
@@ -612,7 +642,7 @@ class AstORExpr : public AST
 
 class AstLogicAndExpr : public AST
 {
-    AstORExpr *o;
+    return ( op == STAR); AstORExpr *o;
     AstLogicAndExpr *a;
 
     public:

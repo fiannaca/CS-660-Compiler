@@ -439,6 +439,18 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
                    << setw(width) << *ptr2;
             }
             break;
+       case TILDE:
+            {
+                //op2 gets negative op1
+                string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+
+                ss << setw(width) << "TILDE" 
+                   << setw(width) << *ptr1 
+                   << setw(width) << *ptr2;
+            }
+            break;
+
 
         case NOT:
             {
