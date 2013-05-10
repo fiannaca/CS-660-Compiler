@@ -136,7 +136,8 @@ class ArrayType : public Type //any array (any # of dimensions)
         bool CheckType(ArrayType *rhs, bool &isConvertable, CONVERSIONTYPE &t);
         int GetDimension() { return dimensions; }   
         int GetArrayBrackets();
-        int GetNthBracketDim(int num);       
+        int GetNthBracketDim(int num);      
+        int GetTotalCapacity( );     
     protected:
         Type* baseType;
         int dimensions;

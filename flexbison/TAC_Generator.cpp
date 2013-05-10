@@ -456,11 +456,11 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
             {
                 //TODO - assignment
                 string* ptr1 = (string*)op1; //The register to write to memory
-                int offset = (long)op2; //The offset in memory to write the value to
+                string* ptr2 = (string *)op2; //The offset in memory to write the value to
                 
                 ss << setw(width) << "ASSIGN"
                    << setw(width) << *ptr1
-                   << setw(width) << op2;
+                   << setw(width) << *ptr2;
             }
             break;
 
