@@ -92,8 +92,17 @@ allocate_command
     : ALLOC STRING STRING STRING
     	{
     		//Add a variable reference to the function table and address table
-    		driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
-    		driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    		if(*$3 == "INT")
+    		{
+    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
+    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    		}
+    		else
+    		{
+    			//it is an INTARRAY then
+    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4) * 4);
+    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    		}
     	}
     ;
     		
@@ -341,17 +350,17 @@ tac_command
             stringstream ss;
             
             string reg = driver.GetRegister(*$2);
-            
-            driver.addtab.Store(reg, *$3);
-            
-            ss << "\"The value of " << (*$3) << " is: \"";
                         
+            ss << "\"The value of " << (*$3) << " is: \"";
+            
             driver.WS();
             driver.Comment("Output the stored value to verify program correctness...", true);
             driver.Macro("print_str", ss.str());
             driver.Macro("print_int", reg);
             driver.Macro("print_newline");            
             driver.WS();
+            
+            driver.addtab.Store(reg, *$3);
         }
     | NEG STRING STRING 
         {
@@ -370,11 +379,35 @@ tac_command
         }
     | ASSIGN STRING STRING
         {
-            //the value in register $2 to stored in memory offset $3
+            //store the value in register $2 to memory offset $3
+            string reg1 = driver.GetRegister(*$2);
+            string reg2 = driver.GetRegister(*$3);
+            
+            stringstream ss;
+            ss << "(" << reg2 << ")";
+            
+            driver.toMIPS("sw", reg1, ss.str());
+            
+            driver.FreeRegister(reg1);
+            driver.FreeRegister(reg2);
         }
     | ADDR STRING STRING 
         {
             //$3 is set to the address of $2
+			Address* addr = driver.addtab.Lookup(*$2);
+			
+			if(addr)
+			{
+				string reg = driver.GetRegister(*$3);
+				
+				driver.toMIPS("add", reg, "$sp", toString(addr->memOffset));
+			}
+			else
+			{
+				cout << "Error: tried to get the address of an unknown variable"
+				     << ", TAC_Parser.yy:386" 
+					 << endl; 
+			}
         }
     | GLOBAL STRING STRING
         {

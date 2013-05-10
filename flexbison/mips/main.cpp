@@ -20,6 +20,7 @@ int main(int argc, char** argv)
         
     tac2mips driver(fname);
     
+    driver.SetVerbose(false);
     driver.Run();
     
     return 0;

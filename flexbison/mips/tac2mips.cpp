@@ -61,7 +61,9 @@ void tac2mips::FreeRegister(std::string reg)
 	if(addr)
 		addtab.Store(addr->varName);
 	else
-		regtab.FreeRegister(reg);
+	{
+		regtab.FreeRegister(regtab.LookupOwner(reg));
+	}
 }
 
 void tac2mips::OutputPreamble()

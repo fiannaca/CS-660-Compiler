@@ -718,7 +718,7 @@ string TAC_Generator::GetLabelName()
                     
     ss.fill('0');
                             
-    ss << setw(8) << lCount;
+    ss << setw(4) << lCount;
                                     
     lCount++;
                                             
@@ -733,7 +733,7 @@ string TAC_Generator::GetIVarName()
                     
     ss.fill('0');
                             
-    ss << setw(8) << iCount;
+    ss << setw(4) << iCount;
                                     
     iCount++;
                                             
@@ -748,7 +748,7 @@ string TAC_Generator::GetFVarName()
                     
     ss.fill('0');
                             
-    ss << setw(8) << fCount;
+    ss << setw(4) << fCount;
                                     
     fCount++;
                                             
