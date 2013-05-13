@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>CComp: location.hh File Reference</title>
+<title>CComp: mips/location.hh File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -78,6 +81,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_cb085fe681a28f629304affe32ec63da.html">mips</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
@@ -110,10 +117,10 @@ const location&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operato
 const location&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operator+</b> (const location &amp;begin, unsigned int width)</td></tr>
 <tr class="memdesc:a09401c271b0db8cdd3b70df37b5ac660"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add two location objects. <br/></td></tr>
 <tr class="separator:a09401c271b0db8cdd3b70df37b5ac660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c677252f514775b4ac6522044b1971b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c677252f514775b4ac6522044b1971b"></a>
+<tr class="memitem:a1aff777296e27f3884d3e29cf409245c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1aff777296e27f3884d3e29cf409245c"></a>
 location &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operator+=</b> (location &amp;res, unsigned int width)</td></tr>
-<tr class="memdesc:a9c677252f514775b4ac6522044b1971b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add and assign a location. <br/></td></tr>
-<tr class="separator:a9c677252f514775b4ac6522044b1971b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a1aff777296e27f3884d3e29cf409245c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add and assign a location. <br/></td></tr>
+<tr class="separator:a1aff777296e27f3884d3e29cf409245c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a466b6e3dcf6a743bb058bf4989b38047"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a466b6e3dcf6a743bb058bf4989b38047"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operator==</b> (const location &amp;loc1, const location &amp;loc2)</td></tr>
 <tr class="memdesc:a466b6e3dcf6a743bb058bf4989b38047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two location objects. <br/></td></tr>
@@ -122,17 +129,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operator==</b> (c
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>yy::operator!=</b> (const location &amp;loc1, const location &amp;loc2)</td></tr>
 <tr class="memdesc:aa3a5c205bc084696bb894634ae9cce80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two location objects. <br/></td></tr>
 <tr class="separator:aa3a5c205bc084696bb894634ae9cce80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0406f2358d6ba6b06648ff66f3508aad"><td class="memTemplParams" colspan="2">template&lt;typename YYChar &gt; </td></tr>
-<tr class="memitem:a0406f2358d6ba6b06648ff66f3508aad"><td class="memTemplItemLeft" align="right" valign="top">std::basic_ostream&lt; YYChar &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>yy::operator&lt;&lt;</b> (std::basic_ostream&lt; YYChar &gt; &amp;ostr, const location &amp;loc)</td></tr>
-<tr class="memdesc:a0406f2358d6ba6b06648ff66f3508aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intercept output stream redirection.  <a href="#a0406f2358d6ba6b06648ff66f3508aad">More...</a><br/></td></tr>
-<tr class="separator:a0406f2358d6ba6b06648ff66f3508aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac97f7e819336fe5ca7f49bafefebc3eb"><td class="memTemplParams" colspan="2">template&lt;typename YYChar &gt; </td></tr>
+<tr class="memitem:ac97f7e819336fe5ca7f49bafefebc3eb"><td class="memTemplItemLeft" align="right" valign="top">std::basic_ostream&lt; YYChar &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>yy::operator&lt;&lt;</b> (std::basic_ostream&lt; YYChar &gt; &amp;ostr, const location &amp;loc)</td></tr>
+<tr class="memdesc:ac97f7e819336fe5ca7f49bafefebc3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Intercept output stream redirection.  <a href="#ac97f7e819336fe5ca7f49bafefebc3eb">More...</a><br/></td></tr>
+<tr class="separator:ac97f7e819336fe5ca7f49bafefebc3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Define the <a class="el" href="classyy_1_1location.html" title="Abstract a location.">yy::location</a> class. </p>
+
+<p>Definition in file <a class="el" href="location_8hh_source.html">location.hh</a>.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:17 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 13 2013 16:10:17 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

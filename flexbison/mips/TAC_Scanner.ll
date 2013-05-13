@@ -191,6 +191,10 @@ typedef yy::TAC_Parser::token token;
             return token::CALL;
         } 
 
+"FPAR"	{
+			return token::FPAR;
+		}
+		
 "PROCENTRY" {
             return token::PROCENTRY;
         }   

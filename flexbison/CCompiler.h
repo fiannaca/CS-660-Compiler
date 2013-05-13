@@ -425,9 +425,8 @@ class CCompiler
  
  /** \example test5.c
  * \section ABOUT About This Example:
- * This test is designed to test scoping of variables and calculated array 
- * indices (i.e. line 35). This bubble sort algorithm will be used in the next 
- * test which tests function calls.
+ * This test is designed to test the most basic possible function call. This 
+ * example demonstrates how function parameters can be passed to methods.
  *
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
@@ -457,10 +456,9 @@ class CCompiler
  
  /** \example test6.c
  * \section ABOUT About This Example:
- * This test is designed to test function calls. This is the primary goal of the 
- * compiler project. This is a very simple bubble sort algorithm which uses a
- * call to a swap function to swap two integers in a small array. The input 
- * array is [3, 2, 1] and the output array should be [1, 2, 3].
+ * This test is designed to test scoping of variables and calculated array 
+ * indices (i.e. line 35). This bubble sort algorithm will be used in the next 
+ * test which tests function calls.
  *
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
@@ -490,6 +488,39 @@ class CCompiler
  
  /** \example test7.c
  * \section ABOUT About This Example:
+ * This test is designed to test function calls. This is the primary goal of the 
+ * compiler project. This is a very simple bubble sort algorithm which uses a
+ * call to a swap function to swap two integers in a small array. The input 
+ * array is [3, 2, 1] and the output array should be [1, 2, 3].
+ *
+ * \section INSTRUCTIONS Running This Example:
+ * This example can be tested by running the following commands in a bash 
+ * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
+ *
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
+ *
+ * This will generate the output file test7.asm, which can be assembled and run 
+ * in the MARS MIPS simulator. Please note, assembly code in this project was 
+ * created with the MARS simulator in mind. The code is therefore MARS compliant,
+ * but may not be SPIM compliant. In addition, the generated code relies upon a
+ * MARS asm macro file located in the mips/tests/ directory, and the assembly
+ * file should therefore only be run in MARS from the directory it is originally
+ * generated in. If you wish to move the asm file to a different folder, you must
+ * also move the macros.asm file.
+ *
+ * \section CODE The Example Code:
+ */
+ 
+ 
+ 
+ /** \example test8.c
+ * \section ABOUT About This Example:
  * This is the final test. This test evaluates the ability of the compiler to
  * handle 2 dimensional arrays by running a simple matrix multiplication
  * algorithm.
@@ -506,7 +537,7 @@ class CCompiler
  * or by manually invoking the ccomp and tac2mips programs (see instructions on 
  * the 'Main Page' tab above).
  *
- * This will generate the output file test7.asm, which can be assembled and run 
+ * This will generate the output file test8.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
  * created with the MARS simulator in mind. The code is therefore MARS compliant,
  * but may not be SPIM compliant. In addition, the generated code relies upon a

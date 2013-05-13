@@ -30,6 +30,7 @@ class tac2mips;
 #include "tac2mips.h"
 
 string CurrentFunction = "";
+int CurrentParamCount = 0;
 
 string toString(int i)
 {
@@ -56,7 +57,7 @@ string toString(int i, string txt)
 %token BOUND MOV
 %token NEG NOT ASSIGN ADDR GLOBAL STR
 %token IMMEDIATE_I IMMEDIATE_F
-%token LABEL BR ARGS REFOUT VALOUT CALL PROCENTRY ALLOC VALAT PARAM
+%token LABEL BR ARGS REFOUT VALOUT CALL PROCENTRY ALLOC VALAT PARAM FPAR
 %token HALT ENDPROC RETURN
 %token BEGINFRAME ENDFRAME
 
@@ -448,9 +449,11 @@ tac_command
         {
             //the upcoming procedure passes $2 by value
         }
-    | CALL STRING 
+    | fpar_command_list CALL STRING 
         {
             //call the procedure labeled $2
+            driver.toMIPS("jal", *$3);
+            CurrentParamCount = 0;
         }
     | PROCENTRY STRING
         {
@@ -463,7 +466,7 @@ tac_command
         	driver.toMIPS(".ent", *$2);
         	driver.Label(*$2);
         }
-        parameter_command_list BEGINFRAME STRING allocate_command_list
+        BEGINFRAME STRING allocate_command_list parameter_command_list 
     	{
     		//Change the stack pointer after the allocate list is complete    		
     		int space = driver.funtab.GetStackSpace(CurrentFunction);
@@ -502,9 +505,13 @@ tac_command
     		driver.toMIPS(".end", CurrentFunction);  
         	driver.WS();
         }
-    | RETURN
+    | RETURN STRING
         {
             //return control to the caller
+            
+            string reg = driver.GetRegister(*$2);
+            
+            driver.toMIPS("add", "$v0", "$zero", reg);
         }
     | ENDFRAME 
         {
@@ -551,6 +558,29 @@ parameter_command
 			driver.funtab.AddParameter(CurrentFunction, *$2);
 		}
 	;
+
+fpar_command_list
+	:
+	
+	|	fpar_command_list fpar_command
+	
+	;
+	
+fpar_command
+	: FPAR STRING
+		{
+			//Move the parameters into the $a0-3 registers
+			
+            string reg = driver.GetRegister(*$2);
+            
+            stringstream ss;
+            ss << "$a" << CurrentParamCount;
+            CurrentParamCount++;
+            
+            driver.toMIPS("add", ss.str(), "$zero", reg);
+            
+            driver.FreeRegister(reg);
+		}
 %%
 void yy::TAC_Parser::error(const yy::TAC_Parser::location_type& loc,
                         const std::string& msg)

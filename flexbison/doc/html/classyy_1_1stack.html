@@ -14,6 +14,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doc.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -21,6 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="unrLogo.jpg"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">CComp
    </div>
@@ -38,9 +40,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -105,9 +107,99 @@ typedef S::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><
 <tr class="memitem:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cab3a74b0947ce6de68c3520b9229ab"></a>
 typedef S::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b></td></tr>
 <tr class="separator:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959921144f243952520a2178121cbe6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959921144f243952520a2178121cbe6f"></a>
+typedef S::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b></td></tr>
+<tr class="separator:a959921144f243952520a2178121cbe6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cab3a74b0947ce6de68c3520b9229ab"></a>
+typedef S::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b></td></tr>
+<tr class="separator:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959921144f243952520a2178121cbe6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959921144f243952520a2178121cbe6f"></a>
+typedef S::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b></td></tr>
+<tr class="separator:a959921144f243952520a2178121cbe6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cab3a74b0947ce6de68c3520b9229ab"></a>
+typedef S::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b></td></tr>
+<tr class="separator:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959921144f243952520a2178121cbe6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a959921144f243952520a2178121cbe6f"></a>
+typedef S::reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>iterator</b></td></tr>
+<tr class="separator:a959921144f243952520a2178121cbe6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0cab3a74b0947ce6de68c3520b9229ab"></a>
+typedef S::const_reverse_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b></td></tr>
+<tr class="separator:a0cab3a74b0947ce6de68c3520b9229ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:af4277ae80177abc36f242c3646cbcfbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4277ae80177abc36f242c3646cbcfbe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>stack</b> (unsigned int n)</td></tr>
+<tr class="separator:af4277ae80177abc36f242c3646cbcfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1058b8b7e1a3e0aa7b1e6f2f1a62c234"></a>
+T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i)</td></tr>
+<tr class="separator:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46778e0ee1fd32a559008d5a261df098"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46778e0ee1fd32a559008d5a261df098"></a>
+const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i) const </td></tr>
+<tr class="separator:a46778e0ee1fd32a559008d5a261df098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff563955472eca36f73f6e840df2963"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ff563955472eca36f73f6e840df2963"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (const T &amp;t)</td></tr>
+<tr class="separator:a5ff563955472eca36f73f6e840df2963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0800c0a796cade80c3ce9a785dc87564"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0800c0a796cade80c3ce9a785dc87564"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (unsigned int n=1)</td></tr>
+<tr class="separator:a0800c0a796cade80c3ce9a785dc87564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968303842836fd4e9e3994a4e3984191"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a968303842836fd4e9e3994a4e3984191"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b> () const </td></tr>
+<tr class="separator:a968303842836fd4e9e3994a4e3984191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3939df081955a4ad78e14eeb9b2b5dbf"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const </td></tr>
+<tr class="separator:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ade5b933a4dc8a27960c88addda2a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27ade5b933a4dc8a27960c88addda2a0"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const </td></tr>
+<tr class="separator:a27ade5b933a4dc8a27960c88addda2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4277ae80177abc36f242c3646cbcfbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4277ae80177abc36f242c3646cbcfbe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>stack</b> (unsigned int n)</td></tr>
+<tr class="separator:af4277ae80177abc36f242c3646cbcfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1058b8b7e1a3e0aa7b1e6f2f1a62c234"></a>
+T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i)</td></tr>
+<tr class="separator:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46778e0ee1fd32a559008d5a261df098"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46778e0ee1fd32a559008d5a261df098"></a>
+const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i) const </td></tr>
+<tr class="separator:a46778e0ee1fd32a559008d5a261df098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff563955472eca36f73f6e840df2963"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ff563955472eca36f73f6e840df2963"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (const T &amp;t)</td></tr>
+<tr class="separator:a5ff563955472eca36f73f6e840df2963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0800c0a796cade80c3ce9a785dc87564"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0800c0a796cade80c3ce9a785dc87564"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (unsigned int n=1)</td></tr>
+<tr class="separator:a0800c0a796cade80c3ce9a785dc87564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968303842836fd4e9e3994a4e3984191"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a968303842836fd4e9e3994a4e3984191"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b> () const </td></tr>
+<tr class="separator:a968303842836fd4e9e3994a4e3984191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3939df081955a4ad78e14eeb9b2b5dbf"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const </td></tr>
+<tr class="separator:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ade5b933a4dc8a27960c88addda2a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27ade5b933a4dc8a27960c88addda2a0"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const </td></tr>
+<tr class="separator:a27ade5b933a4dc8a27960c88addda2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4277ae80177abc36f242c3646cbcfbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4277ae80177abc36f242c3646cbcfbe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>stack</b> (unsigned int n)</td></tr>
+<tr class="separator:af4277ae80177abc36f242c3646cbcfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1058b8b7e1a3e0aa7b1e6f2f1a62c234"></a>
+T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i)</td></tr>
+<tr class="separator:a1058b8b7e1a3e0aa7b1e6f2f1a62c234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46778e0ee1fd32a559008d5a261df098"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a46778e0ee1fd32a559008d5a261df098"></a>
+const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (unsigned int i) const </td></tr>
+<tr class="separator:a46778e0ee1fd32a559008d5a261df098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff563955472eca36f73f6e840df2963"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ff563955472eca36f73f6e840df2963"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>push</b> (const T &amp;t)</td></tr>
+<tr class="separator:a5ff563955472eca36f73f6e840df2963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0800c0a796cade80c3ce9a785dc87564"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0800c0a796cade80c3ce9a785dc87564"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pop</b> (unsigned int n=1)</td></tr>
+<tr class="separator:a0800c0a796cade80c3ce9a785dc87564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a968303842836fd4e9e3994a4e3984191"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a968303842836fd4e9e3994a4e3984191"></a>
+unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b> () const </td></tr>
+<tr class="separator:a968303842836fd4e9e3994a4e3984191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3939df081955a4ad78e14eeb9b2b5dbf"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const </td></tr>
+<tr class="separator:a3939df081955a4ad78e14eeb9b2b5dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ade5b933a4dc8a27960c88addda2a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27ade5b933a4dc8a27960c88addda2a0"></a>
+const_iterator&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> () const </td></tr>
+<tr class="separator:a27ade5b933a4dc8a27960c88addda2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4277ae80177abc36f242c3646cbcfbe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4277ae80177abc36f242c3646cbcfbe"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>stack</b> (unsigned int n)</td></tr>
 <tr class="separator:af4277ae80177abc36f242c3646cbcfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,13 +231,19 @@ Private Attributes</h2></td></tr>
 S&#160;</td><td class="memItemRight" valign="bottom"><b>seq_</b></td></tr>
 <tr class="separator:ae0a9cbe8fb11651438de273ee7a6ef2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="stack_8hh_source.html">stack.hh</a></li>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T, class S = std::deque&lt;T&gt;&gt;<br/>
+class yy::stack&lt; T, S &gt;</h3>
+
+
+<p>Definition at line <a class="el" href="stack_8hh_source.html#l00048">48</a> of file <a class="el" href="stack_8hh_source.html">stack.hh</a>.</p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
+<li>mips/<a class="el" href="stack_8hh_source.html">stack.hh</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Apr 15 2013 12:50:25 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 13 2013 16:10:31 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
