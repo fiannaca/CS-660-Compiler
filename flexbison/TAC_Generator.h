@@ -73,6 +73,7 @@ class TAC_Generator
             NEG, /**< op2 = -(op1) */
             NOT, /**< Set op2 to 1 if op1 == 0, or 0 otherwise */
             ASSIGN, /**< Assign the value of op1 to op2 */
+	    VALAT, /** < Value at Addess  = value **/
             ADDR, /**< Assign the address of op1 to op2 */
             GLOBAL, /**< Declare op1 as a global of size op2 */
             STRING, /**< Associate string op1 with label op2 */
