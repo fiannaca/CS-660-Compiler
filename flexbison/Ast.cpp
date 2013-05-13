@@ -2241,6 +2241,7 @@ AstJump::AstJump(AstReturn* r, AstExpression* e)
 
 void AstJump::Visit()
 {
+    string evaluatedExpr;
     switch(t)
     {
         case GOTO:
@@ -2292,8 +2293,12 @@ void AstJump::Visit()
         case RETURN:
             //Visit Children
             ret->Visit();
-            expr->Visit();
-
+            if(expr)
+            {
+             expr->Visit();
+            } 
+            evaluatedExpr = AST::tempStack.back();
+            AST::tacGen.toTAC(TAC_Generator::RETURN,(void *)&evaluatedExpr); 
             //Visualization
             AST::vis.addNode(this->getUID(), this->getLabel());
             AST::vis.addEdge(this->getUID(), ret->getUID());

@@ -99,7 +99,8 @@ class TAC_Generator
             PROCENTRY, /**< Marks the beginning of a procedure */
             COMMENT, /**< Output op1 as a comment */
             BEGINFRAME, /**< Marks the beginning of a new stack frame, and passes in the size of the memory required on the stack*/
-	    FPAR  /** Denotes a passed parameter value **/ 
+	    FPAR,  /** Denotes a passed parameter value **/
+	    RETURN , /** Denotes the return value **/ 
 	};
 
         /**
@@ -112,7 +113,6 @@ class TAC_Generator
         {
             HALT, /**< Immediately halt execution */
             ENDPROC, /**< Mark the end of a procedure */
-            RETURN, /**< Return control to the caller */
             ENDFRAME /**< Marks the end of a stack frame */
         };
 

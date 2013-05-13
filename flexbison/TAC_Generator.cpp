@@ -650,6 +650,13 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
                ;ss << setw(width) << "FPAR"
                    << setw(width) <<*ptr;
             }
+	case RETURN:
+            {
+                string* ptr = (string*)op;
+
+               ;ss << setw(width) << "RETURN"
+                   << setw(width) <<*ptr;
+            }
     }
 
     Emit(ss.str());
