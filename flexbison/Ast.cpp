@@ -377,7 +377,7 @@ void AstPostfixExpr::Visit()
                            AST::tempStack.push_back(arrayAddr);                                     
                       }
                       
-                      tempVar=TAC_Generator::GetIVarName();
+                      
                       visited = true;   
             }
             if(IsAddrExp())
@@ -390,22 +390,9 @@ void AstPostfixExpr::Visit()
                     ptfExpr->SetArrayType(((ArrayType*)this->arrayType)->GetBase());
                }
             }          
-            ptfExpr->Visit();
-            AST::currentIndexVal++;                     
-            cout<< "\n Current Index = "<< AST::currentIndexVal ;
+            ptfExpr->Visit();                
             brakExpr->Visit();
-            tempVar=TAC_Generator::GetIVarName();  
-            result= TAC_Generator::GetIVarName();  
-            effectiveAddress =  TAC_Generator::GetIVarName();  
-            immediateValue = AST::tempStack.back();
-            AST::tempStack.pop_back();    
-          
-            currentOffset = this->GetOffset(); 
-            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&tempVar,(void *)currentOffset); 
-            AST::tacGen.toTAC(TAC_Generator::MULT, (void *)&immediateValue,(void *)&tempVar,(void *)&result); 
-            currentLabel = AST::tempStack.back();
-            AST::tempStack.pop_back();    
-            AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
+              
             isLeaf = false;
             if ( this->arrayType == NULL )
             {
@@ -416,6 +403,24 @@ void AstPostfixExpr::Visit()
             {
                 isLeaf = true;
             }   
+            
+            
+            tempVar=TAC_Generator::GetIVarName();  
+            result= TAC_Generator::GetIVarName();  
+            effectiveAddress =  TAC_Generator::GetIVarName();  
+            immediateValue = AST::tempStack.back();
+            AST::tempStack.pop_back();    
+          
+            currentOffset = this->GetOffset(); 
+            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&tempVar,(void *)currentOffset); 
+            AST::tacGen.toTAC(TAC_Generator::MULT, (void *)&immediateValue,(void *)&tempVar,(void *)&result);     
+            currentLabel = AST::tempStack.back();
+            AST::tempStack.pop_back();
+            if  (isLeaf) 
+               currentLabel = AST::tempStack.back();
+            AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
+          
+            
             if( !IsAddrExp() && isLeaf )
             { 
               result = TAC_Generator::GetIVarName(); 
