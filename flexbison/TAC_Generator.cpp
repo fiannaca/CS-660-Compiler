@@ -487,7 +487,20 @@ void TAC_Generator::toTAC(TwoOpInstructions t, void* op1, void* op2, string c)
                    << setw(width) << *ptr2;
             }
             break;
-
+        
+	
+        case VALAT:
+            {
+                //TODO - assignment
+                string* ptr1 = (string*)op1; //The register to write to memory
+                string* ptr2 = (string *)op2; //The offset in memory to write the value to
+                
+                ss << setw(width) << "VALAT"
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr1;
+            }
+            break;
+	 
         case ADDR:
             {
                 //TODO - op2 gets the address of op1
@@ -650,6 +663,7 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
                ;ss << setw(width) << "FPAR"
                    << setw(width) <<*ptr;
             }
+	    break;
 	case RETURN:
             {
                 string* ptr = (string*)op;

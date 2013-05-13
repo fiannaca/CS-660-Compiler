@@ -417,14 +417,17 @@ void AstPostfixExpr::Visit()
             currentLabel = AST::tempStack.back();
             AST::tempStack.pop_back();
             if  (isLeaf) 
+            {
                currentLabel = AST::tempStack.back();
+               AST::tempStack.pop_back();
+            }
             AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
           
             
             if( !IsAddrExp() && isLeaf )
             { 
               result = TAC_Generator::GetIVarName(); 
-              AST::tacGen.toTAC(TAC_Generator::ASSIGN,(void *)&effectiveAddress, (void *)&result);
+              AST::tacGen.toTAC(TAC_Generator::VALAT,(void *)&effectiveAddress, (void *)&result);
               AST::tempStack.push_back(result);   
             }
             else 
@@ -723,7 +726,7 @@ void AstUnaryExpr::Visit()
 				   if (!lhs)
 				   {
 				     
-				     AST::tacGen.toTAC(TAC_Generator::ASSIGN,(void *)&lastUsedTemp,(void *)&currentLabel);
+				     AST::tacGen.toTAC(TAC_Generator::VALAT,(void *)&lastUsedTemp,(void *)&currentLabel);
 				   
 				    
 				   }
