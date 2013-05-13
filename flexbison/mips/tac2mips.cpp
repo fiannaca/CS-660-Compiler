@@ -48,10 +48,20 @@ string tac2mips::GetRegister(string name)
 	bool isNew = false;
 	Address* addr = addtab.Lookup(name);
 	
-	if(addr)
+	if(addr) //The name refers to a variable
 		return addtab.Load(addr);
 	else
-		return regtab.GetRegister(name, isNew);
+	{
+		//If it isn't a variable, it could be a parameter for the function
+		Parameter* param = funtab.LookupParameter(CurrentFunction, name);
+		
+		if(param)
+		{
+			return param->regName;
+		}
+		else //Otherwise, it must just be a regular register
+			return regtab.GetRegister(name, isNew);
+	}
 }
 
 void tac2mips::FreeRegister(std::string reg)
@@ -79,10 +89,24 @@ void tac2mips::OutputPreamble()
     fout << "# Generated on: " << dt << "#" << endl;
     fout << setw(80) << setfill('#') << "#" << endl;
     
-    fout << endl << "\t.include \"macros.asm\"" << endl;
+    stringstream ss;
+    ss << regtab.GetSpillSize();
     
-    fout << endl << "\t.data" << endl
-         << "spills:\t.space " << regtab.GetSpillSize() << endl << endl;
+    WS();
+    toMIPS(".include", "\"macros.asm\"");
+    WS();
+    
+    toMIPS(".data");    
+    Label("spills");    
+    toMIPS(".space", ss.str());
+    
+	WS();
+	toMIPS(".text");
+	toMIPS(".globl", "main");
+	WS();
+	toMIPS("jal", "main");
+	Macro("done");
+	WS();
 }
 
 bool tac2mips::LabelExists(std::string name)

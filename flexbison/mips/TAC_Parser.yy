@@ -56,7 +56,7 @@ string toString(int i, string txt)
 %token BOUND MOV
 %token NEG NOT ASSIGN ADDR GLOBAL STR
 %token IMMEDIATE_I IMMEDIATE_F
-%token LABEL BR ARGS REFOUT VALOUT CALL PROCENTRY ALLOC
+%token LABEL BR ARGS REFOUT VALOUT CALL PROCENTRY ALLOC VALAT PARAM
 %token HALT ENDPROC RETURN
 %token BEGINFRAME ENDFRAME
 
@@ -64,48 +64,10 @@ string toString(int i, string txt)
 commands
 	: 
 	
-	| commands command
+	| commands tac_command
 		
 	;
-
-command
-	: tac_command
-	
-	| allocate_command_list
-    	{
-    		//Change the stack pointer after the allocate list is complete    		
-    		int space = driver.funtab.GetStackSpace(CurrentFunction);
-    		 		
-    		driver.toMIPS("subu", "$sp", "$sp", toString(space + 4));    		
-    		driver.toMIPS("sw", "$31", toString(space, "($sp)"));
-    	}
-	;
-	
-allocate_command_list
-	:
-	
-	| allocate_command_list allocate_command
-	
-	;
-	
-allocate_command
-    : ALLOC STRING STRING STRING
-    	{
-    		//Add a variable reference to the function table and address table
-    		if(*$3 == "INT")
-    		{
-    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
-    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
-    		}
-    		else
-    		{
-    			//it is an INTARRAY then
-    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4) * 4);
-    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
-    		}
-    	}
-    ;
-    		
+		
 tac_command
     : ADD STRING STRING STRING
         {
@@ -372,6 +334,21 @@ tac_command
             
             driver.addtab.Store(reg, *$3);
         }
+    | VALAT STRING STRING
+    	{
+    		//loads the value at the address in $2 into the register $3
+    		
+    		//TODO: these registers
+            string reg1 = driver.GetRegister(*$2);
+            string reg2 = driver.GetRegister(*$3);
+            
+            stringstream ss;
+            ss << "(" << reg1 << ")";
+            
+            driver.toMIPS("la", reg2, ss.str());
+            
+            driver.FreeRegister(reg1);
+    	}
     | NEG STRING STRING 
         {
             //$3 is set to the negative value of $2
@@ -457,18 +434,7 @@ tac_command
         {
             //branch to label $2
 			
-			//TODO This check probably isn't valid and may need to be removed later
-			//if(driver.LabelExists(*$2))
-			//{
-				stringstream ss;
-				ss << "b " << (*$2);
-				
-				driver.toMIPS("b", (*$2));
-			//}
-			//else
-			//{
-			//	driver.error("Attempted to branch to an unknown label");
-			//}
+			driver.toMIPS("b", (*$2));
         }
     | ARGS STRING
         {
@@ -490,21 +456,21 @@ tac_command
         {
             //declare the beginning of a procedure named $2 - output the prolog
             CurrentFunction = (*$2);
+            driver.CurrentFunction = CurrentFunction;
             
-            if((*$2) == "main")
-            {
-            	driver.funtab.AddFunction(CurrentFunction);
-            	driver.WS();
-            	driver.toMIPS(".text");
-            	driver.toMIPS(".globl", "main");
-            	driver.WS();
-            	driver.toMIPS("jal", "main");
-            	driver.Macro("done");
-            	driver.WS();
-            	driver.toMIPS(".ent", "main");
-            	driver.Label("main");
-            }
+        	driver.funtab.AddFunction(CurrentFunction);
+        	driver.WS();
+        	driver.toMIPS(".ent", *$2);
+        	driver.Label(*$2);
         }
+        parameter_command_list allocate_command_list
+    	{
+    		//Change the stack pointer after the allocate list is complete    		
+    		int space = driver.funtab.GetStackSpace(CurrentFunction);
+    		 		
+    		driver.toMIPS("subu", "$sp", "$sp", toString(space + 4));    		
+    		driver.toMIPS("sw", "$ra", toString(space, "($sp)"));
+    	}
     | COMMENT_STRING
         {
             //output the comment $1
@@ -527,9 +493,12 @@ tac_command
             
     		int space = driver.funtab.GetStackSpace(CurrentFunction);
     		
-    		driver.toMIPS("lw", "$31", toString(space, "($sp)"));   		
+    		//TODO These next two lines should be moved into the ENDFRAME production
+    		// in order to deal with scoping
+    		driver.toMIPS("lw", "$ra", toString(space, "($sp)"));   		
     		driver.toMIPS("addu", "$sp", "$sp", toString(space + 4));
-    		driver.toMIPS("jr", "$31");
+    		
+    		driver.toMIPS("jr", "$ra");
     		driver.toMIPS(".end", CurrentFunction);  
         	driver.WS();
         }
@@ -542,6 +511,46 @@ tac_command
             //end the current frame
         }
     ;
+	
+allocate_command_list
+	:
+	
+	| allocate_command_list allocate_command
+	
+	;
+	
+allocate_command
+    : ALLOC STRING STRING STRING
+    	{
+    		//Add a variable reference to the function table and address table
+    		if(*$3 == "INT")
+    		{
+    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
+    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    		}
+    		else
+    		{
+    			//it is an INTARRAY then
+    			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4) * 4);
+    			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
+    		}
+    	}
+    ;
+
+parameter_command_list
+	:
+	
+	| parameter_command_list parameter_command
+	
+	;
+
+parameter_command
+	: PARAM STRING STRING STRING
+		{
+			//This function has a parameter named $2 of type $3 and size $4
+			driver.funtab.AddParameter(CurrentFunction, *$2);
+		}
+	;
 %%
 void yy::TAC_Parser::error(const yy::TAC_Parser::location_type& loc,
                         const std::string& msg)

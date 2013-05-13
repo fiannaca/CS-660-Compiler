@@ -3,16 +3,14 @@
 # MIPS Assembly Code
 # Filename:     tests/test2.asm
 # Input file:   tests/test2.tac
-# Generated on: Sat May 11 12:32:16 2013
+# Generated on: Sun May 12 19:44:46 2013
 #
 ################################################################################
 
-	.include "macros.asm"
+	.include	"macros.asm"
 
 	.data
-spills:	.space 80
-
-	# 3AC For the Input Code File: tests/test2.c
+spills:	.space	80
 
 	.text
 	.globl	main
@@ -20,9 +18,11 @@ spills:	.space 80
 	jal	main
 	done
 
+	# 3AC For the Input Code File: tests/test2.c
+
 	.ent	main
 main:	subu	$sp, $sp, 16
-	sw	$31, 12($sp)
+	sw	$ra, 12($sp)
 	li	$t0, 3
 	add	$t1, $sp, 0
 	li	$t2, 0
@@ -49,8 +49,8 @@ main:	subu	$sp, $sp, 16
 	li	$t1, 1
 	sw	$t1, ($t2)
 	li	$t1, 0
-	lw	$31, 12($sp)
+	lw	$ra, 12($sp)
 	addu	$sp, $sp, 16
-	jr	$31
+	jr	$ra
 	.end	main
 

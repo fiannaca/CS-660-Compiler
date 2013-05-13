@@ -3,7 +3,7 @@
 # MIPS Assembly Code
 # Filename:     tests/test4.asm
 # Input file:   tests/test4.tac
-# Generated on: Sat May 11 12:38:26 2013
+# Generated on: Sun May 12 19:03:41 2013
 #
 ################################################################################
 
@@ -22,7 +22,7 @@ spills:	.space 80
 
 	.ent	main
 main:	subu	$sp, $sp, 12
-	sw	$31, 8($sp)
+	sw	$ra, 8($sp)
 	li	$t0, 1
 
 	print_str("The value of a is: ")
@@ -109,8 +109,8 @@ L0004:	li	$t1, 2
 	beq	$t4, 0, L0005
 	b	L0004
 L0005:	li	$t1, 0
-	lw	$31, 8($sp)
+	lw	$ra, 8($sp)
 	addu	$sp, $sp, 12
-	jr	$31
+	jr	$ra
 	.end	main
 

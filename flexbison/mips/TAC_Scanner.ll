@@ -198,6 +198,14 @@ typedef yy::TAC_Parser::token token;
 "ALLOC" {
 			return token::ALLOC;
 		}
+
+"PARAM"	{
+			return token::PARAM;
+		}
+		
+"VALAT"	{
+			return token::VALAT;
+		}
 		
 "#"     {
             BEGIN(COMMENT);

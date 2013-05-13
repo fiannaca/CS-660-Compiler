@@ -101,6 +101,11 @@ class tac2mips {
         FunctionTable funtab; 
 		
 		/**
+		 * The name of the function the driver is currently creating MIPS for
+		 */
+		string CurrentFunction;
+		
+		/**
 		 * Checks if a label exists
 		 */
 		bool LabelExists(std::string name);

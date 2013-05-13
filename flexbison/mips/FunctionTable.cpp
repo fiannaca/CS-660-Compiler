@@ -61,9 +61,31 @@ void FunctionTable::AddParameter(string fname, string pname, bool byValue)
 	
 		param->name = pname;
 		param->byValue = byValue;
-	
+		param->byRegister = true;
+		
+		stringstream ss;
+		ss << "$a" << func->parameters.size();
+		
+		param->regName = ss.str();
+		
 		func->parameters.push_back(param);
 	}
+}
+
+Parameter* FunctionTable::LookupParameter(string fname, string pname)
+{
+	Function* func = GetFunction(fname);
+	
+	if(func)
+	{
+		for(auto it = func->parameters.begin(); it != func->parameters.end(); ++it)
+		{
+			if((*it)->name == pname)
+				return (*it);
+		}
+	}
+	
+	return NULL;
 }
 
 int FunctionTable::GetVarOffset(string fname, string vname)

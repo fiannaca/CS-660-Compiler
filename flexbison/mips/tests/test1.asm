@@ -3,16 +3,14 @@
 # MIPS Assembly Code
 # Filename:     tests/test1.asm
 # Input file:   tests/test1.tac
-# Generated on: Sat May 11 12:31:38 2013
+# Generated on: Sun May 12 19:44:44 2013
 #
 ################################################################################
 
-	.include "macros.asm"
+	.include	"macros.asm"
 
 	.data
-spills:	.space 80
-
-	# 3AC For the Input Code File: tests/test1.c
+spills:	.space	80
 
 	.text
 	.globl	main
@@ -20,9 +18,11 @@ spills:	.space 80
 	jal	main
 	done
 
+	# 3AC For the Input Code File: tests/test1.c
+
 	.ent	main
 main:	subu	$sp, $sp, 16
-	sw	$31, 12($sp)
+	sw	$ra, 12($sp)
 	li	$t0, 1
 
 	print_str("The value of i is: ")
@@ -83,12 +83,18 @@ main:	subu	$sp, $sp, 16
 	print_newline
 
 	sw 	$t2, 4($sp)
+	lw 	$t0, 8($sp)
+	lw 	$t1, 0($sp)
+	div	$t1, $t0
+	mfhi	$t2
+	sw 	$t0, 8($sp)
+	sw 	$t1, 0($sp)
 
 	print_str("The value of k is: ")
-	print_int($t0)
+	print_int($t2)
 	print_newline
 
-	sw 	$t0, 4($sp)
+	sw 	$t2, 4($sp)
 	li	$t0, 1
 	li	$t1, 2
 	add	$t2, $t1, $t0
@@ -115,8 +121,8 @@ main:	subu	$sp, $sp, 16
 
 	sw 	$t0, 4($sp)
 	li	$t0, 0
-	lw	$31, 12($sp)
+	lw	$ra, 12($sp)
 	addu	$sp, $sp, 16
-	jr	$31
+	jr	$ra
 	.end	main
 

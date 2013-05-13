@@ -19,7 +19,7 @@ int main()
     
     k = j / i; //Expected value of k: 2
     
-    k = j % i; //Expected value of k: 1
+    k = j % i; //Expected value of k: 0
     
     k = (((1 + 2) + (3 + 4)) + ((5 + 6) + (7 + 8))) + (9 + 10); //Expected value of k: 55
     

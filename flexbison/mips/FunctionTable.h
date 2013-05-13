@@ -4,6 +4,7 @@
 #include <map>
 #include <list>
 #include <string>
+#include <sstream>
 #include <iostream>
 
 using namespace std;
@@ -95,7 +96,17 @@ class FunctionTable {
 		 * @param pname The parameter name
 		 * @param byValue Indicates if the parameter is passed by value or reference
 		 */
-		void AddParameter(string fname, string pname, bool byValue);
+		void AddParameter(string fname, string pname, bool byValue = true);
+		
+		/**
+		 * Looks up a parameter with the given name in the given function
+		 *
+		 * @param fname The function name
+		 * @param pname The parameter name
+		 * @return A reference to the parameter info, or NULL if the parameter 
+		 *         doesn't exit
+		 */
+		Parameter* LookupParameter(string fname, string pname);
 		
 		/**
 		 * Gets the offset of a given variable within a given function
