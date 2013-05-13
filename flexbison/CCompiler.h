@@ -292,17 +292,14 @@ class CCompiler
  * spill registers.
  *
  * \section INSTRUCTIONS Running This Example:
- * This example can be tested by running the following commands in a bash 
- * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test1.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test1.tac
- * cd ..
- * ./tac2mips tests/test1.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test1.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -313,6 +310,24 @@ class CCompiler
  * generated in. If you wish to move the asm file to a different folder, you must
  * also move the macros.asm file.
  *
+ * 
+ * \section OUTPUT The Expected Output:
+   The __tac2mips__ program is designed to output a MIPS macro which prints the
+   value of a variable whenever a value is stored to the variable. This provides
+   a simple method of verfiying the output of this example is correct. It is 
+   expected that the following statements should be printed to the MARS console:
+   
+   \code
+   The value of i is: 1
+   The value of j is: 2
+   The value of k is: 3
+   The value of k is: 1
+   The value of k is: 2
+   The value of k is: 2
+   The value of k is: 0
+   The value of k is: 55
+   \endcode
+   
  * \section CODE The Example Code:
  */
  
@@ -324,17 +339,14 @@ class CCompiler
  * of array indices and access operations.
  *
  * \section INSTRUCTIONS Running This Example:
- * This example can be tested by running the following commands in a bash 
- * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test2.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test2.tac
- * cd ..
- * ./tac2mips tests/test2.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test2.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -357,15 +369,14 @@ class CCompiler
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
  * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test3.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test3.tac
- * cd ..
- * ./tac2mips tests/test3.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test3.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -389,15 +400,14 @@ class CCompiler
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
  * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test4.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test4.tac
- * cd ..
- * ./tac2mips tests/test4.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test4.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -422,15 +432,14 @@ class CCompiler
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
  * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test5.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test5.tac
- * cd ..
- * ./tac2mips tests/test5.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test5.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -456,15 +465,14 @@ class CCompiler
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
  * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test6.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test6.tac
- * cd ..
- * ./tac2mips tests/test6.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test6.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 
@@ -489,15 +497,14 @@ class CCompiler
  * \section INSTRUCTIONS Running This Example:
  * This example can be tested by running the following commands in a bash 
  * terminal:
+ * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
  *
- * \code
- * ./ccomp tests/test7.c
- * cp TAC.out mips/tests/
- * cd mips/tests/
- * mv TAC.out test7.tac
- * cd ..
- * ./tac2mips tests/test7.tac
- * \endcode
+ *	\code
+ *	./demo.sh <filename>
+ *	\endcode
+ *
+ * or by manually invoking the ccomp and tac2mips programs (see instructions on 
+ * the 'Main Page' tab above).
  *
  * This will generate the output file test7.asm, which can be assembled and run 
  * in the MARS MIPS simulator. Please note, assembly code in this project was 

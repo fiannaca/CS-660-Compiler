@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classAstLogicAndExpr-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -235,6 +236,15 @@ static <a class="el" href="classSymTab.html">SymTab</a> *&#160;</td><td class="m
 <tr class="memitem:a5c3cc894d9c0453523dec9ed76f18a04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c3cc894d9c0453523dec9ed76f18a04"></a>
 static string&#160;</td><td class="memItemRight" valign="bottom"><b>currentFunction</b> =&quot;&quot;</td></tr>
 <tr class="separator:a5c3cc894d9c0453523dec9ed76f18a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66155513b59ff1a04c8ece8b20ec31f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66155513b59ff1a04c8ece8b20ec31f5"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>currentConstantValue</b> =0</td></tr>
+<tr class="separator:a66155513b59ff1a04c8ece8b20ec31f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d031d7bab635ba1f015aade5943f40c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d031d7bab635ba1f015aade5943f40c"></a>
+static string&#160;</td><td class="memItemRight" valign="bottom"><b>currentIdName</b> =&quot;&quot;</td></tr>
+<tr class="separator:a3d031d7bab635ba1f015aade5943f40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16c4b6e54febc1a26b31a64a46972ef0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16c4b6e54febc1a26b31a64a46972ef0"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>currentIndexVal</b> = 0</td></tr>
+<tr class="separator:a16c4b6e54febc1a26b31a64a46972ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -247,6 +257,21 @@ string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memdesc:ab2e239ccc0688d2341724432ff5a1a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">The label to be printed in the visualization. <br/></td></tr>
 <tr class="separator:ab2e239ccc0688d2341724432ff5a1a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ab0a23d100ac6108a54ac789989d326c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a23d100ac6108a54ac789989d326c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>return</b> (op==STAR)</td></tr>
+<tr class="separator:ab0a23d100ac6108a54ac789989d326c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a23d100ac6108a54ac789989d326c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a23d100ac6108a54ac789989d326c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>return</b> (op==STAR)</td></tr>
+<tr class="separator:ab0a23d100ac6108a54ac789989d326c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a23d100ac6108a54ac789989d326c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a23d100ac6108a54ac789989d326c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>return</b> (op==STAR)</td></tr>
+<tr class="separator:ab0a23d100ac6108a54ac789989d326c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a23d100ac6108a54ac789989d326c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0a23d100ac6108a54ac789989d326c2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>return</b> (op==STAR)</td></tr>
+<tr class="separator:ab0a23d100ac6108a54ac789989d326c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a047e943362c7d33c78344b46ad69392c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a047e943362c7d33c78344b46ad69392c"></a>
@@ -258,7 +283,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="Ast_8h_source.html#l00527">527</a> of file <a class="el" href="Ast_8h_source.html">Ast.h</a>.</p>
+<p>Definition at line <a class="el" href="Ast_8h_source.html#l00643">643</a> of file <a class="el" href="Ast_8h_source.html">Ast.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
 <div class="memitem">
@@ -312,66 +337,66 @@ Private Attributes</h2></td></tr>
 <p>Gets the node's label. </p>
 <dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
 
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00060">60</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AST::getLabel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node's label. </p>
+<dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
+
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00060">60</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AST::getLabel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node's label. </p>
+<dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
+
 <p>Definition at line <a class="el" href="CScanner_8ll_source.html#l00060">60</a> of file <a class="el" href="CScanner_8ll_source.html">CScanner.ll</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string AST::getLabel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the node's label. </p>
-<dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
-
-<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00060">60</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aee029be902fffc927d16ccb03eb922ad"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">string AST::getLabel </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the node's label. </p>
-<dl class="section return"><dt>Returns</dt><dd>The label </dd></dl>
-
-<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00060">60</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="ab7a5b1d9f1c2de0d98deb356f724a42c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -396,35 +421,7 @@ Private Attributes</h2></td></tr>
 <p>Gets the node's unique ID. </p>
 <dl class="section return"><dt>Returns</dt><dd>The unique id </dd></dl>
 
-<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00053">53</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab7a5b1d9f1c2de0d98deb356f724a42c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int AST::getUID </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the node's unique ID. </p>
-<dl class="section return"><dt>Returns</dt><dd>The unique id </dd></dl>
-
-<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00053">53</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+<p>Definition at line <a class="el" href="Ast_8h_source.html#l00053">53</a> of file <a class="el" href="Ast_8h_source.html">Ast.h</a>.</p>
 
 </div>
 </div>
@@ -480,7 +477,35 @@ Private Attributes</h2></td></tr>
 <p>Gets the node's unique ID. </p>
 <dl class="section return"><dt>Returns</dt><dd>The unique id </dd></dl>
 
-<p>Definition at line <a class="el" href="Ast_8h_source.html#l00053">53</a> of file <a class="el" href="Ast_8h_source.html">Ast.h</a>.</p>
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00053">53</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab7a5b1d9f1c2de0d98deb356f724a42c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AST::getUID </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node's unique ID. </p>
+<dl class="section return"><dt>Returns</dt><dd>The unique id </dd></dl>
+
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00053">53</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
 
 </div>
 </div>
@@ -515,40 +540,6 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="CScanner_8ll_source.html#l00043">43</a> of file <a class="el" href="CScanner_8ll_source.html">CScanner.ll</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a71d680856e95ff89f55d5311a552eba6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void AST::setLabel </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>l</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the label for the node. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">l</td><td>The label string </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00043">43</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
 
 </div>
 </div>
@@ -620,7 +611,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
+<a class="anchor" id="a71d680856e95ff89f55d5311a552eba6"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -628,81 +619,29 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void AstLogicAndExpr::Visit </td>
+          <td class="memname">void AST::setLabel </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">inherited</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function is responsible for tree traversals. </p>
-<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
+<p>Sets the label for the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">l</td><td>The label string </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
-
-<p>Definition at line <a class="el" href="Ast_8cpp_source.html#l01468">1468</a> of file <a class="el" href="Ast_8cpp_source.html">Ast.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void AstLogicAndExpr::Visit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>This function is responsible for tree traversals. </p>
-<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
-
-<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void AstLogicAndExpr::Visit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>This function is responsible for tree traversals. </p>
-<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
-
-<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+<p>Definition at line <a class="el" href="CParser_8yy_source.html#l00043">43</a> of file <a class="el" href="CParser_8yy_source.html">CParser.yy</a>.</p>
 
 </div>
 </div>
@@ -731,6 +670,92 @@ Private Attributes</h2></td></tr>
 <p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
 
 <p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AstLogicAndExpr::Visit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is responsible for tree traversals. </p>
+<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
+
+<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AstLogicAndExpr::Visit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is responsible for tree traversals. </p>
+<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
+
+<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4fc66df5e58e7bea73a712986e94ddcf"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AstLogicAndExpr::Visit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This function is responsible for tree traversals. </p>
+<p>This function will call the Visit functions of each of it's children nodes, call the visualization code for itself, and output any 3AC that can be generated at the current node. </p>
+
+<p>Reimplemented from <a class="el" href="classAST.html#a5828cc86f2c4f1a0aeab6d7069e8fd82">AST</a>.</p>
+
+<p>Definition at line <a class="el" href="Ast_8cpp_source.html#l01617">1617</a> of file <a class="el" href="Ast_8cpp_source.html">Ast.cpp</a>.</p>
 
 </div>
 </div>
@@ -741,7 +766,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 9 2013 14:45:42 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 13 2013 09:47:45 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
