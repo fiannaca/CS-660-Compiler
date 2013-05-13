@@ -395,6 +395,18 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
                    << setw(width) << *ptr3; 
 		
 	    }
+	    break;
+	case PARAM:
+	    {
+		string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                int* ptr3 = (int*)op3;
+		ss << setw(width) << "PARAM"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3; 
+		
+	    }
     }
 
     Emit(ss.str());
@@ -630,7 +642,14 @@ void TAC_Generator::toTAC(OneOpInstructions t, void* op, string c)
                    << setw(width) << val;
             }
             break;
+	
+	case FPAR:
+            {
+                string* ptr = (string*)op;
 
+               ;ss << setw(width) << "FPAR"
+                   << setw(width) <<*ptr;
+            }
     }
 
     Emit(ss.str());

@@ -118,7 +118,7 @@ leave_scope
             ss << "Leaving scope: line - " << @$.begin.line << ", col - " << @$.begin.column;
             driver.printDebug(ss.str());
 
-            driver.leaveScope();
+          //  driver.leaveScope();
         }
     ;
 
@@ -164,28 +164,36 @@ function_definition
         {
             driver.printRed("function_definition -> declarator compound_statement");
             $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $1 , ( AstCompound *) $3  , NULL , NULL ) ;
+            driver.currentFunctionName = ((AstFuncDef*)$$)->GetFunctionName(); 
+            driver.leaveScope();
               
         }
     | declarator set_function_name declaration_list compound_statement
         {
             driver.printRed("function_definition -> declarator declaration_list compound_statement");
              $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $1 , ( AstCompound *) $4  ,(AstDeclList *)$3 , NULL ) ; 
+            driver.currentFunctionName = ((AstFuncDef*)$$)->GetFunctionName();
+            driver.leaveScope();  
         }
     | declaration_specifiers  declarator  set_function_name compound_statement
         {
             driver.printRed("function_definition -> declaration_specifiers declarator coumpound_statement");
             $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $2 , ( AstCompound *) $4  ,NULL  , (AstDecSpeci*)$1 ) ;
+            driver.currentFunctionName = ((AstFuncDef*)$$)->GetFunctionName();
+            driver.leaveScope(); 
         }
     | declaration_specifiers  declarator  set_function_name declaration_list compound_statement
         {
             driver.printRed("function_definition -> declaration_specifiers declarator declaration_list compound)_statement");
             $$ = (AST *) new AstFuncDef ( ( AstDeclarator *) $2 , ( AstCompound *) $5  ,(AstDeclList *)$4, (AstDecSpeci*)$1 ) ;
+            driver.currentFunctionName = ((AstFuncDef*)$$)->GetFunctionName();
+            driver.leaveScope(); 
         }
     ;
 set_function_name:
      {
-        driver.currentFunctionName = driver.currentSymbol->symbol_name;
-        cout<<"Current function name = "<< driver.currentFunctionName << endl;
+        //driver.currentFunctionName = driver.currentSymbol->symbol_name;
+        //cout<<"Current function name = "<< driver.currentFunctionName << endl;
      
      }
      
@@ -938,7 +946,7 @@ parameter_list
     | parameter_list COMMA parameter_declaration
         {
             driver.printRed("parameter_list -> parameter_list COMMA parameter_declaration");
-            $$ = (AST *) new AstParamList ( (AstParamDec *)$3 , (AstParamList *)$3 );
+            $$ = (AST *) new AstParamList ( (AstParamDec *)$3 , (AstParamList *)$1 );
         }
     ;
 

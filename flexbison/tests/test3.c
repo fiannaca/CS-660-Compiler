@@ -6,17 +6,16 @@ int main()
     int a;
     
     a = 1;
-    
+  
+    a = ( 4 + 5 ) * ( 2 + 3  ) ;   
     if(a == 2)
     {
         a = 0;
     }
     else
     {
-        a = 3;
+        a = -1;
     }
-    
-    //Expected value of a: 3
     
     return 0;
 }

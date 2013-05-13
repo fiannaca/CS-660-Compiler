@@ -11,17 +11,15 @@ int main()
     i = 1;
     j = 2;
     
-    k = i + j; //Expected value of k: 3
+    k = i + j; //3
     
-    k = j - i; //Expected value of k: 1
+    k = j - i; //1
     
-    k = i * j; //Expected value of k: 2
+    k = i * j; //2
     
-    k = j / i; //Expected value of k: 2
+    k = j / i; //2
     
-    k = j % i; //Expected value of k: 0
-    
-    k = (((1 + 2) + (3 + 4)) + ((5 + 6) + (7 + 8))) + (9 + 10); //Expected value of k: 55
+    k = (1 + 2) + (3 + 4) + (5 + 6) + (7 + 8) + (9 + 10);
     
     return 0;
 }

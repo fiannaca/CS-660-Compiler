@@ -81,7 +81,8 @@ void CCompiler::enterScope()
 void CCompiler::leaveScope()
 {
     //Call the symtab function for leaving a scope
-    SymbolTable.map_function_vars(currentFunctionName);
+    //cout<< "\n Current Function Name :=" << AST::currentFunction;
+    SymbolTable.map_function_vars(AST::currentFunction);
     SymbolTable.LeaveScope(); 
 }
 

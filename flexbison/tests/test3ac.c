@@ -1,4 +1,5 @@
-int x ,y ;
+int x ;
+int y ;
 int z ; 
 int main()
 {

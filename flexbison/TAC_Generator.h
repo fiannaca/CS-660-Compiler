@@ -58,6 +58,8 @@ class TAC_Generator
             BRNE, /**< If(op1 != op2) goto op3 */
             BOUND, /**< Checks the bounds of an array access */
 	    ALLOC, /** Allocate on procedure stack */
+	    PARAM /** Denotes a parameter **/ 
+	   
         };
 
         /**
@@ -77,7 +79,7 @@ class TAC_Generator
             IMMEDIATE_I, /**< Load an integer into a register */
             IMMEDIATE_F, /**< Load a float into a register */
             TILDE , /** does op2 = ~(op1) */
-            MOV  /** does op1 = op2 */ 
+            MOV  /** does op2 = op21 */ 
         };
 
         /**
@@ -97,7 +99,8 @@ class TAC_Generator
             PROCENTRY, /**< Marks the beginning of a procedure */
             COMMENT, /**< Output op1 as a comment */
             BEGINFRAME, /**< Marks the beginning of a new stack frame, and passes in the size of the memory required on the stack*/
-        };
+	    FPAR  /** Denotes a passed parameter value **/ 
+	};
 
         /**
          * Enum of instructions without operands.

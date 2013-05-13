@@ -13,7 +13,7 @@ SymTab* AST::symbolTable=NULL;
 string AST::currentIdName="";
 int AST::currentConstantValue =0;
 int AST::currentIndexVal = 0 ;
-
+string AST::currentID = ""; 
 
 ///////////////////////////////////////////////////////////////////////////////
 // BEGIN: AstPrimaryExpr  /////////////////////////////////////////////////////
@@ -83,9 +83,6 @@ void AstPrimaryExpr::Visit()
             //Output 3AC
                
     
-            // Fetch the current id into temporary  - dummy to be replaced with actual 
-            // actual symbol table later  
-
              currentLabel =TAC_Generator::GetIVarName();
              AST::tempStack.push_back(this->id->str); 
              AST::tacGen.Fetch(this->id->str,AST::symbolTable ,currentLabel);   
@@ -134,7 +131,7 @@ AstArgExprList::AstArgExprList(AstArgExprList *list, AstAssignExpr *expr)
     this->list = list;
     this->expr = expr;
     this->isLastItem = false;
-
+    this->isVisited = false;
     this->setLabel("ArgumentExpressionList");            
 }
 
@@ -143,19 +140,36 @@ AstArgExprList::AstArgExprList(AstAssignExpr *expr)
     this->list = NULL;
     this->expr = expr;
     this->isLastItem = true;
-
+    this->isVisited = false;
     this->setLabel("ArgumentExpressionList");
 }
 
 void AstArgExprList::Visit()
 {
     //Visit children nodes
+    AstArgExprList *base = this;
+    int count = 0 ; 
+    string tempVar;
+    while(base != NULL && !(base->IsVisited()))
+    {
+		base->SetVisited(true);
+		++count;
+		base = base->GetList();
+	}
     if(!isLastItem)
     {
         list->Visit();
     }
+    
 
     expr->Visit();
+    while(count--)
+    {
+		tempVar = AST::tempStack.back();
+		AST::tempStack.pop_back();
+		AST::tacGen.toTAC(TAC_Generator::FPAR,(void *)&tempVar);
+		
+	} 
 
     //Output visualization
     AST::vis.addNode(this->getUID(), this->getLabel());
@@ -307,6 +321,7 @@ void AstPostfixExpr::Visit()
     int currentCapacity = 1;     
     AstPostfixExpr *base= this; 
     bool isLeaf;
+    
     switch(t)
     {
         case PRIMARY:
@@ -331,6 +346,7 @@ void AstPostfixExpr::Visit()
                       arrayName = GetArrayName();       
                       while( items != localItems.end())
                       {
+                          cout<<endl<<items->symbol_name;
                           if ( items->symbol_name ==  arrayName )
                           {
                              arrayinfo = &(*items); 
@@ -367,10 +383,13 @@ void AstPostfixExpr::Visit()
             if(IsAddrExp())
                ptfExpr->SetAddress(true);  
             ptfExpr->SetVisited(true);   
-            if ( this->arrayType->GetName() == "ARRAY")
+            if ( this->arrayType != NULL ) 
             {
+               if ( this->arrayType->GetName() == "ARRAY")
+               {
                     ptfExpr->SetArrayType(((ArrayType*)this->arrayType)->GetBase());
-            }       
+               }
+            }          
             ptfExpr->Visit();
             AST::currentIndexVal++;                     
             cout<< "\n Current Index = "<< AST::currentIndexVal ;
@@ -418,9 +437,10 @@ void AstPostfixExpr::Visit()
 
         case EMPTY_PARENS:
             //Visit children nodes
-            ptfExpr->Visit();
-
-            //Output visualization
+             ptfExpr->Visit();
+             currentLabel =  ptfExpr->GetPrimary()->GetID()->GetName(); 
+             AST::tacGen.toTAC(TAC_Generator::CALL,(void *)&currentLabel);
+          //Output visualization
             AST::vis.addNode(this->getUID(), this->getLabel());
             AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
 
@@ -432,7 +452,8 @@ void AstPostfixExpr::Visit()
             //Visit children nodes
             ptfExpr->Visit();
             argExprList->Visit();
-
+            currentLabel =  ptfExpr->GetPrimary()->GetID()->GetName(); 
+            AST::tacGen.toTAC(TAC_Generator::CALL,(void *)&currentLabel);
             //Output visualization
             AST::vis.addNode(this->getUID(), this->getLabel());
             AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
@@ -519,7 +540,7 @@ AstUnaryExpr::AstUnaryExpr(AstPostfixExpr *e)
     this->tname = NULL;
     this->t = POSTFIX;
     this->type = e->type;
-    
+    lhs = false;
     this->setLabel("UnaryExpression - Postfix");
 }
 
@@ -533,7 +554,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryExpr* e, bool inc)
     this->uniexpr = e;
     this->tname = NULL;
     this->type = e->type;
-
+    lhs = false;
     if(inc)
         this->t = INC;
     else
@@ -552,7 +573,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryOp* o, AstCastExpr* c)
     this->uniexpr = NULL;
     this->tname = NULL;
     this->type = c->type;
-
+    lhs = false;
     this->t = CAST;
 
     this->setLabel("UnaryExpression - Cast");
@@ -570,7 +591,7 @@ AstUnaryExpr::AstUnaryExpr(AstUnaryExpr* e)
     this->type = e->type;
 
     this->t = SIZEOF;
-
+    lhs = false;
     this->setLabel("UnaryExpression - Sizeof");
 }
 
@@ -586,7 +607,7 @@ AstUnaryExpr::AstUnaryExpr(AstTypeName* t)
     this->type = new PODType("INT", INT_SIZE);
 
     this->t = SIZEOF_TYPE;
-
+    lhs  = false; 
     this->setLabel("UnaryExpression - Sizeof Type");
 }
 
@@ -625,9 +646,9 @@ void AstUnaryExpr::Visit()
             immediateValue = TAC_Generator::GetIVarName();
             AST::tempStack.pop_back();
             
-            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&immediateValue,(void *)&one); 
+            AST::tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void *)&immediateValue,(void *)one); 
             AST::tacGen.toTAC(TAC_Generator::ADD , (void *) &immediateValue , (void *)&lastUsedTemp , (void *)&currentLabel);   
-            AST::tacGen.toTAC(TAC_Generator::MOV ,(void*) &lastID ,(void *) &currentLabel); 
+            AST::tacGen.toTAC(TAC_Generator::MOV ,(void *) &currentLabel , (void*) &lastID ); 
             AST::tempStack.push_back( currentLabel);
             break;
 
@@ -643,8 +664,8 @@ void AstUnaryExpr::Visit()
             currentLabel =TAC_Generator::GetIVarName();
             lastUsedTemp = AST::tempStack.back(); 
             AST::tempStack.pop_back();
-            AST::tacGen.toTAC(TAC_Generator::SUB , (void *) &one , (void *)&lastUsedTemp , (void *)&currentLabel);   
-            AST::tacGen.toTAC(TAC_Generator::MOV ,(void*) &lastID ,(void *) &currentLabel); 
+            AST::tacGen.toTAC(TAC_Generator::SUB ,  (void *)&lastUsedTemp , (void *) one , (void *)&currentLabel);   
+            AST::tacGen.toTAC(TAC_Generator::MOV ,(void *) &currentLabel ,(void*) &lastID ); 
             AST::tempStack.push_back( currentLabel);
             break;
 
@@ -659,29 +680,56 @@ void AstUnaryExpr::Visit()
                {
                   lastUsedTemp = AST::tempStack.back();
                   currentLabel =TAC_Generator::GetIVarName();
+                  AST::tempStack.pop_back();
                   AST::tacGen.toTAC(TAC_Generator::NEG,(void *)&lastUsedTemp,(void *)&currentLabel);
+                  AST::tempStack.push_back(currentLabel);
+                  
                } 
                if(op->isTilde())
                {
                   lastUsedTemp = AST::tempStack.back();
                   currentLabel =TAC_Generator::GetIVarName();
+                  AST::tempStack.pop_back();
                   AST::tacGen.toTAC(TAC_Generator::TILDE,(void *)&lastUsedTemp,(void *)&currentLabel);
-
+                  AST::tempStack.push_back(currentLabel);   
                }       
                if(op->isAddressOff())
                {
                   lastUsedTemp = AST::tempStack.back();
                   currentLabel =TAC_Generator::GetIVarName();
+                  AST::tempStack.pop_back();
                   AST::tacGen.toTAC(TAC_Generator::ADDR,(void *)&lastUsedTemp,(void *)&currentLabel);
-
+                  AST::tempStack.push_back(currentLabel);
                }       
                if(op->isBang())
                {
                   lastUsedTemp = AST::tempStack.back();
                   currentLabel =TAC_Generator::GetIVarName();
+                  AST::tempStack.pop_back();
                   AST::tacGen.toTAC(TAC_Generator::NOT,(void *)&lastUsedTemp,(void *)&currentLabel);
+                  AST::tempStack.push_back(currentLabel);
 
                }       
+               if(op->isStar())
+               {
+				   lastUsedTemp = AST::tempStack.back();
+                   currentLabel = TAC_Generator::GetIVarName();
+				   AST::tempStack.pop_back();
+				   if (!lhs)
+				   {
+				     
+				     AST::tacGen.toTAC(TAC_Generator::ASSIGN,(void *)&lastUsedTemp,(void *)&currentLabel);
+				   
+				    
+				   }
+				   else
+				   {
+					   
+					   AST::tacGen.toTAC(TAC_Generator::MOV,(void *)&lastUsedTemp,(void *)&currentLabel);
+				   } 
+				   
+				   AST::tempStack.push_back(currentLabel); 
+			   }
                     
             } 
             //Output visualization
@@ -944,6 +992,7 @@ AstID::AstID(string s, Type* t)
 {
     this->str = s;
     this->type = t;
+    AST::currentID = s; 
     this->setLabel("Identifier");
 }
 
@@ -1899,7 +1948,11 @@ void AstAssignExpr::Visit()
                           lhsAddr = true;  
                    }                        
         }   
-
+        if ( uni->isPtrAss())
+        {
+           uni->lhs=true;
+           lhsAddr = true;
+        }  
         uni->Visit();
         op->Visit();
         expr->Visit();
@@ -2614,8 +2667,7 @@ AstCompoundStmt::AstCompoundStmt(AstDeclarationList* d, AstStatementList* s)
 void AstCompoundStmt::Visit()
 {
     
-    long op = 0; 
-    AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)op);
+    
     if(declList)
         declList->Visit();
 
@@ -2630,7 +2682,7 @@ void AstCompoundStmt::Visit()
     if(stmtList)
         AST::vis.addEdge(this->getUID(), stmtList->getUID());
 
-    AST::tacGen.toTAC(TAC_Generator::ENDFRAME);
+    
 
     //Output 3AC
 }

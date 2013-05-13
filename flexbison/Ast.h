@@ -90,7 +90,8 @@ class AST
 	static string currentFunction;
         static int currentConstantValue;
         static string currentIdName;   
-        static int currentIndexVal;  
+        static int currentIndexVal; 
+        static string currentID;  
     protected:
         int uid; /**< The unique id */
         string label; /**< The label to be printed in the visualization */
@@ -187,11 +188,20 @@ class AstUnaryOp : public AST
 
     private:
         Operator op;
-
+        bool isLhs; 
     public:
         //Constructor
+	
         AstUnaryOp(Operator o);
-        bool isAddressOff()
+        void SetLhs( bool value)
+	{
+	    isLhs = value;			
+	}
+	bool GetLhs()
+	{
+            return isLhs;
+	}
+	bool isAddressOff()
         {
             return ( op == BIN_AND);
         }     
@@ -273,11 +283,23 @@ class AstArgExprList : public AST
     AstArgExprList *list;
     AstAssignExpr *expr;
     bool isLastItem;
-
+    bool isVisited; 
     public:
         AstArgExprList(AstArgExprList *list, AstAssignExpr *expr);
         AstArgExprList(AstAssignExpr *expr);
-        void Visit();
+        void SetVisited(bool value)
+	{
+	   this->isVisited  = value; 	
+	}
+	bool IsVisited()
+	{
+	   return isVisited; 	
+	}
+	AstArgExprList *GetList()
+	{
+           return list;
+	}
+	void Visit();
 };
 
 class AstPostfixExpr : public AST
@@ -425,7 +447,7 @@ class AstUnaryExpr : public AST
     AstCastExpr  *cast;
     AstUnaryExpr *uniexpr;
     AstTypeName  *tname;
-
+    
     public:
         enum ExprType
         {
@@ -436,7 +458,7 @@ class AstUnaryExpr : public AST
             SIZEOF,
             SIZEOF_TYPE
         } t;
-
+	bool lhs;
         //Constructor
         AstUnaryExpr(AstPostfixExpr *e);
         AstUnaryExpr(AstUnaryExpr* e, bool inc);
@@ -447,7 +469,12 @@ class AstUnaryExpr : public AST
         {
             return expr; 
         }
-        bool isPostfix()
+        bool isPtrAss()
+	{
+		
+	  return (t == CAST) && (op->isStar() );	
+	}
+	bool isPostfix()
         {
              return (t == POSTFIX);  
         }  
@@ -463,7 +490,7 @@ class AstCastExpr : public AST
     AstUnaryExpr *uniexpr;
     AstCastExpr  *cast;
     AstTypeName  *tname;
-
+      
     public:
         //Constructor
         AstCastExpr(AstUnaryExpr* u);
@@ -642,7 +669,7 @@ class AstORExpr : public AST
 
 class AstLogicAndExpr : public AST
 {
-    return ( op == STAR); AstORExpr *o;
+    AstORExpr *o;
     AstLogicAndExpr *a;
 
     public:
@@ -1096,6 +1123,18 @@ public:
                 this->setLabel("AstParamList");
   
 	}
+        AstParamDec *GetDecl()
+        {
+          return dec; 
+
+        }
+           
+
+        AstParamList *GetList()
+        {
+            return plist;
+        }                
+
 	void Visit()
 	{
 		VisVist(2 , this , dec , plist );
@@ -1122,6 +1161,13 @@ public:
 	   VisVist(3 , this , speci , declarator , adecl );
 	
 	}
+   
+    
+
+    AstDeclarator *GetDeclarator()
+    {
+         return this->declarator;   
+    }          
 	
 }; 
 class AstInitializer;
@@ -1337,6 +1383,14 @@ public:
 	  return ddecl;
 	  
 	}
+        AstTypeParamList *GetTypeParamList()
+        {
+
+           return pList; 
+        }
+            
+
+
 } ; 
 class AstTypeSpeci;
 class AstDecSpeci: public AST 
@@ -1440,8 +1494,13 @@ public:
 	    this->type =type;
 	    this->list = list;
 	    this->setLabel("AstTypeParamlList");
- } 
-	 void Visit()
+     } 
+	 
+         AstParamList*  GetList()
+         {
+            return this->list;  
+         }     
+         void Visit()
 	 {
                VisVist(1,this,list);	 
                VisAddIntNode(this,type);
@@ -1653,7 +1712,6 @@ public:
 
 	}
 	
-	
 };
 
 class AstFuncDef: public AST 
@@ -1686,12 +1744,46 @@ class AstFuncDef: public AST
 			   
 		       }
 		       AST::currentFunction = directDecl->GetID()->str;
-		       return directDecl->GetID()->str;
+		       cout<< " Current Function : " << AST::currentFunction ;  
+                       return directDecl->GetID()->str;
 		   }
 		   
 		  
 		}
-		
+                
+	        list<string> GetParams()
+                {
+                      list<string> funcParams; 
+                      AstTypeParamList *tpList = this->decl->GetDirectDecl()->GetTypeParamList();
+                      if ( tpList != NULL )
+                      {
+                            AstParamList *pList = tpList->GetList();
+                            while ( pList != NULL )
+                            {
+                               funcParams.push_back(pList->GetDecl()->GetDeclarator()->GetDirectDecl()->GetID()->GetName()); 
+                               pList = pList->GetList();        
+                            
+                            } 
+
+                            
+                      }
+                      
+                      return funcParams;
+                } 
+                bool isParam( string paramName) 
+                {
+                     list<string>  fParams = GetParams();
+                     list<string>::iterator it =  fParams.begin();
+                     while ( it != fParams.end())
+                     {
+                         
+                         if( *it == paramName ) 
+                                 return true;
+                         it++;
+                     }       
+                     return false; 
+
+                }    	
 		void Visit() 
 		{
 			int arraySize = 0; 
@@ -1699,13 +1791,16 @@ class AstFuncDef: public AST
                         string functionName = GetFunctionName();
 			int frameSize = AST::symbolTable->GetFuncOffset(AST::currentFunction);
 			AST::tacGen.toTAC(TAC_Generator::PROCENTRY,(void *)&functionName);
-			//AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)frameSize);
 			list<SymbolInfo> localItems; 
                         string symName;
                         long symSize;
 			string typeName;
                         localItems =  AST::symbolTable->GetLocals(functionName);	
 	                list<SymbolInfo>::iterator items = localItems.begin();
+			list<string> fParams  = GetParams();
+			list<string>::iterator pit = fParams.begin();
+			long op = 0; 
+                        AST::tacGen.toTAC(TAC_Generator::BEGINFRAME,(void *)op);
 			while ( items != localItems.end())
 			{
 	   
@@ -1713,26 +1808,35 @@ class AstFuncDef: public AST
 			  symName = items->symbol_name;
 	                  symSize = items->symbolType->GetSize();
 	                  typeName = items->symbolType->GetName();
-			  cout<< " \n Name = " << symName << " Size = " << symSize;
-	                  if ( typeName == "ARRAY" )
+	                  
+                           
+                          if ( typeName == "ARRAY" )
                           {
                                 arraySize = GetArraySize(items->symbolType);
                                 arrayName = GetInnerType(items->symbolType)->GetName() + "ARRAY";
-                                cout<< " Array Size = "<<arraySize; 
-                                tacGen.toTAC( TAC_Generator::ALLOC,(void *)&symName ,(void *)&arrayName , (void *)&arraySize ); 
+                                tacGen.toTAC( TAC_Generator::ALLOC  ,(void *)&symName ,(void *)&arrayName , (void *)&arraySize ); 
 
                           }
                           else 
                           {   
-                               tacGen.toTAC(TAC_Generator::ALLOC,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
+                               tacGen.toTAC( TAC_Generator::ALLOC,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
                           }
 			  items++;
 	                }
-			
+			typeName = "INT";
+			symSize = 4; 
+			while( pit != fParams.end())
+			{
+				
+				symName = *pit; 
+			    	tacGen.toTAC( TAC_Generator::PARAM,(void *)&symName ,(void *)&typeName ,(void *)&symSize );
+				pit++;
+			}
 			
 			VisVist(4 , this,speci , decl , dlist, comp );
-                        tacGen.toTAC(TAC_Generator::ENDPROC);
-
+                        AST::tacGen.toTAC(TAC_Generator::ENDFRAME);
+		        tacGen.toTAC(TAC_Generator::ENDPROC);
+                       
 		  
 		}
 	 

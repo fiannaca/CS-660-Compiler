@@ -7,37 +7,33 @@
  //The bubble sort algorithm
  int main()
  {
+    int tarr[3];
     int swapped;
     int i;
     int tmp;
-    int arr[3];
     
     //Initialize the array to sort
-    arr[0] = 3;
-    arr[1] = 2;
-    arr[2] = 1;
+    tarr[0] = 3;
+    tarr[1] = 2;
+    tarr[2] = 1;
     
     //Perform the sort
     do
     {
         swapped = 0;
         
-        i = 1;
-        
-        while(i < 3)
+        for(i = 1; i < 3; ++i)
         {
-            if(a[i - 1] > a[i])
+            if(ta[i - 1] > ta[i])
             {
-		        tmp = a[i - 1];
-				a[i - 1] = a[i];
-				a[i] = tmp;
+		        tmp = tarr[i - 1];
+				tarr[i - 1] = tarr[i];
+				tarr[i] = tmp;
                 swapped = 1;
             }
-            
-            i++;
         }
         
-    } while (swapped == 1);
+    } while (swapped);
     
     //Expected output of arr: [1, 2, 3]
     

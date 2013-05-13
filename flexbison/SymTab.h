@@ -103,7 +103,7 @@ class SymTab
 	     }	  
 	     void EnterScope()
 	     {
-	         ++currentLevel;
+	             currentLevel = 1;
 		     offsetMap[currentLevel] = 0 ; 
              AVLTree<SymbolInfo> *node = new AVLTree<SymbolInfo>(); 
 		     symTable.push_back(*node); 
@@ -111,7 +111,7 @@ class SymTab
 	     }   
 	     void LeaveScope()
 	     {
-	         --currentLevel;
+	         currentLevel = 0 ;
 		 
              if ( currentLevel > 0 ) 
              {

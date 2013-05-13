@@ -97,6 +97,7 @@ class AVLTree
             Node * save_child = rootNode->children[opposite_dir];
 
             rootNode = save->children[opposite_dir]->children[direction];   
+            
             save->children[opposite_dir] = rootNode->children[direction];
             rootNode->children[direction] = save;
 
@@ -107,6 +108,7 @@ class AVLTree
             rootNode->children[LEFT]->balanceFactor  = -max(rootNode->balanceFactor, 0);
             rootNode->children[RIGHT]->balanceFactor = -min(rootNode->balanceFactor, 0);
             rootNode->balanceFactor = 0;
+            
 
 
             return  1;    
