@@ -18,26 +18,28 @@
          MOV       I0020           k
          DIV           i           j       I0026
          MOV       I0026           k
- IMMEDIATE_I       I0029           1
- IMMEDIATE_I       I0030           2
-         ADD       I0030       I0029       I0031
- IMMEDIATE_I       I0032           3
- IMMEDIATE_I       I0033           4
-         ADD       I0033       I0032       I0034
-         ADD       I0034       I0031       I0035
- IMMEDIATE_I       I0036           5
- IMMEDIATE_I       I0037           6
-         ADD       I0037       I0036       I0038
- IMMEDIATE_I       I0039           7
- IMMEDIATE_I       I0040           8
-         ADD       I0040       I0039       I0041
-         ADD       I0041       I0038       I0042
-         ADD       I0042       I0035       I0043
- IMMEDIATE_I       I0044           9
- IMMEDIATE_I       I0045          10
-         ADD       I0045       I0044       I0046
-         ADD       I0046       I0043       I0047
-         MOV       I0047           k
- IMMEDIATE_I       I0049           0
+         REM           i           j       I0032
+         MOV       I0032           k
+ IMMEDIATE_I       I0035           1
+ IMMEDIATE_I       I0036           2
+         ADD       I0036       I0035       I0037
+ IMMEDIATE_I       I0038           3
+ IMMEDIATE_I       I0039           4
+         ADD       I0039       I0038       I0040
+         ADD       I0040       I0037       I0041
+ IMMEDIATE_I       I0042           5
+ IMMEDIATE_I       I0043           6
+         ADD       I0043       I0042       I0044
+ IMMEDIATE_I       I0045           7
+ IMMEDIATE_I       I0046           8
+         ADD       I0046       I0045       I0047
+         ADD       I0047       I0044       I0048
+         ADD       I0048       I0041       I0049
+ IMMEDIATE_I       I0050           9
+ IMMEDIATE_I       I0051          10
+         ADD       I0051       I0050       I0052
+         ADD       I0052       I0049       I0053
+         MOV       I0053           k
+ IMMEDIATE_I       I0055           0
     ENDFRAME
      ENDPROC

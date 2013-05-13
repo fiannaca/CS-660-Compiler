@@ -18,9 +18,8 @@
          ADD       I0011           a       I0012
          MOV       I0012           a
     ENDFRAME
- IMMEDIATE_I       I0014           1
-         ADD       I0014           i       I0015
-         MOV       I0015           i
+         ADD           1           i       I0015
+         MOV           i       I0015
           BR       L0000
        LABEL       L0001
  IMMEDIATE_I       I0017           1

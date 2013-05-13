@@ -3,7 +3,7 @@
 # MIPS Assembly Code
 # Filename:     tests/test1.asm
 # Input file:   tests/test1.tac
-# Generated on: Fri May 10 13:29:09 2013
+# Generated on: Sat May 11 12:31:38 2013
 #
 ################################################################################
 
@@ -73,7 +73,7 @@ main:	subu	$sp, $sp, 16
 	sw 	$t2, 4($sp)
 	lw 	$t0, 8($sp)
 	lw 	$t1, 0($sp)
-	div	$t0, $t1
+	div	$t1, $t0
 	mflo	$t2
 	sw 	$t0, 8($sp)
 	sw 	$t1, 0($sp)
@@ -83,6 +83,12 @@ main:	subu	$sp, $sp, 16
 	print_newline
 
 	sw 	$t2, 4($sp)
+
+	print_str("The value of k is: ")
+	print_int($t0)
+	print_newline
+
+	sw 	$t0, 4($sp)
 	li	$t0, 1
 	li	$t1, 2
 	add	$t2, $t1, $t0

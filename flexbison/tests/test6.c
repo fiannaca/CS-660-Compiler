@@ -32,13 +32,17 @@
     {
         swapped = false;
         
-        for(i = 1; i < 3; ++i)
+        i = 1; 
+        
+        while(i < 3)
         {
             if(a[i - 1] > a[i])
             {
                 swap(a[i - 1], a[i]);
                 swapped = true;
             }
+            
+            i++;
         }
         
     } while (swapped);

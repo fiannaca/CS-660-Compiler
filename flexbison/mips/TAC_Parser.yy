@@ -154,7 +154,7 @@ tac_command
 			string reg2 = driver.GetRegister(*$3);
 			string reg3 = driver.GetRegister(*$4);
 			
-			driver.toMIPS("div", reg1, reg2);			
+			driver.toMIPS("div", reg2, reg1);			
 			driver.toMIPS("mflo", reg3);
 			
 			driver.FreeRegister(reg1);
@@ -242,7 +242,17 @@ tac_command
         }
     | REM STRING STRING STRING
         {
-            //TODO
+            //Calculates the remainder and puts it in reg3
+            
+			string reg1 = driver.GetRegister(*$2);
+			string reg2 = driver.GetRegister(*$3);
+			string reg3 = driver.GetRegister(*$4);
+			
+			driver.toMIPS("div", reg2, reg1);			
+			driver.toMIPS("mfhi", reg3);
+			
+			driver.FreeRegister(reg1);
+			driver.FreeRegister(reg2);
         }
     | LE STRING STRING STRING
         {
