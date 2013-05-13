@@ -7,7 +7,7 @@
     int i;
     int a;
     
-    //This will increment a by 2 from 1 to 11
+    //This will increment a by 2 from 1 to 21, and i from 0 to 10
     a = 1;
     
     for(i = 0; i < 10; i++)

@@ -5,9 +5,10 @@ int main()
 {
     int a;
     
-    a = 1;
+    a = 1; //Expected value of a: 1
   
-    a = ( 4 + 5 ) * ( 2 + 3  ) ;   
+    a = ( 4 + 5 ) * ( 2 + 3 ); //Expected value of a: 45
+    
     if(a == 2)
     {
         a = 0;
@@ -16,6 +17,8 @@ int main()
     {
         a = -1;
     }
+    
+    //Expected value of a: -1
     
     return 0;
 }
