@@ -356,7 +356,7 @@ tac_command
 			string reg1 = driver.GetRegister(*$2);
 			string reg2 = driver.GetRegister(*$3);			
 			
-			driver.toMIPS("neg", reg1, reg2);
+			driver.toMIPS("neg", reg2, reg1);
 			
 			driver.FreeRegister(reg2);
         }
@@ -463,7 +463,7 @@ tac_command
         	driver.toMIPS(".ent", *$2);
         	driver.Label(*$2);
         }
-        parameter_command_list allocate_command_list
+        parameter_command_list BEGINFRAME STRING allocate_command_list
     	{
     		//Change the stack pointer after the allocate list is complete    		
     		int space = driver.funtab.GetStackSpace(CurrentFunction);

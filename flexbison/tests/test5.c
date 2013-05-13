@@ -24,7 +24,7 @@
         
         for(i = 1; i < 3; ++i)
         {
-            if(ta[i - 1] > ta[i])
+            if(tarr[i - 1] > tarr[i])
             {
 		        tmp = tarr[i - 1];
 				tarr[i - 1] = tarr[i];
