@@ -365,11 +365,11 @@ type_specifier
     | DOUBLE
         {
             driver.printRed("type_specifier -> DOUBLE");
-                    ////std::cout<<"Double ...";
+                    //std::cout<<"Double ...";
                     if ( driver.currentSymbol->symbolType == NULL )
                       driver.currentSymbol->symbolType = new PODType( "DOUBLE", DOUBLE_SIZE);
-                    ///else 
-                      //////std::cout<<  driver.currentSymbol->symbolType->GetName();  
+                    //else 
+                      //std::cout<<  driver.currentSymbol->symbolType->GetName();  
                     $$  =(AST *) new AstTypeSpeci( "DOUBLE" , NULL, NULL  );
         }
     | SIGNED

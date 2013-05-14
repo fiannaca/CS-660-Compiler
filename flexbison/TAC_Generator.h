@@ -57,8 +57,8 @@ class TAC_Generator
             BRLE, /**< If(op1 <= op2) goto op3 */
             BRNE, /**< If(op1 != op2) goto op3 */
             BOUND, /**< Checks the bounds of an array access */
-	    ALLOC, /** Allocate on procedure stack */
-	    PARAM /** Denotes a parameter **/ 
+	    	ALLOC, /** Allocate on procedure stack */
+	    	PARAM /** Denotes a parameter **/ 
 	   
         };
 
@@ -73,7 +73,7 @@ class TAC_Generator
             NEG, /**< op2 = -(op1) */
             NOT, /**< Set op2 to 1 if op1 == 0, or 0 otherwise */
             ASSIGN, /**< Assign the value of op1 to op2 */
-	    VALAT, /** < Value at Addess  = value **/
+	    	VALAT, /** < Value at Addess  = value **/
             ADDR, /**< Assign the address of op1 to op2 */
             GLOBAL, /**< Declare op1 as a global of size op2 */
             STRING, /**< Associate string op1 with label op2 */
@@ -100,9 +100,9 @@ class TAC_Generator
             PROCENTRY, /**< Marks the beginning of a procedure */
             COMMENT, /**< Output op1 as a comment */
             BEGINFRAME, /**< Marks the beginning of a new stack frame, and passes in the size of the memory required on the stack*/
-	    FPAR,  /** Denotes a passed parameter value **/
-	    RETURN , /** Denotes the return value **/ 
-	};
+	    	FPAR,  /** Denotes a passed parameter value **/
+	    	RETURN , /** Denotes the return value **/ 
+		};
 
         /**
          * Enum of instructions without operands.
@@ -213,13 +213,21 @@ class TAC_Generator
         void toTAC(NoOpInstructions t, string c = "");
 
         /**
+         * Fetches info from the symbol table in order to output MIPS to move
+         * the value from a temp into a variable
+         *
+         * @param varName The name of the variable
+         * @param symbolTable A reference to the level of the symbol table that 
+         *                the symbol is in
+         * @param targetTemp The temp register to move a value from
+         */
+        void Fetch(string varName , SymTab *symbolTable , string targetTemp);
+          
+		/**
          * Sets the symbol which should appear at the end of all comments.
          *
          * @param commentStart String to be place at the beginning of every comment
          */
-       
-        void Fetch(string varName , SymTab *symbolTable , string targetTemp);  
-
         void SetCommentStart(string commentStart);
 
         /**

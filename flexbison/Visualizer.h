@@ -69,7 +69,7 @@ class Visualizer
          * Adds a node to the graph which is only for visualizing extra info
          * rather than visualizing an actual node in the AST.
          *
-         * @param uid The unique id of the parent node off of which the dummy
+         * @param parentid The unique id of the parent node off of which the dummy
          *            node should be attached
          * @param label The label to go inside the dummy node
          */

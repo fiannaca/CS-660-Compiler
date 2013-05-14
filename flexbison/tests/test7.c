@@ -41,7 +41,7 @@
         	
             if(a > b)
             {
-                swap(&tarr[i - 1], &tarr[i]);
+                swap(tarr + (i - 1) * 4 , tarr + i * 4 );
                 swapped = 1;
             }
         }
