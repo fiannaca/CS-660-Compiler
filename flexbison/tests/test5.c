@@ -13,7 +13,6 @@ int main()
 {
 	int x;
 	int y;
-	int result;
 	
 	x = 1; //Expected value of x: 1
 	y = 2; //Expected value of y: 2

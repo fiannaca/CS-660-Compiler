@@ -333,19 +333,7 @@ tac_command
             driver.Macro("print_newline");            
             driver.WS();
             
-            Address* addr = driver.addtab.Lookup(*$3);
-            
-            if(addr)
-            {
-            	driver.addtab.Store(reg, *$3);
-            }
-            else
-            {
-            	//The register to store
-            	string reg1 = driver.GetRegister(*$3);
-            	
-            	driver.toMIPS("add", reg1, "$zero", reg);
-            }
+            driver.addtab.Store(reg, *$3);
         }
     | VALAT STRING STRING
     	{
