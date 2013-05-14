@@ -6,13 +6,13 @@
  */
  
  //Swap takes two integers as reference parameters and swaps their values
- void swap(int *a, int *b)
+ void swap(int *x, int *y)
  {
     int tmp;
     
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
+    tmp = *x;
+    *x = *y;
+    *y = tmp;
  }
  
  //The bubble sort algorithm
@@ -21,6 +21,8 @@
     int tarr[3];
     int swapped;
     int i;
+    int a;
+    int b;
     
     //Initialize the array to sort
     tarr[0] = 3;
@@ -34,7 +36,10 @@
         
         for(i = 1; i < 3; i++)
         {
-            if(tarr[i - 1] > tarr[i])
+        	a = tarr[i - 1];
+        	b = tarr[i];
+        	
+            if(a > b)
             {
                 swap(&tarr[i - 1], &tarr[i]);
                 swapped = 1;

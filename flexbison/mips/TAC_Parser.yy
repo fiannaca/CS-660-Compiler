@@ -333,7 +333,19 @@ tac_command
             driver.Macro("print_newline");            
             driver.WS();
             
-            driver.addtab.Store(reg, *$3);
+            Address* addr = driver.addtab.Lookup(*$3);
+            
+            if(addr)
+            {
+            	driver.addtab.Store(reg, *$3);
+            }
+            else
+            {
+            	//The register to store
+            	string reg1 = driver.GetRegister(*$3);
+            	
+            	driver.toMIPS("add", reg1, "$zero", reg);
+            }
         }
     | VALAT STRING STRING
     	{
@@ -344,9 +356,9 @@ tac_command
             string reg2 = driver.GetRegister(*$3);
             
             stringstream ss;
-            ss << "0(" << reg2 << ")";
+            ss << "(" << reg2 << ")";
             
-            driver.toMIPS("la", reg1, ss.str());
+            driver.toMIPS("lw", reg1, ss.str());
             
             driver.FreeRegister(reg1);
     	}
@@ -393,7 +405,7 @@ tac_command
 			else
 			{
 				cout << "Error: tried to get the address of an unknown variable"
-				     << ", TAC_Parser.yy:386" 
+				     << ", TAC_Parser.yy:394" 
 					 << endl; 
 			}
         }
