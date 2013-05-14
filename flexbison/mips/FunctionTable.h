@@ -50,6 +50,14 @@ struct Function {
 	 * the function.
 	 */
 	int stackSpace;
+	
+	bool HasParams()
+	{
+		if(parameters.size() > 0)
+			return true;
+		else 
+			return false;
+	}
 };
 
 class FunctionTable {
@@ -95,8 +103,9 @@ class FunctionTable {
 		 * @param fname The function name
 		 * @param pname The parameter name
 		 * @param byValue Indicates if the parameter is passed by value or reference
+		 * @return The name of the register that the parameter is currently in
 		 */
-		void AddParameter(string fname, string pname, bool byValue = true);
+		string AddParameter(string fname, string pname, bool byValue = true);
 		
 		/**
 		 * Looks up a parameter with the given name in the given function
@@ -107,6 +116,9 @@ class FunctionTable {
 		 *         doesn't exit
 		 */
 		Parameter* LookupParameter(string fname, string pname);
+		
+		list<Parameter*>::iterator ParamsBegin(string fname);
+		list<Parameter*>::iterator ParamsEnd(string fname);
 		
 		/**
 		 * Gets the offset of a given variable within a given function

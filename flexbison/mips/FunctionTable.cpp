@@ -51,7 +51,7 @@ void FunctionTable::AddVariable(string fname, string vname, int size)
 	}
 }
 
-void FunctionTable::AddParameter(string fname, string pname, bool byValue)
+string FunctionTable::AddParameter(string fname, string pname, bool byValue)
 {	
 	Function* func = GetFunction(fname);
 	
@@ -69,7 +69,11 @@ void FunctionTable::AddParameter(string fname, string pname, bool byValue)
 		param->regName = ss.str();
 		
 		func->parameters.push_back(param);
+		
+		return param->regName;
 	}
+	
+	return "";
 }
 
 Parameter* FunctionTable::LookupParameter(string fname, string pname)
@@ -86,6 +90,20 @@ Parameter* FunctionTable::LookupParameter(string fname, string pname)
 	}
 	
 	return NULL;
+}
+
+list<Parameter*>::iterator FunctionTable::ParamsBegin(string fname)
+{
+	Function* func = GetFunction(fname);
+	
+	return func->parameters.begin();
+}
+
+list<Parameter*>::iterator FunctionTable::ParamsEnd(string fname)
+{
+	Function* func = GetFunction(fname);
+	
+	return func->parameters.end();
 }
 
 int FunctionTable::GetVarOffset(string fname, string vname)

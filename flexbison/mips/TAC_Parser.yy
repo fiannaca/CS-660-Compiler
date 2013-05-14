@@ -473,6 +473,28 @@ tac_command
     		 		
     		driver.toMIPS("subu", "$sp", "$sp", toString(space + 4));    		
     		driver.toMIPS("sw", "$ra", toString(space, "($sp)"));
+    		
+    		
+    		
+    		//Move parameters onto the stack so that they aren't lost
+    		// Yes, I know this is a very jankity way of doing this...
+    		// If we have more time later, I will come back and redo this...
+    		
+    		Function* current = driver.funtab.GetFunction(CurrentFunction);
+    		
+    		if(current && current->HasParams())
+    		{
+				auto end = driver.funtab.ParamsEnd(CurrentFunction);
+				for(auto it = driver.funtab.ParamsBegin(CurrentFunction); it != end; ++it)
+				{
+					int offset = driver.funtab.GetVarOffset(CurrentFunction, (*it)->name);
+				
+					stringstream ss;
+					ss << offset << "($sp)";
+			
+					driver.toMIPS("sw", (*it)->regName, ss.str());
+				}
+			}
     	}
     | COMMENT_STRING
         {
@@ -555,7 +577,10 @@ parameter_command
 	: PARAM STRING STRING STRING
 		{
 			//This function has a parameter named $2 of type $3 and size $4
-			driver.funtab.AddParameter(CurrentFunction, *$2);
+			string reg = driver.funtab.AddParameter(CurrentFunction, *$2);
+			
+			driver.funtab.AddVariable(CurrentFunction, *$2,  std::stoi(*$4));
+			driver.addtab.Add(*$2, driver.funtab.GetVarOffset(CurrentFunction, *$2));
 		}
 	;
 

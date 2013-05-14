@@ -53,13 +53,13 @@ string tac2mips::GetRegister(string name)
 	else
 	{
 		//If it isn't a variable, it could be a parameter for the function
-		Parameter* param = funtab.LookupParameter(CurrentFunction, name);
+		//Parameter* param = funtab.LookupParameter(CurrentFunction, name);
 		
-		if(param)
-		{
-			return param->regName;
-		}
-		else //Otherwise, it must just be a regular register
+		//if(param)
+		//{
+		//	return param->regName;
+		//}
+		//else //Otherwise, it must just be a regular register
 			return regtab.GetRegister(name, isNew);
 	}
 }

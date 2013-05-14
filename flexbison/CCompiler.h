@@ -592,7 +592,7 @@ class CCompiler
    Since this example is based on sorting an array of integers (on the stack), it
    must be evaluated in the same manner as the second example, using the 'Data
    Segment' pane of the MARS Simulator, and breakpoints in the MIPS code. After
-   assembling the code, create a breakpoint at __line 66__ and __line 200__. The first 
+   assembling the code, create a breakpoint at __line 67__ and __line 200__. The first 
    breakpoint will demonstrate the unsorted array containing the values 5, 4, 3,
    2, 1. After the breakpoint at line 67 has been hit once, turn it off so that
    the simulator will run all the way until line 200 before stopping again. The 
