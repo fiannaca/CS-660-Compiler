@@ -344,9 +344,9 @@ tac_command
             string reg2 = driver.GetRegister(*$3);
             
             stringstream ss;
-            ss << "(" << reg1 << ")";
+            ss << "0(" << reg2 << ")";
             
-            driver.toMIPS("la", reg2, ss.str());
+            driver.toMIPS("la", reg1, ss.str());
             
             driver.FreeRegister(reg1);
     	}
