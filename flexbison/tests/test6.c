@@ -1,19 +1,8 @@
 /**
- * Test6.c is designed to test function calls. This is the primary goal of the 
- * compiler project. This is a very simple bubble sort algorithm which uses a
- * call to a swap function to swap two integers in a small array. The input 
- * array is [3, 2, 1] and the output array should be [1, 2, 3].
+ * Test6.c is designed to test scoping of variables and calculated array 
+ * indices (i.e. line 25). This bubble sort algorithm will be used in the next 
+ * test which tests function calls.
  */
- 
- //Swap takes two integers as reference parameters and swaps their values
- void swap(int *a, int *b)
- {
-    int tmp;
-    
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
- }
  
  //The bubble sort algorithm
  int main()
@@ -21,6 +10,7 @@
     int tarr[3];
     int swapped;
     int i;
+    int tmp;
     
     //Initialize the array to sort
     tarr[0] = 3;
@@ -36,7 +26,9 @@
         {
             if(tarr[i - 1] > tarr[i])
             {
-                swap(&tarr[i - 1], &tarr[i]);
+		        tmp = tarr[i - 1];
+				tarr[i - 1] = tarr[i];
+				tarr[i] = tmp;
                 swapped = 1;
             }
         }

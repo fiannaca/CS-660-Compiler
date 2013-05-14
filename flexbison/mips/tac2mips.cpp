@@ -66,13 +66,16 @@ string tac2mips::GetRegister(string name)
 
 void tac2mips::FreeRegister(std::string reg)
 {
-	Address* addr = addtab.LookupReg(reg);
+	if(reg[1] != 'a')
+	{	
+		Address* addr = addtab.LookupReg(reg);
 	
-	if(addr)
-		addtab.Store(addr->varName);
-	else
-	{
-		regtab.FreeRegister(regtab.LookupOwner(reg));
+		if(addr)
+			addtab.Store(addr->varName);
+		else
+		{
+			regtab.FreeRegister(regtab.LookupOwner(reg));
+		}
 	}
 }
 

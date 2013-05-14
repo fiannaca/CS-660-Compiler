@@ -1,41 +1,24 @@
-/**
- * Test5.c is designed to test scoping of variables and calculated array 
- * indices (i.e. line 25). This bubble sort algorithm will be used in the next 
- * test which tests function calls.
+/** 
+ * Test5.c is designed to test the most basic possible function call. This 
+ * example demonstrates how function parameters can be passed to methods.
  */
- 
- //The bubble sort algorithm
- int main()
- {
-    int tarr[3];
-    int swapped;
-    int i;
-    int tmp;
-    
-    //Initialize the array to sort
-    tarr[0] = 3;
-    tarr[1] = 2;
-    tarr[2] = 1;
-    
-    //Perform the sort
-    do
-    {
-        swapped = 0;
-        
-        for(i = 1; i < 3; ++i)
-        {
-            if(tarr[i - 1] > tarr[i])
-            {
-		        tmp = tarr[i - 1];
-				tarr[i - 1] = tarr[i];
-				tarr[i] = tmp;
-                swapped = 1;
-            }
-        }
-        
-    } while (swapped);
-    
-    //Expected output of arr: [1, 2, 3]
-    
-    return 0;
- }
+
+void add(int a, int b)
+{
+	int temp;
+	temp = a + b; //Expected value of temp: 3
+}
+
+int main()
+{
+	int x;
+	int y;
+	int result;
+	
+	x = 1; //Expected value of x: 1
+	y = 2; //Expected value of y: 2
+	
+	add(x, y); //Executes a function call
+	
+	return 0;
+}

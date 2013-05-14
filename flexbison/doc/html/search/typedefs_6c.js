@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['location_5fstack_5ftype',['location_stack_type',['../classyy_1_1CParser.html#af7f925a684c7810b103c4339bb6be028',1,'yy::CParser']]],
-  ['location_5ftype',['location_type',['../classyy_1_1CParser.html#a674649435d1e3521d1e820a5139f7232',1,'yy::CParser']]]
+  ['location_5fstack_5ftype',['location_stack_type',['../classyy_1_1TAC__Parser.html#ad9017c11b20c375e3294874ae1c55efb',1,'yy::TAC_Parser::location_stack_type()'],['../classyy_1_1TAC__Parser.html#ad9017c11b20c375e3294874ae1c55efb',1,'yy::TAC_Parser::location_stack_type()'],['../classyy_1_1TAC__Parser.html#ad9017c11b20c375e3294874ae1c55efb',1,'yy::TAC_Parser::location_stack_type()']]],
+  ['location_5ftype',['location_type',['../classyy_1_1TAC__Parser.html#afb452b689b28618fdee091b0ac5acb03',1,'yy::TAC_Parser::location_type()'],['../classyy_1_1TAC__Parser.html#afb452b689b28618fdee091b0ac5acb03',1,'yy::TAC_Parser::location_type()'],['../classyy_1_1TAC__Parser.html#afb452b689b28618fdee091b0ac5acb03',1,'yy::TAC_Parser::location_type()']]]
 ];
