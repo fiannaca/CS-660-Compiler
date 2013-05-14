@@ -722,21 +722,21 @@ void AstUnaryExpr::Visit()
                {
 				   lastUsedTemp = AST::tempStack.back();
                    currentLabel = TAC_Generator::GetIVarName();
-				   AST::tempStack.pop_back();
+				  
 				   if (!lhs)
 				   {
 				     
 				     AST::tacGen.toTAC(TAC_Generator::VALAT,(void *)&lastUsedTemp,(void *)&currentLabel);
-				   
-				    
+				     AST::tempStack.pop_back(); 
+				     AST::tempStack.push_back(currentLabel); 
 				   }
 				   else
 				   {
 					   
-					   AST::tacGen.toTAC(TAC_Generator::MOV,(void *)&lastUsedTemp,(void *)&currentLabel);
+					   //AST::tacGen.toTAC(TAC_Generator::MOV,(void *)&lastUsedTemp,(void *)&currentLabel);
 				   } 
 				   
-				   AST::tempStack.push_back(currentLabel); 
+				    
 			   }
                     
             } 
