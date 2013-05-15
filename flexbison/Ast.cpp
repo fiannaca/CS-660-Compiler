@@ -314,7 +314,9 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
     isOuter = false;
 }
 
-
+string __currentArrayName="";
+int __currentArraySize;
+   
 //Traversal
 void AstPostfixExpr::Visit()
 {
@@ -362,16 +364,18 @@ void AstPostfixExpr::Visit()
                       isOuter = true; 
                       info.symbol_name = AST::currentIdName;
                       arrayinfo = AST::symbolTable->fetch_symbol(info); 
-                      arrayName = GetArrayName();       
+                      arrayName = GetArrayName(); 
+                      __currentArrayName =    arrayName;  
                       while( items != localItems.end())
                       {
-                          cout<<endl<<items->symbol_name;
+                          //cout<<endl<<items->symbol_name;
                           if ( items->symbol_name ==  arrayName )
                           {
                              arrayinfo = &(*items); 
                           }            
                           items++;
                       } 
+                      
                       if(arrayinfo == NULL  )
                       {
                             std::cout<< "Array not found !";
@@ -379,7 +383,8 @@ void AstPostfixExpr::Visit()
                       else 
                       {             
                            arrayTypeSize = GetInnerType(arrayinfo->symbolType)->GetSize();
-                           cout<< "\n Array Type Size :=   "<<arrayTypeSize; 
+                           __currentArraySize =  arrayTypeSize * GetArraySize(arrayinfo->symbolType);
+                           //cout<< "\n Array Type Size :=   "<<arrayTypeSize; 
                            arrayAddr=TAC_Generator::GetIVarName();
                            AST::tacGen.toTAC(TAC_Generator::ADDR, (void *)&arrayName,(void *)&arrayAddr); 
                            outerType = arrayinfo->symbolType;           
@@ -450,6 +455,7 @@ void AstPostfixExpr::Visit()
             
             
               AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
+              AST::tacGen.toTAC(TAC_Generator::BOUND , (void *)&__currentArrayName , (void *)&effectiveAddress ,(void *)&__currentArraySize);
               AST::tempStack.push_back(effectiveAddress); 
             
            

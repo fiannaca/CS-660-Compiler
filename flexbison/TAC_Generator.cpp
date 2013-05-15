@@ -384,7 +384,7 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
                 //TODO - implements runtime bounds checking
 		string* ptr1 = (string*)op1;
                 string* ptr2 = (string*)op2;
-                string* ptr3 = (string*)op3;
+                long* ptr3 = (long*)op3;
 		ss << setw(width) << "BOUND"
                    << setw(width) << *ptr1
                    << setw(width) << *ptr2
