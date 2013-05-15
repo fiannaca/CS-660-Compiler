@@ -1,9 +1,9 @@
 ################################################################################
 #
 # MIPS Assembly Code
-# Filename:     tests/test1.asm
-# Input file:   tests/test1.tac
-# Generated on: Sun May 12 19:44:44 2013
+# Filename:     tests/test1.c.asm
+# Input file:   tests/test1.c.tac
+# Generated on: Tue May 14 21:53:18 2013
 #
 ################################################################################
 
@@ -121,6 +121,7 @@ main:	subu	$sp, $sp, 16
 
 	sw 	$t0, 4($sp)
 	li	$t0, 0
+	add	$v0, $zero, $t0
 	lw	$ra, 12($sp)
 	addu	$sp, $sp, 16
 	jr	$ra

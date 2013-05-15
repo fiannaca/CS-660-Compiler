@@ -1,24 +1,24 @@
 ################################################################################
 #
 # MIPS Assembly Code
-# Filename:     tests/test4.asm
-# Input file:   tests/test4.tac
-# Generated on: Sun May 12 19:03:41 2013
+# Filename:     tests/test4.c.asm
+# Input file:   tests/test4.c.tac
+# Generated on: Tue May 14 21:53:40 2013
 #
 ################################################################################
 
-	.include "macros.asm"
+	.include	"macros.asm"
 
 	.data
-spills:	.space 80
-
-	# 3AC For the Input Code File: tests/test4.c
+spills:	.space	80
 
 	.text
 	.globl	main
 
 	jal	main
 	done
+
+	# 3AC For the Input Code File: tests/test4.c
 
 	.ent	main
 main:	subu	$sp, $sp, 12
@@ -52,63 +52,65 @@ L0000:	li	$t0, 10
 	print_newline
 
 	sw 	$t2, 4($sp)
+	li	$t0, 1
 	lw 	$t1, 0($sp)
 	add	$t2, $t0, $t1
 	sw 	$t1, 0($sp)
-	lw 	$t0, 0($sp)
 
-	print_str("The value of I0015 is: ")
+	print_str("The value of i is: ")
+	print_int($t2)
+	print_newline
+
+	sw 	$t2, 0($sp)
+	b	L0000
+L0001:	li	$t0, 1
+
+	print_str("The value of a is: ")
 	print_int($t0)
 	print_newline
 
-	b	L0000
-L0001:	li	$t1, 1
-
-	print_str("The value of a is: ")
-	print_int($t1)
-	print_newline
-
+	sw 	$t0, 4($sp)
+L0002:	li	$t0, 10
+	lw 	$t1, 4($sp)
+	slt	$t2, $t1, $t0
 	sw 	$t1, 4($sp)
-L0002:	li	$t1, 10
-	lw 	$t3, 4($sp)
-	slt	$t4, $t3, $t1
-	sw 	$t3, 4($sp)
-	beq	$t4, 0, L0003
-	li	$t1, 2
-	lw 	$t3, 4($sp)
-	add	$t4, $t1, $t3
-	sw 	$t3, 4($sp)
+	beq	$t2, 0, L0003
+	li	$t0, 2
+	lw 	$t1, 4($sp)
+	add	$t2, $t0, $t1
+	sw 	$t1, 4($sp)
 
 	print_str("The value of a is: ")
-	print_int($t4)
+	print_int($t2)
 	print_newline
 
-	sw 	$t4, 4($sp)
+	sw 	$t2, 4($sp)
 	b	L0002
-L0003:	li	$t1, 1
+L0003:	li	$t0, 1
 
 	print_str("The value of a is: ")
-	print_int($t1)
+	print_int($t0)
 	print_newline
 
+	sw 	$t0, 4($sp)
+L0004:	li	$t0, 2
+	lw 	$t1, 4($sp)
+	add	$t2, $t0, $t1
 	sw 	$t1, 4($sp)
-L0004:	li	$t1, 2
-	lw 	$t3, 4($sp)
-	add	$t4, $t1, $t3
-	sw 	$t3, 4($sp)
 
 	print_str("The value of a is: ")
-	print_int($t4)
+	print_int($t2)
 	print_newline
 
-	sw 	$t4, 4($sp)
-	li	$t1, 10
-	lw 	$t3, 4($sp)
-	slt	$t4, $t3, $t1
-	sw 	$t3, 4($sp)
-	beq	$t4, 0, L0005
+	sw 	$t2, 4($sp)
+	li	$t0, 10
+	lw 	$t1, 4($sp)
+	slt	$t2, $t1, $t0
+	sw 	$t1, 4($sp)
+	beq	$t2, 0, L0005
 	b	L0004
-L0005:	li	$t1, 0
+L0005:	li	$t0, 0
+	add	$v0, $zero, $t0
 	lw	$ra, 8($sp)
 	addu	$sp, $sp, 12
 	jr	$ra

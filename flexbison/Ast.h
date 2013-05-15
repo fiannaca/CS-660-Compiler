@@ -1755,7 +1755,7 @@ class AstFuncDef: public AST
 			   
 		       }
 		       AST::currentFunction = directDecl->GetID()->str;
-		       cout<< " Current Function : " << AST::currentFunction ;  
+		       //cout<< " Current Function : " << AST::currentFunction ;  
                        return directDecl->GetID()->str;
 		   }
 		   

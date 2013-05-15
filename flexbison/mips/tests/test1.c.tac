@@ -2,10 +2,10 @@
 #3AC For the Input Code File: tests/test1.c
 #
    PROCENTRY        main
+  BEGINFRAME           0
        ALLOC           j         INT           4
        ALLOC           k         INT           4
        ALLOC           i         INT           4
-  BEGINFRAME           0
  IMMEDIATE_I       I0001           1
          MOV       I0001           i
  IMMEDIATE_I       I0004           2
@@ -41,5 +41,6 @@
          ADD       I0052       I0049       I0053
          MOV       I0053           k
  IMMEDIATE_I       I0055           0
+      RETURN       I0055
     ENDFRAME
      ENDPROC

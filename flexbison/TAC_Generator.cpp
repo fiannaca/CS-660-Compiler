@@ -834,7 +834,7 @@ void GenGlobals (  SymTab &symTab ,  TAC_Generator &tacGen)
 	       
 	       symName = items->symbol_name;
 	       symSize = items->symbolType->GetSize();
-	       cout<< " \n Name = " << symName << " Size = " << symSize;
+	       //cout<< " \n Name = " << symName << " Size = " << symSize;
 	       tacGen.toTAC(TAC_Generator::GLOBAL,(void *)&symName ,(void *)symSize );
 	       items++;
 	 }

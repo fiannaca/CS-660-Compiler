@@ -560,10 +560,10 @@ struct_union_decl_end
              {
                 if( structPos->symbolType == NULL )
                 {
-                      ////std::cout<<"\n Null type :(  \n"; 
+                      //std::cout<<"\n Null type :(  \n"; 
                 }
                 else 
-                    ////std::cout<< "\n TYPE = "<<structPos->symbolType->GetName();
+                    //std::cout<< "\n TYPE = "<<structPos->symbolType->GetName();
                 currentStructType  = new StructType("STRUCT");
                 ///currentStructType->AddMember(endItem->symbol_name,new PODType("INT",INT_SIZE)); 
                 structPos->symbolType = currentStructType; 
@@ -629,8 +629,8 @@ set_member_type
 fix_struct_member_types
        :
            {
-                    ////std::cout<<" \n Current Type : " << driver.structMemberType->GetName();
-                    ////std::cout<<" \n Current Structure Variable Count : " << driver.structVarCount;
+                    //std::cout<<" \n Current Type : " << driver.structMemberType->GetName();
+                    //std::cout<<" \n Current Structure Variable Count : " << driver.structVarCount;
                      
                      
                     list<SymbolInfo>::iterator itemFixStart = driver.structUnionTypes.end()  ;
@@ -857,7 +857,7 @@ direct_declarator
     | direct_declarator LBRAK constant_expression RBRAK
         {
             driver.printRed("direct_declarator -> direct_declarator LBRAK constant_expression RBRAK");
-            std::cout<< " Current Constant expresssion , Value = "<< AST::currentConstantValue;
+            //std::cout<< " Current Constant expresssion , Value = "<< AST::currentConstantValue;
             driver.currentSymbol->symbolType  = new ArrayType(driver.currentSymbol->symbolType,"ARRAY", AST::currentConstantValue);
             $$ = (AST *) new AstDirectDecl( NULL , (AstDirectDecl *) $1 , (AstExpression * )$3, NULL , NULL , NULL ,4);
  

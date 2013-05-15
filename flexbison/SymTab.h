@@ -120,15 +120,15 @@ class SymTab
 	     }
 	     void map_function_vars(const string &funcName)
 	     {
-		cout<<funcName;
+		//cout<<funcName;
 		if ( currentLevel >=  0 )  
 		{
 		   funcSymMap[funcName] = symTable[currentLevel];
 		   funOffMap[funcName] = offsetMap[currentLevel];
 		}
 		funcSymMap[funcName].Dump();
-		cout<< "<Offset>"<< funOffMap[funcName]; 
-		cout<< "<Offset2>"<< offsetMap[currentLevel]; 
+		//cout<< "<Offset>"<< funOffMap[funcName]; 
+		//cout<< "<Offset2>"<< offsetMap[currentLevel]; 
 	     }
 	    
 	     void insert_symbol(SymbolInfo symbolInfo)

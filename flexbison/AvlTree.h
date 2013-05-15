@@ -177,7 +177,7 @@ class AVLTree
 	    
 	    if( node != NULL )
             {
-                cout<< node->data;
+                //cout<< node->data;
 		elements.push_back(node->data); 
                 GetElements(node->children[LEFT]);
                 GetElements(node->children[RIGHT]);  

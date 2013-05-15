@@ -352,7 +352,7 @@ void AstPostfixExpr::Visit()
                       arrayName = GetArrayName();       
                       while( items != localItems.end())
                       {
-                          cout<<endl<<items->symbol_name;
+                          //cout<<endl<<items->symbol_name;
                           if ( items->symbol_name ==  arrayName )
                           {
                              arrayinfo = &(*items); 
@@ -366,7 +366,7 @@ void AstPostfixExpr::Visit()
                       else 
                       {             
                            arrayTypeSize = GetInnerType(arrayinfo->symbolType)->GetSize();
-                           cout<< "\n Array Type Size :=   "<<arrayTypeSize; 
+                           //cout<< "\n Array Type Size :=   "<<arrayTypeSize; 
                            arrayAddr=TAC_Generator::GetIVarName();
                            AST::tacGen.toTAC(TAC_Generator::ADDR, (void *)&arrayName,(void *)&arrayAddr); 
                            outerType = arrayinfo->symbolType;           
