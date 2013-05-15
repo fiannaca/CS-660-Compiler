@@ -209,15 +209,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;         }</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;         <span class="keywordtype">void</span> map_function_vars(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;funcName)</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;         {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        cout&lt;&lt;funcName;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <span class="comment">//cout&lt;&lt;funcName;</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="keywordflow">if</span> ( currentLevel &gt;=  0 )  </div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        {</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;           funcSymMap[funcName] = symTable[currentLevel];</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;           funOffMap[funcName] = offsetMap[currentLevel];</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        }</div>
 <div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        funcSymMap[funcName].<a class="code" href="classAVLTree.html#aeafa2839058227c9a076d56d7929ebf7" title="Outputs the AVL tree to stdout using the &lt;&lt; operator of the provided DataItem template type...">Dump</a>();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        cout&lt;&lt; <span class="stringliteral">&quot;&lt;Offset&gt;&quot;</span>&lt;&lt; funOffMap[funcName]; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        cout&lt;&lt; <span class="stringliteral">&quot;&lt;Offset2&gt;&quot;</span>&lt;&lt; offsetMap[currentLevel]; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">//cout&lt;&lt; &quot;&lt;Offset&gt;&quot;&lt;&lt; funOffMap[funcName]; </span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="comment">//cout&lt;&lt; &quot;&lt;Offset2&gt;&quot;&lt;&lt; offsetMap[currentLevel]; </span></div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;         }</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        </div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;         <span class="keywordtype">void</span> insert_symbol(<a class="code" href="structSymbolInfo.html">SymbolInfo</a> symbolInfo)</div>
@@ -347,7 +347,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 14 2013 21:24:44 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 14 2013 22:35:16 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

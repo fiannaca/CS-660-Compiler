@@ -138,6 +138,20 @@ Next, execute these commands to compile tac2mips:
 This will run flex and bison and will then compile all of the sources to produce
 the C compiler back end executable __tac2mips__
 
+###How To: Compile the Documentation
+
+In order to view the documentation on your personal computer, it must be recompiled
+with Doxygen 1.8.3.1 in order to resolve link path differences between the development
+computer and your computer. To compile the documentation, navigate to the flexbison/
+directory and execute the following command:
+
+    doxygen Doxyfile
+    
+After the documentation has been generated, open Nautilus (or a similar file browser)
+and navigate to the flexbison/doc/html/ directory. Search for the 'index.html' file,
+right click it and open it in a browser. At this point the documentation website 
+will be visible.
+
 ###How To: Run this project
 
 The C Compiler can either be invoked manually by using the following commands

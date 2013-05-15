@@ -3,7 +3,7 @@
 # MIPS Assembly Code
 # Filename:     tests/test6.c.asm
 # Input file:   tests/test6.c.tac
-# Generated on: Tue May 14 21:53:49 2013
+# Generated on: Tue May 14 22:15:01 2013
 #
 ################################################################################
 

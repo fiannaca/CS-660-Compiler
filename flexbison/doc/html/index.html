@@ -169,6 +169,10 @@ make
 make
 cd ../
 </pre><p>This will run flex and bison and will then compile all of the sources to produce the C compiler back end executable <b><a class="el" href="classtac2mips.html">tac2mips</a></b></p>
+<h3>How To: Compile the Documentation</h3>
+<p>In order to view the documentation on your personal computer, it must be recompiled with Doxygen 1.8.3.1 in order to resolve link path differences between the development computer and your computer. To compile the documentation, navigate to the flexbison/ directory and execute the following command: </p>
+<pre class="fragment">doxygen Doxyfile
+</pre><p>After the documentation has been generated, open Nautilus (or a similar file browser) and navigate to the flexbison/doc/html/ directory. Search for the 'index.html' file, right click it and open it in a browser. At this point the documentation website will be visible.</p>
 <h3>How To: Run this project</h3>
 <p>The C Compiler can either be invoked manually by using the following commands </p>
 <pre class="fragment">./ccomp -d lsp -v -o &lt;filename&gt;.out &lt;filename&gt;
@@ -195,7 +199,7 @@ cd ../
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 14 2013 21:24:58 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue May 14 2013 22:35:18 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
