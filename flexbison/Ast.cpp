@@ -206,8 +206,10 @@ AstPostfixExpr::AstPostfixExpr(AstPrimaryExpr* p)
     this->type = p->etype;
     this->currentOffset = 1; 
     isAddr = false;
+    isLeaf = false;
     this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Primary");
+    isOuter = false;
 }
 
 AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
@@ -221,10 +223,12 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p, AstExpression* e)
     this->visited  = false;
     this->t = BRACKETS;
     this->currentOffset = 1;     
+    isLeaf = false;
     isAddr = false; 
    // this->type = ((ArrayType*)p->type)->GetBase();
     this->arrayType = NULL; 
     this->setLabel("AstPostfixExpr - Brackets");
+    isOuter = false;
 }
 
 AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p)
@@ -240,9 +244,10 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr* p)
     this->currentOffset = 1;     
     isAddr = false; 
     this->type = p->type;
-
+    isLeaf  = false;  
     this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Empty Parens");
+    isOuter = false;
 }
 
 AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a)
@@ -258,8 +263,10 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, AstArgExprList *a)
     this->currentOffset = 1 ; 
     this->type = p->type;
     isAddr = false; 
+    isLeaf  = false;  
     this->arrayType = NULL;
     this->setLabel("AstPostfixExpr - Parens");
+    isOuter = false;
 }
 
 AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i)
@@ -279,8 +286,10 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o, AstID *i)
     this->type = i->type;
     this->currentOffset = 1;   
     this->arrayType = NULL;   
-    isAddr = false;   
+    isAddr = false;  
+    isLeaf  = false;   
     this->setLabel("AstPostfixExpr - Dot or Ptr");
+    isOuter = false;
 }
 
 AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
@@ -300,8 +309,11 @@ AstPostfixExpr::AstPostfixExpr(AstPostfixExpr *p, Operator o)
     this->type = p->type;
     this->arrayType = NULL;  
     isAddr = false; 
+    isLeaf  = false;  
     this->setLabel("AstPostfixExpr - Inc or Dec");
+    isOuter = false;
 }
+
 
 //Traversal
 void AstPostfixExpr::Visit()
@@ -326,7 +338,7 @@ void AstPostfixExpr::Visit()
     Type *outerType=NULL; 
     int currentCapacity = 1;     
     AstPostfixExpr *base= this; 
-    bool isLeaf;
+    
     
     switch(t)
     {
@@ -347,6 +359,7 @@ void AstPostfixExpr::Visit()
             
             if ( ! Visited() )
             {
+                      isOuter = true; 
                       info.symbol_name = AST::currentIdName;
                       arrayinfo = AST::symbolTable->fetch_symbol(info); 
                       arrayName = GetArrayName();       
@@ -396,10 +409,14 @@ void AstPostfixExpr::Visit()
                     ptfExpr->SetArrayType(((ArrayType*)this->arrayType)->GetBase());
                }
             }          
-            ptfExpr->Visit();                
+          
+            ptfExpr->Visit();
             brakExpr->Visit();
-              
-            isLeaf = false;
+            
+            //Output visualization
+            AST::vis.addNode(this->getUID(), this->getLabel());
+            AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
+            AST::vis.addEdge(this->getUID(), brakExpr->getUID());
             if ( this->arrayType == NULL )
             {
                 isLeaf = true;
@@ -422,28 +439,33 @@ void AstPostfixExpr::Visit()
             AST::tacGen.toTAC(TAC_Generator::MULT, (void *)&immediateValue,(void *)&tempVar,(void *)&result);     
             currentLabel = AST::tempStack.back();
             AST::tempStack.pop_back();
+           
+           
             if  (isLeaf) 
             {
                currentLabel = AST::tempStack.back();
                AST::tempStack.pop_back();
             }
-            AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
-          
             
-            if( !IsAddrExp() && isLeaf )
-            { 
+            
+            
+              AST::tacGen.toTAC(TAC_Generator::ADD , (void *)&currentLabel , (void *)&result ,(void *)&effectiveAddress);            
+              AST::tempStack.push_back(effectiveAddress); 
+            
+           
+            
+          
+			 if ( !IsAddrExp()  && isOuter) 
+            {
+				
               result = TAC_Generator::GetIVarName(); 
               AST::tacGen.toTAC(TAC_Generator::VALAT,(void *)&effectiveAddress, (void *)&result);
-              AST::tempStack.push_back(result);   
-            }
-            else 
-            {   
-                    AST::tempStack.push_back(effectiveAddress);      
-            } 
-            //Output visualization
-            AST::vis.addNode(this->getUID(), this->getLabel());
-            AST::vis.addEdge(this->getUID(), ptfExpr->getUID());
-            AST::vis.addEdge(this->getUID(), brakExpr->getUID());
+              AST::tempStack.push_back(result); 
+             
+				
+			}
+			
+			
 
             //Output 3AC
             

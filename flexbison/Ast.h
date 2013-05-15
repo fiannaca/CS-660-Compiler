@@ -345,6 +345,8 @@ class AstPostfixExpr : public AST
         bool visited;
         Type *arrayType; 
         bool isAddr; 
+	bool isLeaf;
+	bool isOuter;
     public:
 
         //Constructor

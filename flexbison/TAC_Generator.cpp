@@ -382,6 +382,13 @@ void TAC_Generator::toTAC(ThreeOpInstructions t, void* op1, void* op2, void* op3
         case BOUND:
             {
                 //TODO - implements runtime bounds checking
+		string* ptr1 = (string*)op1;
+                string* ptr2 = (string*)op2;
+                string* ptr3 = (string*)op3;
+		ss << setw(width) << "BOUND"
+                   << setw(width) << *ptr1
+                   << setw(width) << *ptr2
+                   << setw(width) << *ptr3;
             }
             break;
 	case ALLOC:
