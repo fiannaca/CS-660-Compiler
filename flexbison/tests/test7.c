@@ -18,23 +18,25 @@
  //The bubble sort algorithm
  int main()
  {
-    int tarr[3];
+    int tarr[5];
     int swapped;
     int i;
     int a;
     int b;
     
     //Initialize the array to sort
-    tarr[0] = 3;
-    tarr[1] = 2;
-    tarr[2] = 1;
+    tarr[0] = 5;
+    tarr[1] = 4;
+    tarr[2] = 3;
+    tarr[3] = 2;
+    tarr[4] = 1;
     
     //Perform the sort
     do
     {
         swapped = 0;
         
-        for(i = 1; i < 3; i++)
+        for(i = 1; i < 5; i++)
         {
         	a = tarr[i - 1];
         	b = tarr[i];

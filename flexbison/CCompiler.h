@@ -633,42 +633,15 @@ class CCompiler
  * also move the macros.asm file.
  *
  * \section OUTPUT The Expected Output:
-   
- *
- * \section CODE The Example Code:
- */
- 
- 
- 
- /** \example test8.c
- * \section ABOUT About This Example:
- * This is the final test. This test evaluates the ability of the compiler to
- * handle 2 dimensional arrays by running a simple matrix multiplication
- * algorithm.
- *
- * \section INSTRUCTIONS Running This Example:
- * This example can be tested by running the following commands in a bash 
- * terminal:
- * This example can be tested by by invoking the demo.sh script (__THE PREFERRED METHOD!__)
- *
- *	\code
- *	./demo.sh <filename>
- *	\endcode
- *
- * or by manually invoking the ccomp and tac2mips programs (see instructions on 
- * the 'Main Page' tab above).
- *
- * This will generate the output file test8.asm, which can be assembled and run 
- * in the MARS MIPS simulator. Please note, assembly code in this project was 
- * created with the MARS simulator in mind. The code is therefore MARS compliant,
- * but may not be SPIM compliant. In addition, the generated code relies upon a
- * MARS asm macro file located in the mips/tests/ directory, and the assembly
- * file should therefore only be run in MARS from the directory it is originally
- * generated in. If you wish to move the asm file to a different folder, you must
- * also move the macros.asm file.
- *
- * \section OUTPUT The Expected Output:
-   
+   As would be expected, verifying the output of this example is very similar to
+   the method used to verify the output of the previous example. Again,
+   breakpoints must be set so that the contents of the stack can be viewed in the
+   MARS 'Data Segment' pane. After pressing F3 to assemble the code, create 
+   breakpoints at __line 94__ and __line 192__. Upon hitting the first breakpoint,
+   the values of the array tarr will be 5, 4, 3, 2, 1. Once this first breakpoint is
+   hit, it should be turned off so that the next breakpoint occurs after the array
+   has been completely sorted. Upon hitting the breakpoint on line 192, the values
+   of the tarr array will be 1, 2, 3, 4, 5.
  *
  * \section CODE The Example Code:
  */

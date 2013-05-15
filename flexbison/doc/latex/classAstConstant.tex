@@ -113,18 +113,7 @@ enum {\bfseries Const\-Type} \{ \\*
 \hypertarget{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}{{\bfseries Ast\-Constant} (int val, string name, \hyperlink{classType}{Type} $\ast$t)}\label{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}
 
 \item 
-void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
-\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
-\hypertarget{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}{{\bfseries Ast\-Constant} (int val)}\label{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}
-
-\item 
-\hypertarget{classAstConstant_a071adbaa9ea9ad30cde38d68b4182cd9}{{\bfseries Ast\-Constant} (string val)}\label{classAstConstant_a071adbaa9ea9ad30cde38d68b4182cd9}
-
-\item 
-\hypertarget{classAstConstant_aef9142c2750c7ad8e83183c7b8ade0e8}{{\bfseries Ast\-Constant} (double val)}\label{classAstConstant_aef9142c2750c7ad8e83183c7b8ade0e8}
-
-\item 
-\hypertarget{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}{{\bfseries Ast\-Constant} (int val, string name, \hyperlink{classType}{Type} $\ast$t)}\label{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}
+\hypertarget{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}{int {\bfseries Get\-I\-Val} ()}\label{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}
 
 \item 
 void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
@@ -141,6 +130,9 @@ void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
 \hypertarget{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}{{\bfseries Ast\-Constant} (int val, string name, \hyperlink{classType}{Type} $\ast$t)}\label{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}
 
 \item 
+\hypertarget{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}{int {\bfseries Get\-I\-Val} ()}\label{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}
+
+\item 
 void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
 \begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
 \hypertarget{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}{{\bfseries Ast\-Constant} (int val)}\label{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}
@@ -153,6 +145,26 @@ void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
 
 \item 
 \hypertarget{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}{{\bfseries Ast\-Constant} (int val, string name, \hyperlink{classType}{Type} $\ast$t)}\label{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}
+
+\item 
+\hypertarget{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}{int {\bfseries Get\-I\-Val} ()}\label{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}
+
+\item 
+void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
+\begin{DoxyCompactList}\small\item\em This function is responsible for tree traversals. \end{DoxyCompactList}\item 
+\hypertarget{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}{{\bfseries Ast\-Constant} (int val)}\label{classAstConstant_ab3d7bb141b6d2650498569fa7742237f}
+
+\item 
+\hypertarget{classAstConstant_a071adbaa9ea9ad30cde38d68b4182cd9}{{\bfseries Ast\-Constant} (string val)}\label{classAstConstant_a071adbaa9ea9ad30cde38d68b4182cd9}
+
+\item 
+\hypertarget{classAstConstant_aef9142c2750c7ad8e83183c7b8ade0e8}{{\bfseries Ast\-Constant} (double val)}\label{classAstConstant_aef9142c2750c7ad8e83183c7b8ade0e8}
+
+\item 
+\hypertarget{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}{{\bfseries Ast\-Constant} (int val, string name, \hyperlink{classType}{Type} $\ast$t)}\label{classAstConstant_a9ceaff3b1de813268a88d7fded0aeb0c}
+
+\item 
+\hypertarget{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}{int {\bfseries Get\-I\-Val} ()}\label{classAstConstant_af9d81586158302f949f98f21bf4e8f5d}
 
 \item 
 void \hyperlink{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{Visit} ()
@@ -303,79 +315,43 @@ The label
 \end{DoxyReturn}
 
 
+Definition at line 60 of file C\-Parser.\-yy.
+
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Constant@{Ast\-Constant}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstConstant@{Ast\-Constant}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file C\-Parser.\-yy.
+
+\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Constant@{Ast\-Constant}!get\-Label@{get\-Label}}
+\index{get\-Label@{get\-Label}!AstConstant@{Ast\-Constant}}
+\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
+
+
+Gets the node's label. 
+
+\begin{DoxyReturn}{Returns}
+The label 
+\end{DoxyReturn}
+
+
 Definition at line 60 of file C\-Scanner.\-ll.
-
-\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Constant@{Ast\-Constant}!get\-Label@{get\-Label}}
-\index{get\-Label@{get\-Label}!AstConstant@{Ast\-Constant}}
-\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
-
-
-Gets the node's label. 
-
-\begin{DoxyReturn}{Returns}
-The label 
-\end{DoxyReturn}
-
-
-Definition at line 60 of file C\-Parser.\-yy.
-
-\hypertarget{classAST_aee029be902fffc927d16ccb03eb922ad}{\index{Ast\-Constant@{Ast\-Constant}!get\-Label@{get\-Label}}
-\index{get\-Label@{get\-Label}!AstConstant@{Ast\-Constant}}
-\subsubsection[{get\-Label}]{\setlength{\rightskip}{0pt plus 5cm}string A\-S\-T\-::get\-Label (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_aee029be902fffc927d16ccb03eb922ad}
-
-
-Gets the node's label. 
-
-\begin{DoxyReturn}{Returns}
-The label 
-\end{DoxyReturn}
-
-
-Definition at line 60 of file C\-Parser.\-yy.
-
-\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Constant@{Ast\-Constant}!get\-U\-I\-D@{get\-U\-I\-D}}
-\index{get\-U\-I\-D@{get\-U\-I\-D}!AstConstant@{Ast\-Constant}}
-\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
-
-
-Gets the node's unique I\-D. 
-
-\begin{DoxyReturn}{Returns}
-The unique id 
-\end{DoxyReturn}
-
-
-Definition at line 53 of file C\-Parser.\-yy.
-
-\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Constant@{Ast\-Constant}!get\-U\-I\-D@{get\-U\-I\-D}}
-\index{get\-U\-I\-D@{get\-U\-I\-D}!AstConstant@{Ast\-Constant}}
-\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
-
-
-Gets the node's unique I\-D. 
-
-\begin{DoxyReturn}{Returns}
-The unique id 
-\end{DoxyReturn}
-
-
-Definition at line 53 of file C\-Parser.\-yy.
 
 \hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Constant@{Ast\-Constant}!get\-U\-I\-D@{get\-U\-I\-D}}
 \index{get\-U\-I\-D@{get\-U\-I\-D}!AstConstant@{Ast\-Constant}}
@@ -411,47 +387,43 @@ The unique id
 \end{DoxyReturn}
 
 
+Definition at line 53 of file C\-Parser.\-yy.
+
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Constant@{Ast\-Constant}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstConstant@{Ast\-Constant}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
+
+
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
+
+
 Definition at line 53 of file Ast.\-h.
 
-\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Constant@{Ast\-Constant}!set\-Label@{set\-Label}}
-\index{set\-Label@{set\-Label}!AstConstant@{Ast\-Constant}}
-\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\hypertarget{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}{\index{Ast\-Constant@{Ast\-Constant}!get\-U\-I\-D@{get\-U\-I\-D}}
+\index{get\-U\-I\-D@{get\-U\-I\-D}!AstConstant@{Ast\-Constant}}
+\subsubsection[{get\-U\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}int A\-S\-T\-::get\-U\-I\-D (
 \begin{DoxyParamCaption}
-\item[{string}]{l}
+{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_ab7a5b1d9f1c2de0d98deb356f724a42c}
 
 
-Sets the label for the node. 
+Gets the node's unique I\-D. 
+
+\begin{DoxyReturn}{Returns}
+The unique id 
+\end{DoxyReturn}
 
 
-\begin{DoxyParams}{Parameters}
-{\em l} & The label string \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 43 of file C\-Scanner.\-ll.
-
-\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Constant@{Ast\-Constant}!set\-Label@{set\-Label}}
-\index{set\-Label@{set\-Label}!AstConstant@{Ast\-Constant}}
-\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
-\begin{DoxyParamCaption}
-\item[{string}]{l}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
-
-
-Sets the label for the node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em l} & The label string \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 43 of file C\-Parser.\-yy.
+Definition at line 53 of file C\-Parser.\-yy.
 
 \hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Constant@{Ast\-Constant}!set\-Label@{set\-Label}}
 \index{set\-Label@{set\-Label}!AstConstant@{Ast\-Constant}}
@@ -493,6 +465,46 @@ Sets the label for the node.
 
 Definition at line 43 of file C\-Parser.\-yy.
 
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Constant@{Ast\-Constant}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstConstant@{Ast\-Constant}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file C\-Parser.\-yy.
+
+\hypertarget{classAST_a71d680856e95ff89f55d5311a552eba6}{\index{Ast\-Constant@{Ast\-Constant}!set\-Label@{set\-Label}}
+\index{set\-Label@{set\-Label}!AstConstant@{Ast\-Constant}}
+\subsubsection[{set\-Label}]{\setlength{\rightskip}{0pt plus 5cm}void A\-S\-T\-::set\-Label (
+\begin{DoxyParamCaption}
+\item[{string}]{l}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [inherited]}}}\label{classAST_a71d680856e95ff89f55d5311a552eba6}
+
+
+Sets the label for the node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & The label string \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 43 of file C\-Scanner.\-ll.
+
 \hypertarget{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{\index{Ast\-Constant@{Ast\-Constant}!Visit@{Visit}}
 \index{Visit@{Visit}!AstConstant@{Ast\-Constant}}
 \subsubsection[{Visit}]{\setlength{\rightskip}{0pt plus 5cm}void Ast\-Constant\-::\-Visit (
@@ -510,7 +522,7 @@ Reimplemented from \hyperlink{classAST_a5828cc86f2c4f1a0aeab6d7069e8fd82}{A\-S\-
 
 
 
-Definition at line 925 of file Ast.\-cpp.
+Definition at line 946 of file Ast.\-cpp.
 
 \hypertarget{classAstConstant_ac13b7246f9d646a5ff00efee4c39bc6b}{\index{Ast\-Constant@{Ast\-Constant}!Visit@{Visit}}
 \index{Visit@{Visit}!AstConstant@{Ast\-Constant}}
