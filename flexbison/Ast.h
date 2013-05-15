@@ -168,7 +168,11 @@ public:
     AstConstant(int val, string name, Type* t);
 
     Type* etype;
-
+    
+    int GetIVal()
+    {
+	return ival;    
+    }
     void Visit();
 };
 
@@ -495,7 +499,14 @@ class AstCastExpr : public AST
         //Constructor
         AstCastExpr(AstUnaryExpr* u);
         AstCastExpr(AstTypeName* t, AstCastExpr* c);
-        
+        AstUnaryExpr *GetUnary()
+	{
+	   return uniexpr;	
+	}
+	AstCastExpr *GetCast()
+	{
+	   return cast;
+	}
         Type* type;
 
         //Traversal

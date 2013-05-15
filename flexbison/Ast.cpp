@@ -72,6 +72,8 @@ void AstPrimaryExpr::Visit()
 {            
     SymTab dummy;
     string currentLabel; 
+    string lbl;
+    int ival;
     switch(type)
     {
         case ID:
@@ -100,6 +102,10 @@ void AstPrimaryExpr::Visit()
             AST::vis.addEdge(this->getUID(), constant->getUID());
 
             //Output 3AC
+            lbl = tacGen.GetIVarName();
+            ival = constant->GetIVal(); 
+            tacGen.toTAC(TAC_Generator::IMMEDIATE_I, (void*)&lbl, (void*)ival);
+            AST::tempStack.push_back(lbl);
             break;
 
         case STRING:
@@ -626,6 +632,8 @@ void AstUnaryExpr::Visit()
     string currentLabel;
     long one=1;
     string immediateValue;
+    bool isPrimary; 
+    bool isArray = false;
     switch(t)
     {
         case POSTFIX:
@@ -681,7 +689,17 @@ void AstUnaryExpr::Visit()
             //Visit children nodes
             if(op)
                op->Visit();
+            if ( cast->GetUnary()->isPostfix())
+            {
+				if(cast->GetUnary()->GetPostfix()->isBracket())
+				{
+					cast->GetUnary()->GetPostfix()->SetAddress(true);
+					isArray = true;
+					
+				}
+			}
             cast->Visit();
+            
             if ( op)
             {
                if(op->isNeg())
@@ -703,11 +721,14 @@ void AstUnaryExpr::Visit()
                }       
                if(op->isAddressOff())
                {
-                  lastUsedTemp = AST::tempStack.back();
-                  currentLabel =TAC_Generator::GetIVarName();
-                  AST::tempStack.pop_back();
-                  AST::tacGen.toTAC(TAC_Generator::ADDR,(void *)&lastUsedTemp,(void *)&currentLabel);
-                  AST::tempStack.push_back(currentLabel);
+                 if(!isArray)
+                 {
+                   lastUsedTemp = AST::tempStack.back();
+                   currentLabel =TAC_Generator::GetIVarName();
+                   AST::tempStack.pop_back();
+                   AST::tacGen.toTAC(TAC_Generator::ADDR,(void *)&(AST::currentIdName),(void *)&currentLabel);
+                   AST::tempStack.push_back(currentLabel);
+                 }
                }       
                if(op->isBang())
                {
@@ -929,7 +950,7 @@ void AstConstant::Visit()
     //Add an extra node to the visualization to see the actual data
     stringstream ss;
     int tmp = Visualizer::GetNextUID();
-
+    /*
     switch(this->type)
     {
         case INT:
@@ -965,7 +986,7 @@ void AstConstant::Visit()
             }
             break;
     }
-
+    */
     AST::vis.addNode(tmp, ss.str());
     AST::vis.addEdge(this->getUID(), tmp);
 }
