@@ -157,16 +157,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Functions cannot currently be passed more than four integer parameters as the only form of parameter passing supported by the backend <a class="el" href="classtac2mips.html">tac2mips</a> program is register based parameter passing.</li>
 </ul>
 <h3>How To: Compile this project</h3>
-<p>Clone the repository using the following command: </p>
+<p>Clone the repository using the following commands: </p>
 <pre class="fragment">git clone https://github.com/afiannac2/cs660.git
+cd cs660/
+git fetch origin
+git checkout -b Final origin/Final
 </pre><p>This repository is a private repository, meaning that you must be granted access rights before you can clone the repository, but since you are reading this, I am guessing you have been given rights.</p>
 <p>Execute the following commands to compile the project: </p>
 <pre class="fragment">cd cs660/flexbison/
 make
+make clean
+make tclean
 </pre><p>This will run flex and bison and then compile all of the sources to produce the C Compiler front end executable <b>ccomp</b></p>
 <p>Next, execute these commands to compile <a class="el" href="classtac2mips.html">tac2mips</a>: </p>
 <pre class="fragment">cd mips/
 make
+make clean
 cd ../
 </pre><p>This will run flex and bison and will then compile all of the sources to produce the C compiler back end executable <b><a class="el" href="classtac2mips.html">tac2mips</a></b></p>
 <h3>How To: Compile the Documentation</h3>
@@ -199,7 +205,7 @@ cd ../
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue May 14 2013 22:35:18 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed May 15 2013 06:43:47 for CComp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

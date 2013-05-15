@@ -113,9 +113,12 @@ register based parameter passing.
 
 ###How To: Compile this project
 
-Clone the repository using the following command:
+Clone the repository using the following commands:
 
 	git clone https://github.com/afiannac2/cs660.git
+	cd cs660/
+	git fetch origin
+	git checkout -b Final origin/Final
 
 This repository is a private repository, meaning that you must be granted
 access rights before you can clone the repository, but since you are
@@ -125,6 +128,8 @@ Execute the following commands to compile the project:
 
 	cd cs660/flexbison/
 	make
+	make clean
+	make tclean
 
 This will run flex and bison and then compile all of the sources to produce
 the C Compiler front end executable __ccomp__
@@ -133,6 +138,7 @@ Next, execute these commands to compile tac2mips:
 
 	cd mips/
 	make
+	make clean
 	cd ../
 
 This will run flex and bison and will then compile all of the sources to produce
